@@ -1,17 +1,28 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import './Sign_in.css';
 import logo from '../../Picture/logo.png';
 import login_facebook from '../../Picture/login with facebook.png'
 import login_google from '../../Picture/login with google.png'
+import { stringify } from "querystring";
 
 const Sign_in = () => {
-  const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const [email, setEmail] = useState<string>('');
+  const [pass, setPass] = useState<string>('');
+  const [message, setMessage] = useState('');
 
   const login =() =>{
-    alert(`${email} -- ${pass}`);
-    setEmail("");
-    setPass("");
+    const email_pass = {
+      email: email,
+      pass: pass,
+    };
+
+    // fetch("http://localhost:3000/word",{
+    //   method: 'POST',
+    //   header: {'Content-Type': 'application/json'},
+    //   body: JSON.stringify(email_pass),
+    // })
+
+    // .then(res => (alert(res)));
   }
 
   const forget_pass=() =>{
@@ -28,6 +39,7 @@ const Sign_in = () => {
   const pass_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
     setPass(e.target.value);
   }
+
   return(
     <div className='container'>
         <div className = 'left_login'>

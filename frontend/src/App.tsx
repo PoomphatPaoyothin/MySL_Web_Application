@@ -1,12 +1,23 @@
-import React, {useState} from "react";
+import React from "react";
 import Sign_in from './Login/Sign in/Sign_in';
-type AppProps ={
-    message?: string
-}
+import {
+  BrowserRouter as Router,
+  Routes,//Switch
+  Route,
+  Link
+} from "react-router-dom";
 
-const App = (prop:AppProps) => {
+const App = () => {
   return(
-    <Sign_in />
+    <Router>
+      <div>
+        <Routes>
+          <Route path='/'>
+            <Sign_in />
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   )
 }
 
