@@ -11,7 +11,7 @@ import { WordService } from './Word/word.service';
   imports:[
     TypeOrmModule.forRoot({
       type: 'mongodb',
-      url: 'mongodb+srv://MySL_DataBase:z8b3Pd1RFarnagc7@cluster0.tjniv.mongodb.net/test',
+      url: 'mongodb+srv://MySL_DataBase:z8b3Pd1RFarnagc7@cluster0.tjniv.mongodb.net/MySL',
       entities: [word]
     }),
     WordModule,
