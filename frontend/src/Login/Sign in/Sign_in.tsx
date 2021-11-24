@@ -1,8 +1,8 @@
 import React, {useEffect, useState} from "react";
 import './Sign_in.css';
 import logo from '../../Picture/logo.png';
-import login_facebook from '../../Picture/login with facebook.png'
-import login_google from '../../Picture/login with google.png'
+import login_facebook from '../../Picture/Login/login with facebook.png'
+import login_google from '../../Picture/Login/login with google.png'
 import { stringify } from "querystring";
 
 const Sign_in = () => {

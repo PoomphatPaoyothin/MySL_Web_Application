@@ -2,20 +2,19 @@ import React from "react";
 import Sign_in from './Login/Sign in/Sign_in';
 import {
   BrowserRouter as Router,
-  Routes,//Switch
+  Switch,
   Route,
-  Link
 } from "react-router-dom";
 
 const App = () => {
   return(
     <Router>
       <div>
-        <Routes>
-          <Route path='/'>
+        <Switch>
+          <Route path='/signin'>
             <Sign_in />
           </Route>
-        </Routes>
+        </Switch>
       </div>
     </Router>
   )
