@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import './WordCategory.css';
 import image from '../Picture/WordCategory/ExportWordCategory';
 import WordIcon from './WordIcon';
+import CategoryService from "./CategoryService";
 // Animal,
 // Appliances,
 // Body,
@@ -16,7 +17,23 @@ import WordIcon from './WordIcon';
 // Subject,
 
 const WordCategory = () =>{
+    const [wordcategory,setWordcategory] = useState<any>()
 
+    const fetchWordCategory=()=>{
+        return(
+            CategoryService.fetchWordCategory()
+            .then(res=>{
+                setWordcategory(res);
+                console.log("haaa", wordcategory)
+            })
+        )
+    }
+
+    useEffect(()=>{
+        fetchWordCategory()
+        console.log('useffect')
+    },[])
+    console.log()
     return(
         <div className='container'>
             <p className='choosechapter'>

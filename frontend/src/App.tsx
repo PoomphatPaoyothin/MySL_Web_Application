@@ -20,13 +20,15 @@ const App = () => {
 
         <Switch>
 
+          <Route path='/wordCategory'>
+            <WordCategory />
+          </Route>
+
           <Route path='/signin'>
             <Sign_in />
           </Route>
 
-          <Route path='/wordCategory'>
-            <WordCategory />
-          </Route>
+
 
           <Route path='/lesson'>
             <Lesson />

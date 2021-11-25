@@ -5,12 +5,14 @@ async function LoginUser(email: string, pass: string): Promise<any>{
         User_email:email,
         User_password:pass,
     }
+    console.log('real data is ',JSON.stringify(login_data))
+
     const res = await fetch('http://localhost:3000/login',{
         method: 'POST',
-        // header: {'Content-Type': 'application/json'},
+        headers: new Headers ({'Content-Type': 'application/json'}),
         body: JSON.stringify(login_data),
     });
-    console.log('login data is ',login_data)
+    
     const result = await res.json();
     console.log(result);}
 
