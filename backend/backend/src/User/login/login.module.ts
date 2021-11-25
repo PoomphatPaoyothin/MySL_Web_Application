@@ -12,6 +12,7 @@ import { loginService } from "./login.service";
         PassportModule.register({defaultStrategy: 'jwt'}),
         JwtModule.register({
             secret:'asdjfkl',
+            signOptions: {expiresIn: '60m'}
         }),
         TypeOrmModule.forFeature([User]),
     ],

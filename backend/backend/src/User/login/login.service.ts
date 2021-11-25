@@ -14,8 +14,7 @@ export class loginService{
         private JwtService: JwtService
     ){}
     
-    async validateUserPassword(userinput: UserInput): Promise<any>{
-        const {User_email,User_password} = userinput;
+    async validateUserPassword(User_email:string,User_password:string): Promise<any>{
         const user = await this.userRepo.findOne({where:{User_email:User_email}})
 
         if(!user){
@@ -29,8 +28,8 @@ export class loginService{
         }
     }
 
-    async login(userinput: UserInput){
-        const User_email = await this.validateUserPassword(userinput);
+    async login(user:any){
+        const User_email = await this.validateUserPassword(user.User_email,user.User_password);
 
         if(!User_email){
             throw new UnauthorizedException('no user');
@@ -39,18 +38,18 @@ export class loginService{
         const payload: JwtPayload = {User_email};
         const accessToken = await this.JwtService.sign(payload);
 
-        var axios = require('axios');
-        var config = {
-            method: 'get',
-            url: 'http://localhost:3000/login/getuserdata',
-            headers:{
-                'Authorization': `Bearer ${accessToken}`
-            }
-        };
+        // var axios = require('axios');
+        // var config = {
+        //     method: 'get',
+        //     url: 'http://localhost:3000/login/getuserdata',
+        //     headers:{
+        //         'Authorization': `Bearer ${accessToken}`
+        //     }
+        // };
 
-        const res = await axios(config);
-        const data = res.data;
-        return {"accessToken": accessToken,"id": data.id,"User_email": data.User_email};
+        // const res = await axios(config);
+        // const data = res.data;
+        return {"accessToken": accessToken};
     }
 
     async getuserdata(
