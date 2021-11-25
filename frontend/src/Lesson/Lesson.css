@@ -1,0 +1,23 @@
+.clickword{
+    display:block;
+    color:#444;
+    border:1px solid #F2F2F2;
+    background:#F2F2F2;
+    cursor:pointer;
+    padding: 5px;
+    text-align: center;
+    max-width: 7%;
+}
+.buttonChapter{
+    display: block;
+    cursor:pointer;
+    padding: 5px;
+    background-color:#CDF0EA;
+    border-radius: 3px;
+    border: 0px;
+}
+
+.buttonChapter:hover {
+    background-color: #00C985;
+  }
+

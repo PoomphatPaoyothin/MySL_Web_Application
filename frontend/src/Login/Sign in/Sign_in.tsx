@@ -1,20 +1,24 @@
 import React, {useEffect, useState} from "react";
 import './Sign_in.css';
-import logo from '../../Picture/logo.png';
+import logo from '../../Picture/Login/logo.png';
 import login_facebook from '../../Picture/Login/login with facebook.png'
 import login_google from '../../Picture/Login/login with google.png'
 import { stringify } from "querystring";
+import AuthService from "./AuthService";
 
 const Sign_in = () => {
   const [email, setEmail] = useState<string>('');
   const [pass, setPass] = useState<string>('');
   const [message, setMessage] = useState('');
 
-  const login =() =>{
+  const login = () =>{
     const email_pass = {
       email: email,
       pass: pass,
     };
+    console.log('Token is')
+    const result = AuthService.LoginUser(email_pass.email, email_pass.pass);
+    
 
     // fetch("http://localhost:3000/word",{
     //   method: 'POST',
@@ -62,9 +66,9 @@ const Sign_in = () => {
 
             <div className='keep_me'>
               <input type="checkbox" className='checkbox'/>
-              <label className="keepme_text">
+              <div className="keepme_text">
                ให้ฉันอยู๋ในระบบต่อไป
-              </label>
+              </div>
             </div>
 
             <div className="forget_pass" >
