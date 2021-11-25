@@ -6,14 +6,32 @@ import {
   Route,
 } from "react-router-dom";
 
+//Link
+import WordCategory from "./WordCategory/WordCategory";
+import Lesson from "./Lesson/Lesson";
+import Navbar from "./Navbar/Navbar";
+
+
 const App = () => {
   return(
     <Router>
       <div>
+        {/* <Navbar /> */}
+
         <Switch>
+
           <Route path='/signin'>
             <Sign_in />
           </Route>
+
+          <Route path='/wordCategory'>
+            <WordCategory />
+          </Route>
+
+          <Route path='/lesson'>
+            <Lesson />
+          </Route>
+
         </Switch>
       </div>
     </Router>
