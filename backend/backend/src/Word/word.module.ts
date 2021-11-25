@@ -1,13 +1,14 @@
 import { Controller, Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { wordcategory } from "./category.entity";
+import { lesson } from "./lesson.entity";
 import { WordController } from "./word.controller";
 import { word } from "./word.entity";
 import { WordService } from "./word.service";
 
 @Module({
     imports:[
-        TypeOrmModule.forFeature([word,wordcategory]),
+        TypeOrmModule.forFeature([word,wordcategory,lesson]),
     ],
     providers:[
         WordService

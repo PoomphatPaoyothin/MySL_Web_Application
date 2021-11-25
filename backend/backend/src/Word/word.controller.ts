@@ -1,5 +1,6 @@
 import { Controller, Get, Param } from "@nestjs/common";
 import { wordcategory } from "./category.entity";
+import { lesson } from "./lesson.entity";
 import { word } from "./word.entity";
 import { WordService } from "./word.service";
 
@@ -23,5 +24,15 @@ export class WordController{
         @Param('id') id:string
     ): Promise<wordcategory>{
         return this.wordService.getOneCategory(id);
+    }
+
+    @Get('/lesson/:idcat')
+    async getLessonByCatID(@Param('idcat') idcat:string): Promise<lesson[]>{
+        return this.wordService.getLessonByCatID(idcat);
+    }
+
+    @Get('/wordcat/:idcat')
+    async getWordByCatID(@Param('idcat') idcat:string): Promise<word[]>{
+        return this.wordService.getAllWordByCat(idcat);
     }
 }
