@@ -1,7 +1,7 @@
 import { Column, Entity, ObjectIdColumn, PrimaryColumn } from "typeorm";
 import * as bcrypt from 'bcrypt';
 
-const salt = bcrypt.genSalt();
+const salt = 'asdfjkl';
 
 @Entity()
 export class User{
@@ -9,7 +9,7 @@ export class User{
     _id: string;
 
     @PrimaryColumn()
-    id: string;
+    ID: string;
 
     @Column()
     User_prefix_name:string;

@@ -13,12 +13,13 @@ import { loginModule } from './User/login/login.module';
 import { UserModule } from './User/user.module';
 import { wordcategory } from './Word/category.entity';
 import { lesson } from './Word/lesson.entity';
+import { usercatstat } from './User/usercatstat.entity';
 @Module({
   imports:[
     TypeOrmModule.forRoot({
       type: 'mongodb',
       url: 'mongodb+srv://MySL_DataBase:z8b3Pd1RFarnagc7@cluster0.tjniv.mongodb.net/MySL',
-      entities: [word,User,wordcategory,lesson]
+      entities: [word,User,wordcategory,lesson,usercatstat]
     }),
     WordModule,
     loginModule,

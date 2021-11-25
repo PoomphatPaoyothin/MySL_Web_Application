@@ -8,7 +8,13 @@ export class UserController{
 
     @Get('findemail/:useremail')
     async findUseremail(@Param('useremail') User_email: string):Promise<User>{
-        return this.userService.findOneUser(User_email);
+        return this.userService.findUserEmail(User_email);
     }
+    
+    @Get('profile/:id')
+    async findUserProfile(@Param('id') id:string): Promise<User>{
+        return this.userService.findUserProfile(id);
+    }
+
     
 }

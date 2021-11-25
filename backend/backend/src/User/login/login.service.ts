@@ -1,10 +1,11 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { ConsoleLogger, flatten, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "../user.entity";
 import { JwtPayload } from "./jwt-payload.interface";
 import { UserInput } from "./user.input";
+import * as bcrypt from 'bcrypt';
 
 @Injectable()
 export class loginService{
@@ -14,26 +15,46 @@ export class loginService{
         private JwtService: JwtService
     ){}
     
+    
     async validateUserPassword(User_email:string,User_password:string): Promise<any>{
         const user = await this.userRepo.findOne({where:{User_email:User_email}})
 
-        if(!user){
-            throw new UnauthorizedException('no user');
-        }
-        else if(user && user.validatePassword(User_password)){
+        const hash = bcrypt.compareSync(User_password,user.User_password);
+        if(hash == true){
+            console.log('Valid password')
             return user.User_email;
         }
-        else{
-            return null;
+        else if(!user){
+            throw new UnauthorizedException('no user');
         }
+        else{
+            console.log('Invalid password')
+        }
+        
+        // bcrypt.compare(User_password,user.User_password,function(err,result){
+        //     if(result){
+        //         console.log('asdfaisjdfiajsdifoj');
+        //         // console.log(user.User_email);
+        //         return user.User_email;
+        //     }
+        //     else if(!user){
+        //         throw new UnauthorizedException('no user');
+        //     }
+        //     else{
+        //         throw new UnauthorizedException('invalid password');
+        //     }
+        // })
+        
     }
 
     async login(user:any){
         const User_email = await this.validateUserPassword(user.User_email,user.User_password);
-
+        console.log(User_email);
         if(!User_email){
-            throw new UnauthorizedException('no user');
+            throw new UnauthorizedException('no user111');
         }
+
+        // console.log(User_email)
 
         const payload: JwtPayload = {User_email};
         const accessToken = await this.JwtService.sign(payload);
@@ -62,7 +83,7 @@ export class loginService{
     }
 
     async test(user:User){
-        return {"useremail": user.User_email,"pass":user.User_password}
+        return {"useremail": user.validatePassword(user.User_password),"pass":user.User_password}
     }
     
 }

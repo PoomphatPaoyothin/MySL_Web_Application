@@ -23,8 +23,6 @@ export class loginController{
     test(@Body() UserInput: User){
         return this.loginService.test(UserInput);
     }
-    
-
 
     @Get('/getuserdata')
     @UseGuards(AuthGuard())
