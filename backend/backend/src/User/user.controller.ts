@@ -6,8 +6,9 @@ import { UserService } from "./user.service";
 export class UserController{
     constructor(private userService:UserService ){}
 
-    @Get(':useremail')
+    @Get('findemail/:useremail')
     async findUseremail(@Param('useremail') User_email: string):Promise<User>{
         return this.userService.findOneUser(User_email);
     }
+    
 }
