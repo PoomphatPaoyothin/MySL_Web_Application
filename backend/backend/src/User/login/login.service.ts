@@ -60,5 +60,9 @@ export class loginService{
 
         return {"id": id,"User_email": User_email}
     }
+
+    async test(user:User){
+        return {"useremail": user.User_email,"pass":user.User_password}
+    }
     
 }
