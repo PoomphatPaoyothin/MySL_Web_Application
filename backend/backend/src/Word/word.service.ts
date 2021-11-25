@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
-import { Repository } from "typeorm";
+import { getMongoRepository, Like, Repository,Raw } from "typeorm";
 import { wordcategory } from "./category.entity";
 import { lesson } from "./lesson.entity";
 import { word } from "./word.entity";
@@ -34,5 +34,20 @@ export class WordService{
 
     async getAllWordByCat(id:string): Promise<word[]>{
         return this.wordRepository.find({where:{Category_ID:id}});
+    }
+
+    async getWordByWord(Word:string): Promise<word[]>{
+        var getmongo = getMongoRepository(word);
+        console.log(Word)
+        var getsome = await getmongo.find({
+            where: "Word_name LIKE '%hello%'"
+        })
+        return getsome;
+        // console.log(word);
+        // return this.wordRepository.find(
+        //     {
+        //         Word_name: Like("%hello #%")
+        //     })
+        // return this.wordRepository.find({where:{Word_name:word}})
     }
 }

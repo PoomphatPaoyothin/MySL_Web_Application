@@ -3,6 +3,7 @@ import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "./user.entity";
 import { usercatstat } from "./usercatstat.entity";
+import { userstatnav } from "./userstatnav.entity";
 
 @Injectable()
 export class UserService{
@@ -10,7 +11,9 @@ export class UserService{
         @InjectRepository(User)
         private userRepo : Repository<User>,
         @InjectRepository(usercatstat)
-        private usercatstatRepo : Repository<usercatstat>
+        private usercatstatRepo : Repository<usercatstat>,
+        @InjectRepository(userstatnav)
+        private userstatnavRepo: Repository<userstatnav>,
     ){}
 
     async findUserEmail(useremail:string){
@@ -22,6 +25,10 @@ export class UserService{
     }
 
     async getUserStatCat(id:string){
-        return 0
+        return this.usercatstatRepo.find({where:{UserID:id}});
+    }
+
+    async getUserStatNav(id:string){
+        return this.userstatnavRepo.findOne({where:{UserID:id}});
     }
 }

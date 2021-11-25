@@ -6,6 +6,7 @@ import { User } from "../user.entity";
 import { JwtPayload } from "./jwt-payload.interface";
 import { UserInput } from "./user.input";
 import * as bcrypt from 'bcrypt';
+import { retry } from "rxjs";
 
 @Injectable()
 export class loginService{
@@ -47,11 +48,18 @@ export class loginService{
         
     }
 
+    async findOneUser(useremail:any):Promise<User>{
+        return await this.userRepo.findOne({where:{User_email:useremail}});
+        
+    }
+
     async login(user:any){
         const User_email = await this.validateUserPassword(user.User_email,user.User_password);
+        const getUser = this.findOneUser(user.User_email);
+        const getIdUser = (await getUser).ID;
         console.log(User_email);
         if(!User_email){
-            throw new UnauthorizedException('no user111');
+            throw new UnauthorizedException('password wrong');
         }
 
         // console.log(User_email)
@@ -70,7 +78,7 @@ export class loginService{
 
         // const res = await axios(config);
         // const data = res.data;
-        return {"accessToken": accessToken};
+        return {"accessToken": accessToken,"userId": getIdUser};
     }
 
     async getuserdata(

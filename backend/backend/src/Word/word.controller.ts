@@ -35,4 +35,9 @@ export class WordController{
     async getWordByCatID(@Param('idcat') idcat:string): Promise<word[]>{
         return this.wordService.getAllWordByCat(idcat);
     }
+
+    @Get('/getword/:word')
+    async getWordByWord(@Param('word') word:string): Promise<word[]>{
+        return this.wordService.getWordByWord(word);
+    }
 }

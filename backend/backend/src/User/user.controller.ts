@@ -1,6 +1,8 @@
 import { Controller, Get, Param } from "@nestjs/common";
 import { User } from "./user.entity";
 import { UserService } from "./user.service";
+import { usercatstat } from "./usercatstat.entity";
+import { userstatnav } from "./userstatnav.entity";
 
 @Controller('user')
 export class UserController{
@@ -16,5 +18,13 @@ export class UserController{
         return this.userService.findUserProfile(id);
     }
 
-    
+    @Get('profile/catstat/:id')
+    async GetUsercatstat(@Param('id') id:string): Promise<usercatstat[]>{
+        return this.userService.getUserStatCat(id);
+    }
+
+    @Get('profile/navstat/:id')
+    async GetUserNavStat(@Param('id') id:string): Promise<userstatnav>{
+        return this.userService.getUserStatNav(id);
+    }
 }
