@@ -16,4 +16,7 @@ export class wordcategory{
 
     @Column()
     Word_amount: number;
+
+    @Column()
+    Word_picture: string;
 }

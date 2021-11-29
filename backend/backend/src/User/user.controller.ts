@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Body, Controller, Get, Param, Patch } from "@nestjs/common";
 import { User } from "./user.entity";
 import { UserService } from "./user.service";
 import { usercatstat } from "./usercatstat.entity";
@@ -26,5 +26,11 @@ export class UserController{
     @Get('profile/navstat/:id')
     async GetUserNavStat(@Param('id') id:string): Promise<userstatnav>{
         return this.userService.getUserStatNav(id);
+    }
+
+    @Patch(':userid/setting/password')
+    async updateUserPassword(@Param('userid') userid: string,
+                            @Body('password') password: string): Promise<User>{
+        return this.userService.updateUserPassword(userid,password);
     }
 }
