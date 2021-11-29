@@ -81,17 +81,17 @@ export class loginService{
         return {"accessToken": accessToken,"userId": getIdUser};
     }
 
-    async getuserdata(
-        user:User,
-    ){
-        const id = user._id;
-        const User_email = user.User_email;
+    // async getuserdata(
+    //     user:User,
+    // ){
+    //     const id = user._id;
+    //     const User_email = user.User_email;
 
-        return {"id": id,"User_email": User_email}
-    }
+    //     return {"id": id,"User_email": User_email}
+    // }
 
-    async test(user:User){
-        return {"useremail": user.validatePassword(user.User_password),"pass":user.User_password}
-    }
+    // async test(user:User){
+    //     return {"useremail": user.validatePassword(user.User_password),"pass":user.User_password}
+    // }
     
 }

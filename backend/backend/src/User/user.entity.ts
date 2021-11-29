@@ -35,9 +35,10 @@ export class User{
     @Column()
     Is_delete: boolean;
 
-    async validatePassword(User_password: string): Promise<boolean>{
-        const hash = await bcrypt.hash(User_password,await salt);
-        return hash === this.User_password;
-    }
+    @Column()
+    imguser: string;
+
+    @Column()
+    timeupdate: Date;
 
 }

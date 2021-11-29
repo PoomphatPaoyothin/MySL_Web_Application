@@ -19,16 +19,16 @@ export class loginController{
         // return this.loginService.login(userInput);
     }
 
-    @Post('test')
-    test(@Body() UserInput: User){
-        return this.loginService.test(UserInput);
-    }
+    // @Post('test')
+    // test(@Body() UserInput: User){
+    //     return this.loginService.test(UserInput);
+    // }
 
-    @Get('/getuserdata')
-    @UseGuards(AuthGuard())
-    getuserdata(user:User)
-    {
-        const res = this.loginService.getuserdata(user);
-        return res;
-    }
+    // @Get('/getuserdata')
+    // @UseGuards(AuthGuard())
+    // getuserdata(user:User)
+    // {
+    //     const res = this.loginService.getuserdata(user);
+    //     return res;
+    // }
 }
