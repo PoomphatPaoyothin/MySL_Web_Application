@@ -1,9 +1,9 @@
 import React from "react";
 import { useHistory } from "react-router";
-import './Navbar.css';
-import {Nav, NavDropdown} from 'react-bootstrap'
+import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
 
-const Navbar=(prop:any)=>{
+
+const Navigatebar=(prop:any)=>{
     const history = useHistory();
     
     const logout = () =>{
@@ -14,16 +14,19 @@ const Navbar=(prop:any)=>{
 
     
     return(
-        <Navbar>
-            <button className='layer2' onClick={logout}>
+        <Navbar bg='myRed' variant='dark'>
+            <Navbar.Brand>
+                Logo
+            </Navbar.Brand>
+            {/* <button className='layer2' onClick={logout}>
                 logout
             </button>
             <div>
                 Home
                 lesson
-            </div>
+            </div> */}
         </Navbar>
     )
 }
 
-export default Navbar;
+export default Navigatebar;

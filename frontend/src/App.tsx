@@ -9,8 +9,9 @@ import {
 //Link
 import WordCategory from "./WordCategory/WordCategory";
 import Lesson from "./Lesson/Lesson";
-import Navbar from "./Navbar/Navbar";
+import Navigatebar from "./Navbar/Navigatebar";
 import Home from "./Home/Home"
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
@@ -27,12 +28,13 @@ const App = () => {
   return(
     <Router>
       <div>
-        {/* <Navbar/> */}
+        <Navigatebar/>
         <Switch>
           <Route path='/' exact component={Home} />
 
           <Route path='/lesson' component={Lesson} />
 
+          <Route path='/nav' component={Navigatebar} />
 
 
         </Switch>
