@@ -32,7 +32,7 @@ export class registerService{
         }
         const saltRound = 12;
         const user = this.userRepo.create({
-            ID: uuid,
+            ID: uuid(),
             User_prefix_name: User_prefix_name,
             User_password: await this.hashpassword(User_password,saltRound),
             User_email: User_email,
@@ -45,7 +45,9 @@ export class registerService{
             Is_delete:false,
         })
 
+
         await this.userRepo.save(user);
+        console.log(user);
         const id = user.ID;
 
         return {"userId":id}; 

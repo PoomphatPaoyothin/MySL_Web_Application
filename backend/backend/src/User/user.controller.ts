@@ -18,10 +18,10 @@ export class UserController{
         return this.userService.findUserProfile(id);
     }
 
-    @Get('profile/catstat/:id')
-    async GetUsercatstat(@Param('id') id:string): Promise<usercatstat[]>{
-        return this.userService.getUserStatCat(id);
-    }
+    // @Get('profile/catstat/:id')
+    // async GetUsercatstat(@Param('id') id:string): Promise<usercatstat[]>{
+    //     return this.userService.getUserStatCat(id);
+    // }
 
     @Get('profile/navstat/:id')
     async GetUserNavStat(@Param('id') id:string): Promise<userstatnav>{
@@ -56,5 +56,12 @@ export class UserController{
     async updateNavBarQuiz(@Param('userid') userid: string,
                         @Body('score') score: number): Promise<userstatnav>{
         return this.userService.updateNavbarQuiz(userid,score);
+    }
+
+    @Patch(':userid/userstat/cat')
+    async updateUserStatCat(@Param('userid') userid: string,
+                            @Body('catid') catid: string,
+                            @Body('score') score:number): Promise<usercatstat>{
+        return this.userService.updateUserStatCat(userid,catid,score);
     }
 }

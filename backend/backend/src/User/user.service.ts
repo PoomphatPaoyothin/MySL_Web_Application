@@ -25,8 +25,8 @@ export class UserService{
         return this.userRepo.findOne({where:{ID:id}});
     }
 
-    async getUserStatCat(id:string){
-        return this.usercatstatRepo.find({where:{UserID:id}});
+    async getUserStatCat(id:string,catid:string){
+        return this.usercatstatRepo.findOne({where:{UserID:id, CategoryID:catid}});
     }
 
     async getUserStatNav(id:string){
@@ -72,8 +72,15 @@ export class UserService{
     async updateNavbarQuiz(id:string,score:number){
         const getUser = await this.getUserStatNav(id);
         var quizStat = getUser.Quiz_stat;
-        getUser.Quiz_stat = quizStat+score;
-        await this.userstatnavRepo.save(getUser);
+        getUser.Quiz_stat = quizStat+score
+        await this.userstatnavRepo.save(getUser)
+        return getUser;
+    }
+
+    async updateUserStatCat(id:string,catid:string,score:number){
+        const getUser = await this.getUserStatCat(id,catid);
+        getUser.category_quiz_score = score;
+        await this.usercatstatRepo.save(getUser);
         return getUser;
     }
 }
