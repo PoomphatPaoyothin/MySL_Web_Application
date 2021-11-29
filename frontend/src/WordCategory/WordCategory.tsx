@@ -30,13 +30,11 @@ const WordCategory = () =>{
     }
     useEffect(()=>{
         fetchWordCategory()
-        console.log('useffect')
     },[])
 
     const Isnotundefined=() =>{
         return wordcategory !== undefined;
     }
-    console.log()
     return(
         <div className='container'>
             <p className='choosechapter'>
@@ -46,7 +44,7 @@ const WordCategory = () =>{
                 <div className='multimiddle'>
                     
                     {wordcategory?.map((obj)=> ( 
-                        <WordIcon name= {obj.Category_name} />
+                        <WordIcon name= {obj.Category_name} image = {obj.Word_picture}/>
                     ))} 
 
                     {/* <WordIcon image={image.Dialy} name='ท่าทางในชีวิตประจำวัน'/>

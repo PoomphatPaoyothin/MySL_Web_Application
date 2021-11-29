@@ -10,32 +10,30 @@ import {
 import WordCategory from "./WordCategory/WordCategory";
 import Lesson from "./Lesson/Lesson";
 import Navbar from "./Navbar/Navbar";
+import Home from "./Home/Home"
 
 
 const App = () => {
   const id = localStorage.getItem('accesToken')
+  // const NavRoute = ({exact, path, component: Component}) => (
+  //   <Route exact={exact} path={path} render={(props) => (
+  //     <div>
+  //       <Header/>
+  //       <Component {...props}/>
+  //     </div>
+  //   )}/>
+  // )
+
   return(
     <Router>
       <div>
-        {/* <Navbar /> */}
-
+        {/* <Navbar/> */}
         <Switch>
+          <Route path='/' exact component={Home} />
+
+          <Route path='/lesson' component={Lesson} />
 
 
-
-          <Route path='/login'>
-            <Sign_in />
-          </Route>
-
-
-
-          <Route path='/lesson'>
-            <Lesson />
-          </Route>
-  
-          <Route path='/'>
-            <WordCategory />
-          </Route>
 
         </Switch>
       </div>

@@ -20,7 +20,7 @@ import React, { useState } from "react";
 import WordBox from "./WordBox";
 
 const LessonBox=(props:any)=>{
-    const [visible1,setVisible1] = useState<Boolean>(false);
+    const [visible1,setVisible1] = useState<Boolean>(true);
     const [visible2,setVisible2] = useState<Boolean>(false);
     const [visible3,setVisible3] = useState<Boolean>(false);
     const [visible4,setVisible4] = useState<Boolean>(false);
@@ -28,7 +28,7 @@ const LessonBox=(props:any)=>{
 
 
     const openChapter1=() =>{
-        setVisible1(!visible1);
+        setVisible1(true);
 
         setVisible2(false);
         setVisible3(false);
@@ -37,7 +37,7 @@ const LessonBox=(props:any)=>{
     }
 
     const openChapter2=() =>{
-        setVisible2(!visible2);
+        setVisible2(true);
 
         setVisible1(false);
         setVisible3(false);
@@ -45,7 +45,7 @@ const LessonBox=(props:any)=>{
         setVisible5(false);
     }
     const openChapter3=() =>{
-        setVisible3(!visible3);
+        setVisible3(true);
 
         setVisible1(false);
         setVisible2(false);
@@ -53,7 +53,7 @@ const LessonBox=(props:any)=>{
         setVisible5(false);
     }
     const openChapter4=() =>{
-        setVisible4(!visible4);
+        setVisible4(true);
 
         setVisible1(false);
         setVisible3(false);
@@ -61,7 +61,7 @@ const LessonBox=(props:any)=>{
         setVisible5(false);
     }
     const openChapter5=() =>{
-        setVisible5(!visible5);
+        setVisible5(true);
 
         setVisible1(false);
         setVisible3(false);

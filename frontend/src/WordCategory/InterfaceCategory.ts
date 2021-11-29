@@ -4,4 +4,5 @@ export interface wordInfo{
     Category_name:string;
     Lesson_amount:number;
     Word_amount:number;
+    Word_picture:string;
 }

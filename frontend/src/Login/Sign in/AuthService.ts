@@ -15,9 +15,9 @@ async function LoginUser(email: string, pass: string): Promise<any>{
     });
     
     const result = await res.json();
-    console.log(result.accessToken)
     if(result.accessToken){
         localStorage.setItem("accesToken", result.accessToken);
+        localStorage.setItem("id", result.userId);
         return result;
     }
     else{

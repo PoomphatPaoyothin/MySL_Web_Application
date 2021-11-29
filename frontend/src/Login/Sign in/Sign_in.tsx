@@ -14,21 +14,25 @@ const Sign_in = () => {
   const history = useHistory();
 
   const login = async () =>{
+    console.log('go login');
     const email_pass = {
       email: email,
       pass: pass,
     };
     const result = await AuthService.LoginUser(email_pass.email, email_pass.pass);
-    console.log(result)
+    console.log('result' , result);
+
     if(!result){
       setErrormessage("อีเมลล์ หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
     }
     else{
       setErrormessage("");
-      history.push("/wordCategory");
+      // window.location.reload();
+      history.push("/");
     }
     
   }
+
 
   const forget_pass=() =>{
 
