@@ -1,7 +1,7 @@
 import React from "react";
 import { useHistory } from "react-router";
-import {Navbar, Nav, NavDropdown} from 'react-bootstrap'
-
+import {Navbar, Nav, NavDropdown, Button } from 'react-bootstrap';
+import bootstrap from 'bootstrap'
 
 const Navigatebar=(prop:any)=>{
     const history = useHistory();
@@ -15,17 +15,16 @@ const Navigatebar=(prop:any)=>{
     
     return(
         <Navbar bg='myRed' variant='dark'>
-            <Navbar.Brand>
-                Logo
-            </Navbar.Brand>
-            {/* <button className='layer2' onClick={logout}>
+            <button className='layer2' onClick={logout}>
                 logout
             </button>
             <div>
                 Home
                 lesson
-            </div> */}
+            </div>
         </Navbar>
+
+
     )
 }
 

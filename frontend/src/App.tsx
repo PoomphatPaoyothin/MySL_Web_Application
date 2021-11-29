@@ -11,7 +11,6 @@ import WordCategory from "./WordCategory/WordCategory";
 import Lesson from "./Lesson/Lesson";
 import Navigatebar from "./Navbar/Navigatebar";
 import Home from "./Home/Home"
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 const App = () => {
