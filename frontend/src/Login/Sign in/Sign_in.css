@@ -212,3 +212,15 @@
     left: 10%;
     font-size: 20px;
 }
+
+.errormessage{
+    position:absolute;
+    display:block;
+    color: red;
+    font-size: 20px;
+    text-align: center;
+    top:-2%;  
+    left:50%;
+    transform: translate(-50%);
+    width:100%;
+}

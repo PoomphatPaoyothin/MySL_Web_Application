@@ -1,4 +1,5 @@
 import React, {useEffect, useState} from "react";
+import { useHistory } from "react-router";
 import './Sign_in.css';
 import logo from '../../Picture/Login/logo.png';
 import login_facebook from '../../Picture/Login/login with facebook.png'
@@ -9,24 +10,24 @@ import AuthService from "./AuthService";
 const Sign_in = () => {
   const [email, setEmail] = useState<string>('');
   const [pass, setPass] = useState<string>('');
-  const [message, setMessage] = useState('');
+  const [errormessage, setErrormessage] = useState('');
+  const history = useHistory();
 
-  const login = () =>{
+  const login = async () =>{
     const email_pass = {
       email: email,
       pass: pass,
     };
-    console.log('Token is')
-    const result = AuthService.LoginUser(email_pass.email, email_pass.pass);
+    const result = await AuthService.LoginUser(email_pass.email, email_pass.pass);
+    console.log(result)
+    if(!result){
+      setErrormessage("อีเมลล์ หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
+    }
+    else{
+      setErrormessage("");
+      history.push("/wordCategory");
+    }
     
-
-    // fetch("http://localhost:3000/word",{
-    //   method: 'POST',
-    //   header: {'Content-Type': 'application/json'},
-    //   body: JSON.stringify(email_pass),
-    // })
-
-    // .then(res => (alert(res)));
   }
 
   const forget_pass=() =>{
@@ -61,7 +62,7 @@ const Sign_in = () => {
           <div className = 'right_login2'>
           <div>
             <input value={email} onChange={email_input} placeholder="อีเมลล์" required className="email_box"/>
-            <input value={pass} onChange={pass_input} placeholder="รหัสผ่าน" required className="pass_box"/>
+            <input type='password' value={pass} onChange={pass_input} placeholder="รหัสผ่าน" required className="pass_box"/>
             <button type="submit" className='login_button' onClick={login}>เข้าสู่ระบบ</button>
 
             <div className='keep_me'>
@@ -76,7 +77,11 @@ const Sign_in = () => {
                 ลืมรหัสผ่าน
               </label>
             </div>
-
+            {errormessage && (
+              <div className='errormessagePos'>
+                <p className='errormessage'>{errormessage}</p>
+              </div>
+            )}
             <img src={login_google} className='login_google'/>
 
             <img src={login_facebook} className='login_facebook'/>

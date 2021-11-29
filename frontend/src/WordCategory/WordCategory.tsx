@@ -3,6 +3,7 @@ import './WordCategory.css';
 import image from '../Picture/WordCategory/ExportWordCategory';
 import WordIcon from './WordIcon';
 import CategoryService from "./CategoryService";
+import { wordInfo } from "./InterfaceCategory";
 // Animal,
 // Appliances,
 // Body,
@@ -17,22 +18,24 @@ import CategoryService from "./CategoryService";
 // Subject,
 
 const WordCategory = () =>{
-    const [wordcategory,setWordcategory] = useState<any>()
+    const [wordcategory,setWordcategory] = useState<wordInfo[]>()
 
     const fetchWordCategory=()=>{
         return(
             CategoryService.fetchWordCategory()
             .then(res=>{
                 setWordcategory(res);
-                console.log("haaa", wordcategory)
             })
         )
     }
-
     useEffect(()=>{
         fetchWordCategory()
         console.log('useffect')
     },[])
+
+    const Isnotundefined=() =>{
+        return wordcategory !== undefined;
+    }
     console.log()
     return(
         <div className='container'>
@@ -41,7 +44,12 @@ const WordCategory = () =>{
             </p>
             <div className='background'>
                 <div className='multimiddle'>
-                    <WordIcon image={image.Dialy} name='ท่าทางในชีวิตประจำวัน'/>
+                    
+                    {wordcategory?.map((obj)=> ( 
+                        <WordIcon name= {obj.Category_name} />
+                    ))} 
+
+                    {/* <WordIcon image={image.Dialy} name='ท่าทางในชีวิตประจำวัน'/>
                     <WordIcon image={image.Body} name='ร่างกาย'/>
                     <WordIcon image={image.Family} name='ครอบครัว'/>
                     <WordIcon image={image.Occupation} name='อาชีพ'/>
@@ -52,7 +60,7 @@ const WordCategory = () =>{
                     <WordIcon image={image.Clothes} name='เสื้อผ้า'/>
                     <WordIcon image={image.Subject} name='วิชา'/>
                     <WordIcon image={image.Country} name='ประเทศ'/>
-                    <WordIcon image={image.Sport} name='กีฬา'/>
+                    <WordIcon image={image.Sport} name='กีฬา'/> */}
                 </div>
             </div>
         </div>

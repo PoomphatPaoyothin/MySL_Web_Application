@@ -13,6 +13,7 @@ import Navbar from "./Navbar/Navbar";
 
 
 const App = () => {
+  const id = localStorage.getItem('accesToken')
   return(
     <Router>
       <div>
@@ -20,11 +21,9 @@ const App = () => {
 
         <Switch>
 
-          <Route path='/wordCategory'>
-            <WordCategory />
-          </Route>
 
-          <Route path='/signin'>
+
+          <Route path='/login'>
             <Sign_in />
           </Route>
 
@@ -32,6 +31,10 @@ const App = () => {
 
           <Route path='/lesson'>
             <Lesson />
+          </Route>
+  
+          <Route path='/'>
+            <WordCategory />
           </Route>
 
         </Switch>

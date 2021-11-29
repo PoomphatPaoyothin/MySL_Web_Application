@@ -1,7 +1,8 @@
+import {url} from '../url'
+import {wordInfo} from './InterfaceCategory'
 
-async function fetchWordCategory(): Promise<any[]>{
-    console.log('aaaaaaaaaaaaaaaaaaaaaaaa')
-    const res = await fetch('http://localhost:3000/word/category');
+async function fetchWordCategory(): Promise<wordInfo[]>{
+    const res = await fetch(`${url}/word/category`);
     const word = await res.json();
     console.log(word)
     return word;
