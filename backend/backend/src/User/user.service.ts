@@ -44,4 +44,36 @@ export class UserService{
         await this.userRepo.save(getUser);
         return getUser;
     }
+
+    async updateUserName(id:string,User_prefix_name:string,User_name:string,User_surname:string){
+        const getUser = await this.findUserProfile(id);
+        getUser.User_prefix_name = User_prefix_name;
+        getUser.User_name = User_name;
+        getUser.User_surname = User_surname;
+        await this.userRepo.save(getUser);
+        return getUser;
+    }
+
+    async deleteAccount(id:string){
+        const getUser = await this.findUserProfile(id);
+        getUser.Is_delete = true;
+        await this.userRepo.save(getUser);
+        return getUser;
+    }
+
+    async updateNavbarLesson(id:string){
+        const getUser = await this.getUserStatNav(id);
+        var lessonStat = getUser.Lesson_Stat;
+        getUser.Lesson_Stat = lessonStat+1;
+        await this.userstatnavRepo.save(getUser);
+        return getUser;
+    }
+
+    async updateNavbarQuiz(id:string,score:number){
+        const getUser = await this.getUserStatNav(id);
+        var quizStat = getUser.Quiz_stat;
+        getUser.Quiz_stat = quizStat+score;
+        await this.userstatnavRepo.save(getUser);
+        return getUser;
+    }
 }

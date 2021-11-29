@@ -34,5 +34,27 @@ export class UserController{
         return this.userService.updateUserPassword(userid,password);
     }
 
-    //test
+    @Patch(':userid/setting/username')
+    async updateUserName(@Param('userid') userid: string,
+                        @Body('User_prefix_name') User_prefix_name: string,
+                        @Body('User_name') User_name: string,
+                        @Body('User_surname') User_surname: string): Promise<User>{
+        return this.userService.updateUserName(userid,User_prefix_name,User_name,User_surname);
+    }
+
+    @Patch(':userid/setting/delete')
+    async deleteAccount(@Param('userid') userid:string): Promise<User>{
+        return this.userService.deleteAccount(userid);
+    }
+
+    @Patch(':userid/navbarstat/lesson')
+    async updateNavbarLesson(@Param('userid') userid: string): Promise<userstatnav>{
+        return this.userService.updateNavbarLesson(userid);
+    }
+
+    @Patch(':userid/navbarstat/quiz')
+    async updateNavBarQuiz(@Param('userid') userid: string,
+                        @Body('score') score: number): Promise<userstatnav>{
+        return this.userService.updateNavbarQuiz(userid,score);
+    }
 }

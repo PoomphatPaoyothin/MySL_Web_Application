@@ -6,7 +6,6 @@ import { User } from "../user.entity";
 import { JwtPayload } from "./jwt-payload.interface";
 import { UserInput } from "./user.input";
 import * as bcrypt from 'bcrypt';
-import { retry } from "rxjs";
 
 @Injectable()
 export class loginService{
