@@ -33,4 +33,6 @@ export class UserController{
                             @Body('password') password: string): Promise<User>{
         return this.userService.updateUserPassword(userid,password);
     }
+
+    //test
 }
