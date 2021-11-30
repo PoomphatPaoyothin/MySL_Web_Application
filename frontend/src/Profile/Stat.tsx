@@ -1,11 +1,12 @@
 import React from "react";
 import './Profile.css';
+import Statbox from "./Statbox";
 
 const Stat=()=>{
     return(
-        <div >
-            <div className='statBG'>dsjmfks</div>
-        </div>
+        <div className='statBG'>
+        <Statbox />
+         </div>
     )
 }
 
