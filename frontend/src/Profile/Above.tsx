@@ -2,7 +2,7 @@ import React from "react";
 import './Profile.css';
 import propic from '../Picture/profile/Profile.png'
 
-const Above=()=>{
+const Above=(props:any|null)=>{
     return(
         <div className='above'>
 
@@ -32,10 +32,13 @@ const Above=()=>{
                 </div>
             </div>
 
+            {props.ismyid &&
             <div className='editProfileButtonPos'>
                 <img src = 'https://cdn.discordapp.com/attachments/912175328066142240/915093553565298748/Pencil.png' className='pencilPos'/>
                 <button className='editProfileButton'>EDIT PROFILE</button>
             </div>
+            }
+
         </div>
     )
 }

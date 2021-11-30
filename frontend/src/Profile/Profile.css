@@ -81,12 +81,50 @@
 
 /* ///////////////////////////////////////////////////////////////////////// */
 .statBG{
+    position:absolute;
     width:70%;
     height:auto;
     background-color:red;
 }
 
 .statboxBG{
+    float: left;
     background-color: #F2F2F2;
+    width:40%;
+    border:2px solid black;
+    text-align: center;
+}
+
+.multimiddle{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.lessonword{
+    display: block;
+}
+
+.lessonquiz{
+    display:inline;
+    
+}
+
+.wordallPos{
+    position:relative;
+}
+
+
+.namecategory{
+    display: block;
+}
+
+.follow{
+    position:absolute;
+    right:0;
+    width:30%;
+    height:auto;
+    background-color:red;
+    border: 2px solid black;
 }
 

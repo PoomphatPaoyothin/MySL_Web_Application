@@ -37,7 +37,7 @@ const App = () => {
 
           <Route path='/nav' component={Navigatebar} />
 
-          <Route path='/profile' component={Profile} />
+          <Route path='/profile/:id' component={Profile} />
 
         </Switch>
       </div>
