@@ -16,15 +16,20 @@ const Navigatebar=(prop:any)=>{
     
     return(
         <Navbar fixed = 'top' className = 'NavBarCSS'>
-            <Container className = 'borderless'>
-                <Navbar.Brand href = "/">asdf</Navbar.Brand>
-            </Container>
+            {/* <Container> */}
+                <Navbar.Brand href = "/">Home</Navbar.Brand>
+                <Nav.Link href="/lesson">Lesson</Nav.Link>
+                <Nav.Link href="/category">Category</Nav.Link>
+                
+
+                <button className = 'button-right' onClick={logout}>
+                        logout
+                </button> 
+            {/* </Container> */}
+            
         </Navbar>
     )
 }
 
 export default Navigatebar;
 
-{/* <button className = 'button-right' onClick={logout}>
-                        logout
-                    </button> */}

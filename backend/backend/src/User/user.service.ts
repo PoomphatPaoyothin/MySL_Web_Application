@@ -1,10 +1,15 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "./user.entity";
 import { usercatstat } from "./usercatstat.entity";
 import { userstatnav } from "./userstatnav.entity";
 import * as bcrypt from 'bcrypt';
+import { userlessoncheckpoint } from "./userlessoncheckpoint.entity";
+import { userlessonstat } from "./userlessonstat.entity";
+import { userfollower } from "./userfollower.entity";
+import { userfollowing } from "./userfollowing.entity";
+import {v4 as uuid} from 'uuid';
 
 @Injectable()
 export class UserService{
@@ -15,6 +20,14 @@ export class UserService{
         private usercatstatRepo : Repository<usercatstat>,
         @InjectRepository(userstatnav)
         private userstatnavRepo: Repository<userstatnav>,
+        @InjectRepository(userlessoncheckpoint)
+        private userlessonStatCheckpointRepo: Repository<userlessoncheckpoint>,
+        @InjectRepository(userlessonstat)
+        private userlessonstatRepo : Repository<userlessonstat>,
+        @InjectRepository(userfollower)
+        private userfollowerRepo : Repository<userfollower>,
+        @InjectRepository(userfollowing)
+        private userfollowingRepo : Repository<userfollowing>
     ){}
 
     async findUserEmail(useremail:string){
@@ -86,5 +99,113 @@ export class UserService{
         getUser.category_quiz_score = score;
         await this.usercatstatRepo.save(getUser);
         return getUser;
+    }
+
+    async getUserAllLessonStat(id:string){
+        return await this.userlessonstatRepo.find({where:{UserID:id}})
+    }
+
+    async getUsercheckpoint(id:string){
+        return await this.userlessonStatCheckpointRepo.find({where:{UserID:id}})
+    }
+
+    async getUserFollower(id:string){
+        return await this.userfollowerRepo.find({where:{UserID:id}})
+    }
+
+    async getUserFollowing(id:string){
+        return await this.userfollowingRepo.find({where:{UserID:id}})
+    }
+
+    async getAmountFollower(id:string){
+        const amountfollower = await this.getUserFollower(id);
+        var count_amount = 0
+        for (let i in amountfollower){
+            count_amount = count_amount + 1;
+        }
+        return {"amount_follower":count_amount}
+    }
+
+    async getAmountFollowing(id:string){
+        const amountfollowing = await this.getUserFollowing(id);
+        var count_amount = 0;
+        for (let i in amountfollowing){
+            count_amount = count_amount + 1;
+        }
+        return {"amount_following": count_amount}
+    }
+
+    async updateFollowerAmount(id:string){
+        var getUser = await this.findUserProfile(id);
+        var followeramount  = getUser.follower_amount;
+        getUser.follower_amount = followeramount + 1;
+        await this.userRepo.save(getUser)
+        return getUser;
+    }
+
+    async updateFollowingAmount(id:string){
+        var getUser = await this.findUserProfile(id);
+        var followingamount = getUser.following_amount;
+        getUser.following_amount = followingamount + 1;
+        await this.userRepo.save(getUser);
+        return getUser;
+    }
+
+    async updateUNFollowerAmount(id:string){
+        var getUser = await this.findUserProfile(id);
+        var followeramount  = getUser.follower_amount;
+        if(followeramount == 0){
+            throw new UnauthorizedException('cant unfollower');
+        }
+        getUser.follower_amount = followeramount - 1;
+        await this.userRepo.save(getUser)
+        return getUser;
+    }
+
+    async updateUNFollowingAmount(id:string){
+        var getUser = await this.findUserProfile(id);
+        var followingamount = getUser.following_amount;
+        if(followingamount == 0){
+            throw new UnauthorizedException('cant unfollowing');
+        }
+        getUser.following_amount = followingamount - 1;
+        await this.userRepo.save(getUser);
+        return getUser;
+    }
+
+    async createfollower(id1:string,id2:string){
+        const checkuser1 = await this.userRepo.findOne({where:{ID:id1}});
+        const checkuser2 = await this.userRepo.findOne({where:{ID:id2}});
+        if(!checkuser1 || !checkuser2){
+            throw new UnauthorizedException('cant find user');
+        }
+        else{
+            const follower = this.userfollowerRepo.create({
+                ID: uuid(),
+                UserID: id1,
+                User_followerID:id2,
+            })
+
+            await this.userfollowerRepo.save(follower);
+            return follower;
+        }
+    }
+
+    async createfollowing(id1:string,id2:string){
+        const checkuser1 = await this.userRepo.findOne({where:{ID:id1}});
+        const checkuser2 = await this.userRepo.findOne({where:{ID:id2}});
+        if(!checkuser1 || !checkuser2){
+            throw new UnauthorizedException('cant find user');
+        }
+        else{
+            const following = this.userfollowingRepo.create({
+                ID: uuid(),
+                UserID: id1,
+                User_followingID:id2,
+            })
+
+            await this.userfollowingRepo.save(following);
+            return following;
+        }
     }
 }

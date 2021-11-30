@@ -1,7 +1,9 @@
-import { Body, Controller, Get, Param, Patch } from "@nestjs/common";
+import { Body, Controller, Get, Param, ParseArrayPipe, Patch, Post } from "@nestjs/common";
 import { User } from "./user.entity";
 import { UserService } from "./user.service";
 import { usercatstat } from "./usercatstat.entity";
+import { userlessoncheckpoint } from "./userlessoncheckpoint.entity";
+import { userlessonstat } from "./userlessonstat.entity";
 import { userstatnav } from "./userstatnav.entity";
 
 @Controller('user')
@@ -27,6 +29,21 @@ export class UserController{
     async GetUserNavStat(@Param('id') id:string): Promise<userstatnav>{
         return this.userService.getUserStatNav(id);
     }
+
+    @Get('profile/lessonstat/:userid')
+    async GetUserLessonStat(@Param('userid') userid:string): Promise<userlessonstat[]>{
+        return this.userService.getUserAllLessonStat(userid);
+    }
+
+    @Get('profile/lessoncheckpoint/:userid')
+    async GetUsercheckpoint(@Param('userid') userid: string): Promise<userlessoncheckpoint[]>{
+        return this.userService.getUsercheckpoint(userid);
+    }
+
+    // @Get('profile/amountfollower/:userid')
+    // async GetAmountFollower(@Param('userid') userid:string) :Promise<any>{
+    //     return this.userService.getAmountFollower(userid);
+    // }
 
     @Patch(':userid/setting/password')
     async updateUserPassword(@Param('userid') userid: string,
@@ -63,5 +80,41 @@ export class UserController{
                             @Body('catid') catid: string,
                             @Body('score') score:number): Promise<usercatstat>{
         return this.userService.updateUserStatCat(userid,catid,score);
+    }
+
+    @Patch(':userid/updatefollower')
+    async updateFollower(@Param('userid') userid: string): Promise<User>{
+        return this.userService.updateFollowerAmount(userid);
+    }
+
+    @Patch(':userid/updatefollowing')
+    async updateFollowing(@Param('userid') userid: string): Promise<User>{
+        return this.userService.updateFollowingAmount(userid);
+    }
+
+    @Patch(':userid/updateUNfollower')
+    async updateUNFollower(@Param('userid') userid: string): Promise<User>{
+        return this.userService.updateUNFollowerAmount(userid);
+    }
+
+    @Patch(':userid/updateUNfollowing')
+    async updateUNFollowing(@Param('userid') userid: string): Promise<User>{
+        return this.userService.updateUNFollowingAmount(userid);
+    }
+
+    @Post('/createfollower')
+    async createfollower(
+        @Body('userid1') userid1: string,
+        @Body('userid2') userid2: string
+    ): Promise<any>{
+        return this.userService.createfollower(userid1,userid2);
+    }
+
+    @Post('/createfollowing')
+    async createfollowing(
+        @Body('userid1') userid1: string,
+        @Body('userid2') userid2: string
+    ): Promise<any>{
+        return this.userService.createfollowing(userid1,userid2);
     }
 }
