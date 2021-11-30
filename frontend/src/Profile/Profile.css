@@ -1,0 +1,15 @@
+.container{
+    max-width: 2000px;
+    position:relative;
+    border: 5px solid red;
+    margin: auto;
+}
+
+.statBG{
+    position: absolute;
+    width: 50%;
+    left: 10%;
+    top: 50%;
+    height: 400px;
+    border:2px solid red;
+}

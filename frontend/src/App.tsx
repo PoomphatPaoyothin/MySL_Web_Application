@@ -11,6 +11,7 @@ import WordCategory from "./WordCategory/WordCategory";
 import Lesson from "./Lesson/Lesson";
 import Navigatebar from "./Navbar/Navigatebar";
 import Home from "./Home/Home"
+import Profile from "./Profile/Profile";
 
 
 const App = () => {
@@ -35,6 +36,7 @@ const App = () => {
 
           <Route path='/nav' component={Navigatebar} />
 
+          <Route path='/profile' component={Profile} />
 
         </Switch>
       </div>

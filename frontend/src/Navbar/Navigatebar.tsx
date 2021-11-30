@@ -9,7 +9,7 @@ const Navigatebar=(prop:any)=>{
     const logout = () =>{
         localStorage.clear();
         history.push('/');
-        // window.location.reload();
+        window.location.reload();
     }
 
     
@@ -19,8 +19,7 @@ const Navigatebar=(prop:any)=>{
                 logout
             </button>
             <div>
-                Home
-                lesson
+
             </div>
         </Navbar>
 

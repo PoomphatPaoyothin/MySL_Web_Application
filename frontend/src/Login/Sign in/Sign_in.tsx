@@ -27,7 +27,7 @@ const Sign_in = () => {
     }
     else{
       setErrormessage("");
-      // window.location.reload();
+      window.location.reload();
       history.push("/");
     }
     
