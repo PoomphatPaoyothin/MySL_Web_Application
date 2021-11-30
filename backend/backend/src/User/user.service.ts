@@ -10,6 +10,7 @@ import { userlessonstat } from "./userlessonstat.entity";
 import { userfollower } from "./userfollower.entity";
 import { userfollowing } from "./userfollowing.entity";
 import {v4 as uuid} from 'uuid';
+import { wordcategory } from "src/Word/category.entity";
 
 @Injectable()
 export class UserService{
@@ -27,7 +28,9 @@ export class UserService{
         @InjectRepository(userfollower)
         private userfollowerRepo : Repository<userfollower>,
         @InjectRepository(userfollowing)
-        private userfollowingRepo : Repository<userfollowing>
+        private userfollowingRepo : Repository<userfollowing>,
+        @InjectRepository(wordcategory)
+        private wordcatRepo: Repository<wordcategory>
     ){}
 
     async findUserEmail(useremail:string){
@@ -45,6 +48,10 @@ export class UserService{
     async getUserAllStatCat(id:string){
         return this.usercatstatRepo.find({where:{UserID:id}});
     }
+
+    // async getCatById(id:string){
+    //     return this.wordcatRepo.find({where:{ID:id}});
+    // }
 
     async getUserStatNav(id:string){
         return this.userstatnavRepo.findOne({where:{UserID:id}});
@@ -119,7 +126,7 @@ export class UserService{
 
     async getAmountFollower(id:string){
         const amountfollower = await this.getUserFollower(id);
-        var count_amount = 0
+        var count_amount = 0;
         for (let i in amountfollower){
             count_amount = count_amount + 1;
         }
