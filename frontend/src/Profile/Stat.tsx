@@ -5,49 +5,79 @@ import ProfileService from "./ProfileService";
 import {StatInfo, wordInfo} from './InterfaceProfile'
 
 const Stat=(props:any)=>{
-    const [statobj,setStatobj] = useState<StatInfo[]>();
-    const [Wordcategory,setWordcategory] = useState<wordInfo[]>()
-    const [count,setCount] = useState<number>(0);
+    const [objstat,setObjstat] = useState<any[]>()
+    const [objcatstat,setObjcatstat] = useState<StatInfo[]>()
+    const [obj,setObj] = useState<wordInfo[]>()
 
-    const fetchNameLesson=()=>{
+
+    const fetchLessonStat=()=>{
         return(
-            ProfileService.fetchNameLesson(props.id)
+            ProfileService.fetchLessonStat(props.id)
             .then(res=>{
-                setStatobj(res);
-
+                setObjstat(res);
             })
         )
     }
+
 
     const fetchWordCategory=()=>{
         return(
             ProfileService.fetchWordCategory()
             .then(res=>{
-                setWordcategory(res);
+                setObj(res);
             })
         )
     }
 
-    const counChapter=() =>{
-        {statobj?.map((obj)=> (obj.Is_category_quiz? console.log(count): console.log(count)))} 
-        
+    const fetchCategoryStat=()=>{
+        return(
+            ProfileService.fetchCategoryStat(props.id)
+            .then(res=>{
+                setObjcatstat(res);
+            })
+        )
     }
 
+    const findvalue = (id:string) =>{
+        if(obj !== undefined)
+        {
+            let size = obj?.length;
+            for(let i=0;i<size;i++){
+
+                if(obj[i].ID == id){
+                    console.log('cat name = ', obj[i].Category_name)
+                    return(obj[i].Category_name)
+                }
+            }
+        }
+    }
+
+    const findquizscore = (id:string) =>{
+        if(objcatstat !== undefined)
+        {
+            let size = objcatstat?.length;
+            for(let i=0;i<size;i++){
+                if(objcatstat[i].CategoryID == id){
+                    console.log('aaa = ',objcatstat[i].CategoryID)
+                    return(objcatstat[i].category_quiz_score)
+                }
+            }
+        }
+    }
+
+
     useEffect(()=>{
-        fetchNameLesson()
+        fetchLessonStat()
         fetchWordCategory()
-        counChapter()
+        fetchCategoryStat()
     },[])
 
 
     return(
         <div className='statBG'>
             <div className='multimiddle'>
-                {Wordcategory?.map((obj)=> (<Statbox name={obj.Category_name} image={obj.Word_picture} learnedChapter={count}/>))} 
-
+                {objstat?.map((obj)=> (<Statbox name={findvalue(obj.CategoryID)}  Lesson_amount={obj.Lesson_amount} Lesson_learned={obj.Lesson_learned} category_quiz_score={findquizscore(obj.CategoryID)}/>))} 
             </div>
-
-
         </div>
     )
 }

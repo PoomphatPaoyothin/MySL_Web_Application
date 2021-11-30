@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
+import { wordInfo } from "./InterfaceProfile";
 import './Profile.css';
+import ProfileService from "./ProfileService";
 
 
 const Statbox=(props:any)=>{
-
-
 
     return(
         <div className='statboxBG'>
@@ -13,10 +13,10 @@ const Statbox=(props:any)=>{
                     {props.name}
                 </div>
                 <div className='lessonword'>
-                    lesson-- {props.learnedChapter}
+                    lesson-- {(props.Lesson_learned/props.Lesson_amount)*100}%
                 </div>
                 <div className='lessonquiz'>
-                    quiz
+                    quiz-- {(props.category_quiz_score/10)*100}%
                 </div>
             </div>
 
