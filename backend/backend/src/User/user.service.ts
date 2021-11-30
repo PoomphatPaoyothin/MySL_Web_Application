@@ -29,6 +29,10 @@ export class UserService{
         return this.usercatstatRepo.findOne({where:{UserID:id, CategoryID:catid}});
     }
 
+    async getUserAllStatCat(id:string){
+        return this.usercatstatRepo.find({where:{UserID:id}});
+    }
+
     async getUserStatNav(id:string){
         return this.userstatnavRepo.findOne({where:{UserID:id}});
     }

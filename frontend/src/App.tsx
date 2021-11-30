@@ -27,8 +27,9 @@ const App = () => {
 
   return(
     <Router>
+      
       <div>
-        <Navigatebar/>
+      <Navigatebar/>
         <Switch>
           <Route path='/' exact component={Home} />
 

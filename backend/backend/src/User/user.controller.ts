@@ -18,10 +18,10 @@ export class UserController{
         return this.userService.findUserProfile(id);
     }
 
-    // @Get('profile/catstat/:id')
-    // async GetUsercatstat(@Param('id') id:string): Promise<usercatstat[]>{
-    //     return this.userService.getUserStatCat(id);
-    // }
+    @Get('profile/catstat/:id')
+    async GetUsercatstat(@Param('id') id:string): Promise<usercatstat[]>{
+        return this.userService.getUserAllStatCat(id);
+    }
 
     @Get('profile/navstat/:id')
     async GetUserNavStat(@Param('id') id:string): Promise<userstatnav>{

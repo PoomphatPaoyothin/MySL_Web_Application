@@ -1,0 +1,18 @@
+.NavBarCSS{
+    background-color: #CDF0EA;
+    /* position: relative; */
+    /* border-style: dashed; */
+}
+
+.button-right{
+    right: 0%;
+}
+
+.borderless{
+    border: 0ch;
+}
+
+html,body{
+    margin: 0px;
+    padding:0px;
+}

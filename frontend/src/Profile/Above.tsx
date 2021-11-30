@@ -3,7 +3,7 @@ import './Profile.css';
 
 const Above=()=>{
     return(
-        <div classname='Above'>
+        <div className='Above'>
             
         </div>
     )
