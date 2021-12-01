@@ -61,8 +61,10 @@ export class UserService{
         return bcrypt.hash(password,saltRound);
     }
 
-    async updateUserPassword(password:string,id:string){
+    async updateUserPassword(id:string,password:string){
+        console.log(password)
         const getUser = await this.findUserProfile(id);
+        console.log(getUser)
         const saltRound = 12;
         getUser.User_password = await this.hashpassword(password,saltRound);
         await this.userRepo.save(getUser);

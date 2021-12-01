@@ -2,6 +2,8 @@ import { Body, Controller, Get, Param, ParseArrayPipe, Patch, Post } from "@nest
 import { User } from "./user.entity";
 import { UserService } from "./user.service";
 import { usercatstat } from "./usercatstat.entity";
+import { userfollower } from "./userfollower.entity";
+import { userfollowing } from "./userfollowing.entity";
 import { userlessoncheckpoint } from "./userlessoncheckpoint.entity";
 import { userlessonstat } from "./userlessonstat.entity";
 import { userstatnav } from "./userstatnav.entity";
@@ -116,5 +118,15 @@ export class UserController{
         @Body('userid2') userid2: string
     ): Promise<any>{
         return this.userService.createfollowing(userid1,userid2);
+    }
+
+    @Get('userfollower/:userid')
+    async getUserfollower(@Param('userid') userid: string):Promise<userfollower[]>{
+        return this.userService.getUserFollower(userid);
+    }
+
+    @Get('userfollowing/:userid')
+    async getUserfollowing(@Param('userid') userid: string):Promise<userfollowing[]>{
+        return this.userService.getUserFollowing(userid);
     }
 }
