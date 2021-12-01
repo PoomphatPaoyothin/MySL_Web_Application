@@ -222,10 +222,10 @@ export class UserService{
         const getUser = await this.findUserProfile(id);
         const checkpass = bcrypt.compareSync(User_password,getUser.User_password);
         if(checkpass){
-            return {"check":true}
+            return true
         }
         else{
-            return {"check":false}
+            return false
         }
     }
 }

@@ -5,17 +5,20 @@
     /* border-style: dashed; */
 }
 
-.button-right{
-    right: 0%;
-}
-
 .home-pic{
-    height: 25px;
-    width: 25px;
-    margin-right: 5px;
+    height: 30px;
+    width: 30px;
+    margin-left: 10px;
 }
 
-/* html,body{
-    margin: 0px;
-    padding:0px;
-} */
+.lesson-pic{
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+}
+
+.quiz-pic{
+    margin-right: 10px;
+    height: 30px;
+    width: 30px;
+}

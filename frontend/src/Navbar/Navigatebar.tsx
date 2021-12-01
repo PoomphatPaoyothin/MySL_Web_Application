@@ -24,24 +24,13 @@ const Navigatebar=(prop:any)=>{
     return(
         <Navbar fixed = 'top' className = 'NavBarCSS'>
             <Navbar.Brand href = "/">
-                <img
-                    src = {HomeIcon}
-                    width = "30"
-                    height = "30"
-                    // margin-right = "15"
-                />{'  '}MySL</Navbar.Brand>
+                <img src = {HomeIcon} className = 'home-pic'/>{'  '}MySL</Navbar.Brand>
             <Nav.Link href="/lesson">Lesson</Nav.Link>
             <Nav.Link href="/category">Category</Nav.Link>
             
             <Nav className = "ms-auto">
-                <img
-                    src = {LessonIcon}
-                    width = "30"
-                    height = "30"/>
-                <img
-                    src = {QuizIcon}
-                    width = "30"
-                    height = "30"/>
+                <img src = {LessonIcon} className = 'lesson-pic'/>
+                <img src = {QuizIcon} className = 'quiz-pic'/>
                 <button className = 'button-right' onClick={logout}>
                         logout
                 </button>
