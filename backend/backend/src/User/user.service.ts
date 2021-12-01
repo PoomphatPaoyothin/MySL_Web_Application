@@ -217,4 +217,15 @@ export class UserService{
             return following;
         }
     }
+
+    async checkpassword(id:string,User_password:string){
+        const getUser = await this.findUserProfile(id);
+        const checkpass = bcrypt.compareSync(User_password,getUser.User_password);
+        if(checkpass){
+            return {"check":true}
+        }
+        else{
+            return {"check":false}
+        }
+    }
 }

@@ -129,4 +129,10 @@ export class UserController{
     async getUserfollowing(@Param('userid') userid: string):Promise<userfollowing[]>{
         return this.userService.getUserFollowing(userid);
     }
+
+    @Post('checkpassword/:userid')
+    async checkpassword(@Param('userid') userid: string,
+                        @Body ('User_password') User_password: string): Promise<any>{
+        return this.userService.checkpassword(userid,User_password);
+    }
 }
