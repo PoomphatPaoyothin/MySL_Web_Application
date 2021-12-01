@@ -12,18 +12,12 @@ import Lesson from "./Lesson/Lesson";
 import Navigatebar from "./Navbar/Navigatebar";
 import Home from "./Home/Home"
 import Profile from "./Profile/Profile";
+import EditProfile from "./Profile/EditProfile";
 
 
 const App = () => {
   const id = localStorage.getItem('accesToken')
-  // const NavRoute = ({exact, path, component: Component}) => (
-  //   <Route exact={exact} path={path} render={(props) => (
-  //     <div>
-  //       <Header/>
-  //       <Component {...props}/>
-  //     </div>
-  //   )}/>
-  // )
+
 
   return(
     <Router>
@@ -33,11 +27,14 @@ const App = () => {
         <Switch>
           <Route path='/' exact component={Home} />
 
-          <Route path='/lesson' component={Lesson} />
+          <Route path='/lesson'  component={Lesson} />
 
           <Route path='/nav' component={Navigatebar} />
 
           <Route path='/profile/:id' component={Profile} />
+
+          <Route path='/editprofile/:id' component={EditProfile} />
+
 
         </Switch>
       </div>
