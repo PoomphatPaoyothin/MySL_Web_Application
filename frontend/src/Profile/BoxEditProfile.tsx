@@ -1,13 +1,17 @@
 import { profile } from "console";
 import React, { useEffect, useState } from "react";
 import { userInfo } from "./InterfaceProfile";
-import PopupConfirm from "./PopupConfirm";
+import PopupConfirmDelete from "./PopupConfirmDelete";
+import PopupConfirmName from "./PopupConfirmName";
+import PopupConfirmPassword from "./PopupConfirmPassword";
 import ProfileService from "./ProfileService";
 
 
 const BoxEditProfile = (props:any) => {
+    // console.log('reload')
+
     const [objprofile,setObjprofile] = useState<userInfo>()
-    const [newfetch, setNewfetch] = useState<boolean>(false)
+    const [reload, setReload] = useState<boolean>(false)
 
     const [isNameEdit, setIsNameEdit] = useState<boolean>(false)
     const [isPassEdit, setIsPassEdit] = useState<boolean>(false)
@@ -22,15 +26,19 @@ const BoxEditProfile = (props:any) => {
     const [username, setUsername] = useState<string|undefined>(objprofile?.User_name)
     const [surname, setSurname] = useState<string|undefined>(objprofile?.User_surname)
 
+    const [prefixo, setPrefixo] = useState<string|undefined>(objprofile?.User_prefix_name)
+    const [usernameo, setUsernameo] = useState<string|undefined>(objprofile?.User_name)
+    const [surnameo, setSurnameo] = useState<string|undefined>(objprofile?.User_surname) 
+
     const [oldpass, setOldpass] = useState<string>()
     const [newpass, setNewpass] = useState<string>()
     const [confirmNewpass, setComfirmNewpass] = useState<string>()
 
-    const [visibility, setVisibility] = useState(false);
+    const [visibilityDelete, setVisibilityDelete] = useState(false);
+    const [visibilityNames,setVisibilityNames] = useState(false);
+    const [visibilityPass,setVisibilityPass] = useState(false);
 
-    const popupCloseHandler = () => {
-        setVisibility(false);
-      };
+
 
 
     const fetchuserprofile=() =>{
@@ -59,58 +67,62 @@ const BoxEditProfile = (props:any) => {
     
 ////////////////////////////////////////////////////////////////////-> submit
     const submitName=() =>{
-        setIsNameEdit(false)
-        setIsPassEdit(false)
-
-        setIsbuttonName(true)
-        setIsbuttonPass(true)
-
-        const changeNameObj = {
-            User_prefix_name: prefix,
-            User_name:username,
-            User_surname:surname
+        if(prefix == prefixo && username == usernameo && surname == surnameo){
+            alert('คุณไม่ได้ทำการเปลี่ยนชื่อ')
         }
-        ProfileService.patchName(changeNameObj, props.id)
+        else{
+            setVisibilityNames(true)
+            setIsNameEdit(false)
+            setIsPassEdit(false)
+    
+            setIsbuttonName(true)
+            setIsbuttonPass(true)
+        }
 
     }
 
 
-    const submitPass=async () =>{
-        setIsNameEdit(false)
-        setIsPassEdit(false)
 
-        setIsbuttonName(true)
-        setIsbuttonPass(true)
-        console.log(newpass, oldpass)
-        if(newpass == confirmNewpass)
+
+    const submitPass=async () =>{
+        if(newpass == undefined || oldpass == undefined || confirmNewpass == undefined)
+        {
+            alert('กรุณากรอกให้ครบ')
+        }
+        else
         {
             const oldpassObj = {
                 User_password:oldpass
             }
             let tmp = await ProfileService.PostOldPasword(oldpassObj, props.id)
-            console.log('tmp is ',tmp)
+            // console.log('oldpass is' , oldpassObj, tmp)
             if(tmp)
             {
-                const changepassObj = {
-                    password:newpass
+                if(newpass == confirmNewpass){
+                    if(newpass == oldpass)
+                    {
+                        alert('รหัสผ่านใหม่ตรงกับรหัสผ่านเก่า')
+                    }
+                    else{
+                        setVisibilityPass(true)
+
+                        setIsNameEdit(false)
+                        setIsPassEdit(false)
+                
+                        setIsbuttonName(true)
+                        setIsbuttonPass(true)
+                    }
                 }
-                ProfileService.patchPasword(changepassObj,props.id)
+                else
+                {
+                    alert('รหัสผ่านยืนยันไม่ตรงกัน')
+                }
 
             }
             else{
                 alert('รหัสผ่านเก่าไม่ถูกต้อง')
             }
-            setOldpass('');
-            setNewpass('');
-            setComfirmNewpass('');
 
-        }
-        else
-        {
-            alert('รหัสผ่าน กับ การยืนยันรหัสผ่านไม่ตรงกัน')
-            setOldpass('');
-            setNewpass('');
-            setComfirmNewpass('');
         }
 
     }
@@ -157,12 +169,22 @@ const BoxEditProfile = (props:any) => {
     }
 
     const Delete=()=>{
-        setVisibility(true)
+        setVisibilityDelete(!visibilityDelete)
+        console.log('set delete is', visibilityDelete)
+
     }
 
-    const popupCloseHandlers=() => {
-        setVisibility(false);
-    };
+    const popupCloseHandlerDelete = () => {
+        setVisibilityDelete(false);
+      };
+      
+    const popupCloseHandlerName = () => {
+        setVisibilityNames(false);
+      };
+
+    const popupCloseHandlerPass = () => {
+        setVisibilityPass(false);
+      };
 
     useEffect(()=>{
         fetchuserprofile()
@@ -173,6 +195,10 @@ const BoxEditProfile = (props:any) => {
         setPrefix(objprofile?.User_prefix_name);
         setUsername(objprofile?.User_name);
         setSurname(objprofile?.User_surname);
+
+        setPrefixo(objprofile?.User_prefix_name);
+        setUsernameo(objprofile?.User_name);
+        setSurnameo(objprofile?.User_surname);
     },[objprofile])
 
 
@@ -189,17 +215,24 @@ const BoxEditProfile = (props:any) => {
                 isbuttonName && 
                 <button onClick={NameEdit}>แก้ไข</button>
             }
-            {isNameEdit &&
+            {isNameEdit && 
             <div>
                 <input value={prefix} onChange={prefixInput} placeholder="คำนำหน้าชื่อ" required />
                 <input value={username} onChange={usernameInput} placeholder="ชื่อจริง" required />
                 <input value={surname} onChange={surnameInput} placeholder="นามสกุล" required />
 
-                
                 <button onClick={submitName}> บันทึกการเปลี่ยนแปลง</button>
                 <button onClick={cancel}> ยกเลิก </button>
             </div>
             }
+            <PopupConfirmName        
+            show={visibilityNames}
+            onClose={popupCloseHandlerName}
+            id={props.id}
+            prefix = {prefix}
+            username = {username}
+            surname = {surname}
+            />
         </div>
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         <div>
@@ -210,21 +243,32 @@ const BoxEditProfile = (props:any) => {
             }
             {isPassEdit &&
             <div>
-                <input value={oldpass} onChange={oldpassInput} placeholder="รหัสผ่านเก่า" required />
-                <input value={newpass} onChange={newpassInput} placeholder="รหัสผ่านใหม่" required />
-                <input value={confirmNewpass} onChange={confirmNewpassInput} placeholder="ยืนยันรหัสผ่านใหม่" required />
+                <input value={oldpass} onChange={oldpassInput} placeholder="รหัสผ่านเก่า" type='password' required />
+                <input value={newpass} onChange={newpassInput} placeholder="รหัสผ่านใหม่" type='password' required />
+                <input value={confirmNewpass} onChange={confirmNewpassInput} placeholder="ยืนยันรหัสผ่านใหม่" type='password' required />
 
                 <button onClick={submitPass}> บันทึกการเปลี่ยนแปลง</button>
                 <button onClick={cancel}> ยกเลิก </button>
             </div>
             }
+            <PopupConfirmPassword 
+            show = {visibilityPass}
+            onClose = {popupCloseHandlerPass}
+            id = {props.id}
+            oldpass = {oldpass}
+            newpass = {newpass}
+            confirmNewpass = {confirmNewpass}
+            setOldpass = {setOldpass}
+            setNewpass = {setNewpass}
+            setComfirmNewpass = {setComfirmNewpass}
+            />
         </div>
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         <div>
             <button onClick={Delete}>delete</button>
-            <PopupConfirm             
-            onClose={popupCloseHandlers}
-            show={visibility}
+            <PopupConfirmDelete             
+            show={visibilityDelete}
+            onClose={popupCloseHandlerDelete}
             id={props.id}/>
 
         </div>

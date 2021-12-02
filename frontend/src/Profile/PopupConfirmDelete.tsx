@@ -4,8 +4,7 @@ import ProfileService from "./ProfileService";
 
 
 
-const PopupConfirm = (props:any) => {
-
+const PopupConfirmDelete = (props:any) => {
     const [show, setShow] = useState<boolean>(false);
     const [pass,setPass] = useState<string>('')
 
@@ -15,6 +14,7 @@ const PopupConfirm = (props:any) => {
 
     const closeHandler = (e: any) => {
       setShow(false);
+      props.onClose(false)
     };
 
     const Delete=async ()=>{
@@ -42,6 +42,7 @@ const PopupConfirm = (props:any) => {
 
   
     useEffect(() => {
+      console.log('delete inside is',props.show)
       setShow(props.show);
     }, [props.show]);
   
@@ -50,23 +51,18 @@ const PopupConfirm = (props:any) => {
         style={{
           visibility: show ? "visible" : "hidden",
           opacity: show ? "1" : "0"
-        }} className = {'overlay'}>
+        }} className = 'overlay'>
         <div className='popupbox'>
             <span className='close' onClick={closeHandler}>
             &times;
             </span>
-            <input value={pass} onChange={passwordinput} placeholder="ใส่รหัสผ่านยืนยัน" required />
+            <input value={pass} onChange={passwordinput} placeholder="ใส่รหัสผ่านยืนยัน" type='password' required />
             <button onClick={Delete}>ยืนยันลบข้อมูลผู้ใช้</button>
         </div>
       </div>
     );
   };
-  
-//   CustomPopup.propTypes = {
-//     title: PropTypes.string.isRequired,
-//     show: PropTypes.bool.isRequired,
-//     onClose: PropTypes.func.isRequired
-//   };
 
 
-export default PopupConfirm
+
+export default PopupConfirmDelete

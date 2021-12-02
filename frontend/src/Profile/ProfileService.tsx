@@ -33,7 +33,15 @@ async function patchPasword(obj:any, id:string): Promise<any|null> {
     });
 
     const patchPassword = await res.json();
-    console.log(patchPassword)
+
+    if(patchPassword !== undefined)
+    {
+        alert('รหัสผ่านเปลี่ยนเรียบร้อยแล้ว')
+    }
+    else{
+        alert('ผิดพลาด')
+    }
+    window.location.reload();
 }
 async function PostOldPasword(obj:any, id:string): Promise<boolean> {
     const res = await fetch(`${url}/user/checkpassword/${id}`,{
@@ -42,6 +50,7 @@ async function PostOldPasword(obj:any, id:string): Promise<boolean> {
         body: JSON.stringify(obj),
     });
     const IsSame= await res.json();
+    // console.log('service tmp is ', IsSame)
     return IsSame
 }
 
@@ -53,8 +62,13 @@ async function patchName(obj:any, id:string): Promise<any|null> {
     });
 
     const patchNameresult = await res.json();
-    console.log(patchNameresult)
-
+    if(patchNameresult !== undefined)
+    {
+        alert('เปลี่ยนชื่อผู้ใช้เรียบร้อยแล้ว')
+    }
+    else{
+        alert('ผิดพลาด')
+    }
     window.location.reload();
 }
 
