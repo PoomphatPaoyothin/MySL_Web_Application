@@ -26,10 +26,11 @@ const App = () => {
       <Navigatebar/>
         <Switch>
           <Route path='/' exact component={Home} />
-
-          <Route path='/lesson'  component={Lesson} />
-
           <Route path='/nav' component={Navigatebar} />
+
+
+          <Route path='/lesson/:catId'  component={Lesson} />
+
 
           <Route path='/profile/:id' component={Profile} />
 
