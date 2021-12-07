@@ -36,6 +36,9 @@ export class User{
     Is_delete: boolean;
 
     @Column()
+    Is_email_confirm: boolean;
+
+    @Column()
     imguser: string;
 
     @Column()

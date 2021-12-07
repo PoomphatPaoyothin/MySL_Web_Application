@@ -12,5 +12,14 @@ export class userfollowing{
     UserID: string;
 
     @Column()
+    UserName: string;
+
+    @Column()
     User_followingID:string;
+
+    @Column()
+    UserFollowingName: string;
+
+    @Column()
+    is_following:boolean;
 }

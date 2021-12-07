@@ -13,12 +13,59 @@
 
 .lesson-pic{
     margin-right: 10px;
+    margin-top:5px;
     height: 30px;
     width: 30px;
+    cursor: pointer;
 }
 
 .quiz-pic{
     margin-right: 10px;
-    height: 30px;
-    width: 30px;
+    margin-top:6px;
+    height: 26px;
+    width: 26px;
+}
+
+.user-image{
+    height: 26px;
+    width: 26px;
+}
+
+.hiddendiv{
+    display: none;
+    color: white;
+    background-color: blue;
+    border-radius: 20px;
+}
+
+.lesson-pic:focus + .hiddendiv{
+    display: block;
+}
+
+.txt{
+    margin-top: 5px;
+    margin-right: 10px;
+}
+
+.search-pic{
+    height: 10px;
+    width: 10px;
+}
+
+.button-right{
+    border-radius: 5px;
+    transition: 0.6s;
+    border : none;
+}
+
+.button-right:hover{
+    background-color: #F7DBF0;
+}
+
+.form-search{
+    margin-right: 10px;
+}
+
+.dropdown-right{
+    align-self: flex-end!important; 
 }

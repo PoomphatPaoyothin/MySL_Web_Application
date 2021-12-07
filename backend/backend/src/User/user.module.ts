@@ -1,6 +1,8 @@
 import { Module } from "@nestjs/common";
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { wordcategory } from "src/Word/category.entity";
+// import EmailService from "./register/email.service";
+// import { EmailConfirmationService } from "./register/emailConfirm.service";
 import { registerService } from "./register/register.service";
 import { RegisterController } from "./register/regitster.controller";
 import { UserController } from "./user.controller";
@@ -24,12 +26,12 @@ import { userstatnav } from "./userstatnav.entity";
             userfollower,
             userfollowing,
             wordcategory,
-        ])
+        ]),
     ],
     providers:[
-        UserService,registerService
+        UserService
     ],
-    exports:[UserService,],
-    controllers:[UserController,RegisterController]
+    exports:[UserService],
+    controllers:[UserController]
 })
 export class UserModule{}

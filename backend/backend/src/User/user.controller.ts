@@ -135,4 +135,16 @@ export class UserController{
                         @Body ('User_password') User_password: string): Promise<any>{
         return this.userService.checkpassword(userid,User_password);
     }
+
+    @Patch('/updateUnfollower')
+    async updateUnfollower(@Body('userid1') userid1:string,
+                        @Body('userid2') userid2:string): Promise<any>{
+        return this.userService.updateUnfollower(userid1,userid2);                 
+    }
+
+    @Patch('/updateUnfollowing')
+    async updateUnfollowing(@Body('userid1') userid1:string,
+                        @Body('userid2') userid2:string): Promise<any>{
+        return this.userService.undateUnfollowing(userid1,userid2);
+    }
 }

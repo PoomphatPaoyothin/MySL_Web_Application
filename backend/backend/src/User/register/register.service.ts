@@ -42,6 +42,7 @@ export class registerService{
             imguser: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
             follower_amount: 0,
             following_amount: 0,
+            Is_email_confirm:false,
             Is_delete:false,
         })
 

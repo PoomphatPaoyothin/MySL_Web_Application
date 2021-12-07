@@ -11,6 +11,7 @@ import { userfollower } from "./userfollower.entity";
 import { userfollowing } from "./userfollowing.entity";
 import {v4 as uuid} from 'uuid';
 import { wordcategory } from "src/Word/category.entity";
+import { check } from "prettier";
 
 @Injectable()
 export class UserService{
@@ -119,11 +120,19 @@ export class UserService{
     }
 
     async getUserFollower(id:string){
-        return await this.userfollowerRepo.find({where:{UserID:id}})
+        return await this.userfollowerRepo.find({
+            where:{
+                User_followerID:id,
+                is_follower:true,
+            }})
     }
 
     async getUserFollowing(id:string){
-        return await this.userfollowingRepo.find({where:{UserID:id}})
+        return await this.userfollowingRepo.find({
+            where:{
+                UserID:id,
+                is_following:true,
+        }})
     }
 
     async getAmountFollower(id:string){
@@ -185,14 +194,49 @@ export class UserService{
     async createfollower(id1:string,id2:string){
         const checkuser1 = await this.userRepo.findOne({where:{ID:id1}});
         const checkuser2 = await this.userRepo.findOne({where:{ID:id2}});
+
+        const checkexist = await this.userfollowerRepo.findOne({
+            where:{
+                UserID:id1,
+                User_followerID:id2,
+            }})
+
+        if(checkexist){
+            if(!checkexist.is_follower){
+                checkexist.is_follower = true;
+                await this.userfollowerRepo.save(checkexist);
+                return checkexist;
+            }
+            else{
+                throw new UnauthorizedException('already follow');
+            }
+        }
+
+        const prefix1 = checkuser1.User_prefix_name;
+        const prefix2 = checkuser2.User_prefix_name;
+        const Name1 = checkuser1.User_name;
+        const Name2 = checkuser2.User_name;
+        const surname1 = checkuser1.User_surname;
+        const surname2 = checkuser2.User_surname;
+
+        const UserName1 = prefix1 + Name1 + " " + surname1;
+        const UserName2 = prefix2 + Name2 + " " + surname2;
+
+        console.log(UserName1);
+        console.log(UserName2);
+
         if(!checkuser1 || !checkuser2){
             throw new UnauthorizedException('cant find user');
         }
+
         else{
             const follower = this.userfollowerRepo.create({
                 ID: uuid(),
                 UserID: id1,
+                UserName: UserName1,
                 User_followerID:id2,
+                UserFollowerName: UserName2,
+                is_follower: true,
             })
 
             await this.userfollowerRepo.save(follower);
@@ -203,6 +247,34 @@ export class UserService{
     async createfollowing(id1:string,id2:string){
         const checkuser1 = await this.userRepo.findOne({where:{ID:id1}});
         const checkuser2 = await this.userRepo.findOne({where:{ID:id2}});
+
+        const checkexist = await this.userfollowingRepo.findOne({
+            where:{
+                UserID:id1,
+                User_followingID:id2,
+            }})
+
+        const prefix1 = checkuser1.User_prefix_name;
+        const prefix2 = checkuser2.User_prefix_name;
+        const Name1 = checkuser1.User_name;
+        const Name2 = checkuser2.User_name;
+        const surname1 = checkuser1.User_surname;
+        const surname2 = checkuser2.User_surname;
+
+        const UserName1 = prefix1 + Name1 + " " + surname1;
+        const UserName2 = prefix2 + Name2 + " " + surname2;
+    
+        if(checkexist){
+            if(!checkexist.is_following){
+                checkexist.is_following = true;
+                await this.userfollowingRepo.save(checkexist);
+                return checkexist;
+            }
+            else{
+                throw new UnauthorizedException('already follow');
+            }
+        }
+    
         if(!checkuser1 || !checkuser2){
             throw new UnauthorizedException('cant find user');
         }
@@ -210,7 +282,10 @@ export class UserService{
             const following = this.userfollowingRepo.create({
                 ID: uuid(),
                 UserID: id1,
+                UserName:UserName1,
                 User_followingID:id2,
+                UserFollowingName:UserName2,
+                is_following:true,
             })
 
             await this.userfollowingRepo.save(following);
@@ -227,5 +302,50 @@ export class UserService{
         else{
             return false
         }
+    }
+
+    async updateUnfollower(id1:string,id2:string){
+        const checkuser1 = await this.userRepo.findOne({where:{ID:id1}});
+        const checkuser2 = await this.userRepo.findOne({where:{ID:id2}});
+
+        const unfollower = await this.userfollowerRepo.findOne(
+            {where:{
+                UserID:id1,
+                User_followerID:id2
+            }}
+        )
+
+        if(!checkuser1 || !checkuser2){
+            throw new UnauthorizedException('cant find user');
+        }else if(unfollower && unfollower.is_follower == true){
+            unfollower.is_follower = false;
+            await this.userfollowerRepo.save(unfollower);
+            return unfollower;
+        }else{
+            throw new UnauthorizedException('cant unfollower');
+        }
+    }
+
+    async undateUnfollowing(id1:string,id2:string){
+        const checkuser1 = await this.userRepo.findOne({where:{ID:id1}});
+        const checkuser2 = await this.userRepo.findOne({where:{ID:id2}});
+
+        const unfollowing = await this.userfollowingRepo.findOne(
+            {where:{
+                UserID:id1,
+                User_followingID:id2
+            }}
+        )
+
+        if(!checkuser1 || !checkuser2){
+            throw new UnauthorizedException('cant find user');
+        }else if(unfollowing && unfollowing.is_following == true){
+            unfollowing.is_following = false;
+            await this.userfollowerRepo.save(unfollowing);
+            return unfollowing;
+        }else{
+            throw new UnauthorizedException('cant unfollower');
+        }
+
     }
 }

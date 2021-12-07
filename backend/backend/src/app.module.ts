@@ -19,6 +19,12 @@ import { userlessoncheckpoint } from './User/userlessoncheckpoint.entity';
 import { userlessonstat } from './User/userlessonstat.entity';
 import { userfollower } from './User/userfollower.entity';
 import { userfollowing } from './User/userfollowing.entity';
+import { ConfigModule } from '@nestjs/config';
+import * as Joi from 'joi';
+// import { EmailModule } from './User/register/email.module';
+import { JwtModule } from '@nestjs/jwt';
+import { RegisterModule } from './User/register/register.module';
+
 @Module({
   imports:[
     TypeOrmModule.forRoot({
@@ -40,6 +46,7 @@ import { userfollowing } from './User/userfollowing.entity';
     WordModule,
     loginModule,
     UserModule,
+    RegisterModule,
   ],
 
   controllers:[],

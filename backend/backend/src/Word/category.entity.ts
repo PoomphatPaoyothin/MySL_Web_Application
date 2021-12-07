@@ -19,4 +19,7 @@ export class wordcategory{
 
     @Column()
     Word_picture: string;
+
+    @Column()
+    First_word: string;
 }
