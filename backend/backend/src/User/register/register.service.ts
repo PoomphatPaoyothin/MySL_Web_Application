@@ -25,7 +25,7 @@ export class registerService{
 
         const checkemail = await this.userRepo.findOne({where:{User_email:User_email}});
         const timeupdate = new Date();
-        if(checkemail && checkemail.Is_delete==true && checkemail.Is_email_confirm){
+        if(checkemail){
             throw new ConflictException('email already exist');
         }
         const Numstring = num.toString();
@@ -80,6 +80,8 @@ export class registerService{
             throw new UnauthorizedException('cant find user');
         }
         const userotp = getUser.temp;
+        console.log(userotp)
+        console.log(otp)
         if(userotp === otp){
             return true;
         }
