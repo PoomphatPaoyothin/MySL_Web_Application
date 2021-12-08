@@ -1,4 +1,4 @@
-import { ConflictException, Injectable } from "@nestjs/common";
+import { ConflictException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
 import { User } from "../user.entity";
@@ -16,11 +16,8 @@ export class registerService{
         return bcrypt.hash(password,saltRound);
     }
 
-    async createAccount(RegisterInput: any): Promise<object>{
+    async createAccountFirst(RegisterInput: any,num:number): Promise<object>{
         const {
-                User_prefix_name,
-                User_name,
-                User_surname,
                 User_email,
                 User_password,
         } = RegisterInput;
@@ -33,11 +30,8 @@ export class registerService{
         const saltRound = 12;
         const user = this.userRepo.create({
             ID: uuid(),
-            User_prefix_name: User_prefix_name,
             User_password: await this.hashpassword(User_password,saltRound),
             User_email: User_email,
-            User_name: User_name,
-            User_surname: User_surname,
             timeupdate: timeupdate,
             imguser: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
             follower_amount: 0,
@@ -46,11 +40,44 @@ export class registerService{
             Is_delete:false,
         })
 
-
         await this.userRepo.save(user);
         console.log(user);
         const id = user.ID;
 
-        return {"userId":id}; 
+        return {"userId":id,"otp":num}; 
+    }
+
+    async createAccountSecond(id:string,RegisterInput: any):Promise<object>{
+        const {
+            User_prefix_name,
+            User_name,
+            User_surname,
+        } = RegisterInput;
+
+        const timeupdate = new Date();
+
+        const getUser = await this.userRepo.findOne({where:{ID:id}});
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+        getUser.User_name = User_name;
+        getUser.User_prefix_name = User_prefix_name;
+        getUser.User_surname = User_surname;
+        getUser.timeupdate =  timeupdate;
+        getUser.Is_email_confirm = true;
+        
+        await this.userRepo.save(getUser);
+        return getUser
+    }
+
+    async forgotpassword(id:string){
+        const getUser = await this.userRepo.findOne({where:{ID:id}});
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+    }
+
+    async findUserProfile(id:string) {
+        return this.userRepo.findOne({where:{ID:id}});
     }
 }

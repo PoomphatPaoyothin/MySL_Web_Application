@@ -4,7 +4,7 @@ import { wordcategory } from "src/Word/category.entity";
 // import EmailService from "./register/email.service";
 // import { EmailConfirmationService } from "./register/emailConfirm.service";
 import { registerService } from "./register/register.service";
-import { RegisterController } from "./register/regitster.controller";
+import { RegisterController } from "./register/register.controller";
 import { UserController } from "./user.controller";
 import { User } from "./user.entity";
 import { UserService } from "./user.service";
@@ -14,6 +14,7 @@ import { userfollowing } from "./userfollowing.entity";
 import { userlessoncheckpoint } from "./userlessoncheckpoint.entity";
 import { userlessonstat } from "./userlessonstat.entity";
 import { userstatnav } from "./userstatnav.entity";
+import { EmailConfirmationService } from "./register/emailConfirm.service";
 
 @Module({
     imports:[

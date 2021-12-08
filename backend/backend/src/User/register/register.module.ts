@@ -13,7 +13,7 @@ import { userstatnav } from '../userstatnav.entity';
 import EmailService from './email.service';
 import { EmailConfirmationService } from './emailConfirm.service';
 import { registerService } from './register.service';
-import { RegisterController } from './regitster.controller';
+import { RegisterController } from './register.controller';
  
 @Module({
     imports:[

@@ -56,6 +56,7 @@ export class loginService{
         const User_email = await this.validateUserPassword(user.User_email,user.User_password);
         const getUser = this.findOneUser(user.User_email);
         const getIdUser = (await getUser).ID;
+        const getUserName = (await getUser).User_name;
         console.log(User_email);
         if(!User_email){
             throw new UnauthorizedException('password wrong');
@@ -77,7 +78,7 @@ export class loginService{
 
         // const res = await axios(config);
         // const data = res.data;
-        return {"accessToken": accessToken,"userId": getIdUser};
+        return {"accessToken": accessToken,"userId": getIdUser,"userName":getUserName};
     }
 
     // async getuserdata(

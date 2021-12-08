@@ -17,19 +17,28 @@ export class EmailConfirmationService {
     private readonly emailService: EmailService,
   ) {}
  
-  public sendVerificationLink(email: string) {
+  public sendVerificationLink(email: string,num:number) {
     const payload: VerificationTokenPayload = { email };
     const token = this.jwtService.sign(payload, {
       secret: this.configService.get('JWT_VERIFICATION_TOKEN_SECRET'),
     });
  
-    const url = `${this.configService.get('EMAIL_CONFIRMATION_URL')}?token=${token}`;
- 
-    const text = `Welcome to the application. To confirm the email address, click here: ${url}`;
+    const text = `ยินดีต้อนรับเข้าสู่เว็บไซต์ MySL,รหัสยืนยันของท่านคือ ${num}`;
  
     return this.emailService.sendMail({
       to: email,
-      subject: 'Email confirmation',
+      subject: 'ยืนยันการสมัครเว็บไซต์ MySL',
+      text,
+    })
+  }
+
+  public sendConfirmPassword(email:string,num:number){
+    const payload: VerificationTokenPayload = { email };
+    const text = `รหัสยืนยันของท่านคือ ${num} </br> กรุณานำรหัสไปกรอกเพื่อยืนยันที่จะเปลี่ยนรหัสผ่าน `;
+
+    return this.emailService.sendMail({
+      to: email,
+      subject: 'ยืนยันการเปลี่ยนรหัสผ่าน กรณีจำรหัสผ่านไม่ได้',
       text,
     })
   }

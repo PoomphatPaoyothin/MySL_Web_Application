@@ -348,4 +348,26 @@ export class UserService{
         }
 
     }
+
+    async confirmEmail(id:string){
+        const getUser = await this.userRepo.findOne({where:{ID:id}});
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+        getUser.Is_email_confirm = true;
+        await this.userRepo.save(getUser);
+        return getUser;
+    }
+
+    async changepassword(id:string,password:string){
+        const getUser = await this.userRepo.findOne({where:{ID:id}})
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+        const saltRound = 12;
+        const new_password = await this.hashpassword(password,saltRound)
+        getUser.User_password = new_password;
+        await this.userRepo.save(getUser);
+        return getUser;
+    }
 }

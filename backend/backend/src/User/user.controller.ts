@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, ParseArrayPipe, Patch, Post } from "@nestjs/common";
+import { EmailConfirmationService } from "./register/emailConfirm.service";
 import { User } from "./user.entity";
 import { UserService } from "./user.service";
 import { usercatstat } from "./usercatstat.entity";
@@ -10,7 +11,8 @@ import { userstatnav } from "./userstatnav.entity";
 
 @Controller('user')
 export class UserController{
-    constructor(private userService:UserService ){}
+    constructor(private userService:UserService
+    ){}
 
     @Get('findemail/:useremail')
     async findUseremail(@Param('useremail') User_email: string):Promise<User>{
@@ -146,5 +148,16 @@ export class UserController{
     async updateUnfollowing(@Body('userid1') userid1:string,
                         @Body('userid2') userid2:string): Promise<any>{
         return this.userService.undateUnfollowing(userid1,userid2);
+    }
+
+    @Patch(':userid/confirmemail')
+    async confirmEmail(@Param('userid') userid:string):Promise<any>{
+        return this.userService.confirmEmail(userid);
+    }
+
+    @Patch(':userid/changepassword')
+    async changepassword(@Param('userid') userid: string,
+                        @Body('newpassword') newpassword:string):Promise<any>{
+        return this.userService.changepassword(userid,newpassword);
     }
 }
