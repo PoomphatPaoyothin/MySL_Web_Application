@@ -80,7 +80,7 @@ export class registerService{
             throw new UnauthorizedException('cant find user');
         }
         const userotp = getUser.temp;
-        if(userotp == otp){
+        if(userotp === otp){
             return true;
         }
         else{
