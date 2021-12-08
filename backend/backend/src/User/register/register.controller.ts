@@ -13,7 +13,7 @@ export class RegisterController{
     async CreateAccount(
         @Body() RegisterInput: any,
         ): Promise<object>{
-        let num = Math.floor((Math.random() * 9999) + 1);
+        let num = Math.floor((Math.random() * 9999) + 1000);
         await this.emailConfirmationService.sendVerificationLink(RegisterInput.User_email,num)
         return this.registerService.createAccountFirst(RegisterInput,num);
     }
@@ -31,5 +31,11 @@ export class RegisterController{
         let num = Math.floor((Math.random() * 9999) + 1);
         await this.emailConfirmationService.sendConfirmPassword(useremail,num);
         return num;
+    }
+
+    @Post(':userid/checkotp')
+    async checkotp(@Param('userid') userid:string,
+                    @Body('otp') otp:string): Promise<any>{
+        return this.registerService.checkotp(userid,otp);
     }
 }

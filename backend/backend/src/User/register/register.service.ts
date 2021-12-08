@@ -27,6 +27,7 @@ export class registerService{
         if(checkemail){
             throw new ConflictException('email already exist');
         }
+        const Numstring = num.toString();
         const saltRound = 12;
         const user = this.userRepo.create({
             ID: uuid(),
@@ -37,6 +38,7 @@ export class registerService{
             follower_amount: 0,
             following_amount: 0,
             Is_email_confirm:false,
+            temp:Numstring,
             Is_delete:false,
         })
 
@@ -65,9 +67,24 @@ export class registerService{
         getUser.User_surname = User_surname;
         getUser.timeupdate =  timeupdate;
         getUser.Is_email_confirm = true;
+        getUser.temp = null;
         
         await this.userRepo.save(getUser);
         return getUser
+    }
+
+    async checkotp(id:string,otp:string){
+        const getUser = await this.userRepo.findOne({where:{ID:id}});
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+        const userotp = getUser.temp;
+        if(userotp == otp){
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     async forgotpassword(id:string){

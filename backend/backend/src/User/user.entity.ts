@@ -42,6 +42,9 @@ export class User{
     imguser: string;
 
     @Column()
+    temp: string;
+
+    @Column()
     timeupdate: Date;
 
 }

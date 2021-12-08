@@ -18,6 +18,7 @@ import { Form, FormControl, InputGroup, NavDropdown } from "react-bootstrap";
 
 const Navigatebar=(prop:any)=>{
     const history = useHistory();
+    const myid = localStorage.getItem('id');
     
     const logout = () =>{
         localStorage.clear();
@@ -53,16 +54,9 @@ const Navigatebar=(prop:any)=>{
                 <div className="txt">0/10</div>
                 <img src = {QuizIcon2} className = 'quiz-pic'/>
                 <div className="txt">0/100</div>
-                <NavDropdown className = 'dropdown-right'
-                    title={
-                        <img className = 'user-image' src = {userImage}/>
-                }>
-                <NavDropdown.Item href="#/action-1">Action</NavDropdown.Item>
-                <NavDropdown.Item href="#/action-2">Another action</NavDropdown.Item>
-                <NavDropdown.Item href="#/action-3">Something else</NavDropdown.Item>
 
-
-                </NavDropdown>
+                <img className = 'user-image' src = {userImage}/>
+                
                 <button className = 'button-right' onClick={logout}>
                         logout
                 </button>
