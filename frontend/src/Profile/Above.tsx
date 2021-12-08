@@ -7,6 +7,8 @@ import { useHistory } from "react-router";
 
 const Above=(props:any|null)=>{
     const [objuser,setObjuser] = useState<userInfo>()
+    const [isfollowing, setIsfollowing] = useState<string>()
+    const [tmp, setTmp] = useState<any[]>()
     const history = useHistory();
     
     const fetchuserprofile=()=>{
@@ -22,9 +24,72 @@ const Above=(props:any|null)=>{
         history.push(`/editprofile/${props.id}`)
     }
 
+
+    const fetchfollowing=()=>{
+        ProfileService.fetchfollowing(props.myid)
+        .then(res=>{
+            setTmp(res)
+            let size = res.length
+            if(size == 0)
+            {
+                setIsfollowing('ติดตาม')
+            }
+            for(let i=0; i<size; i++)
+            {
+                if(res[i].User_followingID == props.id)
+                {
+                    setIsfollowing('กำลังติดตาม')
+                }
+                else
+                {
+                    setIsfollowing('ติดตาม')
+                }
+            }
+        })
+    }
+    const follow=()=>{
+        if(isfollowing == 'ติดตาม')
+        {
+            const followerobj={
+                userid1: props.id,
+                userid2: props.myid
+            }
+    
+            const followingobj={
+                userid1: props.myid,
+                userid2: props.id
+            }
+            ProfileService.Postfollower(followerobj)
+            ProfileService.Postfollowing(followingobj)
+            ProfileService.Patchfollowingamount(props.myid)
+            ProfileService.Patchfolloweramount(props.id)
+        }
+        else{
+            const followerobj={
+                userid1: props.id,
+                userid2: props.myid
+            }
+    
+            const followingobj={
+                userid1: props.myid,
+                userid2: props.id
+            }
+            ProfileService.Postunfollower(followerobj)
+            ProfileService.Postunfollowing(followingobj)
+            ProfileService.Patchunfollowingamount(props.myid)
+            ProfileService.Patchunfolloweramount(props.id)
+        }
+
+
+    }
     useEffect(()=>{
         fetchuserprofile()
+        fetchfollowing()
     },[])
+
+    useEffect(()=>{
+        fetchfollowing()
+    },[tmp])
     return(
         <div className='above'>
 
@@ -66,7 +131,7 @@ const Above=(props:any|null)=>{
             
             {!props.ismyid &&
             <div className='followProfileButtonPos'>
-                <button className='followProfileButton'>Follow</button>
+                <button className='followProfileButton' onClick={follow}>{isfollowing}</button>
             </div>
             }
 

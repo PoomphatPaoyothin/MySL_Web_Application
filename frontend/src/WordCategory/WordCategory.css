@@ -33,6 +33,7 @@
     display:block;
     width: 80%;
     margin:auto;
+    cursor:pointer;
 }
 .nameCategory{
     text-align: center;

@@ -22,6 +22,8 @@ const EditProfile = (props:any) => {
             {ismyid &&
                 <BoxEditProfile id={userId}/>
             }
+
+            
         </div>
     )
 }

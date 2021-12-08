@@ -170,7 +170,6 @@ const BoxEditProfile = (props:any) => {
 
     const Delete=()=>{
         setVisibilityDelete(!visibilityDelete)
-        console.log('set delete is', visibilityDelete)
 
     }
 
@@ -273,6 +272,17 @@ const BoxEditProfile = (props:any) => {
 
         </div>
 
+
+        <form action="#">
+            <label >Language</label>
+            <select name="languages" id="lang">
+                <option value="นาย">นาย</option>
+                <option value="นาง">นาง</option>
+                <option value="นางสาว">นางสาว</option>
+                <option value="ไม่ระบุ">ไม่ระบุ</option>
+            </select>
+            <input type="submit" value="Submit" />
+        </form>
     </div>
 
   )

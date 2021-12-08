@@ -5,4 +5,5 @@ export interface wordInfo{
     Lesson_amount:number;
     Word_amount:number;
     Word_picture:string;
+    First_word:string;
 }

@@ -20,14 +20,11 @@ const Profile=(props:any)=>{
     const Isuseid=() =>{
         ProfileService.fetchuserprofile(userId)
         .then(res => {
-            console.log(res)
             if(res==undefined)
             {
-                console.log('set id false');
                 setIsid(false)
             }
             else{
-                console.log('set id true');
                 setIsid(true)
             }
         })
@@ -44,7 +41,7 @@ const Profile=(props:any)=>{
         <div>
         {isid &&
         <div className='container'>
-            <Above id={userId} ismyid={ismyid}/>
+            <Above id={userId} ismyid={ismyid} myid={myid}/>
             <Stat id={userId}/>
             <Follow id={userId}/>
         </div>
