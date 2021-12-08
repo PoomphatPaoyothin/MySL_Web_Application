@@ -122,7 +122,7 @@ export class UserService{
     async getUserFollower(id:string){
         return await this.userfollowerRepo.find({
             where:{
-                User_followerID:id,
+                UserID:id,
                 is_follower:true,
             }})
     }
