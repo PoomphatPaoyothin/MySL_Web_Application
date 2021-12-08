@@ -54,8 +54,10 @@ const Navigatebar=(prop:any)=>{
                 <div className="txt">0/10</div>
                 <img src = {QuizIcon2} className = 'quiz-pic'/>
                 <div className="txt">0/100</div>
-
-                <img className = 'user-image' src = {userImage}/>
+                <Nav.Link>
+                    <img className = 'user-image' src = {userImage}/>
+                </Nav.Link>
+                
                 
                 <button className = 'button-right' onClick={logout}>
                         logout

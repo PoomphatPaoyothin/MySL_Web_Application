@@ -4,6 +4,7 @@ import { Repository } from "typeorm";
 import { User } from "../user.entity";
 import * as bcrypt from 'bcrypt';
 import {v4 as uuid} from 'uuid';
+import { check } from "prettier";
 
 @Injectable()
 export class registerService{
@@ -24,7 +25,7 @@ export class registerService{
 
         const checkemail = await this.userRepo.findOne({where:{User_email:User_email}});
         const timeupdate = new Date();
-        if(checkemail){
+        if(checkemail && checkemail.Is_delete==true && checkemail.Is_email_confirm){
             throw new ConflictException('email already exist');
         }
         const Numstring = num.toString();
@@ -83,7 +84,7 @@ export class registerService{
             return true;
         }
         else{
-            return false;
+            return {"database":userotp,"otp":otp};
         }
     }
 
