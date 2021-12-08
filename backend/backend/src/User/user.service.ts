@@ -341,7 +341,7 @@ export class UserService{
             throw new UnauthorizedException('cant find user');
         }else if(unfollowing && unfollowing.is_following == true){
             unfollowing.is_following = false;
-            await this.userfollowerRepo.save(unfollowing);
+            await this.userfollowingRepo.save(unfollowing);
             return unfollowing;
         }else{
             throw new UnauthorizedException('cant unfollower');
