@@ -63,9 +63,9 @@ const Navigatebar=(prop:any)=>{
 
 
                 </NavDropdown>
-                {/* <button className = 'button-right' onClick={logout}>
+                <button className = 'button-right' onClick={logout}>
                         logout
-                </button> */}
+                </button>
             </Nav>
             
         </Navbar>
