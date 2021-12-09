@@ -36,32 +36,27 @@ const Navigatebar=(prop:any)=>{
             <Navbar.Brand href = "/">
                 <img src = {HomeIcon} className = 'home-pic'/>{'  '}MySL
             </Navbar.Brand>
-            <Nav.Link href="/lesson">Lesson</Nav.Link>
-            <Nav.Link href="/category">Category</Nav.Link>
-            
-            
-            <Nav className = "ms-auto">
-                <Form className="d-flex form-search">
+
+            <Form className="d-flex form-search">
                     <InputGroup>
                         <InputGroup.Text>
                             <img src={searchIcon} className= 'search-pic'/>
                         </InputGroup.Text>
                         <FormControl
                         type="search"
-                        placeholder="Search"
+                        placeholder="Dictionary"
                         aria-label="Search"
                     />
-                    </InputGroup>
-                    
-                </Form>
+                </InputGroup>
+            </Form>
+
+            <Nav className = "ms-auto">
                 <img src = {LessonIcon2} className = 'lesson-pic'/>
                 <div className="txt">0/10</div>
                 <img src = {QuizIcon2} className = 'quiz-pic'/>
                 <div className="txt">0/100</div>
                 
                 <img className = 'user-image' onClick = {linktoprofile} src = {userImage}/>
-                
-                
                 
                 <button className = 'button-right' onClick={logout}>
                         logout

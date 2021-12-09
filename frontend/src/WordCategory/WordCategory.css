@@ -36,14 +36,23 @@
     margin-right: 2.5%;
     border: 2px solid red;
 }   
+
 .imgIcon{
     display:block;
     width: 80%;
     margin:auto;
     cursor:pointer;
+    transition: .2s;
 }
+
+.imgIcon:hover{
+    transform: scale(1.1);
+}
+
 .nameCategory{
+    font-family: 'Open Sans';
     text-align: center;
+    margin-top: 5px;
     font-size:20px;
 }
 

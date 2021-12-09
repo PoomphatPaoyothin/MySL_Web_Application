@@ -72,3 +72,7 @@
 .dropdown-right{
     align-self: flex-end!important; 
 }
+
+.input-group{
+    width: 300px !important;
+}

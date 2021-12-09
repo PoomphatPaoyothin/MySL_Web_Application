@@ -160,4 +160,9 @@ export class UserController{
                         @Body('newpassword') newpassword:string):Promise<any>{
         return this.userService.changepassword(userid,newpassword);
     }
+
+    @Post(':userid/userlessonstat')
+    async createuserlessonstat(@Param('userid') userid:string):Promise<any>{
+        return this.userService.createuserlessonstat(userid);
+    }
 }

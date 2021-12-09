@@ -12,6 +12,7 @@ import { userfollowing } from "./userfollowing.entity";
 import {v4 as uuid} from 'uuid';
 import { wordcategory } from "src/Word/category.entity";
 import { check } from "prettier";
+import { range } from "rxjs";
 
 @Injectable()
 export class UserService{
@@ -369,5 +370,15 @@ export class UserService{
         getUser.User_password = new_password;
         await this.userRepo.save(getUser);
         return getUser;
+    }
+
+    async createuserlessonstat(id:string){
+        var getUser = await this.findUserProfile(id);
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+        for(let i = 1;i<9;i++){
+            
+        }
     }
 }
