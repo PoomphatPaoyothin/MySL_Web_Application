@@ -24,14 +24,29 @@ export class RegisterController{
         return this.registerService.createAccountSecond(userid,RegisterInput);
     }
 
-    @Post(':userid/forgotpassword')
-    async forgotpassword(@Param('userid') userid:string): Promise<any>{
-        const getUser = await this.registerService.findUserProfile(userid);
-        const useremail = getUser.User_email;
+    @Patch('forgotpass/first')
+    async forgotpassfirst(@Body('email') email:string):Promise<any>{
         let num = Math.floor((Math.random() * 9999) + 1);
-        await this.emailConfirmationService.sendConfirmPassword(useremail,num);
-        return num;
+        const checkuseremail = await this.registerService.findUserByEmail(email);
+        if(checkuseremail){
+            await this.emailConfirmationService.sendConfirmPassword(email,num);
+            return this.registerService.updateotp(email,num);
+        }
+        else{
+            return false;
+        }
     }
+
+    
+
+    // @Post('forgotpassword')
+    // async forgotpassword(): Promise<any>{
+    //     const getUser = await this.registerService.findUserProfile(userid);
+    //     const useremail = getUser.User_email;
+    //     let num = Math.floor((Math.random() * 9999) + 1);
+    //     await this.emailConfirmationService.sendConfirmPassword(useremail,num);
+    //     return num;
+    // }
 
     @Patch(':userid/checkotp')
     async checkotp(@Param('userid') userid:string,

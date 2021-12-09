@@ -374,15 +374,42 @@ export class UserService{
 
     async createuserlessonstat(id:string){
         var getUser = await this.findUserProfile(id);
+        
         if(!getUser){
             throw new UnauthorizedException('cant find user');
         }
+
         for(let i = 1;i<9;i++){
             const id_lesson = i.toString();
             const userlessonstat = this.userlessonstatRepo.create({
                 ID: uuid,
-                
+                UserID: id,
+                CategoryID: id_lesson,
+                Lesson_amount: 0,
+                Lesson_learned: 0,
             })
+
+            const usercatstat = this.usercatstatRepo.create({
+                ID: uuid,
+                UserID: id,
+                CategoryID: id_lesson,
+                Is_category_quiz: false,
+                category_quiz_score:0,
+            })
+            
+            const userstatnav = this.userstatnavRepo.create({
+                ID: uuid,
+                UserID: id,
+                Lesson_Stat: 0,
+                Quiz_stat: 0
+            })
+
+            await this.userstatnavRepo.save(userstatnav);
+            await this.usercatstatRepo.save(usercatstat);
+            await this.userlessonstatRepo.save(userlessonstat);
         }
+        return id;
     }
+
+
 }

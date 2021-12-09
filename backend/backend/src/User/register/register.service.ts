@@ -5,12 +5,15 @@ import { User } from "../user.entity";
 import * as bcrypt from 'bcrypt';
 import {v4 as uuid} from 'uuid';
 import { check } from "prettier";
+import { JwtService } from "@nestjs/jwt";
+import { JwtPayload } from "../login/jwt-payload.interface";
 
 @Injectable()
 export class registerService{
     constructor(
         @InjectRepository(User)
         private userRepo: Repository<User>,
+        private JwtService: JwtService
     ){}
 
     private async hashpassword(password: string,saltRound: number): Promise<string>{
@@ -78,16 +81,25 @@ export class registerService{
 
     async checkotp(id:string,otp:string){
         const getUser = await this.userRepo.findOne({where:{ID:id}});
+        const User_email = getUser.User_email;
+        const User_id = getUser.ID;
         if(!getUser){
             throw new UnauthorizedException('cant find user');
         }
-        getUser.register_stat = '2';
-        await this.userRepo.save(getUser);
+        
         const userotp = getUser.temp;
         console.log(userotp)
         console.log(otp)
         if(userotp === otp){
-            return true;
+            if(getUser.Is_email_confirm == false){
+                getUser.register_stat = '2';
+                await this.userRepo.save(getUser);
+            }
+            else if(getUser.Is_email_confirm == true){
+                const payload: JwtPayload = {User_email};
+                const accessToken = await this.JwtService.sign(payload);
+                return {"accessToken":accessToken,"userId":User_id};
+            }
         }
         else{
             return false;
@@ -103,5 +115,17 @@ export class registerService{
 
     async findUserProfile(id:string) {
         return this.userRepo.findOne({where:{ID:id}});
+    }
+
+    async findUserByEmail(email:string){
+        return this.userRepo.findOne({where:{User_email:email}})
+    }
+
+    async updateotp(email:string,num:number){
+        const numstring = num.toString();
+        const getUser = await this.userRepo.findOne({where:{User_email:email}});
+        getUser.temp = numstring;
+        await this.userRepo.save(getUser);
+        return true;
     }
 }
