@@ -4,14 +4,18 @@ import './Profile.css';
 import Stat from "./Stat";
 import Above from "./Above";
 import ProfileService from "./ProfileService";
+import { useHistory } from "react-router-dom";
+import RegisterService from "../Register/RegisterService";
 
 
 
 const Profile=(props:any)=>{
+    const history=useHistory()
     const myid = localStorage.getItem('id');
     const userId = props.match.params.id;
     const [ismyid,setIsmyid] = useState<boolean>(false);
     const [isid,setIsid] = useState<boolean>(false);
+    const [userinfo,setUserinfo] = useState<any>()
 
     const Ismyuserid=() => {
         setIsmyid(myid===userId)
@@ -30,7 +34,36 @@ const Profile=(props:any)=>{
         })
     }
 
+///////////////////////////////////////////////////////////////////////////////////
+    useEffect(()=>{
+        RegisterService.fetchuserprofile(myid)
+        .then(res=>{
+            setUserinfo(res)
+        })
+    },[])
 
+
+    useEffect(()=>{
+        if(userinfo !=undefined)
+        {
+            if(userinfo.register_stat == 1)
+            {
+                history.push(`/register/2/${myid}`)
+            }
+            else if(userinfo.register_stat == 2)
+            {
+                history.push(`/register/3/${myid}`)
+            }
+            else if(userinfo.register_stat == 3)
+            {
+                history.push(`/`)
+            }
+        }
+
+    },[userinfo])
+
+
+///////////////////////////////////////////////////////////////////////////////////
 
     useEffect(()=>{
         Ismyuserid()

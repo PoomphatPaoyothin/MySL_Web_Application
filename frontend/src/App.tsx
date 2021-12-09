@@ -23,34 +23,40 @@ import Forget3 from "./ForgetPassword/Forget3";
 
 const App = () => {
   const id = localStorage.getItem('accesToken')
+  const DefaultContainer = ()=>(
+    <div>
+      <Navigatebar/>
+      <Route exact path='/' component={Home} />
+      <Route path='/lesson/:catId/:word'  component={Lesson} />
+      <Route path='/profile/:id' component={Profile} />
+      <Route path='/editprofile/:id' component={EditProfile} />
 
+    </div>
+  )
 
+  const Register=()=>(
+    <div>
+      <Route path='/register/1' component={EmailPass} />
+      <Route path='/register/2/:id' component={Confirm} />
+      <Route path='/register/3/:id' component={Name} />
+
+    </div>
+  )
+
+  const forgetpass=()=>(
+      <div>
+        <Route path='/forgetpass/1' component={Forget1} />
+        <Route path='/forgetpass/2' component={Forget2} />
+        <Route path='/forgetpass/3' component={Forget3} />
+      </div>
+  )
   return(
     <Router>
-      
       <div>
-      <Navigatebar/>
         <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/nav' component={Navigatebar} />
-
-
-          <Route path='/lesson/:catId/:word'  component={Lesson} />
-
-
-          <Route path='/profile/:id' component={Profile} />
-
-          <Route path='/editprofile/:id' component={EditProfile} />
-
-          <Route path='/register/1' component={EmailPass} />
-          <Route path='/register/2' component={Confirm} />
-          <Route path='/register/3' component={Name} />
-
-          <Route path='/forgetpass/1' component={Forget1} />
-          <Route path='/forgetpass/2' component={Forget2} />
-          <Route path='/forgetpass/3' component={Forget3} />
-
-
+        <Route  path='/(register)' component={Register} />
+        <Route  path='/(forgetpass)' component={forgetpass} />
+        <Route component={DefaultContainer} />
 
 
 
