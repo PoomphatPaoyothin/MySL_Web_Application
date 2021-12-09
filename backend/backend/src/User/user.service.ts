@@ -378,7 +378,11 @@ export class UserService{
             throw new UnauthorizedException('cant find user');
         }
         for(let i = 1;i<9;i++){
-            
+            const id_lesson = i.toString();
+            const userlessonstat = this.userlessonstatRepo.create({
+                ID: uuid,
+                
+            })
         }
     }
 }

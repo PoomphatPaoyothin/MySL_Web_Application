@@ -34,7 +34,7 @@ const Follow=(props:any)=>{
     useEffect(()=>{
         fetchfollower()
         fetchfollowing()
-    },[followingobj,followerobj])
+    },[])
     return(
         <div className='follow'>
             <div className='multimiddle'>
