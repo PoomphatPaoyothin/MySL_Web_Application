@@ -98,13 +98,13 @@ const Above=(props:any|null)=>{
             </div>
 
             <div className='namePos'>
-                <div className='nameuser'>{objuser?.User_prefix_name} {objuser?.User_name} {objuser?.User_surname}</div>
+                <div className='nameuser'>{objuser?.User_prefix_name} {objuser?.User_name} &nbsp; {objuser?.User_surname}</div>
                 <img src={'https://cdn.discordapp.com/attachments/912175328066142240/915088056124584086/nameProfile.png'} className='nameProfileBox'/>
             </div>
 
             <div className='followingAbovePos'>
                 <div>
-                    Following
+                    Following 
                 </div>
                 <div className='nOfollowingAbove'>
                     {objuser?.following_amount}

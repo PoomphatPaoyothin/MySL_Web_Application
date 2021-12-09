@@ -19,8 +19,8 @@ const Forget3 = (props:any) =>{
 
     return(
         <div>
-            <input value={pass} type={'password'}  onChange={pass_input} placeholder="อีเมลล์" required />
-            <input value={Confirmpass} type={'password'}   onChange={confirmpass_input} placeholder="อีเมลล์" required />
+            <input value={pass} type={'password'}  onChange={pass_input} placeholder="รหัสผ่าน" required />
+            <input value={Confirmpass} type={'password'}   onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
             <button  onClick={gotonext}>ยืนยัน</button>
         </div>
     )

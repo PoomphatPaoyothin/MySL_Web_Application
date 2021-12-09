@@ -3,6 +3,8 @@ import LessonBox from "./LessonBox";
 import Navigatebar from "../Navbar/Navigatebar";
 import LessonService from "./LessonService";
 import VideoPlayer from "./VideoPlayer";
+import RegisterService from "../Register/RegisterService";
+import { useHistory } from "react-router-dom";
 
 const Lesson=(props:any)=>{
     const catId = props.match.params.catId;
@@ -13,7 +15,10 @@ const Lesson=(props:any)=>{
     const [objword, setObjword] = useState<any[]>()
 
     const [objlesson2, setObjlesson2] = useState<any[]>()
-    
+    const history=useHistory()
+    const myid = localStorage.getItem('id');
+    const [userinfo,setUserinfo] = useState<any>()
+
 
     const fetchwordCat=()=>{
         LessonService.fetchwordCat()
@@ -99,6 +104,36 @@ const Lesson=(props:any)=>{
     }
 
 
+    ///////////////////////////////////////////////////////////////////////////////////
+    useEffect(()=>{
+        RegisterService.fetchuserprofile(myid)
+        .then(res=>{
+            setUserinfo(res)
+        })
+    },[])
+
+
+    useEffect(()=>{
+        if(userinfo !=undefined)
+        {
+            if(userinfo.register_stat == 1)
+            {
+                history.push(`/register/2/${myid}`)
+            }
+            else if(userinfo.register_stat == 2)
+            {
+                history.push(`/register/3/${myid}`)
+            }
+            // else if(userinfo.register_stat == 3)
+            // {
+            //     history.push(`/`)
+            // }
+        }
+
+    },[userinfo])
+
+
+///////////////////////////////////////////////////////////////////////////////////
     const showWord=()=>{
         return(word)
     }

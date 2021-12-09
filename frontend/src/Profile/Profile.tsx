@@ -54,10 +54,10 @@ const Profile=(props:any)=>{
             {
                 history.push(`/register/3/${myid}`)
             }
-            else if(userinfo.register_stat == 3)
-            {
-                history.push(`/`)
-            }
+            // else if(userinfo.register_stat == 3)
+            // {
+            //     history.push(`/`)
+            // }
         }
 
     },[userinfo])

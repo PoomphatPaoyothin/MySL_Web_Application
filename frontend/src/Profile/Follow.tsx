@@ -31,6 +31,7 @@ const Follow=(props:any)=>{
     useEffect(()=>{
         console.log('followingobj',followingobj)
     },[followingobj])
+    
     useEffect(()=>{
         fetchfollower()
         fetchfollowing()

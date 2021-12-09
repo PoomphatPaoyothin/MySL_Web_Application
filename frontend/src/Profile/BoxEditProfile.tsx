@@ -208,7 +208,7 @@ const BoxEditProfile = (props:any) => {
 
         <div>
             {objprofile?.User_prefix_name}
-            {objprofile?.User_name}
+            {objprofile?.User_name} &nbsp;
             {objprofile?.User_surname} 
             {
                 isbuttonName && 

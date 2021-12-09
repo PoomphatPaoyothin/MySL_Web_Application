@@ -11,7 +11,7 @@ const Forget2 = (props:any) =>{
         setOtp(e.target.value);
     }
     const gotonext=()=>{
-        history.push('/register/3')
+        history.push('/forgetpass/3')
     }
     const resendOTP=()=>{
 
