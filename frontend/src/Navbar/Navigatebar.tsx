@@ -26,6 +26,10 @@ const Navigatebar=(prop:any)=>{
         window.location.reload();
     }
 
+    const linktoprofile = () =>{
+        history.push(`/profile/${myid}`);
+    }
+
     
     return(
         <Navbar fixed = 'top' className = 'NavBarCSS'>
@@ -54,9 +58,9 @@ const Navigatebar=(prop:any)=>{
                 <div className="txt">0/10</div>
                 <img src = {QuizIcon2} className = 'quiz-pic'/>
                 <div className="txt">0/100</div>
-                <Nav.Link>
-                    <img className = 'user-image' src = {userImage}/>
-                </Nav.Link>
+                
+                <img className = 'user-image' onClick = {linktoprofile} src = {userImage}/>
+                
                 
                 
                 <button className = 'button-right' onClick={logout}>

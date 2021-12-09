@@ -33,7 +33,7 @@ export class RegisterController{
         return num;
     }
 
-    @Post(':userid/checkotp')
+    @Patch(':userid/checkotp')
     async checkotp(@Param('userid') userid:string,
                     @Body('otp') otp:string): Promise<any>{
         return this.registerService.checkotp(userid,otp);

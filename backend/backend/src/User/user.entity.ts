@@ -42,6 +42,9 @@ export class User{
     imguser: string;
 
     @Column()
+    register_stat: string;
+
+    @Column()
     temp: string;
 
     @Column()

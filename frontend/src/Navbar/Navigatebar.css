@@ -29,6 +29,9 @@
 .user-image{
     height: 26px;
     width: 26px;
+    margin-right: 10px;
+    margin-top:6px;
+    cursor: pointer;
 }
 
 .hiddendiv{

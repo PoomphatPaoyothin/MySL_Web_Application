@@ -43,6 +43,7 @@ export class registerService{
             imguser: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
             follower_amount: 0,
             following_amount: 0,
+            register_stat:'1',
             Is_email_confirm:false,
             temp:Numstring,
             Is_delete:false,
@@ -73,6 +74,7 @@ export class registerService{
         getUser.User_surname = User_surname;
         getUser.timeupdate =  timeupdate;
         getUser.Is_email_confirm = true;
+        getUser.register_stat = '3';
         getUser.temp = null;
         
         await this.userRepo.save(getUser);
@@ -84,6 +86,8 @@ export class registerService{
         if(!getUser){
             throw new UnauthorizedException('cant find user');
         }
+        getUser.register_stat = '2';
+        await this.userRepo.save(getUser);
         const userotp = getUser.temp;
         console.log(userotp)
         console.log(otp)

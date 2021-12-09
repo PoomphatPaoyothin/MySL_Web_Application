@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../Opun-Regular/Opun-Regular.ttf');
+}
+
 .container{
     max-width: 1500px;
     height:100%;
@@ -8,6 +13,8 @@
 
 .choosechapter{
     /* border: 2px solid blue; */
+    margin-top: 20px;
+    font-family: 'Open Sans';
     text-align: center;
     font-size: 36px;
 }
