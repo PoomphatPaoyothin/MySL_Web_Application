@@ -28,13 +28,13 @@ const WordCategory = () =>{
             })
         )
     }
+
+
     useEffect(()=>{
         fetchWordCategory()
     },[])
 
-    const Isnotundefined=() =>{
-        return wordcategory !== undefined;
-    }
+
     return(
         <div className='container'>
             <p className='choosechapter'>
@@ -42,23 +42,9 @@ const WordCategory = () =>{
             </p>
             <div className='background'>
                 <div className='multimiddle'>
-                    
                     {wordcategory?.map((obj)=> ( 
-                        <WordIcon name= {obj.Category_name} image = {obj.Word_picture}/>
+                        <WordIcon name= {obj.Category_name} image = {obj.Word_picture} catid={obj.ID} firstword={obj.First_word}/>
                     ))} 
-
-                    {/* <WordIcon image={image.Dialy} name='ท่าทางในชีวิตประจำวัน'/>
-                    <WordIcon image={image.Body} name='ร่างกาย'/>
-                    <WordIcon image={image.Family} name='ครอบครัว'/>
-                    <WordIcon image={image.Occupation} name='อาชีพ'/>
-                    <WordIcon image={image.Appliances} name='เครื่องใช้'/>
-                    <WordIcon image={image.Animal} name='สัตว์'/>
-                    <WordIcon image={image.Food} name='อาหาร'/>
-                    <WordIcon image={image.Fruits} name='ผลไม้'/>
-                    <WordIcon image={image.Clothes} name='เสื้อผ้า'/>
-                    <WordIcon image={image.Subject} name='วิชา'/>
-                    <WordIcon image={image.Country} name='ประเทศ'/>
-                    <WordIcon image={image.Sport} name='กีฬา'/> */}
                 </div>
             </div>
         </div>

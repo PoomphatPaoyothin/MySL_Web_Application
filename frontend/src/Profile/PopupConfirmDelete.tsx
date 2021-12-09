@@ -42,7 +42,6 @@ const PopupConfirmDelete = (props:any) => {
 
   
     useEffect(() => {
-      console.log('delete inside is',props.show)
       setShow(props.show);
     }, [props.show]);
   

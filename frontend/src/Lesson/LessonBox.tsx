@@ -1,135 +1,49 @@
-// import React, { useState } from "react";
-// import ChapterBox from "./ChapterBox";
-
-// const LessonBox=()=>{
-//     return(
-//         <div>
-//             <ChapterBox no='1'/>
-//             <ChapterBox no='2'/>
-//             <ChapterBox no='3'/>
-//             <ChapterBox no='4'/>
-//             <ChapterBox no='5'/>
-//         </div>
-//     )
-// }
-
-// export default LessonBox
-
-
-import React, { useState } from "react";
-import WordBox from "./WordBox";
+import React, { useEffect, useState } from "react";
+import ChapterBox from "./ChapterBox";
+import LessonService from "./LessonService";
 
 const LessonBox=(props:any)=>{
-    const [visible1,setVisible1] = useState<Boolean>(true);
-    const [visible2,setVisible2] = useState<Boolean>(false);
-    const [visible3,setVisible3] = useState<Boolean>(false);
-    const [visible4,setVisible4] = useState<Boolean>(false);
-    const [visible5,setVisible5] = useState<Boolean>(false);
+
+    const [objlesson, setObjlesson] = useState<any[]>()
+    const [objword, setObjword] = useState<any[]>()
+    const [showchapter, setShowchapter] = useState<number>(props.defaultchap)
 
 
-    const openChapter1=() =>{
-        setVisible1(true);
+    const newobjword=(mychapter:any)=>{
+        if(objword != undefined)
+        {
+            let size = objword?.length
+            let tmp: any[] = []
+            for(let i=0; i<size; i++)
+            {
+                if(objword[i].Lesson_ID == mychapter)
+                {
+                    // console.log(i)
+                    tmp.push(objword[i])
+                }
+            }
+            return tmp
+        }
 
-        setVisible2(false);
-        setVisible3(false);
-        setVisible4(false);
-        setVisible5(false);
-    }
-
-    const openChapter2=() =>{
-        setVisible2(true);
-
-        setVisible1(false);
-        setVisible3(false);
-        setVisible4(false);
-        setVisible5(false);
-    }
-    const openChapter3=() =>{
-        setVisible3(true);
-
-        setVisible1(false);
-        setVisible2(false);
-        setVisible4(false);
-        setVisible5(false);
-    }
-    const openChapter4=() =>{
-        setVisible4(true);
-
-        setVisible1(false);
-        setVisible3(false);
-        setVisible2(false);
-        setVisible5(false);
-    }
-    const openChapter5=() =>{
-        setVisible5(true);
-
-        setVisible1(false);
-        setVisible3(false);
-        setVisible4(false);
-        setVisible2(false);
     }
     
+    const changeshowchapter=(i:number)=>{
+        setShowchapter(i)
+    }
+
+    useEffect(() => {
+        setObjlesson(props.objlesson)
+    }, [props.objlesson]);
+
+    useEffect(() => {
+        setObjword(props.objword)
+    }, [props.objword]);
+    
+    // console.log('aaaa', props.word)
     return(
         <div>
-            <button onClick={openChapter1} className='buttonChapter'>บทเรียนที่1</button>
-            {visible1 &&
-            <div>
-                <WordBox word='สวัสดี'/>
-                <WordBox word='ขอโทษ'/>
-                <WordBox word='ขอบคุณ'/>
-                <WordBox word='เสียใจ'/>
-                <WordBox word='เป้นห่วง'/>
-                <WordBox word='แบบทดสอบ'/>
-            </div>
-            }
-
-            <button onClick={openChapter2} className='buttonChapter'>บทเรียนที่2</button>
-            {visible2 &&
-            <div>
-                <WordBox word='สวัสดี'/>
-                <WordBox word='ขอโทษ'/>
-                <WordBox word='ขอบคุณ'/>
-                <WordBox word='เสียใจ'/>
-                <WordBox word='เป้นห่วง'/>
-                <WordBox word='แบบทดสอบ'/>
-            </div>
-            }
-
-            <button onClick={openChapter3} className='buttonChapter'>บทเรียนที่3</button>
-            {visible3 &&
-            <div>
-                <WordBox word='สวัสดี'/>
-                <WordBox word='ขอโทษ'/>
-                <WordBox word='ขอบคุณ'/>
-                <WordBox word='เสียใจ'/>
-                <WordBox word='เป้นห่วง'/>
-                <WordBox word='แบบทดสอบ'/>
-            </div>
-            }
-
-            <button onClick={openChapter4} className='buttonChapter'>บทเรียนที่4</button>
-            {visible4 &&
-            <div>
-                <WordBox word='สวัสดี'/>
-                <WordBox word='ขอโทษ'/>
-                <WordBox word='ขอบคุณ'/>
-                <WordBox word='เสียใจ'/>
-                <WordBox word='เป้นห่วง'/>
-                <WordBox word='แบบทดสอบ'/>
-            </div>
-            }
-
-            <button onClick={openChapter5} className='buttonChapter'>บทเรียนที่5</button>
-            {visible5 &&
-            <div>
-                <WordBox word='สวัสดี'/>
-                <WordBox word='ขอโทษ'/>
-                <WordBox word='ขอบคุณ'/>
-                <WordBox word='เสียใจ'/>
-                <WordBox word='เป้นห่วง'/>
-                <WordBox word='แบบทดสอบ'/>
-            </div>
-            }
+            {objlesson?.map((obj)=> ( 
+            <ChapterBox objword={newobjword(obj)} mychapter={obj} showchapter={showchapter} changeshowchapter={changeshowchapter} word={props.word}/>))} 
         </div>
     )
 }

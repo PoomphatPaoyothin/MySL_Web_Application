@@ -35,10 +35,12 @@ const Sign_in = () => {
 
 
   const forget_pass=() =>{
+    history.push('/forgetpass/1')
 
   }
 
   const regist=() => {
+    history.push('/register/1')
   }
 
   const email_input=(e:React.ChangeEvent<HTMLInputElement>) =>{

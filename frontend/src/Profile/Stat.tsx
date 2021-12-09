@@ -45,7 +45,6 @@ const Stat=(props:any)=>{
             for(let i=0;i<size;i++){
 
                 if(obj[i].ID == id){
-                    console.log('cat name = ', obj[i].Category_name)
                     return(obj[i].Category_name)
                 }
             }
@@ -58,7 +57,6 @@ const Stat=(props:any)=>{
             let size = objcatstat?.length;
             for(let i=0;i<size;i++){
                 if(objcatstat[i].CategoryID == id){
-                    console.log('aaa = ',objcatstat[i].CategoryID)
                     return(objcatstat[i].category_quiz_score)
                 }
             }

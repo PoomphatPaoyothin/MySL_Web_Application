@@ -7,6 +7,12 @@ async function fetchWordCategory(): Promise<wordInfo[]>{
     return word;
 }
 
+async function fetchword(idcat:string|null): Promise<any[]>{
+    const res = await fetch(`${url}/word/wordcat/${idcat}`);
+    const obj = await res.json();
+    return obj;
+}
 export default{
     fetchWordCategory,
+    fetchword,
 }

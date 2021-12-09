@@ -1,58 +1,56 @@
 import React, { useEffect, useState } from "react";
 import WordBox from "./WordBox";
 import LessonService from "./LessonService";
+import { useHistory } from "react-router";
 
 const ChapterBox=(props:any)=>{
     const [visible,setVisible] = useState<Boolean>(false);
     const [objword, setObjword] = useState<any[]>();
+    const history = useHistory()
 
-    const openChapter1=() =>{
+    const openChapter=() =>{
         setVisible(true);
-        props.changeShow(props.mynum)
-    }
-
-    const fetchword=() =>{
-        LessonService.fetchword(props.catId)
-        .then(res =>{
-            setObjword(res)
-        })
-        // console.log('word is ', objword)
-    }
-
-    const showmylesson=(obj:any) =>{
-        console.log('out is ',obj.Word_name, props.mynum)
-        if(obj.Lesson_ID == props.mynum)
+        if(objword != undefined)
         {
-            console.log('In is ',obj.Word_name)
-            return true
+            props.changeshowchapter(objword[0].Lesson_ID)
+        }
+    }
+
+
+    const Isshow=()=>{
+        if(objword != undefined)
+        {
+            if(objword[0].Lesson_ID == props.showchapter){
+                setVisible(true)
+            }
+            else{
+                setVisible(false)
+            }
         }
     }
     
-    useEffect(() => {
-        if(props.mynum == props.show)
-        {
-            setVisible(true)
-        }
-        else
-        {
-            setVisible(false)
-        }
-    }, [props.show]);
 
+
+
+    
 
     useEffect(() => {
-        fetchword()
-    }, []);
+        setObjword(props.objword)
+    }, [props.objword]);
 
+    useEffect(() => {
+        Isshow()
+    }, [props.showchapter,objword]);
+
+    // console.log(props.word)
     
     return(
         <div>
-            <button onClick={openChapter1} className='buttonChapter'>บทเรียนที่ {props.mynum}</button>
+            <button onClick={openChapter} className='buttonChapter'>บทเรียนที่ {props.mychapter}</button>
 
             {visible &&
             <div>
-                {objword?.map((obj)=>(showmylesson(obj)? <WordBox word ={obj.Word_name}/> :console.log()))}
-
+                {objword?.map((obj)=>(<WordBox word ={obj.Word_name} chapter={props.mychapter} lesson={objword[0].Category_ID} globalword={props.word} />))}
             </div>
             }
         </div>
