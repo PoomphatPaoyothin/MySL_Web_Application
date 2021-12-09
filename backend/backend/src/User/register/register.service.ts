@@ -26,12 +26,7 @@ export class registerService{
         const checkemail = await this.userRepo.findOne({where:{User_email:User_email}});
         const timeupdate = new Date();
         if(checkemail){
-            if(checkemail.Is_delete == true || checkemail.Is_email_confirm == false){
-                return null;
-            }
-            else{
-                throw new ConflictException('email already exist');
-            }
+            throw new ConflictException('email already exist');
         }
         const Numstring = num.toString();
         const saltRound = 12;
