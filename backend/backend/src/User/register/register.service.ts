@@ -94,6 +94,7 @@ export class registerService{
             if(getUser.Is_email_confirm == false){
                 getUser.register_stat = '2';
                 await this.userRepo.save(getUser);
+                return true;
             }
             else if(getUser.Is_email_confirm == true){
                 const payload: JwtPayload = {User_email};

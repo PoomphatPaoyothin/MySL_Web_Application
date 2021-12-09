@@ -24,7 +24,7 @@ export class RegisterController{
         return this.registerService.createAccountSecond(userid,RegisterInput);
     }
 
-    @Patch('forgotpass/first')
+    @Patch('forgotpass')
     async forgotpassfirst(@Body('email') email:string):Promise<any>{
         let num = Math.floor((Math.random() * 9999) + 1);
         const checkuseremail = await this.registerService.findUserByEmail(email);
@@ -36,8 +36,6 @@ export class RegisterController{
             return false;
         }
     }
-
-    
 
     // @Post('forgotpassword')
     // async forgotpassword(): Promise<any>{
