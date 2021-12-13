@@ -125,8 +125,12 @@ export class registerService{
     async checkotpwithemail(email:string,otp:string){
         const getUser = await this.userRepo.findOne({where:{User_email:email}});
         const userotp = getUser.temp;
+        const User_email = getUser.User_email;
+        const userId = getUser.ID;
+        const payload: JwtPayload = {User_email};
+        const accessToken = await this.JwtService.sign(payload);
         if(userotp === otp){
-            return true;
+            return {"accessToken":accessToken,"UserId":userId};
         }
         else{
             return false;
@@ -146,6 +150,6 @@ export class registerService{
         const accessToken = await this.JwtService.sign(payload);
         getUser.User_password = new_password;
         await this.userRepo.save(getUser);
-        return {"accesToken":accessToken,"UserId":UserId};
+        return {"accessToken":accessToken,"UserId":UserId};
     }
 }
