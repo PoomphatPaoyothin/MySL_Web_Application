@@ -4,12 +4,19 @@ import propic from '../Picture/profile/Profile.png'
 import ProfileService from "./ProfileService";
 import { userInfo } from "./InterfaceProfile";
 import { useHistory } from "react-router";
+import { usePromiseTracker } from "react-promise-tracker";
+import { trackPromise } from 'react-promise-tracker';
+
 
 const Above=(props:any|null)=>{
+    const {promiseInProgress}  = usePromiseTracker()
     const [objuser,setObjuser] = useState<userInfo>()
     const [isfollowing, setIsfollowing] = useState<string>()
     const [tmp, setTmp] = useState<any[]>()
+    const [tmp2, setTmp2] = useState<boolean>(false)
     const history = useHistory();
+    const controller = new AbortController()
+    const [visible,setVisible] = useState<boolean>(false)
     
     const fetchuserprofile=()=>{
         return(
@@ -22,21 +29,32 @@ const Above=(props:any|null)=>{
 
     const gotoEdit=() =>{
         history.push(`/editprofile/${props.id}`)
+        console.log()
     }
 
 
     const fetchfollowing=()=>{
+        // console.log('aaaaaaaaa')
         ProfileService.fetchfollowing(props.myid)
         .then(res=>{
+            console.log('2 res is',res)
             setTmp(res)
-            let size = res.length
+        })
+        
+    }
+
+    const checkfollowing=()=>{
+        console.log('3 tmp is', tmp)
+        if(tmp!=undefined)
+        {
+            let size = tmp.length
             if(size == 0)
             {
                 setIsfollowing('ติดตาม')
             }
             for(let i=0; i<size; i++)
             {
-                if(res[i].User_followingID == props.id)
+                if(tmp[i].User_followingID == props.id)
                 {
                     setIsfollowing('กำลังติดตาม')
                 }
@@ -45,9 +63,11 @@ const Above=(props:any|null)=>{
                     setIsfollowing('ติดตาม')
                 }
             }
-        })
+        }
+
     }
     const follow=()=>{
+        console.log('1')
         if(isfollowing == 'ติดตาม')
         {
             const followerobj={
@@ -63,6 +83,13 @@ const Above=(props:any|null)=>{
             ProfileService.Postfollowing(followingobj)
             ProfileService.Patchfollowingamount(props.myid)
             ProfileService.Patchfolloweramount(props.id)
+            .then(res=>{
+                setVisible(true)
+                let timer1 = setTimeout(() => setTmp2(!tmp2), 2 * 1000);
+                let timer2 = setTimeout(() => setVisible(false), 2 * 1000);
+
+
+            })
         }
         else{
             const followerobj={
@@ -78,9 +105,13 @@ const Above=(props:any|null)=>{
             ProfileService.Postunfollowing(followingobj)
             ProfileService.Patchunfollowingamount(props.myid)
             ProfileService.Patchunfolloweramount(props.id)
+            .then(res=>{
+                setVisible(true)
+                let timer1 = setTimeout(() => setTmp2(!tmp2), 2 * 1000);
+                let timer2 = setTimeout(() => setVisible(false), 2 * 1000);
+
+            })
         }
-
-
     }
     useEffect(()=>{
         fetchuserprofile()
@@ -88,7 +119,13 @@ const Above=(props:any|null)=>{
     },[])
 
     useEffect(()=>{
+        fetchuserprofile()
         fetchfollowing()
+    },[tmp2])
+
+    useEffect(()=>{
+        console.log(tmp?tmp:props.id)
+        checkfollowing()
     },[tmp])
     return(
         <div className='above'>
@@ -132,6 +169,12 @@ const Above=(props:any|null)=>{
             {!props.ismyid &&
             <div className='followProfileButtonPos'>
                 <button className='followProfileButton' onClick={follow}>{isfollowing}</button>
+                {
+                visible && 
+                <div> loading.. </div>
+                }
+                {/* {console.log(promiseInProgress)} */}
+
             </div>
             }
 
@@ -140,3 +183,4 @@ const Above=(props:any|null)=>{
 }
 
 export default Above
+

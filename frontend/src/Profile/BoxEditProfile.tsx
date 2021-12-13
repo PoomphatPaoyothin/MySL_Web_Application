@@ -38,6 +38,11 @@ const BoxEditProfile = (props:any) => {
     const [visibilityNames,setVisibilityNames] = useState(false);
     const [visibilityPass,setVisibilityPass] = useState(false);
 
+    const [prefixSelect, setPrefixSelect] = useState<string|undefined>(prefix)
+    console.log('prefix is', prefix)
+    console.log('prefixSelect) is', prefixSelect)
+
+    const prefixSelectOption = [{name:'Mr.', value:'Mr.'}, {name:'Ms.', value:'Ms.'},{name:'Mrs.', value:'Mrs.'},{name:'None', value:''}]
 
 
 
@@ -67,7 +72,7 @@ const BoxEditProfile = (props:any) => {
     
 ////////////////////////////////////////////////////////////////////-> submit
     const submitName=() =>{
-        if(prefix == prefixo && username == usernameo && surname == surnameo){
+        if(prefixSelect == prefixo && username == usernameo && surname == surnameo){
             alert('คุณไม่ได้ทำการเปลี่ยนชื่อ')
         }
         else{
@@ -129,9 +134,6 @@ const BoxEditProfile = (props:any) => {
     
 ////////////////////////////////////////////////////////////////////-> input Name
 
-    const prefixInput=(e:React.ChangeEvent<HTMLInputElement>) =>{
-        setPrefix(e.target.value);
-    }
 
     const usernameInput=(e:React.ChangeEvent<HTMLInputElement>) =>{
         setUsername(e.target.value);
@@ -198,8 +200,9 @@ const BoxEditProfile = (props:any) => {
         setPrefixo(objprofile?.User_prefix_name);
         setUsernameo(objprofile?.User_name);
         setSurnameo(objprofile?.User_surname);
+        setPrefixSelect(objprofile?.User_prefix_name)
     },[objprofile])
-
+ 
 
 
   return(
@@ -216,7 +219,17 @@ const BoxEditProfile = (props:any) => {
             }
             {isNameEdit && 
             <div>
-                <input value={prefix} onChange={prefixInput} placeholder="คำนำหน้าชื่อ" required />
+                        
+                <form action="#">
+                    <select 
+                        onChange={((e)=> {setPrefixSelect(e.target.value)})}
+                        value={prefixSelect}>
+                        {prefixSelectOption.map(item=>(
+                            <option value={item.value}>{item.name}</option>
+                        ))}
+                        
+                    </select>
+                </form>
                 <input value={username} onChange={usernameInput} placeholder="ชื่อจริง" required />
                 <input value={surname} onChange={surnameInput} placeholder="นามสกุล" required />
 
@@ -228,7 +241,7 @@ const BoxEditProfile = (props:any) => {
             show={visibilityNames}
             onClose={popupCloseHandlerName}
             id={props.id}
-            prefix = {prefix}
+            prefix = {prefixSelect}
             username = {username}
             surname = {surname}
             />
@@ -273,16 +286,6 @@ const BoxEditProfile = (props:any) => {
         </div>
 
 
-        <form action="#">
-            <label >Language</label>
-            <select name="languages" id="lang">
-                <option value="นาย">นาย</option>
-                <option value="นาง">นาง</option>
-                <option value="นางสาว">นางสาว</option>
-                <option value="ไม่ระบุ">ไม่ระบุ</option>
-            </select>
-            <input type="submit" value="Submit" />
-        </form>
     </div>
 
   )

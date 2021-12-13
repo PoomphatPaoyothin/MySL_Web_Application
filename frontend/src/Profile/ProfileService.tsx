@@ -106,7 +106,7 @@ async function Postfollower(obj:any): Promise<boolean> {
         body: JSON.stringify(obj),
     });
     const IsSame= await res.json();
-    console.log('post follower',IsSame)
+    // console.log('post follower',IsSame)
     return IsSame
 }
 
@@ -117,7 +117,7 @@ async function Postfollowing(obj:any): Promise<boolean> {
         body: JSON.stringify(obj),
     });
     const IsSame= await res.json();
-    console.log('following', IsSame)
+    // console.log('following', IsSame)
     return IsSame
 }
 
@@ -128,7 +128,6 @@ async function Postunfollower(obj:any): Promise<boolean> {
         body: JSON.stringify(obj),
     });
     const IsSame= await res.json();
-    console.log('post follower',IsSame)
     return IsSame
 }
 
@@ -156,7 +155,7 @@ async function Patchfolloweramount(id:string): Promise<boolean> {
         method: 'PATCH',
         body: JSON.stringify(id),
     });
-
+    console.log('aaaaaaaaaaaaaaaaaaaaaa')
     const tmp = await res.json();
     return tmp
 }
@@ -166,6 +165,7 @@ async function Patchunfollowingamount(id:string): Promise<boolean> {
         method: 'PATCH',
         body: JSON.stringify(id),
     });
+    console.log('aaaaaaaaaaaaaaaaaaaaaa')
 
     const tmp = await res.json();
     return tmp
@@ -178,6 +178,7 @@ async function Patchunfolloweramount(id:string): Promise<boolean> {
     });
 
     const tmp = await res.json();
+
     return tmp
 }
 export default{

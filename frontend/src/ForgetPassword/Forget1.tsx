@@ -1,9 +1,14 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
+import ForgetService from "./ForgetService";
+import Popuploading from "../Loadingpop/PopupLoading";
+import { trackPromise } from 'react-promise-tracker';
+import { usePromiseTracker } from "react-promise-tracker";
 
 const Forget1 = (props:any) =>{
     const history=useHistory()
     const [email,setEmail] = useState<string>()
+    const  {promiseInProgress}  = usePromiseTracker()
 
 
     const email_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
@@ -11,13 +16,51 @@ const Forget1 = (props:any) =>{
       }
 
     const gotonext=()=>{
-        history.push('/forgetpass/2')
+        const obj={
+            email:email
+        }
+        trackPromise(
+        ForgetService.patchemail(obj)
+        .then(res=>{
+            console.log('res is',res)
+            if(res)
+            {
+                if(email!=undefined)
+                {
+                    localStorage.removeItem('email')
+                    localStorage.setItem('email',email)
+    
+                    history.push('/forgetpass/2')
+                }
+
+            }
+            else{
+                alert('ไม่มีอีเมลล์นี้')
+            }
+        }))
     }
+
+    useEffect(()=>{
+        if(localStorage.getItem('id') != undefined)
+        {
+            history.push(`/forgetpass/3/${localStorage.getItem('id')}`)
+        }
+    },[])
 
     return(
         <div>
-            <input value={email}  onChange={email_input} placeholder="อีเมลล์" required />
-            <button  onClick={gotonext}>ต่อไป</button>
+            { localStorage.getItem('accesToken') == undefined &&
+            <div>
+                <input value={email}  onChange={email_input} placeholder="อีเมลล์" required />
+                <button  onClick={gotonext}>ต่อไป</button>
+                {
+                promiseInProgress && 
+                <Popuploading/>
+                }
+            </div> 
+
+            }
+
         </div>
     )
 }

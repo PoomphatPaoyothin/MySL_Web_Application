@@ -19,6 +19,7 @@ import Name from "./Register/Name";
 import Forget1 from "./ForgetPassword/Forget1";
 import Forget2 from "./ForgetPassword/Forget2";
 import Forget3 from "./ForgetPassword/Forget3";
+import Loadingpop from "./Loadingpop/Loadingpop";
 
 
 const App = () => {
@@ -30,6 +31,7 @@ const App = () => {
       <Route path='/lesson/:catId/:word'  component={Lesson} />
       <Route path='/profile/:id' component={Profile} />
       <Route path='/editprofile/:id' component={EditProfile} />
+      <Route path='/test' component={Loadingpop} />
 
     </div>
   )
@@ -47,7 +49,7 @@ const App = () => {
       <div>
         <Route path='/forgetpass/1' component={Forget1} />
         <Route path='/forgetpass/2' component={Forget2} />
-        <Route path='/forgetpass/3' component={Forget3} />
+        <Route path='/forgetpass/3/:id' component={Forget3} />
       </div>
   )
   return(

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import RegisterService from "./RegisterService";
+import Popuploading from "../Loadingpop/PopupLoading";
+import { trackPromise } from 'react-promise-tracker';
+import { usePromiseTracker } from "react-promise-tracker";
 
 const Name = (props:any) =>{
     const history=useHistory()
@@ -10,7 +13,11 @@ const Name = (props:any) =>{
     const id = props.match.params.id;
     const [userinfo,setUserinfo] = useState<any>()
     const myid = localStorage.getItem('id');
+    const [prefixSelect, setPrefixSelect] = useState<string|undefined>('Mr.')
+    const  {promiseInProgress}  = usePromiseTracker()
+    
 
+    const prefixSelectOption = [{name:'Mr.', value:'Mr.'}, {name:'Ms.', value:'Ms.'},{name:'Mrs.', value:'Mrs.'},{name:'None', value:''}]
 
     const prefix_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
         setprefix(e.target.value);
@@ -24,20 +31,28 @@ const Name = (props:any) =>{
     
     const gotonext=()=>{
         const obj ={
-            User_prefix_name:prefix,
+            User_prefix_name:prefixSelect,
             User_name:name,
             User_surname:surname,
         }
+        let status = 1
         RegisterService.postname(obj,myid)
-        .then(res=>{
-            if(res.User_name != undefined){
-                alert('สมัครสำเร็จ')
-                history.push('/')
-            }
-            else{
-                alert('เกิดข้อผิดพลาด')
-            }
-        })
+
+        trackPromise(
+            RegisterService.createStat(myid)
+            .then(res2=>{
+                console.log('res22222 is',res2)
+                if(res2.UserId!=undefined){
+                    alert('สมัครสำเร็จ')
+                    history.push('/')
+                }
+                else{
+                    alert('เกิดข้อผิดพลาด')
+                }
+            })
+        )
+        
+        
     }
     const checkid=()=>{
         if(userinfo != undefined)
@@ -78,11 +93,25 @@ const Name = (props:any) =>{
         {
             checkid() &&
             <div>
-                <input value={prefix} onChange={prefix_input} placeholder="ชื่อจริง" required />
+                                        
+                <form action="#">
+                    <select 
+                        onChange={((e)=> {setPrefixSelect(e.target.value)})}
+                        value={prefixSelect}>
+                        {prefixSelectOption.map(item=>(
+                            <option value={item.value}>{item.name}</option>
+                        ))}
+                        
+                    </select>
+                </form>
                 <input value={name} onChange={name_imput} placeholder="ชื่อจริง" required />
                 <input value={surname} onChange={surname_input} placeholder="นามสกุล" required />
 
                 <button  onClick={gotonext}>สมัคร</button>
+                {
+                promiseInProgress && 
+                <Popuploading/>
+                }
             </div>
         }
 

@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import RegisterService from "./RegisterService";
+import { trackPromise } from 'react-promise-tracker';
+import { usePromiseTracker } from "react-promise-tracker";
+import Popuploading from "../Loadingpop/PopupLoading";
 
 const Confirm = (props:any) =>{
     const history=useHistory()
@@ -10,6 +13,7 @@ const Confirm = (props:any) =>{
     const myid =localStorage.getItem('id')
     const [userinfo,setUserinfo] = useState<any>()
 
+    const  {promiseInProgress}  = usePromiseTracker()
 
 
     const email_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
@@ -28,6 +32,7 @@ const Confirm = (props:any) =>{
                 User_email:email,
                 User_password:pass
             }
+            trackPromise(
             RegisterService.postemailpass(obj)
             .then((res: any)=>{
                 console.log('ressss',res)
@@ -44,7 +49,7 @@ const Confirm = (props:any) =>{
                     alert('ได้ทำการส่ง OTP ไปที่ email อาจจะอยู่ที่ spam')
                     history.push(`/register/2/${res.userId}`)
                 }
-            })
+            }))
         }
         else{
             alert('รหัสผ่านไม่ตรงกัน')
@@ -111,7 +116,13 @@ const Confirm = (props:any) =>{
                 <input value={pass} type={'password'} onChange={pass_input} placeholder="รหัสผ่าน" required />
                 <input value={confirmpass} type={'password'} onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
                 <button  onClick={gotonext}>ต่อไป</button>
+                {console.log('promise is',promiseInProgress)}
+                {
+                promiseInProgress && 
+                <Popuploading/>
+                }
                 </div>
+                
             }
 
         </div>
@@ -119,3 +130,5 @@ const Confirm = (props:any) =>{
 }
 
 export default Confirm
+
+

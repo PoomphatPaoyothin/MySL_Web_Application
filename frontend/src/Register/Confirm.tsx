@@ -58,6 +58,11 @@ const EmailPass = (props:any) =>{
 
     },[userinfo])
 
+    const cancle=()=>{
+        localStorage.clear()
+        history.push('/')
+    }
+    console.log('id', id)
 
     useEffect(()=>{
         checkid()
@@ -90,6 +95,7 @@ const EmailPass = (props:any) =>{
                     <input value={otp} type={'password'} onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
                     <div onClick={resendOTP}>ส่งรหัสยืนยันอีกครั้ง</div>
                     <button  onClick={gotonext}>ต่อไป</button>
+                    <button  onClick={cancle}>ยกเลิก</button>
                 </div>
             }
 

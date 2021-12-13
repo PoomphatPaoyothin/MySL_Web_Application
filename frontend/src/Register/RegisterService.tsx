@@ -46,9 +46,19 @@ async function fetchuserprofile(id:string|null): Promise<any>{
     return obj;
 }
 
+async function createStat(id:any): Promise<any> {
+    const res = await fetch(`${url}/user/${id}/userlessonstat`,{
+        method: 'POST',
+        headers : {'Content-Type': 'application/json'},
+    });
+    const result = await res.json();
+    console.log('res22222 is',result)
+    return result
+}
 export default{
     postemailpass,
     postotp,
     postname,
     fetchuserprofile,
+    createStat,
 }
