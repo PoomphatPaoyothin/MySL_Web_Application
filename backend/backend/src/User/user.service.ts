@@ -420,8 +420,7 @@ export class UserService{
             await this.usercatstatRepo.save(usercatstat);
             await this.userlessonstatRepo.save(userlessonstat);
         }
-        return id;
+
+        return {"UserId":id};
     }
-
-
 }

@@ -24,9 +24,9 @@
     left: 50%;
     transform: translate(-50%);
     text-align: center;
-    top:50%;
+    top:48%;
     font-size: 72px;
-    font-family: 'Prompt';
+    font-family: 'Open sans';
 }
 
 .web_pos{
@@ -43,7 +43,7 @@
 .line_left{
     display: block;
     position: absolute;
-    top: 63%;
+    top: 64%;
     width: 80%;
     margin:auto;
     border: 0.5px solid black;
@@ -158,10 +158,16 @@
     width:85%;
     height: 10%;
     border-radius: 10px;
-    font-size: 36px;
+    font-size: 29px;
+    font-family: 'Open sans';
     border: 0.5px solid slategray;
     transform: translate(-50%,-50%);
+    transition: 0.6s;
     cursor: pointer;
+}
+
+.login_button:hover{
+    background-color: #c4c4c4;
 }
 
 
@@ -172,17 +178,25 @@
     width:80%;
     height: 10%;
     border-radius: 10px;
-    font-size: 36px;
+    font-size: 29px;
     border: 0.5px solid slategray;
     transform: translate(-50%,-50%);
+    transition: 0.6s;
     cursor: pointer;
+    font-family: 'Open sans';
 }
+
+.regist:hover{
+    background-color: #c4c4c4;
+}
+
 .forget_pass{
     position:absolute;
     display: block;
     top:54%;  
     left:80%;
-    font-size: 20px;
+    font-size: 17px;
+    font-family: 'Open sans';
     transform: translate(-50%,-50%);
     color: blue;
     cursor: pointer;
@@ -212,10 +226,10 @@
 
 .keepme_text{
     display:block;
-    font-family: 'prompt';
+    font-family: 'Open sans';
     position: absolute;
     left: 10%;
-    font-size: 20px;
+    font-size: 17px;
 }
 
 .errormessage{

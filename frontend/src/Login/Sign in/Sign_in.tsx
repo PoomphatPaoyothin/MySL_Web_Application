@@ -74,7 +74,7 @@ const Sign_in = () => {
             <div className='keep_me'>
               <input type="checkbox" className='checkbox'/>
               <div className="keepme_text">
-               ให้ฉันอยู๋ในระบบต่อไป
+               ให้ฉันอยู่ในระบบต่อไป
               </div>
             </div>
 
