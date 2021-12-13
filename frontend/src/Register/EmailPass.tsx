@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import RegisterService from "./RegisterService";
+import Popuploading from "../Loadingpop/PopupLoading";
 import { trackPromise } from 'react-promise-tracker';
 import { usePromiseTracker } from "react-promise-tracker";
-import Popuploading from "../Loadingpop/PopupLoading";
 
 const Confirm = (props:any) =>{
     const history=useHistory()

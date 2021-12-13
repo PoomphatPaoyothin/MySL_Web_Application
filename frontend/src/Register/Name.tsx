@@ -41,7 +41,6 @@ const Name = (props:any) =>{
         trackPromise(
             RegisterService.createStat(myid)
             .then(res2=>{
-                console.log('res22222 is',res2)
                 if(res2.UserId!=undefined){
                     alert('สมัครสำเร็จ')
                     history.push('/')
