@@ -86,8 +86,8 @@ const App = () => {
         <Switch>
         <Route  path='/(register)' component={Register} />
         <Route  path='/(forgetpass)' component={forgetpass} />
-        <Route  path='/' component={islogin()} />
         <Route component={DefaultContainer} />
+        <Route  path='/' component={islogin()} />
 
 
 

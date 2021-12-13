@@ -71,7 +71,8 @@ const Profile=(props:any)=>{
     },[])
     
     return(
-        <div>
+        <div>]
+        {console.log('isid', isid)}
         {isid &&
         <div className='container'>
             <Above id={userId} ismyid={ismyid} myid={myid}/>
