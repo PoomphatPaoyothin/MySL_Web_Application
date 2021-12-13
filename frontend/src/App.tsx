@@ -23,11 +23,33 @@ import Loadingpop from "./Loadingpop/Loadingpop";
 
 
 const App = () => {
-  const id = localStorage.getItem('accesToken')
-  const DefaultContainer = ()=>(
+  const id = localStorage.getItem('id')
+  const notlogin=()=>(
+    <div>
+    <Route exact path='/' component={Home} />
+    </div>
+  )
+  const login=()=>(
     <div>
       <Navigatebar/>
       <Route exact path='/' component={Home} />
+    </div>
+  )
+  const islogin=()=>{
+    if(id!=undefined)
+    {
+      return(login)
+    }
+    else
+    {
+      return(notlogin)
+    }
+  }
+  const DefaultContainer = ()=>(
+    <div>
+      <Navigatebar/>
+      {/* <Route exact path='/' component={Home} /> */}
+      {/* {login()} */}
       <Route path='/lesson/:catId/:word'  component={Lesson} />
       <Route path='/profile/:id' component={Profile} />
       <Route path='/editprofile/:id' component={EditProfile} />
@@ -52,12 +74,19 @@ const App = () => {
         <Route path='/forgetpass/3/:id' component={Forget3} />
       </div>
   )
+
+  const notloginUser=()=>(
+    <div>
+      {notlogin()}
+    </div>
+)
   return(
     <Router>
       <div>
         <Switch>
         <Route  path='/(register)' component={Register} />
         <Route  path='/(forgetpass)' component={forgetpass} />
+        <Route  path='/' component={islogin()} />
         <Route component={DefaultContainer} />
 
 

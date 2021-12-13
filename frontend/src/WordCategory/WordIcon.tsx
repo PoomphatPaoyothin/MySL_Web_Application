@@ -4,7 +4,6 @@ import { useHistory } from "react-router";
 
 const WordIcon = (props:any) =>{
     const history=useHistory()
-    console.log('aaa',props.firstword)
     const gotolesson=()=>{
         history.push(`/lesson/${props.catid}/${props.firstword}`)
     }

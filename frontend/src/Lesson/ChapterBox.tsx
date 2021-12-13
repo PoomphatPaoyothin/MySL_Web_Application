@@ -50,6 +50,7 @@ const ChapterBox=(props:any)=>{
 
             {visible &&
             <div>
+                {console.log('objword is ' ,objword)}
                 {objword?.map((obj)=>(<WordBox word ={obj.Word_name} chapter={props.mychapter} lesson={objword[0].Category_ID} globalword={props.word} />))}
             </div>
             }

@@ -42,6 +42,7 @@ const WordCategory = () =>{
             </p>
             <div className='background'>
                 <div className='multimiddle'>
+                    {console.log('wordcate is',wordcategory)}
                     {wordcategory?.map((obj)=> ( 
                         <WordIcon name= {obj.Category_name} image = {obj.Word_picture} catid={obj.ID} firstword={obj.First_word}/>
                     ))} 
