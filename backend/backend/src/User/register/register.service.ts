@@ -75,9 +75,14 @@ export class registerService{
         getUser.Is_email_confirm = true;
         getUser.register_stat = '3';
         getUser.temp = null;
+
+        const User_email = getUser.User_email;
+        const userId = getUser.ID;
+        const payload: JwtPayload = {User_email};
+        const accessToken = await this.JwtService.sign(payload);
         
         await this.userRepo.save(getUser);
-        return getUser
+        return {"accessToken":accessToken,"UserId":userId};
     }
 
     async checkotp(id:string,otp:string){

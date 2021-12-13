@@ -33,11 +33,11 @@
     position: absolute;
     width: 80%;
     left: 50%;
+    font-family: 'Open Sans';
     transform: translate(-50%,-50%);
     text-align: center;
-    top:70%;
+    top:75%;
     font-size: 36px;
-    font-family: 'Prompt';
 }
 
 .line_left{
