@@ -26,7 +26,7 @@ export class RegisterController{
 
     @Patch('forgotpass')
     async forgotpassfirst(@Body('email') email:string):Promise<any>{
-        let num = Math.floor((Math.random() * 9999) + 1);
+        let num = Math.floor((Math.random() * 9999) + 1000);
         const checkuseremail = await this.registerService.findUserByEmail(email);
         if(checkuseremail){
             await this.emailConfirmationService.sendConfirmPassword(email,num);
@@ -50,5 +50,17 @@ export class RegisterController{
     async checkotp(@Param('userid') userid:string,
                     @Body('otp') otp:string): Promise<any>{
         return this.registerService.checkotp(userid,otp);
+    }
+
+    @Patch('/checkOTPwithemail')
+    async checkwithemail(@Body('email') email:string,
+                        @Body('otp') otp:string): Promise<any>{
+        return this.registerService.checkotpwithemail(email,otp)
+    }
+
+    @Patch('/changeforgotpass')
+    async changeforgotpass(@Body('email') email:string,
+                            @Body('password') password:string): Promise<any>{
+        return this.registerService.changeforgotpassword(email,password);
     }
 }

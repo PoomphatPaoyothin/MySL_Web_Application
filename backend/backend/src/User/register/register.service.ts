@@ -7,6 +7,7 @@ import {v4 as uuid} from 'uuid';
 import { check } from "prettier";
 import { JwtService } from "@nestjs/jwt";
 import { JwtPayload } from "../login/jwt-payload.interface";
+import { access } from "fs";
 
 @Injectable()
 export class registerService{
@@ -88,19 +89,10 @@ export class registerService{
         }
         
         const userotp = getUser.temp;
-        console.log(userotp)
-        console.log(otp)
         if(userotp === otp){
-            if(getUser.Is_email_confirm == false){
-                getUser.register_stat = '2';
-                await this.userRepo.save(getUser);
-                return true;
-            }
-            else if(getUser.Is_email_confirm == true){
-                const payload: JwtPayload = {User_email};
-                const accessToken = await this.JwtService.sign(payload);
-                return {"accessToken":accessToken,"userId":User_id};
-            }
+            getUser.register_stat = '2';
+            await this.userRepo.save(getUser);
+            return true;
         }
         else{
             return false;
@@ -128,5 +120,32 @@ export class registerService{
         getUser.temp = numstring;
         await this.userRepo.save(getUser);
         return true;
+    }
+
+    async checkotpwithemail(email:string,otp:string){
+        const getUser = await this.userRepo.findOne({where:{User_email:email}});
+        const userotp = getUser.temp;
+        if(userotp === otp){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
+    async changeforgotpassword(email:string,password:string){
+        const getUser = await this.userRepo.findOne({where:{User_email:email}})
+        const User_email = getUser.User_email;
+        const UserId = getUser.ID;
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+        const saltRound = 12;
+        const new_password = await this.hashpassword(password,saltRound);
+        const payload: JwtPayload = {User_email};
+        const accessToken = await this.JwtService.sign(payload);
+        getUser.User_password = new_password;
+        await this.userRepo.save(getUser);
+        return {"accesToken":accessToken,"UserId":UserId};
     }
 }

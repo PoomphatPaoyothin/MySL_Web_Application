@@ -372,6 +372,18 @@ export class UserService{
         return getUser;
     }
 
+    async changeforgotpassword(email:string,password:string){
+        const getUser = await this.userRepo.findOne({where:{User_email:email}})
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+        const saltRound = 12;
+        const new_password = await this.hashpassword(password,saltRound)
+        getUser.User_password = new_password;
+        await this.userRepo.save(getUser);
+        return getUser;
+    }
+
     async createuserlessonstat(id:string){
         var getUser = await this.findUserProfile(id);
         
