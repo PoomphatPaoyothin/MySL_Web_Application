@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Param, Patch, Post, UnauthorizedException } from "@nestjs/common";
 import { EmailConfirmationService } from "./emailConfirm.service";
 import { registerService } from "./register.service";
 
@@ -13,7 +13,7 @@ export class RegisterController{
     async CreateAccount(
         @Body() RegisterInput: any,
         ): Promise<object>{
-        let num = Math.floor((Math.random() * 9999) + 1000);
+        let num = Math.floor((Math.random() * 9000) + 1000);
         await this.emailConfirmationService.sendVerificationLink(RegisterInput.User_email,num)
         return this.registerService.createAccountFirst(RegisterInput,num);
     }
@@ -26,7 +26,7 @@ export class RegisterController{
 
     @Patch('forgotpass')
     async forgotpassfirst(@Body('email') email:string):Promise<any>{
-        let num = Math.floor((Math.random() * 9999) + 1000);
+        let num = Math.floor((Math.random() * 9000) + 1000);
         const checkuseremail = await this.registerService.findUserByEmail(email);
         if(checkuseremail){
             await this.emailConfirmationService.sendConfirmPassword(email,num);
@@ -62,5 +62,17 @@ export class RegisterController{
     async changeforgotpass(@Body('email') email:string,
                             @Body('password') password:string): Promise<any>{
         return this.registerService.changeforgotpassword(email,password);
+    }
+
+    @Patch('/resendotp/userid')
+    async resendotp(@Param('userid') userid:string):Promise<any>{
+        const getUser = await this.registerService.findUserProfile(userid);
+        if(!getUser){
+            throw new UnauthorizedException('cant find user');
+        }
+        let num = Math.floor((Math.random() * 9000) + 1000);
+        const emailuser = getUser.User_email;
+        await this.emailConfirmationService.sendVerificationLink(emailuser,num);
+        return this.registerService.updateotp(emailuser,num);
     }
 }

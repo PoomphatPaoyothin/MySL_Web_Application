@@ -408,18 +408,17 @@ export class UserService{
                 Is_category_quiz: false,
                 category_quiz_score:0,
             })
-            
-            const userstatnav = this.userstatnavRepo.create({
-                ID: uuid,
-                UserID: id,
-                Lesson_Stat: 0,
-                Quiz_stat: 0
-            })
-
-            await this.userstatnavRepo.save(userstatnav);
             await this.usercatstatRepo.save(usercatstat);
             await this.userlessonstatRepo.save(userlessonstat);
         }
+        
+        const userstatnav = this.userstatnavRepo.create({
+            ID: uuid,
+            UserID: id,
+            Lesson_Stat: 0,
+            Quiz_stat: 0
+        })
+        await this.userstatnavRepo.save(userstatnav);
 
         return {"UserId":id};
     }

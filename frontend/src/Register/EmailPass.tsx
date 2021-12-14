@@ -4,6 +4,7 @@ import RegisterService from "./RegisterService";
 import Popuploading from "../Loadingpop/PopupLoading";
 import { trackPromise } from 'react-promise-tracker';
 import { usePromiseTracker } from "react-promise-tracker";
+import './register.css'
 
 const Confirm = (props:any) =>{
     const history=useHistory()
@@ -111,18 +112,22 @@ const Confirm = (props:any) =>{
                         window.onunload = function () { null };
                     </script>
                 </head>
-
-                <input value={email}  onChange={email_input} placeholder="อีเมลล์" required />
-                <input value={pass} type={'password'} onChange={pass_input} placeholder="รหัสผ่าน" required />
-                <input value={confirmpass} type={'password'} onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
-                <button  onClick={gotonext}>ต่อไป</button>
-                {console.log('promise is',promiseInProgress)}
-                {
-                promiseInProgress && 
-                <Popuploading/>
-                }
-                </div>
                 
+                <p className="textemailpass">กรุณากรอกอีเมลและรหัสผ่าน</p>
+                    <div className="inputtext">
+                        <input value={email}  onChange={email_input} placeholder="อีเมล" required />
+                        <br/>
+                        <input value={pass} type={'password'} onChange={pass_input} placeholder="รหัสผ่าน" required />
+                        <br/>
+                        <input value={confirmpass} type={'password'} onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
+                        <button  onClick={gotonext}>ต่อไป</button>
+                        {console.log('promise is',promiseInProgress)}
+                        {
+                        promiseInProgress && 
+                        <Popuploading/>
+                        }
+                    </div>
+                </div>
             }
 
         </div>

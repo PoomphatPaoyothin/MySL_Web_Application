@@ -1,0 +1,16 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../Opun-Regular/Opun-Regular.ttf');
+}
+
+.textemailpass{
+    font-family: 'Open Sans';
+    margin-top: 7%;
+    font-size: 20px;
+    text-align: center;
+}
+
+.inputtext{
+    font-family: 'Open Sans';
+    margin-left: 10%;
+}

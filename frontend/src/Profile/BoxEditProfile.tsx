@@ -206,16 +206,19 @@ const BoxEditProfile = (props:any) => {
 
 
   return(
+      <div>
+          <p className="editnametext">แก้ไขโปรไฟล์</p>
+          
     <div>
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-
-        <div>
+        
+        <div className="editboxtext">
             {objprofile?.User_prefix_name}
             {objprofile?.User_name} &nbsp;
-            {objprofile?.User_surname} 
+            {objprofile?.User_surname}
             {
                 isbuttonName && 
-                <button onClick={NameEdit}>แก้ไข</button>
+                <button onClick={NameEdit} className="button-editName">แก้ไข</button>
             }
             {isNameEdit && 
             <div>
@@ -232,9 +235,9 @@ const BoxEditProfile = (props:any) => {
                 </form>
                 <input value={username} onChange={usernameInput} placeholder="ชื่อจริง" required />
                 <input value={surname} onChange={surnameInput} placeholder="นามสกุล" required />
-
-                <button onClick={submitName}> บันทึกการเปลี่ยนแปลง</button>
-                <button onClick={cancel}> ยกเลิก </button>
+                <br />
+                <button onClick={submitName} className="savechange-button"> บันทึกการเปลี่ยนแปลง</button>
+                <button onClick={cancel} className="canclechange-button"> ยกเลิก </button>
             </div>
             }
             <PopupConfirmName        
@@ -247,11 +250,11 @@ const BoxEditProfile = (props:any) => {
             />
         </div>
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-        <div>
+        <div className="editpasstext">
             Password
             {
                 isbuttonPass && 
-                <button onClick={PassEdit}>แก้ไข</button>
+                <button onClick={PassEdit} className="button-editName">แก้ไข</button>
             }
             {isPassEdit &&
             <div>
@@ -259,8 +262,8 @@ const BoxEditProfile = (props:any) => {
                 <input value={newpass} onChange={newpassInput} placeholder="รหัสผ่านใหม่" type='password' required />
                 <input value={confirmNewpass} onChange={confirmNewpassInput} placeholder="ยืนยันรหัสผ่านใหม่" type='password' required />
 
-                <button onClick={submitPass}> บันทึกการเปลี่ยนแปลง</button>
-                <button onClick={cancel}> ยกเลิก </button>
+                <button onClick={submitPass} className="savechange-button"> บันทึกการเปลี่ยนแปลง</button>
+                <button onClick={cancel} className="canclechange-button"> ยกเลิก </button>
             </div>
             }
             <PopupConfirmPassword 
@@ -275,17 +278,27 @@ const BoxEditProfile = (props:any) => {
             setComfirmNewpass = {setComfirmNewpass}
             />
         </div>
-{/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+
         <div>
-            <button onClick={Delete}>delete</button>
+            <button onClick={Delete} className="button-delete">ลบโปรไฟล์</button>
             <PopupConfirmDelete             
             show={visibilityDelete}
             onClose={popupCloseHandlerDelete}
             id={props.id}/>
 
         </div>
+{/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
+        {/* <div>
+            <button onClick={Delete}>delete</button>
+            <PopupConfirmDelete             
+            show={visibilityDelete}
+            onClose={popupCloseHandlerDelete}
+            id={props.id}/>
+
+        </div> */}
 
 
+    </div>
     </div>
 
   )
