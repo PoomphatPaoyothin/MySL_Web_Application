@@ -12,5 +12,184 @@
 
 .inputtext{
     font-family: 'Open Sans';
-    margin-left: 10%;
+    margin-left: 37%;
 }
+
+.inputemail{
+    margin-top: 2%;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    width: 40%;
+    border: 1px solid #cacaca;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+
+.inputpass{
+    margin-top: 4%;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    width: 40%;
+    border: 1px solid #cacaca;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+
+.inputconfirmpass{
+    margin-top: 4%;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    width: 40%;
+    border: 1px solid #cacaca;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+
+.nextbutton{
+    color: white;
+    background-color: #11324D;
+    margin-top: 5%;
+    padding: 10px 25px;
+    border-radius: 15px;
+    font-size: 18px;
+    transition: 0.6s;
+    margin-left: 45%;
+    border: 1px;
+}
+
+.nextbutton:hover{
+    background-color: #1f5b8c;
+    color: white;
+}
+
+.fontconfirm{
+    font-family: 'Open Sans';
+    margin-top: 5%;
+}
+
+.confirmtext1{
+    font-size: 20px;
+    text-align: center;
+}
+
+.confirmtext2{
+    font-size: 20px;
+    text-align: center;
+}
+
+.inputotp{
+    padding: 12px 20px;
+    margin-top: 4%;
+    margin-left: 40.2%;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #cacaca;
+    width: 20%;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+
+.resendotp{
+    margin-top: 2%;
+    text-align: center;
+    cursor: pointer;
+    color: #0027F5;
+}
+
+.submitotp{
+    color: white;
+    border: 0px;
+    background-color: #11324D;
+    margin-left: 25%;
+    padding: 10px 25px;
+    border-radius: 15px;
+    font-size: 15px;
+    transition: 0.6s;
+    margin-top: 4%;
+}
+
+.submitotp:hover{
+    background-color: #1f5b8c;
+    color: white;
+}
+
+.cancelotp{
+    color: white;
+    background-color: #11324D;
+    border: 0px;
+    margin-left: 30%;
+    padding: 10px 25px;
+    border-radius: 15px;
+    font-size: 15px;
+    transition: 0.6s;
+}
+
+.cancelotp:hover{
+    background-color: #1f5b8c;
+    color: white;
+}
+
+.inputname{
+    font-family: 'Open Sans';
+    padding: 12px 20px;
+    font-size: 18px;
+    margin-left: 3%;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #cacaca;
+    width: 30%;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+
+.selectprefix{
+    font-family: 'Open Sans';
+    margin-top: 3%;
+    margin-left: 29.5%;
+    display: inline-block;
+}
+
+.prefix{
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    padding: 4px 6px;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+
+.inputsurname{
+    font-family: 'Open Sans';
+    padding: 12px 20px;
+    margin-top: 3%;
+    margin-left: 38.5%;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #cacaca;
+    width: 30%;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+
+.submitname{
+    font-family: 'Open Sans';
+    color: white;
+    border: 0px;
+    background-color: #11324D;
+    margin-left: 65%;
+    padding: 10px 25px;
+    border-radius: 15px;
+    font-size: 15px;
+    transition: 0.6s;
+    margin-top: 5%;
+}
+
+.submitname:hover{
+    background-color: #1f5b8c;
+    color: white;
+}
+
+.nametext{
+    font-family: 'Open Sans';
+    text-align: center;
+    font-size: 20px;
+    margin-top: 5%;
+}
+

@@ -12,13 +12,17 @@ const Statbox=(props:any)=>{
                 <div className='namecategory'>
                     {props.name}
                 </div>
+                <br/>
                 <div className='lessonword'>
                     lesson-- {(props.Lesson_learned/props.Lesson_amount)*100}%
                 </div>
                 <div className='lessonquiz'>
                     quiz-- {(props.category_quiz_score/10)*100}%
+                    <br/>
                 </div>
+               
             </div>
+            
 
         </div>
     )

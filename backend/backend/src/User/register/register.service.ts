@@ -27,7 +27,7 @@ export class registerService{
                 User_password,
         } = RegisterInput;
 
-        const checkemail = await this.userRepo.findOne({where:{User_email:User_email}});
+        const checkemail = await this.userRepo.findOne({where:{User_email:User_email,Is_delete:false}});
         const timeupdate = new Date();
         if(checkemail){
             throw new ConflictException('email already exist');

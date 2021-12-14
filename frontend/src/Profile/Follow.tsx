@@ -39,8 +39,8 @@ const Follow=(props:any)=>{
     return(
         <div className='follow'>
             <div className='multimiddle'>
-                <button onClick={showfollower}>Following</button>
-                <button onClick={showfollowing}>Follower</button>
+                <button onClick={showfollower} className="showfollower">Following</button>
+                <button onClick={showfollowing} className="showfollowing">Follower</button>
                 
                 {visible &&
                     <div>

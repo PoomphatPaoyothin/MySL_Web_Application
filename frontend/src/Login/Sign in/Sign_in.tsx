@@ -67,7 +67,7 @@ const Sign_in = () => {
         <div className='right_login'>
           <div className = 'right_login2'>
           <div>
-            <input value={email} onChange={email_input} placeholder="อีเมลล์" required className="email_box"/>
+            <input value={email} onChange={email_input} placeholder="อีเมล" required className="email_box"/>
             <input type='password' value={pass} onChange={pass_input} placeholder="รหัสผ่าน" required className="pass_box"/>
             <button type="submit" className='login_button' onClick={login}>เข้าสู่ระบบ</button>
 

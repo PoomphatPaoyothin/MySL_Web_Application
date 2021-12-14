@@ -22,7 +22,7 @@ const EmailPass = (props:any) =>{
             console.log(res)
             if(res == true)
             {
-                alert('สมัครสำเร็จ')
+                alert('ยืนยัน OTP สำเร็จ')
                 history.push(`/register/3/${id}`)
             }
             else
@@ -89,13 +89,14 @@ const EmailPass = (props:any) =>{
             </head>
             {
                 checkid() &&
-                <div>
-                    ป้อนนหัสยืนยันจากอีเมลล์
-                    เราได้ทำการส่งรหัสยืนยันไปยังอีเมลล์ของคุณ
-                    <input value={otp} type={'password'} onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
-                    <div onClick={resendOTP}>ส่งรหัสยืนยันอีกครั้ง</div>
-                    <button  onClick={gotonext}>ต่อไป</button>
-                    <button  onClick={cancle}>ยกเลิก</button>
+                <div className="fontconfirm">
+                    <p className="confirmtext1">ป้อนรหัสยืนยันจากอีเมล</p><br/>
+                    <p className="confirmtext2">เราได้ทำการส่งรหัสยืนยันไปยังอีเมลของคุณ</p>
+                    <input value={otp} onChange={otp_input} placeholder="รหัสยืนยันอีเมล" className="inputotp" required />
+                    <div onClick={resendOTP} className="resendotp">ส่งรหัสยืนยันอีกครั้ง</div>
+                    <button  onClick={cancle} className="cancelotp">ยกเลิก</button>
+                    <button  onClick={gotonext} className="submitotp">ต่อไป</button>
+                    
                 </div>
             }
 

@@ -115,12 +115,13 @@ const Confirm = (props:any) =>{
                 
                 <p className="textemailpass">กรุณากรอกอีเมลและรหัสผ่าน</p>
                     <div className="inputtext">
-                        <input value={email}  onChange={email_input} placeholder="อีเมล" required />
+                        <input value={email}  className = "inputemail" onChange={email_input} placeholder="อีเมล" required />
                         <br/>
-                        <input value={pass} type={'password'} onChange={pass_input} placeholder="รหัสผ่าน" required />
+                        <input value={pass} className="inputpass"  type={'password'} onChange={pass_input} placeholder="รหัสผ่าน" required />
                         <br/>
-                        <input value={confirmpass} type={'password'} onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
-                        <button  onClick={gotonext}>ต่อไป</button>
+                        <input value={confirmpass} className="inputconfirmpass" type={'password'} onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
+                        <br/>
+                        <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
                         {console.log('promise is',promiseInProgress)}
                         {
                         promiseInProgress && 

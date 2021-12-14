@@ -17,7 +17,7 @@ const Name = (props:any) =>{
     const  {promiseInProgress}  = usePromiseTracker()
     
 
-    const prefixSelectOption = [{name:'Mr.', value:'Mr.'}, {name:'Ms.', value:'Ms.'},{name:'Mrs.', value:'Mrs.'},{name:'None', value:''}]
+    const prefixSelectOption = [{name:'None', value:''},{name:'Mr.', value:'Mr.'}, {name:'Ms.', value:'Ms.'},{name:'Mrs.', value:'Mrs.'}]
 
     const prefix_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
         setprefix(e.target.value);
@@ -91,22 +91,26 @@ const Name = (props:any) =>{
 
         {
             checkid() &&
-            <div>
-                                        
-                <form action="#">
-                    <select 
-                        onChange={((e)=> {setPrefixSelect(e.target.value)})}
-                        value={prefixSelect}>
-                        {prefixSelectOption.map(item=>(
-                            <option value={item.value}>{item.name}</option>
-                        ))}
-                        
-                    </select>
-                </form>
-                <input value={name} onChange={name_imput} placeholder="ชื่อจริง" required />
-                <input value={surname} onChange={surname_input} placeholder="นามสกุล" required />
+            <div >
+                <p className="nametext">กรุณากรอกชื่อและนามสกุล</p> 
+                <div className="selectprefix">
+                    <form action="#">
+                        <select 
+                            onChange={((e)=> {setPrefixSelect(e.target.value)})}
+                            value={prefixSelect} className="prefix">
+                            {prefixSelectOption.map(item=>(
+                                <option value={item.value}>{item.name}</option>
+                            ))}
+                            
+                        </select>
+                    </form>
+                </div>
+                <input value={name} onChange={name_imput} className="inputname" placeholder="ชื่อจริง" required />
+                
+                <br/>
+                <input value={surname} onChange={surname_input} className="inputsurname" placeholder="นามสกุล" required /> <br/>
 
-                <button  onClick={gotonext}>สมัคร</button>
+                <button  onClick={gotonext} className="submitname">สมัคร</button>
                 {
                 promiseInProgress && 
                 <Popuploading/>

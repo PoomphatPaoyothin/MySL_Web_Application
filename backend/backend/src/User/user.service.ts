@@ -397,7 +397,7 @@ export class UserService{
                 ID: uuid,
                 UserID: id,
                 CategoryID: id_lesson,
-                Lesson_amount: 0,
+                Lesson_amount: 4,
                 Lesson_learned: 0,
             })
 
