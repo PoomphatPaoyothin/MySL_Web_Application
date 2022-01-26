@@ -201,11 +201,7 @@
     text-align: center;
 }
 
-.multimiddle{
-    display:flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+
 
 .lessonword{
     display: block;
@@ -229,7 +225,7 @@
 
 .follow{
     position:absolute;
-    right:1%;
+    right:3%;
     width:30%;
     height:150%;
     background-color:#f2f2f2;
@@ -240,10 +236,34 @@
 
 .showfollower{
     font-family: 'Open Sans';
+    width: 50%;
+    border: 0px;
+    background-color: #11324D; 
+    color: #f2f2f2;
+    border-top-right-radius: 15px;
 }
+
+.showfollower:focus-within{
+    background-color: #f2f2f2; 
+    color: #11324D;
+}
+
 
 .showfollowing{
     font-family: 'Open Sans';
+    width: 50%;
+    border: 0px;
+    background-color:#f2f2f2;
+    border-top-left-radius: 15px;
+}
+
+
+.multimiddle{
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    height: 13%;
+    position: relative;
 }
 
 .namePos{

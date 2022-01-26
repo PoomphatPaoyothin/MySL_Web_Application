@@ -74,7 +74,7 @@ const Stat=(props:any)=>{
     return(
         <div className='statBG'>
             <div className="vl"></div>
-            <div className='multimiddle'>
+            <div className='multimiddlee'>
                 {objstat?.map((obj)=> (<Statbox name={findvalue(obj.CategoryID)}  Lesson_amount={obj.Lesson_amount} Lesson_learned={obj.Lesson_learned} category_quiz_score={findquizscore(obj.CategoryID)}/>))} 
             </div>
         </div>

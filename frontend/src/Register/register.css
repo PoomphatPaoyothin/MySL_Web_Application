@@ -106,6 +106,7 @@
     font-size: 15px;
     transition: 0.6s;
     margin-top: 4%;
+    display: inline-block;
 }
 
 .submitotp:hover{
@@ -114,6 +115,7 @@
 }
 
 .cancelotp{
+    display:inline-block;
     color: white;
     background-color: #11324D;
     border: 0px;
@@ -121,7 +123,8 @@
     padding: 10px 25px;
     border-radius: 15px;
     font-size: 15px;
-    transition: 0.6s;
+    transition: 0.6s;  
+    left:50%;
 }
 
 .cancelotp:hover{

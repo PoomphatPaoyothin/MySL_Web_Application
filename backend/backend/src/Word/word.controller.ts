@@ -1,8 +1,10 @@
-import { Controller, Get, Param } from "@nestjs/common";
+import { Controller, Get, Param, Post, UploadedFile, UseInterceptors } from "@nestjs/common";
+import { FileInterceptor } from "@nestjs/platform-express";
 import { wordcategory } from "./category.entity";
 import { lesson } from "./lesson.entity";
 import { word } from "./word.entity";
 import { WordService } from "./word.service";
+import {Express} from 'express'
 
 @Controller('word')
 export class WordController{
@@ -40,4 +42,11 @@ export class WordController{
     async getWordByWord(@Param('word') word:string): Promise<word[]>{
         return this.wordService.getWordByWord(word);
     }
+
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('file'))
+    uploadfile(@UploadedFile() file: Express.Multer.File){
+        console.log(file);
+    }
 }
+
