@@ -20,6 +20,7 @@ import Forget1 from "./ForgetPassword/Forget1";
 import Forget2 from "./ForgetPassword/Forget2";
 import Forget3 from "./ForgetPassword/Forget3";
 import Loadingpop from "./Loadingpop/Loadingpop";
+import Camera from './Camera/Camera';
 
 
 const App = () => {
@@ -53,6 +54,7 @@ const App = () => {
       <Route path='/lesson/:catId/:word'  component={Lesson} />
       <Route path='/profile/:id' component={Profile} />
       <Route path='/editprofile/:id' component={EditProfile} />
+      <Route path='/webcam' component={Camera} />
       <Route path='/test' component={Loadingpop} />
 
     </div>

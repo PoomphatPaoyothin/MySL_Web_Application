@@ -3,6 +3,9 @@
 # dependencies
 /frontend/node_modules
 /frontend/.pnp
+/node_modules
+/webcam-app
+/flask-server
 .pnp.js
 
 # testing
