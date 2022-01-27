@@ -14,17 +14,17 @@ import {diskStorage} from 'multer'
         MulterModule.register({
             dest: './files'
         }),
-        MulterModule.register({
-            storage: diskStorage({
-                destination: function (req,file,cb){
-                    cb(null, './file')
-                },
-                filename: function (req,file,cb){
-                    const uniqueSuffix = Date.now()+'-'+Math.round(Math.random()*1E9)
-                    cb(null,file.fieldname+'-'+uniqueSuffix +'.mp4')
-                }
-            })
-        })
+        // MulterModule.register({
+        //     storage: diskStorage({
+        //         destination: function (req,file,cb){
+        //             cb(null, './files')
+        //         },
+        //         filename: function (req,file,cb){
+        //             const uniqueSuffix = Date.now()+'-'+Math.round(Math.random()*1E9)
+        //             cb(null,file.fieldname+'-'+uniqueSuffix +'.mp4')
+        //         }
+        //     })
+        // })
     ],
     providers:[
         WordService

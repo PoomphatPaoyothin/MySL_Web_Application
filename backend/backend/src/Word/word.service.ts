@@ -21,7 +21,7 @@ export class WordService{
     }
 
     async findAllCategory(): Promise<wordcategory[]>{
-        return this.categoryRepository.find();
+        return this.categoryRepository.find({order:{_id:"ASC"}});
     }
 
     async getOneCategory(id:string): Promise<wordcategory>{

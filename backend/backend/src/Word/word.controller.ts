@@ -5,6 +5,7 @@ import { lesson } from "./lesson.entity";
 import { word } from "./word.entity";
 import { WordService } from "./word.service";
 import {Express} from 'express'
+import {diskStorage} from 'multer'
 
 @Controller('word')
 export class WordController{
@@ -44,7 +45,11 @@ export class WordController{
     }
 
     @Post('upload')
-    @UseInterceptors(FileInterceptor('file'))
+    @UseInterceptors(FileInterceptor('file',{
+        storage:diskStorage({
+            
+        })
+    }))
     async uploadedFile(@UploadedFile() file:Express.Multer.File){
         console.log(file)
         if(file){
