@@ -43,10 +43,22 @@ export class WordController{
         return this.wordService.getWordByWord(word);
     }
 
+    // @Post('upload')
+    // @UseInterceptors(FileInterceptor('file'))
+    // uploadfile(@UploadedFile() file: Express.Multer.File){
+    //     console.log(file);
+    //     return 'yes'
+    // }
+
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
-    uploadfile(@UploadedFile() file: Express.Multer.File){
-        console.log(file);
+    async uploadedFile(@UploadedFile() file:Express.Multer.File){
+        const response = {
+            originalname: file.originalname,
+            filename: file.filename,
+        };
+        console.log(file)
+        return response
     }
 }
 

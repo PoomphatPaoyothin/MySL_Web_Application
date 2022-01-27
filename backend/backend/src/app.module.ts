@@ -24,6 +24,8 @@ import * as Joi from 'joi';
 // import { EmailModule } from './User/register/email.module';
 import { JwtModule } from '@nestjs/jwt';
 import { RegisterModule } from './User/register/register.module';
+import { MulterModule } from '@nestjs/platform-express';
+import {diskStorage} from 'multer'
 
 @Module({
   imports:[
