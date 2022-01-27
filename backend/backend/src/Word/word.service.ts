@@ -33,7 +33,8 @@ export class WordService{
     }
 
     async getAllWordByCat(id:string): Promise<word[]>{
-        return this.wordRepository.find({where:{Category_ID:id}});
+        const findthis = this.wordRepository.find({where:{Category_ID:id},order:{Lesson_ID:"ASC",_id:"ASC"}});
+        return findthis;
     }
 
     async getWordByWord(Word:string): Promise<word[]>{

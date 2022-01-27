@@ -11,9 +11,9 @@ import {diskStorage} from 'multer'
 @Module({
     imports:[
         TypeOrmModule.forFeature([word,wordcategory,lesson]),
-        // MulterModule.register({
-        //     dest: './file'
-        // }),
+        MulterModule.register({
+            dest: './files'
+        }),
         MulterModule.register({
             storage: diskStorage({
                 destination: function (req,file,cb){

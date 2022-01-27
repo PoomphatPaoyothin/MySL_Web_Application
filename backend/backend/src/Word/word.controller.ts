@@ -42,35 +42,16 @@ export class WordController{
     async getWordByWord(@Param('word') word:string): Promise<word[]>{
         return this.wordService.getWordByWord(word);
     }
-<<<<<<< Updated upstream
-
-    // @Post('upload')
-    // @UseInterceptors(FileInterceptor('file'))
-    // uploadfile(@UploadedFile() file: Express.Multer.File){
-    //     console.log(file);
-    //     return 'yes'
-    // }
 
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
     async uploadedFile(@UploadedFile() file:Express.Multer.File){
-        const response = {
-            originalname: file.originalname,
-            filename: file.filename,
-        };
         console.log(file)
-        return response
+        if(file){
+            return true
+        }
+        else{
+            return false
+        }
     }
 }
-
-=======
-    
-    @Post('upload')
-    @UseInterceptors(FileInterceptor('file'))
-    uploadfile(@UploadedFile() file: Express.Multer.File){
-        console.log(file);
-        return {value: 'yes'}
-    }
-
-}
->>>>>>> Stashed changes
