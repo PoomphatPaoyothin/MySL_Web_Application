@@ -19,29 +19,32 @@ async function fetchwordCat(): Promise<any>{
     const word = await res.json();
     return word;
 }
-// async function patchPasword(obj:any, id:string): Promise<any> {
-//     const res = await fetch(`${url}/user/${id}/setting/password`,{
-//         method: 'PATCH',
-//         headers : {'Content-Type': 'application/json'},
-//         body: JSON.stringify(obj),
-//     });
 
-//     const patchPassword = await res.json();
+async function fetchflask(): Promise<any>{
+    const res = await fetch('http://localhost:5000/');
+    const obj = await res.json();
+    return obj;
+}
 
-//     if(patchPassword !== undefined)
-//     {
-//         alert('รหัสผ่านเปลี่ยนเรียบร้อยแล้ว')
-//     }
-//     else{
-//         alert('ผิดพลาด')
-//     }
-//     window.location.reload();
-// }
+
+async function sendfile(obj:any): Promise<any> {
+    for (var pair of obj.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]); 
+    }
+    const res = await fetch(`http://localhost:5000/`,{
+        method: 'POST',
+        body: obj,
+    });
+    const result= await res.json();
+    console.log('result is', result)
+    return result
+}
 
 
 export default{
     fetchlesson,
     fetchword,
     fetchwordCat,
-    // patchPasword,
+    fetchflask,
+    sendfile,
 }

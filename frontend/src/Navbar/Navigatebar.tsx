@@ -34,7 +34,7 @@ const Navigatebar=(prop:any)=>{
     return(
         <Navbar fixed = 'top' className = 'NavBarCSS'>
             <Navbar.Brand href = "/">
-                <img src = {HomeIcon} className = 'home-pic'/>{'  '}MySL
+                <img src = {'https://cdn.discordapp.com/attachments/912175328066142240/920238805628387328/MysL.png'} className = 'home-pic'/>{'  '}MySL
             </Navbar.Brand>
 
             <Form className="d-flex form-search">

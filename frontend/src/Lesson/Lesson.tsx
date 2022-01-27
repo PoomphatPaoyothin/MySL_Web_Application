@@ -5,6 +5,7 @@ import LessonService from "./LessonService";
 import VideoPlayer from "./VideoPlayer";
 import RegisterService from "../Register/RegisterService";
 import { useHistory } from "react-router-dom";
+import * as tf from "@tensorflow/tfjs";
 
 const Lesson=(props:any)=>{
     const catId = props.match.params.catId;
@@ -151,6 +152,9 @@ const Lesson=(props:any)=>{
 
     return(
         <div>
+            <div>
+                
+            </div>
             {
                 Iswordincat() &&
                 <div>

@@ -42,6 +42,7 @@ export class WordController{
     async getWordByWord(@Param('word') word:string): Promise<word[]>{
         return this.wordService.getWordByWord(word);
     }
+<<<<<<< Updated upstream
 
     // @Post('upload')
     // @UseInterceptors(FileInterceptor('file'))
@@ -62,3 +63,14 @@ export class WordController{
     }
 }
 
+=======
+    
+    @Post('upload')
+    @UseInterceptors(FileInterceptor('file'))
+    uploadfile(@UploadedFile() file: Express.Multer.File){
+        console.log(file);
+        return {value: 'yes'}
+    }
+
+}
+>>>>>>> Stashed changes
