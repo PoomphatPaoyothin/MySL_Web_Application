@@ -44,16 +44,25 @@ export class WordController{
         return this.wordService.getWordByWord(word);
     }
 
-    @Post('upload')
-    @UseInterceptors(FileInterceptor('file',{
-        storage:diskStorage({
-            
-        })
-    }))
-    async uploadedFile(@UploadedFile() file:Express.Multer.File){
-        console.log(file)
+    @Post('upload/:token')
+    @UseInterceptors(FileInterceptor('file'))
+    async uploadedFile(@Param('token') token:string,@UploadedFile() file:Express.Multer.File){
+        const fs = require('fs')
+        const folderName = `./files/${token}`
+        try {
+            if (!fs.existsSync(folderName)){
+              fs.mkdirSync(folderName)
+            }
+          } catch (err) {
+            console.error(err)
+        }
+        const response = {
+            originalname: file.originalname,
+            filename:file.filename
+        }
+        console.log(response)
         if(file){
-            return true
+            return response
         }
         else{
             return false
