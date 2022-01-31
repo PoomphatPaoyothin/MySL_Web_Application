@@ -8,7 +8,7 @@ app.post('/upload/:token', (req, res) => {
     if (req.files) {
         const file = req.files.file
 
-        const fileName = token +"-" + new Date().getTime() +'.mp4'
+        const fileName = token +'.mp4'
         file.mv(`${__dirname}/store/${fileName}`, err => {
             if (err) {
                 console.log(err)
