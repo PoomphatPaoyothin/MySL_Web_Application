@@ -170,11 +170,11 @@ const Camera = (props:any) => {
       getRecordingFileHooks()
     }
   }, [recordWebcam.status]);
-
+  console.log(props.word)
   return (
     <div>
       <div className="demo-section">
-        <p>คำศัพท์: {word}</p>
+        <p>คำศัพท์: {props.word}</p>
         <p>Camera status: {recordWebcam.status}</p>
         <div>
           <button

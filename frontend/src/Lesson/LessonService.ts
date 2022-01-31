@@ -40,6 +40,18 @@ async function sendfile(obj:any): Promise<any> {
     return result
 }
 
+async function sendans(obj:any): Promise<any> {
+    for (var pair of obj.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]); 
+    }
+    const res = await fetch(`http://localhost:5000/`,{
+        method: 'POST',
+        body: obj,
+    });
+    const result= await res.json();
+    console.log('result is', result)
+    return result
+}
 
 export default{
     fetchlesson,
@@ -47,4 +59,5 @@ export default{
     fetchwordCat,
     fetchflask,
     sendfile,
+    sendans,
 }
