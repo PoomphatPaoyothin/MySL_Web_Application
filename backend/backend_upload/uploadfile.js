@@ -3,13 +3,16 @@ const fileUpload = require('express-fileupload');
 const app = express();
 app.use(fileUpload());
 
+var cors = require('cors')
+
+app.use(cors())
 app.post('/upload/:token', (req, res) => {
     var token = req.params.token
     if (req.files) {
         const file = req.files.file
 
-        const fileName = token +"-" + new Date().getTime() +'.mp4'
-        file.mv(`${__dirname}/store/${fileName}`, err => {
+        const fileName = token +'.mp4'
+        file.mv(`D:/MySL_Model/Model/user_action/user_clip/${fileName}`, err => {
             if (err) {
                 console.log(err)
                 res.send(false)
@@ -21,6 +24,6 @@ app.post('/upload/:token', (req, res) => {
         res.send(false)
     }
 })
-app.listen(5000, () => {
+app.listen(8000, () => {
     console.log('server started')
 })

@@ -5,7 +5,7 @@ import LessonService from "./LessonService";
 import VideoPlayer from "./VideoPlayer";
 import RegisterService from "../Register/RegisterService";
 import { useHistory } from "react-router-dom";
-import * as tf from "@tensorflow/tfjs";
+import Camera from "../Camera/Camera";
 
 const Lesson=(props:any)=>{
     const catId = props.match.params.catId;
@@ -144,11 +144,18 @@ const Lesson=(props:any)=>{
         fetchword()
     }, [catId,word]);
 
+    useEffect(() => {
+        if(myid != null){
+            LessonService.fetchlessonstat(myid)
+        }
+    }, []);
+
+
 
     useEffect(() => {
         newobjlesson()
     }, [objlesson]);
-    // console.log(word)
+
 
     return(
         <div>
@@ -161,7 +168,8 @@ const Lesson=(props:any)=>{
                     {showcatname()}
                     <LessonBox objlesson={objlesson2} objword={objword} catId={catId} defaultchap={Defaultchap()} word={word}/>
                     {showWord()}
-                    <VideoPlayer/>
+                    <Camera catid={catId} word={word}/>
+                    <VideoPlayer objword={objword} word={word}/>
                 </div>
 
             }

@@ -40,6 +40,36 @@ async function sendfile(obj:any): Promise<any> {
     return result
 }
 
+async function sendans(obj:any): Promise<any> {
+    for (var pair of obj.entries()) {
+        console.log(pair[0]+ ', ' + pair[1]); 
+    }
+    const res = await fetch(`http://localhost:5000/`,{
+        method: 'POST',
+        headers : {'Content-Type':'application/json'},
+        body: obj,
+    });
+    const result= await res.json();
+    console.log('result is', result)
+    return result
+}
+
+async function fetchlessonstat(id:string): Promise<any>{
+    const res = await fetch(`${url}/user/profile/lessonstat/${id}`);
+    const obj = await res.json();
+    console.log('stat is', obj)
+    return obj;
+}
+async function plusint(obj:any): Promise<any> 
+{
+    const res = await fetch('http://localhost:5000/test',{
+        method: 'POST',
+        headers : {'Content-Type':'application/json'},
+        body: JSON.stringify(obj)
+    });
+    const tmp = await res.json();
+    return tmp
+}
 
 export default{
     fetchlesson,
@@ -47,4 +77,7 @@ export default{
     fetchwordCat,
     fetchflask,
     sendfile,
+    sendans,
+    fetchlessonstat,
+    plusint,
 }

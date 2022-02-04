@@ -18,7 +18,6 @@ const LessonBox=(props:any)=>{
             {
                 if(objword[i].Lesson_ID == mychapter)
                 {
-                    // console.log(i)
                     tmp.push(objword[i])
                 }
             }
@@ -39,7 +38,6 @@ const LessonBox=(props:any)=>{
         setObjword(props.objword)
     }, [props.objword]);
     
-    // console.log('aaaa', props.word)
     return(
         <div>
             {objlesson?.map((obj)=> ( 
