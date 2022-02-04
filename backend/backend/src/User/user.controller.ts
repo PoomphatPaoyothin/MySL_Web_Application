@@ -182,7 +182,7 @@ export class UserController{
         return this.userService.getuserlessonstat(userid,catid)
     }
 
-    @Get(':userid/getuserscore')
+    @Patch(':userid/getuserscore')
     async getuserscore(@Param('userid') userid:string):Promise<any>{
         return this.userService.getuserscore(userid)
     }

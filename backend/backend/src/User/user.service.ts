@@ -395,7 +395,7 @@ export class UserService{
         for(let i = 1;i<9;i++){
             const catid = i.toString();
             const userlessonstat = this.userlessonstatRepo.create({
-                ID: uuid,
+                ID: uuid(),
                 UserID: id,
                 CategoryID: catid,
                 Lesson_amount: 4,
@@ -405,7 +405,7 @@ export class UserService{
             for(let j = 1;j<5;j++){
                 const lessonid = j.toString();
                 const lessoncheckpoint = this.userlessonStatCheckpointRepo.create({
-                    ID:uuid,
+                    ID: uuid(),
                     UserID:id,
                     CategoryID:catid,
                     LessonID:lessonid,
@@ -452,8 +452,20 @@ export class UserService{
             getlessonstat.Is_lesson_quiz = true;
             getlessonstat.Lesson_score = score;
             await this.userlessonStatCheckpointRepo.save(getlessonstat);
-            return getlessonstat
         }
+
+        var userscore = await this.getuserscore(userid);
+
+        var getuserstatnav = await this.userstatnavRepo.findOne({where:{
+            UserID:userid
+        }})
+
+        if(getuserstatnav){
+            getuserstatnav.Quiz_stat = userscore;
+            await this.userstatnavRepo.save(getuserstatnav);
+            return getuserstatnav
+        }
+
         else{
             return false
         }
@@ -487,7 +499,7 @@ export class UserService{
         for(let i in getuserscore){
             let k = getuserscore[i]
             res = res + getuserscore[i].Lesson_score;
-            return res
         }
+        return res;
     }
 }
