@@ -22,6 +22,7 @@ import Forget3 from "./ForgetPassword/Forget3";
 import Loadingpop from "./Loadingpop/Loadingpop";
 import Camera from './Camera/Camera';
 import Quiz from "./Lesson/Quiz";
+import Test from "./Lesson/Test";
 
 const App = () => {
   const id = localStorage.getItem('id')
@@ -56,7 +57,7 @@ const App = () => {
       <Route path='/editprofile/:id' component={EditProfile} />
       <Route path='/quiz/:catId/:lessonId' component={Quiz} />
       <Route path='/webcam' component={Camera} />
-      <Route path='/test' component={Loadingpop} />
+      <Route path='/test' component={Test} />
 
     </div>
   )

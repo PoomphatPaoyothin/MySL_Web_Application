@@ -23,6 +23,7 @@ const OPTIONS: RecordWebcamOptions = {
 const Camera = (props:any) => {
   let time = 5
   let time_start = 3
+  let rand =  (0 + (Math.random() * (1000000-0))).toString();
   const recordWebcam: RecordWebcamHook = useRecordWebcam(OPTIONS);
   const [counter, setCounter] = useState<number>(time);
   const [opencam, setOpencam] = useState<string>('Open camera')
@@ -39,7 +40,7 @@ const Camera = (props:any) => {
     {
       const data = new FormData();
       data.append('file', blob);
-      Camera_service.send_video(data)
+      Camera_service.send_video(data,rand)
       .then(res=>{
         if(res)
         {

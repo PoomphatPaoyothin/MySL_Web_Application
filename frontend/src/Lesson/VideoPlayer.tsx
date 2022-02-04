@@ -4,7 +4,6 @@ import { useHistory } from "react-router-dom";
 
 
 const VideoPlayer=(props:any)=>{
-    console.log('props word is', props.word)
     const history=useHistory()
     const [word, setWord] = useState<string>()
     const [objword, setObjword] = useState<any>([])
