@@ -181,4 +181,9 @@ export class UserController{
         console.log(catid)
         return this.userService.getuserlessonstat(userid,catid)
     }
+
+    @Get(':userid/getuserscore')
+    async getuserscore(@Param('userid') userid:string):Promise<any>{
+        return this.userService.getuserscore(userid)
+    }
 }

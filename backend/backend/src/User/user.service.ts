@@ -425,6 +425,7 @@ export class UserService{
             // })
 
             // await this.usercatstatRepo.save(usercatstat);
+
             await this.userlessonstatRepo.save(userlessonstat);
         }
 
@@ -472,6 +473,19 @@ export class UserService{
         }
         else{
             return false;
+        }
+    }
+
+    async getuserscore(userid:string){
+        var getuserscore = await this.userlessonStatCheckpointRepo.find({
+            where:{
+                UserID:userid
+            }
+        })
+
+        for(let i in getuserscore){
+            let k = getuserscore[i]
+            console.log(k.Lesson_score)
         }
     }
 }

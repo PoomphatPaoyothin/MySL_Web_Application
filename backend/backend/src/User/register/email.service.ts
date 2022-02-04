@@ -10,7 +10,7 @@ export default class EmailService {
         this.nodemailerTransport = createTransport({
           service: "gmail",
           auth: {
-            user: "myslapplication@gmail.com",
+            user: "myslwebapplication@gmail.com",
             pass: "mysl1234",
           }
         });
