@@ -477,6 +477,7 @@ export class UserService{
     }
 
     async getuserscore(userid:string){
+        var res = 0;
         var getuserscore = await this.userlessonStatCheckpointRepo.find({
             where:{
                 UserID:userid
@@ -485,7 +486,8 @@ export class UserService{
 
         for(let i in getuserscore){
             let k = getuserscore[i]
-            console.log(k.Lesson_score)
+            res = res + getuserscore[i].Lesson_score;
+            return res
         }
     }
 }
