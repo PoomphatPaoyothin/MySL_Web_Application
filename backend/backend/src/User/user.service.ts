@@ -431,7 +431,7 @@ export class UserService{
 
         
         const userstatnav = this.userstatnavRepo.create({
-            ID: uuid,
+            ID: uuid(),
             UserID: id,
             Lesson_Stat: 0,
             Quiz_stat: 0
@@ -455,10 +455,12 @@ export class UserService{
         }
 
         var userscore = await this.getuserscore(userid);
+        console.log(typeof userscore)
 
         var getuserstatnav = await this.userstatnavRepo.findOne({where:{
             UserID:userid
         }})
+        console.log(getuserstatnav)
 
         if(getuserstatnav){
             getuserstatnav.Quiz_stat = userscore;
