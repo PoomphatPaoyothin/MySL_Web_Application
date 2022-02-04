@@ -1,4 +1,5 @@
 import { Body, Controller, Get, Param, ParseArrayPipe, Patch, Post } from "@nestjs/common";
+import { number } from "joi";
 import { EmailConfirmationService } from "./register/emailConfirm.service";
 import { User } from "./user.entity";
 import { UserService } from "./user.service";
@@ -164,5 +165,20 @@ export class UserController{
     @Post(':userid/userlessonstat')
     async createuserlessonstat(@Param('userid') userid:string):Promise<any>{
         return this.userService.createuserlessonstat(userid);
+    }
+
+    @Patch(':userid/updatelessonstat')
+    async updatelessonstat(@Param('userid') userid:string,
+                            @Body('catid') catid:string,
+                            @Body('lessonid') lessonid:string,
+                            @Body('score') score:number):Promise<any>{
+        return this.userService.updatelessonstat(userid,catid,lessonid,score)
+    }
+
+    @Get(':userid/:catid/getlessonstat')
+    async getlessonuserstat(@Param('userid') userid:string,
+                            @Param('catid') catid:string):Promise<any>{
+        console.log(catid)
+        return this.userService.getuserlessonstat(userid,catid)
     }
 }

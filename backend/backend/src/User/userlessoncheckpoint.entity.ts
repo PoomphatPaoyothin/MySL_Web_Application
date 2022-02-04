@@ -19,4 +19,7 @@ export class userlessoncheckpoint{
 
     @Column()
     LessonID: string;
+
+    @Column()
+    Lesson_score: number;
 }

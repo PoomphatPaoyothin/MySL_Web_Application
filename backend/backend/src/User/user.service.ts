@@ -13,6 +13,7 @@ import {v4 as uuid} from 'uuid';
 import { wordcategory } from "src/Word/category.entity";
 import { check } from "prettier";
 import { range } from "rxjs";
+import { lesson } from "src/Word/lesson.entity";
 
 @Injectable()
 export class UserService{
@@ -392,25 +393,41 @@ export class UserService{
         }
 
         for(let i = 1;i<9;i++){
-            const id_lesson = i.toString();
+            const catid = i.toString();
             const userlessonstat = this.userlessonstatRepo.create({
                 ID: uuid,
                 UserID: id,
-                CategoryID: id_lesson,
+                CategoryID: catid,
                 Lesson_amount: 4,
                 Lesson_learned: 0,
             })
 
-            const usercatstat = this.usercatstatRepo.create({
-                ID: uuid,
-                UserID: id,
-                CategoryID: id_lesson,
-                Is_category_quiz: false,
-                category_quiz_score:0,
-            })
-            await this.usercatstatRepo.save(usercatstat);
+            for(let j = 1;j<5;j++){
+                const lessonid = j.toString();
+                const lessoncheckpoint = this.userlessonStatCheckpointRepo.create({
+                    ID:uuid,
+                    UserID:id,
+                    CategoryID:catid,
+                    LessonID:lessonid,
+                    Lesson_score:0,
+                    Is_lesson_quiz:false
+                })
+
+                await this.userlessonStatCheckpointRepo.save(lessoncheckpoint)
+            }
+
+            // const usercatstat = this.usercatstatRepo.create({
+            //     ID: uuid,
+            //     UserID: id,
+            //     CategoryID: id_lesson,
+            //     Is_category_quiz: false,
+            //     category_quiz_score:0,
+            // })
+
+            // await this.usercatstatRepo.save(usercatstat);
             await this.userlessonstatRepo.save(userlessonstat);
         }
+
         
         const userstatnav = this.userstatnavRepo.create({
             ID: uuid,
@@ -421,5 +438,40 @@ export class UserService{
         await this.userstatnavRepo.save(userstatnav);
 
         return {"UserId":id};
+    }
+
+    async updatelessonstat(userid:string,catid:string,lessonid:string,score:number){
+        catid = catid.toString();
+        lessonid = lessonid.toString();
+        var getlessonstat = await this.userlessonStatCheckpointRepo.findOne({where:{
+            UserID:userid,LessonID:lessonid,CategoryID:catid
+        }})
+
+        if(getlessonstat){
+            getlessonstat.Is_lesson_quiz = true;
+            getlessonstat.Lesson_score = score;
+            await this.userlessonStatCheckpointRepo.save(getlessonstat);
+            return getlessonstat
+        }
+        else{
+            return false
+        }
+    }
+
+    async getuserlessonstat(userid:string,catid:string){
+        console.log(typeof catid)
+        var getuserlessonstat = await this.userlessonStatCheckpointRepo.find({
+            where:{
+                UserID:userid,
+                CategoryID:catid
+            }
+        })
+
+        if(getuserlessonstat){
+            return getuserlessonstat;
+        }
+        else{
+            return false;
+        }
     }
 }
