@@ -504,4 +504,9 @@ export class UserService{
         }
         return res;
     }
+
+    async getdashboard(){
+        var dashboard = await this.userlessonStatCheckpointRepo.find({order:{Lesson_score:"ASC"}})
+        return dashboard;
+    }
 }

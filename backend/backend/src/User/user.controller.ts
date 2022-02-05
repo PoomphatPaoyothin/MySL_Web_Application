@@ -186,4 +186,9 @@ export class UserController{
     async getuserscore(@Param('userid') userid:string):Promise<any>{
         return this.userService.getuserscore(userid)
     }
+
+    @Get('dashboard')
+    async getdashboard():Promise<any>{
+        return this.userService.getdashboard()
+    }
 }
