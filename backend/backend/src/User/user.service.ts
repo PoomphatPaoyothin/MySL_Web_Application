@@ -505,21 +505,23 @@ export class UserService{
     }
 
     async getdashboard(){
-        var dashboard = await this.userlessonStatCheckpointRepo.find({order:{Lesson_score:"DESC"}})
+        var dashboard = await this.userstatnavRepo.find({order:{Quiz_stat:"DESC"}})
         var dashboard2 = []
         let count = 0
-        for(let i in dashboard)
-        {
-            if(count <15)
-            {
-                dashboard2.push(dashboard[i])
-                count = count+1
+        for(let i in dashboard){
+            if(count < 15){
+                var getuser = await this.userstatnavRepo.findOne({where:{UserID:dashboard[i].UserID}})
+                var checkdelete = await this.userRepo.findOne({where:{ID:getuser.UserID}})
+                if(checkdelete.Is_delete == false){
+                    dashboard2.push(dashboard[i])
+                    count = count + 1
+                }
             }
         }
         return dashboard2;
     }
 
     async findalluser(){
-        return this.userRepo.find();
+        return this.userRepo.find({where:{Is_delete:false}});
     }
 }
