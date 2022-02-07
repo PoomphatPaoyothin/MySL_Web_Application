@@ -29,7 +29,9 @@ const Navigatebar=(prop:any)=>{
     const linktoprofile = () =>{
         history.push(`/profile/${myid}`);
     }
-
+    const showDash=()=>{
+        history.push('/dashboard')
+    }
     
     return(
         <Navbar fixed = 'top' className = 'NavBarCSS'>
@@ -50,7 +52,12 @@ const Navigatebar=(prop:any)=>{
                 </InputGroup>
             </Form>
 
+            <Form> 
+            <button onClick={showDash}> Dashboard</button>
+            </Form>
+
             <Nav className = "ms-auto">
+
                 <img src = {LessonIcon2} className = 'lesson-pic'/>
                 <div className="txt">0/10</div>
                 <img src = {QuizIcon2} className = 'quiz-pic'/>

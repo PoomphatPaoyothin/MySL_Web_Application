@@ -15,6 +15,11 @@ export class UserController{
     constructor(private userService:UserService
     ){}
 
+    @Get('getalluser')
+    async findalluser():Promise<any>{
+        return this.userService.findalluser();
+    }
+    
     @Get('findemail/:useremail')
     async findUseremail(@Param('useremail') User_email: string):Promise<User>{
         return this.userService.findUserEmail(User_email);
@@ -39,6 +44,7 @@ export class UserController{
     async GetUserLessonStat(@Param('userid') userid:string): Promise<userlessonstat[]>{
         return this.userService.getUserAllLessonStat(userid);
     }
+
 
     @Get('profile/lessoncheckpoint/:userid')
     async GetUsercheckpoint(@Param('userid') userid: string): Promise<userlessoncheckpoint[]>{

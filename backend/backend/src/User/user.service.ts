@@ -497,7 +497,6 @@ export class UserService{
                 UserID:userid
             }
         })
-
         for(let i in getuserscore){
             let k = getuserscore[i]
             res = res + getuserscore[i].Lesson_score;
@@ -506,7 +505,21 @@ export class UserService{
     }
 
     async getdashboard(){
-        var dashboard = await this.userlessonStatCheckpointRepo.find({order:{Lesson_score:"ASC"}})
-        return dashboard;
+        var dashboard = await this.userlessonStatCheckpointRepo.find({order:{Lesson_score:"DESC"}})
+        var dashboard2 = []
+        let count = 0
+        for(let i in dashboard)
+        {
+            if(count <15)
+            {
+                dashboard2.push(dashboard[i])
+                count = count+1
+            }
+        }
+        return dashboard2;
+    }
+
+    async findalluser(){
+        return this.userRepo.find();
     }
 }
