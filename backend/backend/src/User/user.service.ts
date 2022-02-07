@@ -511,10 +511,14 @@ export class UserService{
         for(let i in dashboard){
             if(count < 15){
                 var getuser = await this.userstatnavRepo.findOne({where:{UserID:dashboard[i].UserID}})
+                console.log(getuser)
                 var checkdelete = await this.userRepo.findOne({where:{ID:getuser.UserID}})
-                if(checkdelete.Is_delete == false){
-                    dashboard2.push(dashboard[i])
-                    count = count + 1
+                console.log(checkdelete)
+                if(checkdelete){
+                    if(checkdelete.Is_delete == false){
+                        dashboard2.push(dashboard[i])
+                        count = count + 1
+                    }
                 }
             }
         }
