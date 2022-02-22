@@ -71,6 +71,24 @@ async function plusint(obj:any): Promise<any>
     return tmp
 }
 
+
+async function sendscore(obj:any, userid:string): Promise<any> 
+{
+    const res = await fetch(`${url}/user/${userid}/updatelessonstat`,{
+        method: 'PATCH',
+        headers : {'Content-Type':'application/json'},
+        body: JSON.stringify(obj)
+    });
+    const tmp = await res.json();
+    return tmp
+}
+
+async function isquizscore(userid:string, catid:string, lessonid:string): Promise<any>{
+    const res = await fetch(`${url}/user/isquizandscore/${userid}/${catid}/${lessonid}`)
+    const tmp = await res.json();
+    return tmp;
+}
+
 export default{
     fetchlesson,
     fetchword,
@@ -80,4 +98,6 @@ export default{
     sendans,
     fetchlessonstat,
     plusint,
+    sendscore,
+    isquizscore,
 }

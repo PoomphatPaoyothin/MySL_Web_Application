@@ -39,7 +39,7 @@ const CameraQuiz = (props:any) => {
   const [word, setWord] = useState<string>('-')
   const [all_result, setAll_result] = useState<any>()
   const [isgetword, setIsgetword] = useState<boolean>(false)
-
+  const [closethenopen, setClosethenopen] = useState<boolean>(false)
 
 
   const getRecordingFileHooks = async () => {
@@ -83,6 +83,7 @@ const CameraQuiz = (props:any) => {
     {
       recordWebcam.retake()
       setStatustmp(true)
+      props.disabled(true)
     }
     else
     {
@@ -105,6 +106,7 @@ const CameraQuiz = (props:any) => {
     {
       recordWebcam.open()
       setCounter(time)
+      props.disabled(true)
     }
     if(recordWebcam.status == 'OPEN'){
       recordWebcam.close()
@@ -118,10 +120,6 @@ const CameraQuiz = (props:any) => {
       recordWebcam.close()
       init()
     }
-  }
-  const submitword=()=>{
-    const blob = recordWebcam.getRecording();
-
   }
 
   useEffect(() => {
@@ -145,14 +143,22 @@ const CameraQuiz = (props:any) => {
 
   useEffect(() => {
     if(isgetword == true){
-      console.log('sssssssssssssss')
-      props.disabled(true)
+      props.disabled(false)
       if(word == props.word)
       {
-
+        props.setcorrect(true)
+      }
+      else
+      {
+        props.setcorrect(false)
       }
     }
   }, [isgetword]);
+
+  useEffect(() => {
+    console.log('isgetword is', isgetword)
+  }, [isgetword]);
+
 
   useEffect(() => {
     if(statustmp2 == false)
@@ -216,11 +222,21 @@ const CameraQuiz = (props:any) => {
       }
     })
   }, [props.word]);
-
+  useEffect(() => {
+    if(props.isClose == true){
+      open_close()
+      setClosethenopen(!closethenopen)
+    }
+  }, [props.word]);
+  useEffect(() => {
+    open_close()
+  }, [closethenopen]);
+  
   return (
     <div className='camera'>
       <div className="demo-section">
         {/* <p>all_result: {all_result}</p> */}
+        {word}
         <p>คำศัพท์: {props.word}</p>
         <p>Camera status: {recordWebcam.status}</p>
         <div>

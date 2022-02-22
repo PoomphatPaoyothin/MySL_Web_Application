@@ -14,6 +14,7 @@ const Quiz=(props:any)=>{
     const history = useHistory()
     const catId = props.match.params.catId;
     const lessonId =  props.match.params.lessonId;
+    const userid = localStorage.getItem('id');
     const [obj, setObj] = useState<any>();
     const [word, setWord] = useState<string>();
     const [show, setShow] = useState<boolean>(false);
@@ -27,8 +28,13 @@ const Quiz=(props:any)=>{
     const [score, setScore] = useState<number>(0)
     const [isFinish, setIsFinish] = useState<boolean>(false)
     const [canNext, setCannext] = useState<boolean>(true)
+    const [isClose, setIsClose] = useState<boolean>(false)
+    const [submitword, setSubmitword] = useState<string>('คำต่อไป')
+    const [iswordcorrect, setIswordcorrect] = useState<boolean>(false)
+    const [doscore, setDoscore] = useState<boolean>(false)
+    const [gosubmit, setGosubmit] =useState<boolean>(false)
+    const [alreadyfetch, setAlreadyfetch] = useState<boolean>(false)
 
-    console.log(isStart)
     const backlesson=()=>{
         history.push(`/lesson/${catId}/${word}`)
     }
@@ -48,15 +54,23 @@ const Quiz=(props:any)=>{
     const getStart=(status:boolean)=>{
         setIsStart(status)
     }
-    const disableButton=()=>{
-        console.log('aaaaaaaaaaaaaaa')
-        setCannext(false)
+    const disableButton=(value:boolean)=>{
+        setCannext(value)
     }
     useEffect(() => {
         LessonService.fetchword(catId)
         .then(res=>{
             setObj(res)
         })
+        if(userid)
+        {
+            LessonService.isquizscore(userid,catId,lessonId)
+            .then(res=>{
+                setIsFinish(res.is_quiz)
+                setScore(res.score)
+                setAlreadyfetch(true)
+            })
+        }
     }, []);
 
     useEffect(() => {
@@ -78,20 +92,66 @@ const Quiz=(props:any)=>{
 
         }
     }, [counter]);
-    const nextword=()=>{
-        if(numberword < 2)
+    const plusscore=(isCorrect:boolean)=>{
+        if(isCorrect == true)
         {
-            setCannext(true)
-            let obj = {
-                a:'test'
-            }
-            setNumberword(numberword+1)
+            setScore(score+1)
+            setDoscore(!doscore)
         }
     }
-    const submit=()=>{
-        setIsFinish(true)
-        // LessonService.sendscore(score)
+    const nextword=()=>{
+        if(isLastword() == false)
+        {
+            setCannext(true)
+            setIsClose(true)
+            plusscore(iswordcorrect)
+            if(numberword < 2)
+            {
+                setNumberword(numberword+1)
+            }
+        }
+        else
+        {
+            plusscore(iswordcorrect)
+            setGosubmit(true)
+        }
+
+
+
     }
+    const submit=()=>{
+        if(!isFinish)
+        {
+            console.log('ssssssssssssssssssssssssssssssssssssssss')
+            setIsFinish(true)
+            let obj2 = {
+                catid:catId,
+                lessonid:lessonId,
+                score:score
+            }
+            console.log('objjjjjj ', obj2)
+            if(userid != null)
+            {
+                LessonService.sendscore(obj2, userid)
+                .then(res=>{
+                        console.log(res)
+                    }
+                )
+            }
+        }
+
+    }
+    console.log('is alreadyfetch',alreadyfetch)
+    console.log('is finish',isFinish)
+
+    useEffect(() => {
+        console.log('alreadyfetch inside',alreadyfetch)
+        if(alreadyfetch)
+        {
+            submit()
+        }   
+    }, [gosubmit]);
+    console.log('score issss', score)
     const isLastword=()=>{
         if(numberword == 2)
         {
@@ -109,7 +169,12 @@ const Quiz=(props:any)=>{
         setIsshowcount(false)
         setScore(0)
         setNumberword(0)
+        setSubmitword('คำต่อไป')
+        localStorage.setItem('score', '0')
     }
+    const setcorrect=(value:boolean)=>{
+        setIswordcorrect(value)
+      }
     useEffect(() => {
         if(obj)
         {
@@ -132,6 +197,15 @@ const Quiz=(props:any)=>{
         }
     }, [obj]);
 
+    useEffect(() => {
+        if(isLastword() == true)
+        {
+            setSubmitword('ส่งคำตอบ')
+        }
+    }, [isLastword]);
+    const isFinishHandle=(value:boolean)=>{
+        setIsFinish(value)
+    }
     return(
         <div>
             {
@@ -148,17 +222,11 @@ const Quiz=(props:any)=>{
                         isStart && !isShowcount &&
                         <div>
                             {allword ? 
-                            (<CameraQuiz disabled={disableButton} lessonid={lessonId} catid={catId} word={allword[numberword].Word_name}/>):(<div></div>)}
+                            (<CameraQuiz setcorrect={setcorrect}  isClose={isClose} disabled={disableButton} lessonid={lessonId} catid={catId} word={allword[numberword].Word_name}/>):(<div></div>)}
 
                             **กรุณาเปิดกล้องเพิ่อทำแบบทดสอบ**
-
-                            {
-                                isLastword() && <button onClick={submit}>ส่ง</button>
-                            }
-
-                            {
-                                !isLastword() && <Button variant="primary" size="lg" disabled={canNext} onClick={nextword}>คำต่อไป</Button>
-                            }
+                            <Button variant="primary" size="lg" disabled={canNext} onClick={nextword}>{submitword}</Button>
+                            
                         </div>
                     }
                     <PopupconfirmQuiz show={show} onClose={closeHandler} getStart={getStart} />
@@ -175,7 +243,7 @@ const Quiz=(props:any)=>{
                     <button onClick={startRe}>
                         สอบใหม่อีกครั้ง
                     </button>
-                    <PopupconfirmRequiz show={showRe} onClose={closeHandlerRe} getStart={reexam} />
+                    <PopupconfirmRequiz show={showRe} onClose={closeHandlerRe} getStart={reexam} isFinishHandle={isFinishHandle}/>
                 </div>
             }
         </div>

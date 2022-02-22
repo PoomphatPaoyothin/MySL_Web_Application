@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import './Lesson.css'
 import { useHistory } from "react-router-dom";
 
-
 const VideoPlayer=(props:any)=>{
     const history=useHistory()
     const [word, setWord] = useState<string>()
@@ -37,7 +36,6 @@ const VideoPlayer=(props:any)=>{
         <div >
             <button>คำก่อนหน้า</button>
             <button onClick={gonextword}>คำถัดไป</button>
-
         </div>
     )
 }

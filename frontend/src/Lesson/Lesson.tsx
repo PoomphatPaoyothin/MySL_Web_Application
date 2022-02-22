@@ -6,6 +6,7 @@ import VideoPlayer from "./VideoPlayer";
 import RegisterService from "../Register/RegisterService";
 import { useHistory } from "react-router-dom";
 import Camera from "../Camera/Camera";
+import ReactPlayer from 'react-player'
 
 const Lesson=(props:any)=>{
     const catId = props.match.params.catId;
@@ -168,6 +169,8 @@ const Lesson=(props:any)=>{
                     {showWord()}
                     <Camera className = 'camera_lesson' catid={catId} word={word}/>
                     <VideoPlayer objword={objword} word={word}/>
+                    <ReactPlayer url='https://www.youtube.com/watch?v=7sDY4m8KNLc'/>
+
                 </div>
 
             }

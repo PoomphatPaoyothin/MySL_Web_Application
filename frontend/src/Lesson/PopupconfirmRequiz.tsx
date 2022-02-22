@@ -13,6 +13,7 @@ const PopupconfirmQuiz=(props:any)=>{
       setShow(false);
       props.onClose()
       props.getStart(true)
+      props.isFinishHandle(false)
     }
 
     useEffect(() => {
