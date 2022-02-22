@@ -20,13 +20,16 @@ export class loginService{
         const user = await this.userRepo.findOne({where:{User_email:User_email}})
 
         const hash = bcrypt.compareSync(User_password,user.User_password);
-        if(hash == true){
+
+        if(!user){
+            throw new UnauthorizedException('no user');
+        }
+        
+        else if(hash == true){
             console.log('Valid password')
             return user.User_email;
         }
-        else if(!user){
-            throw new UnauthorizedException('no user');
-        }
+        
         else{
             console.log('Invalid password')
         }

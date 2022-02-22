@@ -75,4 +75,10 @@ export class RegisterController{
         await this.emailConfirmationService.sendVerificationLink(emailuser,num);
         return this.registerService.updateotp(emailuser,num);
     }
+
+    @Post('getuserfacebook')
+    async getuserfacebook(@Body('accessToken') acccessToken:string,
+                        @Body('name') name:string):Promise<any>{
+        return this.registerService.getuserfacebook(acccessToken,name)
+    }
 }

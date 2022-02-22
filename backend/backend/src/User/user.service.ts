@@ -392,17 +392,17 @@ export class UserService{
             throw new UnauthorizedException('cant find user');
         }
 
-        for(let i = 1;i<9;i++){
+        for(let i = 1;i<5;i++){
             const catid = i.toString();
             const userlessonstat = this.userlessonstatRepo.create({
                 ID: uuid(),
                 UserID: id,
                 CategoryID: catid,
-                Lesson_amount: 4,
+                Lesson_amount: 3,
                 Lesson_learned: 0,
             })
 
-            for(let j = 1;j<5;j++){
+            for(let j = 1;j<3;j++){
                 const lessonid = j.toString();
                 const lessoncheckpoint = this.userlessonStatCheckpointRepo.create({
                     ID: uuid(),

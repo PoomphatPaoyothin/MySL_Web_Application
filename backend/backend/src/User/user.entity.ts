@@ -48,6 +48,9 @@ export class User{
     temp: string;
 
     @Column()
+    token_facebook:string;
+
+    @Column()
     timeupdate: Date;
 
 }

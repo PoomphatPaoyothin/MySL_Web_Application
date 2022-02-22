@@ -75,6 +75,7 @@ export class registerService{
         getUser.Is_email_confirm = true;
         getUser.register_stat = '3';
         getUser.temp = null;
+        getUser.token_facebook = null;
 
         const User_email = getUser.User_email;
         const userId = getUser.ID;
@@ -156,5 +157,32 @@ export class registerService{
         getUser.User_password = new_password;
         await this.userRepo.save(getUser);
         return {"accessToken":accessToken,"UserId":UserId};
+    }
+
+    async getuserfacebook(acccessToken:string,name:string){
+        const checkfacebook = await this.userRepo.findOne({where:{token_facebook:acccessToken}})
+        const timeupdate = new Date();
+        if(checkfacebook){
+            return {"accessToken":checkfacebook.token_facebook,"UserId":checkfacebook.ID}
+        }
+        else{
+            const user = this.userRepo.create({
+                ID: uuid(),
+                User_password: null,
+                User_email: "facebook_login",
+                timeupdate: timeupdate,
+                imguser: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png",
+                follower_amount: 0,
+                following_amount: 0,
+                register_stat:'3',
+                Is_email_confirm:true,
+                temp:null,
+                Is_delete:false,
+                token_facebook:acccessToken,
+                User_name:name
+            })
+
+            return user
+        }
     }
 }

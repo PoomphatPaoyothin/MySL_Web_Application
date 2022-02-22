@@ -197,4 +197,6 @@ export class UserController{
     async getdashboard():Promise<any>{
         return this.userService.getdashboard()
     }
+
+    
 }
