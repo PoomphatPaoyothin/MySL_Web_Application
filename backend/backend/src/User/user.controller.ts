@@ -198,10 +198,10 @@ export class UserController{
         return this.userService.getdashboard()
     }
 
-    @Get('isquizandscore/:userid')
+    @Get('isquizandscore/:userid/:catid/:lessonid')
     async getisquiz(@Param('userid') userid:string,
-                    @Body('catid') catid:string,
-                    @Body('lessonid') lessonid:string):Promise<any>{
+                    @Param('catid') catid:string,
+                    @Param('lessonid') lessonid:string):Promise<any>{
         return this.userService.getisquiz(userid,catid,lessonid)
     }
 }

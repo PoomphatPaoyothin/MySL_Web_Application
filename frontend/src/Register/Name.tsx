@@ -87,28 +87,29 @@ const Name = (props:any) =>{
     },[])
 
     return(
-        <div>
+        <div className="container">
 
         {
             checkid() &&
             <div >
                 <p className="nametext">กรุณากรอกชื่อและนามสกุล</p> 
-                <div className="selectprefix">
-                    <form action="#">
-                        <select 
-                            onChange={((e)=> {setPrefixSelect(e.target.value)})}
-                            value={prefixSelect} className="prefix">
-                            {prefixSelectOption.map(item=>(
-                                <option value={item.value}>{item.name}</option>
-                            ))}
-                            
-                        </select>
-                    </form>
+                <div className="inputcenter">
+                    <div className="selectprefix">
+                        <form action="#">
+                            <select 
+                                onChange={((e)=> {setPrefixSelect(e.target.value)})}
+                                value={prefixSelect} className="prefix">
+                                {prefixSelectOption.map(item=>(
+                                    <option value={item.value}>{item.name}</option>
+                                ))}
+                                
+                            </select>
+                        </form>
+                    </div>
+                    <input value={name} onChange={name_imput} className="inputname" placeholder="ชื่อจริง" required /><br/>
+                    <input value={surname} onChange={surname_input} className="inputsurname" placeholder="นามสกุล" required /> 
                 </div>
-                <input value={name} onChange={name_imput} className="inputname" placeholder="ชื่อจริง" required />
-                
                 <br/>
-                <input value={surname} onChange={surname_input} className="inputsurname" placeholder="นามสกุล" required /> <br/>
 
                 <button  onClick={gotonext} className="submitname">สมัคร</button>
                 {
