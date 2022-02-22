@@ -36,8 +36,6 @@ const Confirm = (props:any) =>{
             trackPromise(
             RegisterService.postemailpass(obj)
             .then((res: any)=>{
-                console.log('ressss',res)
-
                 if(res.userId == undefined)
                 {
                     alert(res.message)

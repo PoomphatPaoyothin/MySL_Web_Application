@@ -12,7 +12,7 @@ app.post('/upload/:token', (req, res) => {
         const file = req.files.file
 
         const fileName = token +'.mp4'
-        file.mv(`D:/MySL_Model/Model/user_action/user_clip/${fileName}`, err => {
+        file.mv(`D:\\MySL_Model\\Model\\flask_for_model_test\\clip\\${fileName}`, err => {
             if (err) {
                 console.log(err)
                 res.send(false)
@@ -20,6 +20,7 @@ app.post('/upload/:token', (req, res) => {
                 res.send(true)
             }
         })
+
     } else {
         res.send(false)
     }

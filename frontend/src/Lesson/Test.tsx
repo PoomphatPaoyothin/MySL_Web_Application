@@ -20,10 +20,6 @@ const Test=()=>{
         })
     }
 
-
-
-    
-
     return(
         <div>
             <button onClick={start}> CLick</button>

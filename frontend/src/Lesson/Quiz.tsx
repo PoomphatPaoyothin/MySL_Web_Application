@@ -6,6 +6,8 @@ import CameraQuiz from "../Camera/CameraQuiz";
 import PopupConfirmPassword from "../Profile/PopupConfirmPassword";
 import PopupconfirmQuiz from "./PopupconfirmQuiz";
 import PopupconfirmRequiz from "./PopupconfirmRequiz";
+import Button from 'react-bootstrap/Button';
+
 
 const Quiz=(props:any)=>{
     let time=3
@@ -24,6 +26,7 @@ const Quiz=(props:any)=>{
     const [numberword, setNumberword] = useState<number>(0)
     const [score, setScore] = useState<number>(0)
     const [isFinish, setIsFinish] = useState<boolean>(false)
+    const [canNext, setCannext] = useState<boolean>(true)
 
     console.log(isStart)
     const backlesson=()=>{
@@ -45,7 +48,10 @@ const Quiz=(props:any)=>{
     const getStart=(status:boolean)=>{
         setIsStart(status)
     }
-
+    const disableButton=()=>{
+        console.log('aaaaaaaaaaaaaaa')
+        setCannext(false)
+    }
     useEffect(() => {
         LessonService.fetchword(catId)
         .then(res=>{
@@ -73,18 +79,12 @@ const Quiz=(props:any)=>{
         }
     }, [counter]);
     const nextword=()=>{
-        if(numberword < 4)
+        if(numberword < 2)
         {
+            setCannext(true)
             let obj = {
                 a:'test'
             }
-            // LessonService.sendans(obj)
-            // .then(res=>{
-            //         if(res)
-            //         {
-            //             setScore(score+1)
-            //         }
-            //     })
             setNumberword(numberword+1)
         }
     }
@@ -93,7 +93,7 @@ const Quiz=(props:any)=>{
         // LessonService.sendscore(score)
     }
     const isLastword=()=>{
-        if(numberword == 4)
+        if(numberword == 2)
         {
             return true
         }
@@ -122,8 +122,6 @@ const Quiz=(props:any)=>{
                     tmp.push(obj[i])
                     tmp.push(obj[i+1])
                     tmp.push(obj[i+2])
-                    tmp.push(obj[i+3])
-                    tmp.push(obj[i+4])
                     setAllword(tmp)
 
                     setWord(obj[i].Word_name)
@@ -133,8 +131,7 @@ const Quiz=(props:any)=>{
             }
         }
     }, [obj]);
-    console.log('all', allword)
-    console.log('num is', numberword)
+
     return(
         <div>
             {
@@ -147,12 +144,11 @@ const Quiz=(props:any)=>{
                     <button disabled={isStart == true} onClick={start}>เริ่มแบบทดสอบ</button>
 
                     <button onClick={backlesson}>กลับสู่บทเรียน</button>
-                    
                     {
                         isStart && !isShowcount &&
                         <div>
                             {allword ? 
-                            (<CameraQuiz word={allword[numberword].Word_name}/>):(<div></div>)}
+                            (<CameraQuiz disabled={disableButton} lessonid={lessonId} catid={catId} word={allword[numberword].Word_name}/>):(<div></div>)}
 
                             **กรุณาเปิดกล้องเพิ่อทำแบบทดสอบ**
 
@@ -161,7 +157,7 @@ const Quiz=(props:any)=>{
                             }
 
                             {
-                                !isLastword() && <button onClick={nextword}>คำต่อไป</button>
+                                !isLastword() && <Button variant="primary" size="lg" disabled={canNext} onClick={nextword}>คำต่อไป</Button>
                             }
                         </div>
                     }

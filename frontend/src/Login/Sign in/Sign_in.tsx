@@ -6,6 +6,7 @@ import login_facebook from '../../Picture/Login/login with facebook.png'
 import login_google from '../../Picture/Login/login with google.png'
 import { stringify } from "querystring";
 import AuthService from "./AuthService";
+import FacebookLogin from 'react-facebook-login';
 
 const Sign_in = () => {
   const [email, setEmail] = useState<string>('');
@@ -51,6 +52,9 @@ const Sign_in = () => {
     setPass(e.target.value);
   }
 
+  const responseFacebook=(response:any)=>{
+    console.log(response)
+  }
   return(
     <div className='container'>
         <div className = 'left_login'>
@@ -88,9 +92,14 @@ const Sign_in = () => {
                 <p className='errormessage'>{errormessage}</p>
               </div>
             )}
-            <img src={login_google} className='login_google'/>
+            <FacebookLogin
+              appId="474027790834352"
+              autoLoad
+              callback={responseFacebook}
+              cssClass='login_facebook'
+            />
 
-            <img src={login_facebook} className='login_facebook'/>
+            {/* src={login_facebook}  */}
             <hr className = 'line_right'/>
             <button type="button" className='regist' onClick={regist}>สมัครบัญชีใหม่</button>
             </div>

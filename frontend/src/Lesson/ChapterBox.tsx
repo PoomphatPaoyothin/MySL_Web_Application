@@ -38,14 +38,17 @@ const ChapterBox=(props:any)=>{
         setVisiblepopup(false);
     }
 
-    const openpopup=()=>{
-        setVisiblepopup(true)
+    const go_quiz=()=>{
+        history.push(`/quiz/${props.objword[0].Category_ID}/${props.objword[0].Lesson_ID}`)
     }
 
 
     useEffect(() => {
         setObjword(props.objword)
     }, [props.objword]);
+
+    useEffect(() => {
+    }, [objword]);
 
     useEffect(() => {
         Isshow()
@@ -59,15 +62,11 @@ const ChapterBox=(props:any)=>{
             {visible &&
             <div>
                 {objword?.map((obj)=>(<WordBox word ={obj.Word_name} chapter={props.mychapter} lesson={objword[0].Category_ID} globalword={props.word} />))}
-                <QuizBox lessonid={objword} onOpen={openpopup}/>
+                <QuizBox lessonid={objword} onOpen={go_quiz}/>
             </div>
             
             }
-            <PopupQuiz        
-            onClose = {closeHandler}
-            show = {visiblepopup}
-            objword = {objword}
-            />
+
         </div>
     )
 }

@@ -14,6 +14,7 @@ import Camera_service from "./Camera_service";
 import {useForm} from 'react-hook-form'
 import { less } from "@tensorflow/tfjs";
 import Lesson from "../Lesson/Lesson";
+import './Camera.css'
 
 const OPTIONS: RecordWebcamOptions = {
   filename: "file",
@@ -36,6 +37,7 @@ const Camera = (props:any) => {
   const [statustmp, setStatustmp] = useState<boolean>(false)
   const [statustmp2, setStatustmp2] = useState<boolean>(false)
   const [word, setWord] = useState<string>('-')
+  const [all_result, setAll_result] = useState<any>()
   const getRecordingFileHooks = async () => {
   const blob = await recordWebcam.getRecording();
   console.log('rand outsite is',rand)
@@ -48,16 +50,16 @@ const Camera = (props:any) => {
       .then(res=>{
         if(res)
         {
-          console.log('rand inside is',rand)
           let obj = {
             "userid":rand,
             "catid":props.catid,
             "lessonid":lessonid
           }
-          console.log('obj is', obj)
+          console.log('obj isssssss', obj)
           Camera_service.sendstart(obj)
           .then(res=>{
             setWord(res.ans)
+            setAll_result(res.all_result)
           })
         }
       })
@@ -71,6 +73,7 @@ const Camera = (props:any) => {
     setCounterstart(time_start)
     setStatustmp(false)
   }
+
 
   const start_record=()=>{
     if(recordWebcam.status === 'PREVIEW' && statustmp == false)
@@ -201,8 +204,9 @@ const Camera = (props:any) => {
   }, [props.word]);
 
   return (
-    <div>
+    <div className='camera'>
       <div className="demo-section">
+        <p>all_result: {all_result}</p>
         <p>คำศัพท์: {word}</p>
         <p>Camera status: {recordWebcam.status}</p>
         <div>

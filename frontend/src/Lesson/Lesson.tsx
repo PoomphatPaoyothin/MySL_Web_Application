@@ -34,7 +34,7 @@ const Lesson=(props:any)=>{
             setObjlesson(res)
         })
     }
-
+    console.log('ssssssssssssssss',objlesson)
     
     const fetchword=()=>{
         LessonService.fetchword(catId)
@@ -150,8 +150,6 @@ const Lesson=(props:any)=>{
         }
     }, []);
 
-
-
     useEffect(() => {
         newobjlesson()
     }, [objlesson]);
@@ -168,7 +166,7 @@ const Lesson=(props:any)=>{
                     {showcatname()}
                     <LessonBox objlesson={objlesson2} objword={objword} catId={catId} defaultchap={Defaultchap()} word={word}/>
                     {showWord()}
-                    <Camera catid={catId} word={word}/>
+                    <Camera className = 'camera_lesson' catid={catId} word={word}/>
                     <VideoPlayer objword={objword} word={word}/>
                 </div>
 

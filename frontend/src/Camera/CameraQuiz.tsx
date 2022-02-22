@@ -12,6 +12,9 @@ import type {
 import "./styles.css";
 import Camera_service from "./Camera_service";
 import {useForm} from 'react-hook-form'
+import { less } from "@tensorflow/tfjs";
+import Lesson from "../Lesson/Lesson";
+import './Camera.css'
 
 const OPTIONS: RecordWebcamOptions = {
   filename: "file",
@@ -20,22 +23,28 @@ const OPTIONS: RecordWebcamOptions = {
   height: 1080
 };
 
-const Camera = (props:any) => {
-  let time = 5
+const CameraQuiz = (props:any) => {
+  let time = 3
   let time_start = 3
-  let rand =  (0 + (Math.random() * (1000000-0))).toString();
+  let rand =  (0 + (Math.random() * (1000000-0))).toFixed().toString()
+
   const recordWebcam: RecordWebcamHook = useRecordWebcam(OPTIONS);
+  const [lessonid, setLessonid] = useState<string>()
   const [counter, setCounter] = useState<number>(time);
   const [opencam, setOpencam] = useState<string>('Open camera')
   const [counterstart, setCounterstart] = useState<number>(time_start)
   const [statusprepare, setStatusprepare] = useState<boolean>(false)
   const [statustmp, setStatustmp] = useState<boolean>(false)
   const [statustmp2, setStatustmp2] = useState<boolean>(false)
-  const [word, setWord] = useState<string>('')
+  const [word, setWord] = useState<string>('-')
+  const [all_result, setAll_result] = useState<any>()
+  const [isgetword, setIsgetword] = useState<boolean>(false)
+
+
 
   const getRecordingFileHooks = async () => {
-    const blob = await recordWebcam.getRecording();
-    console.log(blob)
+  const blob = await recordWebcam.getRecording();
+
     if(blob != undefined)
     {
       const data = new FormData();
@@ -45,12 +54,14 @@ const Camera = (props:any) => {
         if(res)
         {
           let obj = {
-            'lesson_no':props.lesson_no,
-            'state':true
+            "userid":rand,
+            "catid":props.catid,
+            "lessonid":lessonid
           }
           Camera_service.sendstart(obj)
           .then(res=>{
-            setWord(res)
+            setWord(res.ans)
+            setIsgetword(true)
           })
         }
       })
@@ -63,6 +74,8 @@ const Camera = (props:any) => {
     setStatusprepare(false)
     setCounterstart(time_start)
     setStatustmp(false)
+    setIsgetword(false)
+
   }
 
   const start_record=()=>{
@@ -106,6 +119,10 @@ const Camera = (props:any) => {
       init()
     }
   }
+  const submitword=()=>{
+    const blob = recordWebcam.getRecording();
+
+  }
 
   useEffect(() => {
     if(statustmp2 == false)
@@ -125,6 +142,17 @@ const Camera = (props:any) => {
       init()
     }
   }, [counter]);
+
+  useEffect(() => {
+    if(isgetword == true){
+      console.log('sssssssssssssss')
+      props.disabled(true)
+      if(word == props.word)
+      {
+
+      }
+    }
+  }, [isgetword]);
 
   useEffect(() => {
     if(statustmp2 == false)
@@ -169,12 +197,30 @@ const Camera = (props:any) => {
     if(recordWebcam.status == 'PREVIEW')
     {
       getRecordingFileHooks()
+      setWord('กำลังประมวลผล')
     }
   }, [recordWebcam.status]);
-  console.log(props.word)
+
+  useEffect(() => {
+    Camera_service.fetchword(props.catid)
+    .then(res=>{
+      if(res)
+      {
+        for(let i=0; i<res.length; i++)
+        {
+          if(res[i].Word_name == props.word)
+          {
+            setLessonid(res[i].Lesson_ID)
+          }
+        }
+      }
+    })
+  }, [props.word]);
+
   return (
-    <div>
+    <div className='camera'>
       <div className="demo-section">
+        {/* <p>all_result: {all_result}</p> */}
         <p>คำศัพท์: {props.word}</p>
         <p>Camera status: {recordWebcam.status}</p>
         <div>
@@ -213,6 +259,7 @@ const Camera = (props:any) => {
           recordWebcam.status === CAMERA_STATUS.RECORDING  && 
           <div>Countdown: {counter}</div>
         } 
+        {/* <button onClick={submitword}>ตรวจสอบท่าทาง</button> */}
         <video
           ref={recordWebcam.webcamRef}
           style={{
@@ -243,4 +290,4 @@ const Camera = (props:any) => {
     </div>
   )}
 
-export default Camera
+export default CameraQuiz
