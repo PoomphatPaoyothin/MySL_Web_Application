@@ -115,6 +115,7 @@
     border-color: none;
     margin-left: 3%;
     transition: 0.6s;
+    border-radius: 5px;
 }
 
 .button-editName:hover{
@@ -130,6 +131,7 @@
     border-color: red;
     margin-left: 15%;
     margin-top: 4%;
+    border-radius: 5px;
 }
 
 
@@ -141,6 +143,7 @@
     color: white;
     margin-top: 1px;
     transition: 0.6s;
+    border-radius: 5px;
 }
 
 .savechange-button:hover{
@@ -157,6 +160,7 @@
     margin-top: 1px;
     margin-left: 10px;
     transition: 0.6s;
+    border-radius: 5px;
 }
 
 .canclechange-button:hover{
@@ -201,7 +205,40 @@
     text-align: center;
 }
 
+.selectprefix1{
+    font-family: 'Open Sans';
+    border: 1px solid #cacaca;
+    /* width: 30%; */
+    border-radius: 4px;
+    font-size: 18px;
+    box-shadow: 3px 5px 5px #cacaca;
+    margin-left: 4%;
+    display: inline-block;
+}
 
+.inputname1{
+    font-family: 'Open Sans';
+    padding: 12px 20px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #cacaca;
+    width: 30%;
+    box-shadow: 3px 5px 5px #cacaca;
+    display: inline-block;
+}
+
+.inputsurname1{
+    font-family: 'Open Sans';
+    padding: 12px 20px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #cacaca;
+    width: 30%;
+    box-shadow: 3px 5px 5px #cacaca;
+    /* display: inline; */
+}
 
 .lessonword{
     display: inline-block;

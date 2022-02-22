@@ -3,52 +3,76 @@
     src: url('../Opun-Regular/Opun-Regular.ttf');
 }
 
+.container{
+    max-width: 1500px;
+    position: relative;
+    /* border: 2px solid blue; */
+    margin: auto;
+}
+
 .textemailpass{
     font-family: 'Open Sans';
-    margin-top: 7%;
+    margin-top: 60px;
     font-size: 20px;
     text-align: center;
 }
 
 .inputtext{
     font-family: 'Open Sans';
-    margin-left: 37%;
+    /* margin-left: 37%; */
+    text-align: center;
 }
 
 .inputemail{
-    margin-top: 2%;
+    margin-top: 30px;
     padding: 12px 20px;
     font-size: 18px;
     border-radius: 10px;
-    width: 40%;
+    width: 30%;
     border: 1px solid #cacaca;
     box-shadow: 3px 5px 5px #cacaca;
 }
 
 .inputpass{
-    margin-top: 4%;
+    margin-top: 30px;
     padding: 12px 20px;
     font-size: 18px;
     border-radius: 10px;
-    width: 40%;
+    width: 30%;
     border: 1px solid #cacaca;
     box-shadow: 3px 5px 5px #cacaca;
 }
 
 .inputconfirmpass{
-    margin-top: 4%;
+    margin-top: 30px;
     padding: 12px 20px;
     font-size: 18px;
     border-radius: 10px;
-    width: 40%;
+    width: 30%;
     border: 1px solid #cacaca;
     box-shadow: 3px 5px 5px #cacaca;
+}
+
+@media screen and (max-width: 900px){
+    .inputemail{
+        width: 270px;
+    }
+    .inputconfirmpass{
+        width: 270px;
+    }
+    .inputpass{
+        width: 270px;
+    }
+
+    .inputotp{
+        width: 270px;
+    }
 }
 
 .nextbutton{
     color: white;
     background-color: #11324D;
-    margin-top: 5%;
+    margin-top: 40px;
     padding: 10px 25px;
     border-radius: 15px;
     font-size: 18px;
@@ -64,7 +88,8 @@
 
 .fontconfirm{
     font-family: 'Open Sans';
-    margin-top: 5%;
+    /* margin-top: 5%; */
+    margin-top: 50px;
 }
 
 .confirmtext1{
@@ -79,21 +104,25 @@
 
 .inputotp{
     padding: 12px 20px;
-    margin-top: 4%;
-    margin-left: 40.2%;
+    margin-top: 50px;
+    /* margin-left: 40.2%; */
     font-size: 18px;
     text-align: center;
     border-radius: 10px;
     border: 1px solid #cacaca;
-    width: 20%;
+    width: 200px;
     box-shadow: 3px 5px 5px #cacaca;
 }
 
 .resendotp{
-    margin-top: 2%;
+    margin-top: 20px;
     text-align: center;
     cursor: pointer;
     color: #0027F5;
+}
+
+.middle{
+    text-align: center;
 }
 
 .submitotp{
@@ -105,7 +134,7 @@
     border-radius: 15px;
     font-size: 15px;
     transition: 0.6s;
-    margin-top: 4%;
+    margin-top: 40px;
     display: inline-block;
 }
 
@@ -119,12 +148,12 @@
     color: white;
     background-color: #11324D;
     border: 0px;
-    margin-left: 30%;
+    /* margin-left: 30%; */
     padding: 10px 25px;
     border-radius: 15px;
     font-size: 15px;
     transition: 0.6s;  
-    left:50%;
+    /* left:50%; */
 }
 
 .cancelotp:hover{

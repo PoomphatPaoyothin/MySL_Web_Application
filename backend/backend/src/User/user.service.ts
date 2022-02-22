@@ -528,4 +528,18 @@ export class UserService{
     async findalluser(){
         return this.userRepo.find({where:{Is_delete:false}});
     }
+
+    async getisquiz(userid:string,catid:string,lessonid:string){
+        var getidquiz = await this.userlessonStatCheckpointRepo.findOne({where:{
+            UserID:userid,
+            CategoryID:catid,
+            LessonID:lessonid
+        }})
+
+        if(!getidquiz){
+            return false
+        }
+
+        return {"score": getidquiz.Lesson_score,"is_quiz":getidquiz.Is_lesson_quiz}
+    }
 }

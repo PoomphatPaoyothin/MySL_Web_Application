@@ -1,11 +1,10 @@
-import { profile } from "console";
+import "./Profile"
 import React, { useEffect, useState } from "react";
 import { userInfo } from "./InterfaceProfile";
 import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupConfirmName from "./PopupConfirmName";
 import PopupConfirmPassword from "./PopupConfirmPassword";
 import ProfileService from "./ProfileService";
-
 
 const BoxEditProfile = (props:any) => {
     // console.log('reload')
@@ -221,20 +220,27 @@ const BoxEditProfile = (props:any) => {
                 <button onClick={NameEdit} className="button-editName">แก้ไข</button>
             }
             {isNameEdit && 
+            
             <div>
-                        
-                <form action="#">
-                    <select 
-                        onChange={((e)=> {setPrefixSelect(e.target.value)})}
-                        value={prefixSelect}>
-                        {prefixSelectOption.map(item=>(
-                            <option value={item.value}>{item.name}</option>
-                        ))}
-                        
-                    </select>
-                </form>
-                <input value={username} onChange={usernameInput} placeholder="ชื่อจริง" required />
-                <input value={surname} onChange={surnameInput} placeholder="นามสกุล" required />
+                <br/>
+                <div className="selectprefix1">
+                    <form action="#">
+                        <select 
+                            onChange={((e)=> {setPrefixSelect(e.target.value)})}
+                            value={prefixSelect}>
+                            {prefixSelectOption.map(item=>(
+                                <option value={item.value}>{item.name}</option>
+                            ))}
+                            
+                        </select>
+                    </form>
+                </div>   
+                
+                
+                <input value={username} onChange={usernameInput} className="inputname1" placeholder="ชื่อจริง" required />
+                <input value={surname} onChange={surnameInput} className="inputsurname1" placeholder="นามสกุล" required />
+                
+                
                 <br />
                 <button onClick={submitName} className="savechange-button"> บันทึกการเปลี่ยนแปลง</button>
                 <button onClick={cancel} className="canclechange-button"> ยกเลิก </button>

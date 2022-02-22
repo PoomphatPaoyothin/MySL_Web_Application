@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import RegisterService from "./RegisterService";
+import "./register.css"
 
 const EmailPass = (props: any) => {
     const history = useHistory()
@@ -69,7 +70,7 @@ const EmailPass = (props: any) => {
             })
     }, [])
     return (
-        <div>
+        <div className="container">
             <head>
                 <script type="text/javascript">
                     function preventBack() {
@@ -84,12 +85,17 @@ const EmailPass = (props: any) => {
             {
                 checkid() &&
                 <div className="fontconfirm">
-                    <p className="confirmtext1">ป้อนรหัสยืนยันจากอีเมล</p><br />
+                    <p className="confirmtext1">ป้อนรหัสยืนยันจากอีเมล</p><br/>
                     <p className="confirmtext2">เราได้ทำการส่งรหัสยืนยันไปยังอีเมลของคุณ</p>
+                    <div className="middle">
                     <input value={otp} onChange={otp_input} placeholder="รหัสยืนยันอีเมล" className="inputotp" required />
+                    </div>
                     <div onClick={resendOTP} className="resendotp">ส่งรหัสยืนยันอีกครั้ง</div>
-                    <button onClick={cancle} className="cancelotp">ยกเลิก</button>
-                    <button onClick={gotonext} className="submitotp">ต่อไป</button>
+                    <div className="middle">
+                        <button onClick={cancle} className="cancelotp">ยกเลิก</button>
+                        <button onClick={gotonext} className="submitotp">ต่อไป</button>
+                    </div>
+                    
 
                 </div>
             }

@@ -95,7 +95,7 @@ const Confirm = (props:any) =>{
 
 
     return(
-        <div>
+        <div className="container">
             {
                 checkid() &&
                 <div>
