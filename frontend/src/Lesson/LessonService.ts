@@ -86,6 +86,7 @@ async function sendscore(obj:any, userid:string): Promise<any>
 async function isquizscore(userid:string, catid:string, lessonid:string): Promise<any>{
     const res = await fetch(`${url}/user/isquizandscore/${userid}/${catid}/${lessonid}`)
     const tmp = await res.json();
+
     return tmp;
 }
 

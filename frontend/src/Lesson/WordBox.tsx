@@ -23,10 +23,10 @@ const WordBox=(props:any)=>{
     }
 
     return(
-        <div>
-
-            <ListGroup.Item variant= {Ismyword() ? "primary" : "secondary"} action onClick={showword}>{props.word}</ListGroup.Item>
-
+        <div style={{
+            background: Ismyword() ? "#d0e4fc" : "#F2F2F2",
+        }} onClick={showword} className='listgroup'>
+        {props.word}
         </div>
 
     )

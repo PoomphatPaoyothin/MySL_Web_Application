@@ -19,7 +19,9 @@
     max-width: 13%;
 }
 .buttonChapter{
-    width:150px
+    width:150px;
+    height:80px;
+    font-size:20px !important;
 }
 
 
@@ -45,7 +47,6 @@
     transition: all 5s ease-in-out;
 }
 .camera{
-    border: 2px red;
     position: relative;
     right:0;
 }
@@ -53,40 +54,102 @@
 .videoplayer{
     height: 20px;
     width: 10px;
-    border: 20px solid red
 }
 
 .videoplayerbox{
     width:33%;
-    border:solid 2px peru;
-    margin: 0 auto;
     float:right;
+    text-align: right;
 }
 
 .lessonBox{
-    border:solid 2px red;
     width:33%;
     float:left;
     text-align: left;
 }
 
 .lessonCotainer{
-    border:solid 4px green;
-    max-width: 1500px;
+    max-width: 2000px;
     text-align: center;
-    margin: auto;
+    margin: 10px;
 }
 
 .nextwordbox{
-    border: 5px solid #FFFF00;
-    text-align: center;
+    text-align: left;
     width: 30%;
-    float:left;
     position:absolute;
-    top: 400px
+    top: 600px;
+    left:0;
+    margin:10px;
 }
 
 .nextwordbutton{
     margin:2px;
 }
 
+.youtubePlayer{
+    height: '390';
+    width: '380';
+}
+
+.title{
+    text-align: left;
+    left:0;
+    font-size: 30px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+
+}
+.listgroup{
+    width:150px;
+    height:50px;
+    text-align: center;
+    vertical-align: center;
+    cursor:pointer;
+    padding: 10px 0;
+    box-shadow: 10px #888888;
+    border: solid 0.005em #DBDBDB;
+    font-size: 20px;
+}
+.showscore{
+    font-size: 30px;
+    right:0;
+}
+
+.showscoreContainer{
+    text-align: center;
+}
+.buttonscore{
+    margin:10px;
+}
+.successexam{
+    width:300px;
+}
+
+.showscoreContainer2{
+    text-align: center;
+}
+.buttonscore2{
+    margin:10px;
+}
+.successexam2{
+    width:300px;
+}
+
+.showscore2{
+    font-size: 30px;
+    right:0;
+    text-align: center;
+}
+
+.examcontainer{
+    text-align: center;
+}
+
+.wordtestcam{
+    font-size: 35px;
+}
+
+.opencamtest{
+    margin:2px;
+}

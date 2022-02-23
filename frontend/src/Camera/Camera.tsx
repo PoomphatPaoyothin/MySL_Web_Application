@@ -207,9 +207,52 @@ const Camera = (props:any) => {
   return (
     <div className='camera'>
       <div className="demo-section">
-        <p>all_result: {all_result}</p>
         <p>คำศัพท์: {word}</p>
         <p>Camera status: {recordWebcam.status}</p>
+
+        
+        {
+          statusprepare == true &&
+          <div>
+          Start in {counterstart}
+          </div>
+        }
+
+        {
+          recordWebcam.status === CAMERA_STATUS.RECORDING  && 
+          <div>Countdown: {counter}</div>
+        } 
+        {/* <button onClick={submitword}>ตรวจสอบท่าทาง</button> */}
+        <div className = 'videocheck'>
+          <video
+            ref={recordWebcam.webcamRef}
+            style={{
+              display: `${
+                recordWebcam.status === CAMERA_STATUS.OPEN ||
+                recordWebcam.status === CAMERA_STATUS.RECORDING 
+                  ? "block"
+                  : "none"
+              }`,
+              width:500,
+              height:300,
+              left:0
+
+            }}
+            autoPlay
+            muted 
+          />
+          <video
+            ref={recordWebcam.previewRef}
+            style={{
+              display: `${
+                recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
+              }`
+            }}
+            autoPlay
+            muted
+            loop
+          />
+        </div>
         <div>
           <Button className='oncloseButton'
             disabled={
@@ -234,49 +277,6 @@ const Camera = (props:any) => {
           </Button>
 
         </div>
-        
-        {
-          statusprepare == true &&
-          <div>
-          Start in {counterstart}
-          </div>
-        }
-
-        {
-          recordWebcam.status === CAMERA_STATUS.RECORDING  && 
-          <div>Countdown: {counter}</div>
-        } 
-        {/* <button onClick={submitword}>ตรวจสอบท่าทาง</button> */}
-        <div className = 'videocheck'>
-          <video
-            ref={recordWebcam.webcamRef}
-            style={{
-              display: `${
-                recordWebcam.status === CAMERA_STATUS.OPEN ||
-                recordWebcam.status === CAMERA_STATUS.RECORDING 
-                  ? "block"
-                  : "none"
-              }`,
-              width:250,
-              left:0
-
-            }}
-            autoPlay
-            muted 
-          />
-          <video
-            ref={recordWebcam.previewRef}
-            style={{
-              display: `${
-                recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
-              }`
-            }}
-            autoPlay
-            muted
-            loop
-          />
-        </div>
-        
       </div>
 
 

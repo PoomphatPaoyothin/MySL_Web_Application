@@ -122,14 +122,13 @@ const Quiz=(props:any)=>{
     const submit=()=>{
         if(!isFinish)
         {
-            console.log('ssssssssssssssssssssssssssssssssssssssss')
             setIsFinish(true)
+            console.log('score in submit is', score)
             let obj2 = {
                 catid:catId,
                 lessonid:lessonId,
                 score:score
             }
-            console.log('objjjjjj ', obj2)
             if(userid != null)
             {
                 LessonService.sendscore(obj2, userid)
@@ -141,17 +140,13 @@ const Quiz=(props:any)=>{
         }
 
     }
-    console.log('is alreadyfetch',alreadyfetch)
-    console.log('is finish',isFinish)
-
     useEffect(() => {
-        console.log('alreadyfetch inside',alreadyfetch)
         if(alreadyfetch)
         {
+            console.log('score in already fetch ', score)
             submit()
         }   
     }, [gosubmit]);
-    console.log('score issss', score)
     const isLastword=()=>{
         if(numberword == 2)
         {
@@ -170,7 +165,6 @@ const Quiz=(props:any)=>{
         setScore(0)
         setNumberword(0)
         setSubmitword('คำต่อไป')
-        localStorage.setItem('score', '0')
     }
     const setcorrect=(value:boolean)=>{
         setIswordcorrect(value)
@@ -190,7 +184,6 @@ const Quiz=(props:any)=>{
                     setAllword(tmp)
 
                     setWord(obj[i].Word_name)
-                    console.log(obj[i].Word_name)
                     break
                 }
             }
@@ -212,19 +205,28 @@ const Quiz=(props:any)=>{
                 !isFinish &&
                 <div>
                     {
-                        isShowcount && <div> แบบทดสอบ เริ่มใน.. {counter} </div>
+                        isShowcount && <div className="showscoreContainer"><p className="showscore"> แบบทดสอบ เริ่มใน.. {counter} </p> </div>
                     }
+                    <div className="showscoreContainer">
+                        <div>
+                        {
+                         !isStart && <img className="successexam2" src='https://cdn.discordapp.com/attachments/622738769786830858/946075166230872105/giphy_1.gif' />
+                            
+                        }
+                        </div>
 
-                    <button disabled={isStart == true} onClick={start}>เริ่มแบบทดสอบ</button>
+                        <Button className={'buttonscore2'} disabled={isStart == true} onClick={start}>เริ่มแบบทดสอบ</Button>
 
-                    <button onClick={backlesson}>กลับสู่บทเรียน</button>
+                        <Button className={'buttonscore2'} onClick={backlesson}>กลับสู่บทเรียน</Button>
+                    </div>
+
                     {
                         isStart && !isShowcount &&
-                        <div>
+                        <div className='examcontainer'>
                             {allword ? 
                             (<CameraQuiz setcorrect={setcorrect}  isClose={isClose} disabled={disableButton} lessonid={lessonId} catid={catId} word={allword[numberword].Word_name}/>):(<div></div>)}
 
-                            **กรุณาเปิดกล้องเพิ่อทำแบบทดสอบ**
+                            <div>**กรุณาเปิดกล้องเพิ่อทำแบบทดสอบ**</div>
                             <Button variant="primary" size="lg" disabled={canNext} onClick={nextword}>{submitword}</Button>
                             
                         </div>
@@ -235,14 +237,18 @@ const Quiz=(props:any)=>{
             }
             {
                 isFinish &&
-                <div>
-                    คะแนนของคุณคือ.. {score}
-                    <button onClick={backlesson}>
+                <div className='showscoreContainer'>
+                    <p className='showscore'>ยินดีด้วยคุณทำแบบทดสอบจบแล้ว</p>
+                    <p className='showscore'> คะแนนของคุณคือ.. {score}</p>
+                    <div>
+                        <img className="successexam" src='https://cdn.discordapp.com/attachments/622738769786830858/946072823506559036/giphy.gif'/>
+                    </div>
+                    <Button className={'buttonscore'} onClick={backlesson}>
                         กลับสู่บทเรียน
-                    </button>
-                    <button onClick={startRe}>
+                    </Button>
+                    <Button className={'buttonscore'} onClick={startRe}>
                         สอบใหม่อีกครั้ง
-                    </button>
+                    </Button>
                     <PopupconfirmRequiz show={showRe} onClose={closeHandlerRe} getStart={reexam} isFinishHandle={isFinishHandle}/>
                 </div>
             }

@@ -14,24 +14,12 @@ const VideoPlayer=(props:any)=>{
     }, [props.objword, props.word]);
 
 
-    useEffect(() => {
-        findnext()
-    }, [word]);
 
-    const findnext=()=>{
-        let size = objword.length
-        for (let i=0; i<size; i++) 
-        {
-            if(objword[i].Word_name == word)
-            {
-                setNextword(objword[i+1].Word_name)
-            }
-        }
-    }
+
 
     const opts = {
         height: '390',
-        width: '250',
+        width: '380',
       };
     return(
         <div className="videoplayerbox">

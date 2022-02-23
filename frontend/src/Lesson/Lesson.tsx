@@ -8,6 +8,7 @@ import Camera from "../Camera/Camera";
 import ReactPlayer from 'react-player'
 import VideoPlayer from "./VideoPlayer";
 import Nextword from "./Nextword";
+import { ListGroup } from "react-bootstrap";
 
 const Lesson=(props:any)=>{
     const catId = props.match.params.catId;
@@ -21,14 +22,17 @@ const Lesson=(props:any)=>{
     const history=useHistory()
     const myid = localStorage.getItem('id');
     const [userinfo,setUserinfo] = useState<any>()
+    const [namecat, setNamecat] = useState<string>('')
 
 
     const fetchwordCat=()=>{
         LessonService.fetchwordCat()
         .then(res=>{
             setObjcat(res)
+            setNamecat(res[0].Category_name)
         })
     }
+
 
     const fetchlesson=()=>{
         LessonService.fetchlesson(catId)
@@ -36,7 +40,6 @@ const Lesson=(props:any)=>{
             setObjlesson(res)
         })
     }
-    console.log('ssssssssssssssss',objlesson)
     
     const fetchword=()=>{
         LessonService.fetchword(catId)
@@ -127,10 +130,6 @@ const Lesson=(props:any)=>{
             {
                 history.push(`/register/3/${myid}`)
             }
-            // else if(userinfo.register_stat == 3)
-            // {
-            //     history.push(`/`)
-            // }
         }
 
     },[userinfo])
@@ -159,6 +158,9 @@ const Lesson=(props:any)=>{
 
     return(
         <div className='lessonCotainer'>
+            <div className='title'>
+                <ListGroup.Item variant= "secondary" >{namecat}</ListGroup.Item>
+            </div>
             {
                 Iswordincat() &&
                 <div className='lessonContainersmall'>
