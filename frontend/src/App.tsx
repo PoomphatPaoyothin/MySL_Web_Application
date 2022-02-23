@@ -39,20 +39,11 @@ const App = () => {
     </div>
   )
   const islogin=()=>{
-    if(id!=undefined)
-    {
       return(login)
-    }
-    else
-    {
-      return(notlogin)
-    }
   }
   const DefaultContainer = ()=>(
     <div>
       <Navigatebar/>
-      {/* <Route exact path='/' component={Home} /> */}
-      {/* {login()} */}
       <Route path='/lesson/:catId/:word'  component={Lesson} />
       <Route path='/profile/:id' component={Profile} />
       <Route path='/editprofile/:id' component={EditProfile} />

@@ -8,7 +8,6 @@ const LessonBox=(props:any)=>{
     const [objword, setObjword] = useState<any[]>()
     const [showchapter, setShowchapter] = useState<number>(props.defaultchap)
 
-
     const newobjword=(mychapter:any)=>{
         if(objword != undefined)
         {
@@ -37,11 +36,17 @@ const LessonBox=(props:any)=>{
     useEffect(() => {
         setObjword(props.objword)
     }, [props.objword]);
+
+    
+    useEffect(() => {
+        setShowchapter(props.defaultchap)
+        console.log('sssss')
+    }, [props.defaultchap,objword]);
     
     return(
-        <div>
+        <div className="lessonBox">
             {objlesson?.map((obj)=> ( 
-            <ChapterBox objword={newobjword(obj)} mychapter={obj} showchapter={showchapter} changeshowchapter={changeshowchapter} word={props.word}/>))} 
+            <ChapterBox catId={props.catId} objword={newobjword(obj)} mychapter={obj} showchapter={showchapter} changeshowchapter={changeshowchapter} word={props.word}/>))} 
         </div>
     )
 }

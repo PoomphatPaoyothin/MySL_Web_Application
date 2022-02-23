@@ -15,6 +15,7 @@ import {useForm} from 'react-hook-form'
 import { less } from "@tensorflow/tfjs";
 import Lesson from "../Lesson/Lesson";
 import './Camera.css'
+import { Button } from "react-bootstrap";
 
 const OPTIONS: RecordWebcamOptions = {
   filename: "file",
@@ -206,33 +207,9 @@ const Camera = (props:any) => {
   return (
     <div className='camera'>
       <div className="demo-section">
-        <p>all_result: {all_result}</p>
         <p>คำศัพท์: {word}</p>
         <p>Camera status: {recordWebcam.status}</p>
-        <div>
-          <button
-            disabled={
-              recordWebcam.status === 'INIT' 
-            }
-            onClick={open_close}
-          >
-            {opencam}
-          </button>
 
-
-          <button
-            disabled={
-              recordWebcam.status === 'INIT' ||
-              recordWebcam.status === CAMERA_STATUS.CLOSED ||
-              recordWebcam.status === CAMERA_STATUS.RECORDING ||
-              statusprepare === true
-            }
-            onClick={start_record}
-          >
-            Start recording
-          </button>
-
-        </div>
         
         {
           statusprepare == true &&
@@ -246,30 +223,60 @@ const Camera = (props:any) => {
           <div>Countdown: {counter}</div>
         } 
         {/* <button onClick={submitword}>ตรวจสอบท่าทาง</button> */}
-        <video
-          ref={recordWebcam.webcamRef}
-          style={{
-            display: `${
-              recordWebcam.status === CAMERA_STATUS.OPEN ||
-              recordWebcam.status === CAMERA_STATUS.RECORDING 
-                ? "block"
-                : "none"
-            }`
-          }}
-          autoPlay
-          muted
-        />
-        <video
-          ref={recordWebcam.previewRef}
-          style={{
-            display: `${
-              recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
-            }`
-          }}
-          autoPlay
-          muted
-          loop
-        />
+        <div className = 'videocheck'>
+          <video
+            ref={recordWebcam.webcamRef}
+            style={{
+              display: `${
+                recordWebcam.status === CAMERA_STATUS.OPEN ||
+                recordWebcam.status === CAMERA_STATUS.RECORDING 
+                  ? "block"
+                  : "none"
+              }`,
+              width:500,
+              height:300,
+              left:0
+
+            }}
+            autoPlay
+            muted 
+          />
+          <video
+            ref={recordWebcam.previewRef}
+            style={{
+              display: `${
+                recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
+              }`
+            }}
+            autoPlay
+            muted
+            loop
+          />
+        </div>
+        <div>
+          <Button className='oncloseButton'
+            disabled={
+              recordWebcam.status === 'INIT' 
+            }
+            onClick={open_close}
+          >
+            {opencam}
+          </Button>
+
+
+          <Button className='oncloseButton'
+            disabled={
+              recordWebcam.status === 'INIT' ||
+              recordWebcam.status === CAMERA_STATUS.CLOSED ||
+              recordWebcam.status === CAMERA_STATUS.RECORDING ||
+              statusprepare === true
+            }
+            onClick={start_record}
+          >
+            Start recording
+          </Button>
+
+        </div>
       </div>
 
 

@@ -1,6 +1,7 @@
 import React from "react";
 import './Lesson.css'
 import { useHistory } from "react-router";
+import { ListGroup } from "react-bootstrap";
 const WordBox=(props:any)=>{
     const history=useHistory()
 
@@ -23,10 +24,11 @@ const WordBox=(props:any)=>{
 
     return(
         <div style={{
-            background: Ismyword() ? "#d3bdbd" : "#F2F2F2",
-          }} onClick={showword} className='clickword'>
-           {props.word}
+            background: Ismyword() ? "#d0e4fc" : "#F2F2F2",
+        }} onClick={showword} className='listgroup'>
+        {props.word}
         </div>
+
     )
 }
 

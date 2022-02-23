@@ -14,6 +14,7 @@ const Stat=(props:any)=>{
         return(
             ProfileService.fetchLessonStat(props.id)
             .then(res=>{
+                console.log('resss is',res)
                 setObjstat(res);
             })
         )
@@ -76,6 +77,7 @@ const Stat=(props:any)=>{
             <div className="vl">
             </div>
             <div className='multimiddlee'>
+                {console.log('asasa',objstat)}
                 {objstat?.map((obj)=> (<Statbox name={findvalue(obj.CategoryID)}  Lesson_amount={obj.Lesson_amount} Lesson_learned={obj.Lesson_learned} category_quiz_score={findquizscore(obj.CategoryID)}/>))} 
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import './Lesson.css'
 import { useHistory } from "react-router-dom";
-
+import YouTube from 'react-youtube';
 
 const VideoPlayer=(props:any)=>{
     const history=useHistory()
@@ -14,30 +14,18 @@ const VideoPlayer=(props:any)=>{
     }, [props.objword, props.word]);
 
 
-    useEffect(() => {
-        findnext()
-    }, [word]);
 
-    const findnext=()=>{
-        let size = objword.length
-        for (let i=0; i<size; i++) 
-        {
-            if(objword[i].Word_name == word)
-            {
-                setNextword(objword[i+1].Word_name)
-            }
-        }
-    }
-    const gonextword=()=>{
 
-        history.push(`/lesson/${objword[0].Category_ID}/${nextword}`)
-    }
 
+    const opts = {
+        height: '390',
+        width: '380',
+      };
     return(
-        <div >
-            <button>คำก่อนหน้า</button>
-            <button onClick={gonextword}>คำถัดไป</button>
-
+        <div className="videoplayerbox">
+            <div className='youtubePlayer'>
+                <YouTube videoId="qt4bR45dfO8" opts={opts} />
+            </div>
         </div>
     )
 }

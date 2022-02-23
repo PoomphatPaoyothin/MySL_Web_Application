@@ -4,13 +4,13 @@ import LessonService from "./LessonService";
 import { useHistory } from "react-router";
 import QuizBox from "./QuizBox";
 import PopupQuiz from "./PopupQuiz";
+import { Button, ListGroup } from "react-bootstrap";
 
 const ChapterBox=(props:any)=>{
     const [visible,setVisible] = useState<Boolean>(false);
     const [visiblepopup, setVisiblepopup] = useState<boolean>(false)
     const [objword, setObjword] = useState<any[]>();
     const history = useHistory()
-
     const openChapter=() =>{
         setVisible(true);
         if(objword != undefined)
@@ -23,6 +23,7 @@ const ChapterBox=(props:any)=>{
     const Isshow=()=>{
         if(objword != undefined)
         {
+            // console.log('sssss', objword[0].Lesson_ID, 'aaaaa', props.showchapter)
             if(objword[0].Lesson_ID == props.showchapter){
                 setVisible(true)
             }
@@ -32,11 +33,6 @@ const ChapterBox=(props:any)=>{
         }
     }
     
-
-
-    const closeHandler=() => {
-        setVisiblepopup(false);
-    }
 
     const go_quiz=()=>{
         history.push(`/quiz/${props.objword[0].Category_ID}/${props.objword[0].Lesson_ID}`)
@@ -54,15 +50,17 @@ const ChapterBox=(props:any)=>{
         Isshow()
     }, [props.showchapter,objword]);
 
+    useEffect(() => {
+    }, []);
     
     return(
-        <div>
-            <button onClick={openChapter} className='buttonChapter'>บทเรียนที่ {props.mychapter}</button>
+        <div className='chapterbox'>
+            <Button onClick={openChapter} variant="warning" className='buttonChapter'>บทเรียนที่ {props.mychapter}</Button>
 
             {visible &&
-            <div>
+            <div>   
                 {objword?.map((obj)=>(<WordBox word ={obj.Word_name} chapter={props.mychapter} lesson={objword[0].Category_ID} globalword={props.word} />))}
-                <QuizBox lessonid={objword} onOpen={go_quiz}/>
+                <QuizBox catId={props.catId} lessonid={objword} onOpen={go_quiz} lessonId={props.mychapter}/>
             </div>
             
             }

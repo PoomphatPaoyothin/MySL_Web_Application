@@ -15,6 +15,7 @@ import {useForm} from 'react-hook-form'
 import { less } from "@tensorflow/tfjs";
 import Lesson from "../Lesson/Lesson";
 import './Camera.css'
+import { Button } from "react-bootstrap";
 
 const OPTIONS: RecordWebcamOptions = {
   filename: "file",
@@ -39,8 +40,8 @@ const CameraQuiz = (props:any) => {
   const [word, setWord] = useState<string>('-')
   const [all_result, setAll_result] = useState<any>()
   const [isgetword, setIsgetword] = useState<boolean>(false)
-
-
+  const [closethenopen, setClosethenopen] = useState<boolean>(false)
+  const [status, setStatus] = useState<string>('')
 
   const getRecordingFileHooks = async () => {
   const blob = await recordWebcam.getRecording();
@@ -62,6 +63,7 @@ const CameraQuiz = (props:any) => {
           .then(res=>{
             setWord(res.ans)
             setIsgetword(true)
+            setStatus('ประมวลผลเสร็จสิ้น ไปคำต่อไปได้')
           })
         }
       })
@@ -83,6 +85,7 @@ const CameraQuiz = (props:any) => {
     {
       recordWebcam.retake()
       setStatustmp(true)
+      props.disabled(true)
     }
     else
     {
@@ -105,6 +108,7 @@ const CameraQuiz = (props:any) => {
     {
       recordWebcam.open()
       setCounter(time)
+      props.disabled(true)
     }
     if(recordWebcam.status == 'OPEN'){
       recordWebcam.close()
@@ -118,10 +122,6 @@ const CameraQuiz = (props:any) => {
       recordWebcam.close()
       init()
     }
-  }
-  const submitword=()=>{
-    const blob = recordWebcam.getRecording();
-
   }
 
   useEffect(() => {
@@ -145,14 +145,22 @@ const CameraQuiz = (props:any) => {
 
   useEffect(() => {
     if(isgetword == true){
-      console.log('sssssssssssssss')
-      props.disabled(true)
+      props.disabled(false)
       if(word == props.word)
       {
-
+        props.setcorrect(true)
+      }
+      else
+      {
+        props.setcorrect(false)
       }
     }
   }, [isgetword]);
+
+  useEffect(() => {
+    console.log('isgetword is', isgetword)
+  }, [isgetword]);
+
 
   useEffect(() => {
     if(statustmp2 == false)
@@ -198,6 +206,8 @@ const CameraQuiz = (props:any) => {
     {
       getRecordingFileHooks()
       setWord('กำลังประมวลผล')
+      setStatus('ประมวลผลเสร็จสิ้น ไปคำต่อไปได้')
+
     }
   }, [recordWebcam.status]);
 
@@ -216,25 +226,37 @@ const CameraQuiz = (props:any) => {
       }
     })
   }, [props.word]);
+  useEffect(() => {
+    if(props.isClose == true){
+      open_close()
+      setClosethenopen(!closethenopen)
+    }
+  }, [props.word]);
+  useEffect(() => {
+    open_close()
+  }, [closethenopen]);
+
 
   return (
     <div className='camera'>
       <div className="demo-section">
         {/* <p>all_result: {all_result}</p> */}
-        <p>คำศัพท์: {props.word}</p>
-        <p>Camera status: {recordWebcam.status}</p>
+        {/* {word} */}
+        {status}
+        <p className="wordtestcam">คำศัพท์: {props.word}</p>
+        {/* <p>ศถานะกล้อง: {recordWebcam.status}</p> */}
         <div>
-          <button
+          <Button className='opencamtest'
             disabled={
               recordWebcam.status === 'INIT' 
             }
             onClick={open_close}
           >
             {opencam}
-          </button>
+          </Button>
 
 
-          <button
+          <Button className='opencamtest'
             disabled={
               recordWebcam.status === 'INIT' ||
               recordWebcam.status === CAMERA_STATUS.CLOSED ||
@@ -244,7 +266,7 @@ const CameraQuiz = (props:any) => {
             onClick={start_record}
           >
             Start recording
-          </button>
+          </Button>
 
         </div>
         
@@ -268,7 +290,9 @@ const CameraQuiz = (props:any) => {
               recordWebcam.status === CAMERA_STATUS.RECORDING 
                 ? "block"
                 : "none"
-            }`
+            }`,
+            width:500,
+            height:300,
           }}
           autoPlay
           muted
@@ -278,7 +302,9 @@ const CameraQuiz = (props:any) => {
           style={{
             display: `${
               recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
-            }`
+            }`,
+            width:500,
+            height:300,
           }}
           autoPlay
           muted

@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import LessonBox from "./LessonBox";
 import Navigatebar from "../Navbar/Navigatebar";
 import LessonService from "./LessonService";
-import VideoPlayer from "./VideoPlayer";
 import RegisterService from "../Register/RegisterService";
 import { useHistory } from "react-router-dom";
 import Camera from "../Camera/Camera";
+import ReactPlayer from 'react-player'
+import VideoPlayer from "./VideoPlayer";
+import Nextword from "./Nextword";
+import { ListGroup } from "react-bootstrap";
 
 const Lesson=(props:any)=>{
     const catId = props.match.params.catId;
@@ -19,14 +22,17 @@ const Lesson=(props:any)=>{
     const history=useHistory()
     const myid = localStorage.getItem('id');
     const [userinfo,setUserinfo] = useState<any>()
+    const [namecat, setNamecat] = useState<string>('')
 
 
     const fetchwordCat=()=>{
         LessonService.fetchwordCat()
         .then(res=>{
             setObjcat(res)
+            setNamecat(res[0].Category_name)
         })
     }
+
 
     const fetchlesson=()=>{
         LessonService.fetchlesson(catId)
@@ -34,7 +40,6 @@ const Lesson=(props:any)=>{
             setObjlesson(res)
         })
     }
-    console.log('ssssssssssssssss',objlesson)
     
     const fetchword=()=>{
         LessonService.fetchword(catId)
@@ -125,10 +130,6 @@ const Lesson=(props:any)=>{
             {
                 history.push(`/register/3/${myid}`)
             }
-            // else if(userinfo.register_stat == 3)
-            // {
-            //     history.push(`/`)
-            // }
         }
 
     },[userinfo])
@@ -156,18 +157,20 @@ const Lesson=(props:any)=>{
 
 
     return(
-        <div>
-            <div>
-                
+        <div className='lessonCotainer'>
+            <div className='title'>
+                <ListGroup.Item variant= "secondary" >{namecat}</ListGroup.Item>
             </div>
             {
                 Iswordincat() &&
-                <div>
-                    {showcatname()}
+                <div className='lessonContainersmall'>
                     <LessonBox objlesson={objlesson2} objword={objword} catId={catId} defaultchap={Defaultchap()} word={word}/>
-                    {showWord()}
+                    {/* {showWord()} */}
+
                     <Camera className = 'camera_lesson' catid={catId} word={word}/>
                     <VideoPlayer objword={objword} word={word}/>
+                    <Nextword objword={objword} word={word}/>
+
                 </div>
 
             }
