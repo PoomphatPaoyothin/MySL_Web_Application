@@ -11,6 +11,7 @@ Chart.register(ArcElement);
 
 const Statbox=(props:any)=>{
     return(
+        
         <div className='statboxBG'>
             <div className='wordallPos'>
                 <div className='namecategory'>
@@ -24,7 +25,7 @@ const Statbox=(props:any)=>{
                             data={{
                             labels: [
                                 'Red',
-                                'Bdlue',
+                                'Blue',
                                 ],
                             datasets: [
                                 {
@@ -83,8 +84,7 @@ const Statbox=(props:any)=>{
 
                
             </div>
-            
-        </div>
+            </div>
     )
 }
 

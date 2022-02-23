@@ -157,11 +157,13 @@ const Above=(props:any|null)=>{
 
                 </div>
             </div>
+            
 
             {props.ismyid &&
             <div className='editProfileButtonPos'>
-                <img src = 'https://cdn.discordapp.com/attachments/912175328066142240/915093553565298748/Pencil.png' className='pencilPos'/>
                 <button className='editProfileButton' onClick={gotoEdit}>EDIT PROFILE</button>
+                {/* <img src = 'https://cdn.discordapp.com/attachments/912175328066142240/915093553565298748/Pencil.png' className='pencilPos'/> */}
+
             </div>
             }
 

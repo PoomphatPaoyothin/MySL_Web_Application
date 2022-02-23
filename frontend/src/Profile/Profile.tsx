@@ -74,7 +74,7 @@ const Profile=(props:any)=>{
         <div>
         {console.log('isid', isid)}
         {isid &&
-        <div className='container'>
+        <div className='containerprofile'>
             <Above id={userId} ismyid={ismyid} myid={myid}/>
             <Stat id={userId}/>
             <Follow id={userId}/>

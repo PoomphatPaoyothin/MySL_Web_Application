@@ -3,10 +3,21 @@
     src: url('../Opun-Regular/Opun-Regular.ttf');
 }
 
-.container{
-    max-width: 2000px;
-    /* border: 5px solid black; */
+.containerprofile{
+    max-width: 1500px;
+    /* min-width: 80%; */
+    border: 5px solid pink;
     margin: auto;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    /* text-align: center; */
+}
+
+.container1{
+    max-width: 1500px;
+    border: 5px solid black;
+
 }
 
 .above{
@@ -14,24 +25,32 @@
     height:200px;
     /* background-color:green; */
 }
+
 .propic{
-    width: 100%;
+    /* width: 100%; */
+    width: 130px;
 }
 
 .propicPos{
-    position: absolute;
-    left:3%;
-    top:50%;
+    position: relative;
+    left:50px;
+    /* top:50%; */
+    top:100px;
     transform: translate(0,-50%);
+    display: inline-block;
 }
 
 .followingAbovePos{
     font-family: 'Open Sans';
     font-size: 16px;
     position:absolute;
-    left:50%;
-    top:45%;
+    left:600px;
+    /* left: 40%; */
+    /* left: 0%; */
+    /* top:45%; */
+    top: 100px;
     transform: translate(0,-50%);
+    display: inline-block;
 }
 
 .nOfollowingAbove{
@@ -42,20 +61,27 @@
     font-family: 'Open Sans';
     font-size: 16px;
     position:absolute;
-    left:60%;
-    top:45%;
+    /* left: 0%; */
+    left:750px;
+    /* left: 0%; */
+    top:100px;
     transform: translate(0,-50%);
+    display: inline-block;
 }
 
 .nOfollowerAbove{
     text-align: center;
 }
 
+
 .editProfileButtonPos{
     position:absolute;
     left: 80%;
-    top:40%;
+    /* left: 900px; */
+    /* right: 0; */
+    top:100px;
     transform: translate(0,-50%);
+    display: inline-block;
 }
 
 .editProfileButton{
@@ -70,6 +96,67 @@
     text-align: right;
     padding-right: 1em;
     cursor: pointer;
+    display: inline-block;
+}
+
+@media screen and (max-width: 1080px){
+    .followerAbovePos{
+        left: 700px;
+    }
+
+    .followingAbovePos{
+        left: 550px;
+    }
+}
+
+@media screen and (max-width: 990px){
+
+    .followerAbovePos{
+        left: 680px;
+    }
+
+    .followingAbovePos{
+        left: 530px;
+    }
+}
+
+@media screen and (max-width: 970px){
+
+    .followerAbovePos{
+        left: 620px;
+    }
+}
+
+@media screen and (max-width: 900px){
+
+    .followerAbovePos{
+        top: 210px;
+        left: 10%;
+    }
+
+    .followingAbovePos{
+        top: 210px;
+        left: 25%;
+    }
+
+    .statBG{
+        top: 250px;
+        width: 100%;
+    }
+
+    .follow{
+        top: 1200px;
+    }
+
+}
+
+@media screen and (max-width: 700px){
+
+    .editProfileButtonPos{
+        top: 210px;
+        left: 50%;
+    }
+
 }
 
 .editProfileBackground{
@@ -169,22 +256,32 @@
 }
 
 .pencilPos{
-    position:absolute;
-    top:25%;
-    width:22%;
-    left:8%;
-
+    position:relative;
+    /* top:25%; */
+    width:100px;
+    /* left:8%; */
+    display: inline-block;
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
 .statBG{
     position:absolute;
-    width:60%;
-    /* height:auto; */
+    /* width:920px; */
+    width: 65%;
     border-radius: 10px;
-    margin-left: 3%;
+    /* margin-left: 10px; */
+    margin-left: 2%;
     background-color:#f2f2f2;
+    /* background-color: red; */
     box-shadow: 3px 5px 5px #cacaca;
+    /* top: 300px; */
+}
+
+@media screen and (max-width: 900px) {
+    .statBG{
+        width: 95%;
+        left: 0%;
+    }
 }
 
 .vl{
@@ -203,6 +300,7 @@
     border-bottom:1px solid #cacaca;
     font-size: 15px;
     text-align: center;
+    /* position: relative; */
 }
 
 .selectprefix1{
@@ -255,20 +353,23 @@
     position:relative;
 }
 
-
 .namecategory{
     display: block;
 }
 
 .follow{
     position:absolute;
-    right:3%;
+    /* right:3%; */
     width:30%;
     height:150%;
+    /* margin-top: 100px; */
     background-color:#f2f2f2;
     border-radius: 15px;
     /* border: 2px solid black; */
     box-shadow: 3px 5px 5px #cacaca;
+    display: block;
+    right: 20px;
+    /* float: left; */
 }
 
 .showfollower{
@@ -304,11 +405,13 @@
 }
 
 .namePos{
-    position:absolute;
-    left:13%;
-    top:50%;
+    position:relative;
+    /* left:5%; */
+    left:50px;
+    top:90px;
     transform: translate(0,-50%);
     /* border: 2px solid red; */
+    display: inline-block;
 }
 
 .nameuser{
@@ -319,6 +422,10 @@
     z-index: 2;
     color:white;
     font-size:20px;
+}
+
+.nameProfileBox{
+    width: 100%;
 }
 
 
@@ -353,6 +460,7 @@
     background: rgba(0, 0, 0, 0.7);
     transition: opacity 500ms;
 }
+
 .close {
     position: absolute;
     top: 20px;
@@ -363,6 +471,7 @@
     text-decoration: none;
     color: #333;
 }
+
 .close:hover {
     cursor: pointer;
     color: #000;
@@ -377,7 +486,6 @@
     position: relative;
     transition: all 5s ease-in-out;
 }
-
 
 .overlayName{
     visibility: hidden;
@@ -411,11 +519,11 @@
     text-decoration: none;
     color: #333;
 }
+
 .closeName:hover {
     cursor: pointer;
     color: #000;
 }
-
 
 .overlayPass{
     visibility: hidden;
@@ -449,6 +557,7 @@
     text-decoration: none;
     color: #333;
 }
+
 .closePass:hover {
     cursor: pointer;
     color: #000;

@@ -39,7 +39,7 @@ const Navigatebar=(prop:any)=>{
                 <img src = {'https://cdn.discordapp.com/attachments/912175328066142240/920238805628387328/MysL.png'} className = 'home-pic'/>{'  '}MySL
             </Navbar.Brand>
 
-            <Form className="d-flex form-search">
+            {/* <Form className="d-flex form-search">
                     <InputGroup>
                         <InputGroup.Text>
                             <img src={searchIcon} className= 'search-pic'/>
@@ -50,10 +50,10 @@ const Navigatebar=(prop:any)=>{
                         aria-label="Search"
                     />
                 </InputGroup>
-            </Form>
+            </Form> */}
 
             <Form> 
-            <button onClick={showDash}> Dashboard</button>
+            {/* <button onClick={showDash}> Dashboard</button> */}
             </Form>
 
             <Nav className = "ms-auto">
