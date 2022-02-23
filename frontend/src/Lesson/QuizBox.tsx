@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import './Lesson.css'
 import { useHistory } from "react-router";
 import PopupQuiz from "./PopupQuiz";
+import { ListGroup } from "react-bootstrap";
 const QuizBox=(props:any)=>{
 
     const open=()=>{
@@ -9,11 +10,10 @@ const QuizBox=(props:any)=>{
     }
 
     return(
-        <div style={{
-            background: "#F2F2F2",
-          }} className='clickwordquiz' onClick={open}>
+        <div>
 
-           แบบทดสอบที่ {props.lessonid[0].Lesson_ID}
+           
+           <ListGroup.Item variant= "secondary" action onClick={open}>แบบทดสอบที่ {props.lessonid[0].Lesson_ID}</ListGroup.Item>
 
 
         </div>

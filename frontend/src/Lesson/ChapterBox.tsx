@@ -4,6 +4,7 @@ import LessonService from "./LessonService";
 import { useHistory } from "react-router";
 import QuizBox from "./QuizBox";
 import PopupQuiz from "./PopupQuiz";
+import { Button, ListGroup } from "react-bootstrap";
 
 const ChapterBox=(props:any)=>{
     const [visible,setVisible] = useState<Boolean>(false);
@@ -56,11 +57,11 @@ const ChapterBox=(props:any)=>{
 
     
     return(
-        <div>
-            <button onClick={openChapter} className='buttonChapter'>บทเรียนที่ {props.mychapter}</button>
+        <div className='chapterobx'>
+            <Button onClick={openChapter} variant="warning" className='buttonChapter'>บทเรียนที่ {props.mychapter}</Button>
 
             {visible &&
-            <div>
+            <div>   
                 {objword?.map((obj)=>(<WordBox word ={obj.Word_name} chapter={props.mychapter} lesson={objword[0].Category_ID} globalword={props.word} />))}
                 <QuizBox lessonid={objword} onOpen={go_quiz}/>
             </div>

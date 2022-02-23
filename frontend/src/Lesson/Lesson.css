@@ -19,17 +19,9 @@
     max-width: 13%;
 }
 .buttonChapter{
-    display: block;
-    cursor:pointer;
-    padding: 5px;
-    background-color:#CDF0EA;
-    border-radius: 3px;
-    border: 0px;
+    width:150px
 }
 
-.buttonChapter:hover {
-    background-color: #00C985;
-  }
 
   .overlayName{
     visibility: hidden;
@@ -57,3 +49,44 @@
     position: relative;
     right:0;
 }
+
+.videoplayer{
+    height: 20px;
+    width: 10px;
+    border: 20px solid red
+}
+
+.videoplayerbox{
+    width:33%;
+    border:solid 2px peru;
+    margin: 0 auto;
+    float:right;
+}
+
+.lessonBox{
+    border:solid 2px red;
+    width:33%;
+    float:left;
+    text-align: left;
+}
+
+.lessonCotainer{
+    border:solid 4px green;
+    max-width: 1500px;
+    text-align: center;
+    margin: auto;
+}
+
+.nextwordbox{
+    border: 5px solid #FFFF00;
+    text-align: center;
+    width: 30%;
+    float:left;
+    position:absolute;
+    top: 400px
+}
+
+.nextwordbutton{
+    margin:2px;
+}
+

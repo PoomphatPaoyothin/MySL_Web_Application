@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import LessonBox from "./LessonBox";
 import Navigatebar from "../Navbar/Navigatebar";
 import LessonService from "./LessonService";
-import VideoPlayer from "./VideoPlayer";
 import RegisterService from "../Register/RegisterService";
 import { useHistory } from "react-router-dom";
 import Camera from "../Camera/Camera";
 import ReactPlayer from 'react-player'
+import VideoPlayer from "./VideoPlayer";
+import Nextword from "./Nextword";
 
 const Lesson=(props:any)=>{
     const catId = props.match.params.catId;
@@ -157,19 +158,16 @@ const Lesson=(props:any)=>{
 
 
     return(
-        <div>
-            <div>
-                
-            </div>
+        <div className='lessonCotainer'>
             {
                 Iswordincat() &&
-                <div>
-                    {showcatname()}
+                <div className='lessonContainersmall'>
                     <LessonBox objlesson={objlesson2} objword={objword} catId={catId} defaultchap={Defaultchap()} word={word}/>
-                    {showWord()}
+                    {/* {showWord()} */}
+
                     <Camera className = 'camera_lesson' catid={catId} word={word}/>
                     <VideoPlayer objword={objword} word={word}/>
-                    <ReactPlayer url='https://www.youtube.com/watch?v=7sDY4m8KNLc'/>
+                    <Nextword objword={objword} word={word}/>
 
                 </div>
 

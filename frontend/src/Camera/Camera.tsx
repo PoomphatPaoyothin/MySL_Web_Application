@@ -15,6 +15,7 @@ import {useForm} from 'react-hook-form'
 import { less } from "@tensorflow/tfjs";
 import Lesson from "../Lesson/Lesson";
 import './Camera.css'
+import { Button } from "react-bootstrap";
 
 const OPTIONS: RecordWebcamOptions = {
   filename: "file",
@@ -210,17 +211,17 @@ const Camera = (props:any) => {
         <p>คำศัพท์: {word}</p>
         <p>Camera status: {recordWebcam.status}</p>
         <div>
-          <button
+          <Button className='oncloseButton'
             disabled={
               recordWebcam.status === 'INIT' 
             }
             onClick={open_close}
           >
             {opencam}
-          </button>
+          </Button>
 
 
-          <button
+          <Button className='oncloseButton'
             disabled={
               recordWebcam.status === 'INIT' ||
               recordWebcam.status === CAMERA_STATUS.CLOSED ||
@@ -230,7 +231,7 @@ const Camera = (props:any) => {
             onClick={start_record}
           >
             Start recording
-          </button>
+          </Button>
 
         </div>
         
@@ -246,30 +247,36 @@ const Camera = (props:any) => {
           <div>Countdown: {counter}</div>
         } 
         {/* <button onClick={submitword}>ตรวจสอบท่าทาง</button> */}
-        <video
-          ref={recordWebcam.webcamRef}
-          style={{
-            display: `${
-              recordWebcam.status === CAMERA_STATUS.OPEN ||
-              recordWebcam.status === CAMERA_STATUS.RECORDING 
-                ? "block"
-                : "none"
-            }`
-          }}
-          autoPlay
-          muted
-        />
-        <video
-          ref={recordWebcam.previewRef}
-          style={{
-            display: `${
-              recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
-            }`
-          }}
-          autoPlay
-          muted
-          loop
-        />
+        <div className = 'videocheck'>
+          <video
+            ref={recordWebcam.webcamRef}
+            style={{
+              display: `${
+                recordWebcam.status === CAMERA_STATUS.OPEN ||
+                recordWebcam.status === CAMERA_STATUS.RECORDING 
+                  ? "block"
+                  : "none"
+              }`,
+              width:250,
+              left:0
+
+            }}
+            autoPlay
+            muted 
+          />
+          <video
+            ref={recordWebcam.previewRef}
+            style={{
+              display: `${
+                recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
+              }`
+            }}
+            autoPlay
+            muted
+            loop
+          />
+        </div>
+        
       </div>
 
 

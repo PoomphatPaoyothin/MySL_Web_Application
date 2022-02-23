@@ -39,7 +39,7 @@ const LessonBox=(props:any)=>{
     }, [props.objword]);
     
     return(
-        <div>
+        <div className="lessonBox">
             {objlesson?.map((obj)=> ( 
             <ChapterBox objword={newobjword(obj)} mychapter={obj} showchapter={showchapter} changeshowchapter={changeshowchapter} word={props.word}/>))} 
         </div>

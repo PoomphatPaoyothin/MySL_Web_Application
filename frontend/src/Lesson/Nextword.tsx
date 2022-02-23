@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import './Lesson.css'
 import { useHistory } from "react-router-dom";
-import YouTube from 'react-youtube';
+import { Button } from "react-bootstrap";
 
-const VideoPlayer=(props:any)=>{
+const Nextword=(props:any)=>{
     const history=useHistory()
     const [word, setWord] = useState<string>()
     const [objword, setObjword] = useState<any>([])
@@ -28,18 +28,20 @@ const VideoPlayer=(props:any)=>{
             }
         }
     }
+    const gonextword=()=>{
 
-    const opts = {
-        height: '390',
-        width: '250',
-      };
+        history.push(`/lesson/${objword[0].Category_ID}/${nextword}`)
+    }
+
     return(
-        <div className="videoplayerbox">
-            <div className='youtubePlayer'>
-                <YouTube videoId="qt4bR45dfO8" opts={opts} />
-            </div>
+        <div className="nextwordbox">
+            
+            <Button className='nextwordbutton'>คำก่อนหน้า</Button>
+            <Button className='nextwordbutton' onClick={gonextword}>คำถัดไป</Button>
+
+
         </div>
     )
 }
 
-export default VideoPlayer
+export default Nextword
