@@ -215,4 +215,10 @@ export class UserController{
                         @Param('catid') catid:string):Promise<any>{
         return this.userService.getusercatstat(userid,catid)
     }
+
+    @Patch('updateuserimg/:userid')
+    async updateuserimg(@Param('userid') userid:string,
+                        @Body('imgpath') imgpath:string):Promise<any>{
+        return this.userService.updateuserpicture(userid,imgpath)
+    }
 }

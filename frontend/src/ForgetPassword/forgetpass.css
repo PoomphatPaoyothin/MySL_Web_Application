@@ -43,6 +43,54 @@
     cursor: pointer;
     display: inline-block;
     transition: 0.6s;
-    margin-top: 120px;
-    margin-left: 65%;
+    /* margin-top: 120px; */
+    margin-left: 35%;
 }
+
+.skip{
+    width: 80px;
+    font-family: 'Open Sans';
+    height: 50px;
+    border-radius: 15px;
+    border:0px;
+    color:white;
+    background-color: #11324D;
+    font-size:14px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.6s;
+    margin-top: 100px;
+    /* margin-left: 35%; */
+}
+
+.resendotppos{
+    text-align: center;
+    margin-top: 20px;
+}
+
+.resendotp{
+    font-family: 'Open Sans';
+}
+
+.inputpass{
+    font-family: 'Open Sans';
+    margin-top: 90px;
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    width: 30%;
+    border: 1px solid #cacaca;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+
+.inputconfirmpass{
+    font-family: 'Open Sans';
+    /* margin-top: 100px; */
+    padding: 12px 20px;
+    font-size: 18px;
+    border-radius: 10px;
+    width: 30%;
+    border: 1px solid #cacaca;
+    box-shadow: 3px 5px 5px #cacaca;
+}
+

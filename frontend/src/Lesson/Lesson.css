@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../Opun-Regular/Opun-Regular.ttf');
+}
+
 .clickword{
     display:block;
     color:#444;
@@ -19,6 +24,7 @@
     max-width: 13%;
 }
 .buttonChapter{
+    font-family: 'Open Sans';
     width:150px;
     height:80px;
     font-size:20px !important;
@@ -96,14 +102,16 @@
 }
 
 .title{
+    font-family: 'Open Sans';
     text-align: left;
     left:0;
-    font-size: 30px;
+    font-size: 25px;
     margin-bottom: 10px;
     margin-top: 10px;
 
 }
 .listgroup{
+    font-family: 'Open Sans';
     width:150px;
     height:50px;
     text-align: center;
@@ -115,6 +123,7 @@
     font-size: 20px;
 }
 .showscore{
+    font-family: 'Open Sans';
     font-size: 30px;
     right:0;
 }
@@ -140,6 +149,7 @@
 }
 
 .showscore2{
+    font-family: 'Open Sans';
     font-size: 30px;
     right:0;
     text-align: center;
@@ -150,6 +160,7 @@
 }
 
 .wordtestcam{
+    font-family: 'Open Sans';
     font-size: 35px;
 }
 

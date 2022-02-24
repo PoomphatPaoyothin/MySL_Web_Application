@@ -630,4 +630,17 @@ export class UserService{
             return getusercatstat;
         }
     }
+
+    async updateuserpicture(userid:string,imgpath:string){
+        var getuser = await this.userRepo.findOne({where:{
+            ID:userid
+        }})
+        if(!getuser){
+            return false
+        }
+        
+        getuser.imguser = imgpath;
+        await this.userRepo.save(getuser)
+        return getuser;
+    }
 }

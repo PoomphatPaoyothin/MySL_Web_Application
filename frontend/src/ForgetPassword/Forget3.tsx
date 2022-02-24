@@ -35,10 +35,20 @@ const Forget3 = (props:any) =>{
 
     return(
         <div>
-            <input value={pass} type={'password'}  onChange={pass_input} placeholder="รหัสผ่าน" required />
-            <input value={Confirmpass} type={'password'}   onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
-            <button  onClick={gotonext}>ยืนยัน</button>
-            <button  onClick={skip}>ข้าม</button>
+            <div className="text1">
+                กรุณากรอกรหัสผ่านใหม่ที่ท่านต้องการเปลี่ยน
+            </div>
+            <div className="center">
+            <input value={pass} type={'password'} className="inputpass" onChange={pass_input} placeholder="รหัสผ่าน" required /><br/>
+            <input value={Confirmpass} type={'password'} className="inputconfirmpass" onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
+            </div>
+
+            <div className="center">
+                <button  onClick={skip} className="skip">ข้าม</button>
+                <button  onClick={gotonext} className="nextbutton">ยืนยัน</button>
+            </div>
+            
+            
         </div>
     )
 }

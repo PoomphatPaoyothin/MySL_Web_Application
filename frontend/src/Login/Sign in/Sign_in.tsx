@@ -58,7 +58,7 @@ const Sign_in = () => {
   return(
     <div className='container'>
         <div className = 'left_login'>
-            <img src={logo} className='logo'/>
+            {/* <img src={logo} className='logo'/> */}
             <div className = 'mySL_pos'>
             MySL
             </div>

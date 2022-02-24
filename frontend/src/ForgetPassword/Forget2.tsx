@@ -52,9 +52,14 @@ const Forget2 = (props:any) =>{
                     กรุณาป้อนรหัสยืนยันจากอีเมล
                     </div>
                     <div className="center">
-                        <input value={otp} type={'password'} className="inputemail" onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
+                        <input value={otp} className="inputemail" onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
                     </div>
-                    <button onClick={resendOTP}>ส่งรหัสยืนยันอีกครั้ง</button>
+                    <div className="resendotppos">
+                        <label onClick={resendOTP} className='resendotp'> 
+                            ส่งรหัสยืนยันอีกครั้ง
+                        </label>
+                    </div>
+                    
                     <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
                 </div>
             </div>
