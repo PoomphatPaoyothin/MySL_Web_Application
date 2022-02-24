@@ -673,8 +673,9 @@
 
 .showscorestat{
     position:relative;
-    width: 300px;
-    left:18%;
+    /* width: 300px; */
+    width: 100%;
+    /* left:18%; */
     /* border:2px solid red */
 }
 
@@ -704,6 +705,7 @@
     overflow: hidden;
     border-radius: 50%;
   }
+
 .img-upload:before{
     content: url('https://cdn.discordapp.com/attachments/912175328066142240/946400596209045524/unknown.png');
     font-size: 90px;

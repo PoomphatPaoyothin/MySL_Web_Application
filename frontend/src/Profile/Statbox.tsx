@@ -89,13 +89,9 @@ const Statbox=(props:any)=>{
                         {props.cat_user_score}/{props.cat_score} คะแนน
                     </div>
                 </div>
-  
-                   
                 <br/>
-
-               
             </div>
-            </div>
+        </div>
     )
 }
 

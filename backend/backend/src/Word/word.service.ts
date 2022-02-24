@@ -37,18 +37,17 @@ export class WordService{
         return findthis;
     }
 
-    async getWordByWord(Word:string): Promise<word[]>{
-        var getmongo = getMongoRepository(word);
-        console.log(Word)
-        var getsome = await getmongo.find({
-            where: "Word_name LIKE '%hello%'"
+    async getWordByWord(Word:string): Promise<any>{
+        var getmongo = await this.wordRepository.findOne({
+            where:{Word_name:Word}
         })
-        return getsome;
-        // console.log(word);
-        // return this.wordRepository.find(
-        //     {
-        //         Word_name: Like("%hello #%")
-        //     })
-        // return this.wordRepository.find({where:{Word_name:word}})
+
+        if(!getmongo){
+            return false
+        }
+
+        else{
+            return getmongo;
+        }
     }
 }

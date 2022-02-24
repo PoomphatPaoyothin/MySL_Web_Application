@@ -59,7 +59,7 @@ export class registerService{
         const {
             User_prefix_name,
             User_name,
-            User_surname,
+            User_surname
         } = RegisterInput;
 
         const timeupdate = new Date();
