@@ -125,7 +125,7 @@ export class registerService{
         const getUser = await this.userRepo.findOne({where:{User_email:email}});
         getUser.temp = numstring;
         await this.userRepo.save(getUser);
-        return true;
+        return getUser.temp;
     }
 
     async checkotpwithemail(email:string,otp:string){

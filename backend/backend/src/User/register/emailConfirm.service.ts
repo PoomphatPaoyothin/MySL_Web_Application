@@ -34,7 +34,7 @@ export class EmailConfirmationService {
 
   public sendConfirmPassword(email:string,num:number){
     const payload: VerificationTokenPayload = { email };
-    const text = `รหัสยืนยันของท่านคือ ${num} </br> กรุณานำรหัสไปกรอกเพื่อยืนยันที่จะเปลี่ยนรหัสผ่าน `;
+    const text = `รหัสยืนยันของท่านคือ ${num} กรุณานำรหัสไปกรอกเพื่อยืนยันที่จะเปลี่ยนรหัสผ่าน `;
 
     return this.emailService.sendMail({
       to: email,
