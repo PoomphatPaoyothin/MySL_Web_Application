@@ -130,6 +130,7 @@ const Above=(props:any|null)=>{
         <div className='above'>
 
             <div  className='propicPos'>
+                {/* <img src={require(`../profileforupload/${props.id}.jpg`).default} className='propic'/> */}
                 <img src={require(`../profileforupload/${props.id}.jpg`).default} className='propic'/>
             </div>
 

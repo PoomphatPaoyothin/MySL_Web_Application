@@ -673,8 +673,8 @@
 
 .showscorestat{
     position:relative;
-    width: 280px;
-    left:20%;
+    width: 300px;
+    left:18%;
     /* border:2px solid red */
 }
 
@@ -684,8 +684,11 @@
 }
 
 .scorestatall2{
-    float:right;
+    /* float:right; */
+    margin-left: 120px;
+    display: inline-block;
 }
+
 .previewimage{
     border-radius: 50%;
     display: inline-block;
