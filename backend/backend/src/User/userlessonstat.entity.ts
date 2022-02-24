@@ -19,4 +19,10 @@ export class userlessonstat{
 
     @Column()
     Lesson_learned: number;
+
+    @Column()
+    cat_user_score: number;
+
+    @Column()
+    cat_score: number;
 }

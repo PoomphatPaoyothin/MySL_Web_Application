@@ -400,6 +400,8 @@ export class UserService{
                 CategoryID: catid,
                 Lesson_amount: 3,
                 Lesson_learned: 0,
+                cat_user_score:0,
+                cat_score:9,
             })
 
             for(let j = 1;j<4;j++){
@@ -456,6 +458,7 @@ export class UserService{
 
         var userscore = await this.getuserscore(userid);
         var userlessonlearn = await this.getuserlessonlearn(userid);
+        await this.updatecatscore(userid,catid);
 
         console.log(typeof userscore)
 
@@ -473,6 +476,37 @@ export class UserService{
 
         else{
             return false
+        }
+    }
+
+    async updatecatscore(userid:string,catid:string){
+        var score = 0;
+        var is_learn = 0;
+        var getusercatquiz = await this.userlessonstatRepo.findOne({where:{
+            UserID:userid,CategoryID:catid
+        }})
+        var getuserlessoncheckpoint = await this.userlessonStatCheckpointRepo.find({
+            where:{
+                UserID:userid,
+                CategoryID:catid,
+            }
+        })
+        
+        if(!getusercatquiz){
+            return false
+        }
+        else{
+            for(let i in getuserlessoncheckpoint){
+                let LessonScore = getuserlessoncheckpoint[i].Lesson_score;
+                let isLearn = getuserlessoncheckpoint[i].Is_lesson_quiz;
+                score = score + LessonScore;
+                if(isLearn == true){
+                    is_learn = is_learn + 1;
+                }
+            }
+            getusercatquiz.cat_user_score = score;
+            getusercatquiz.Lesson_learned = is_learn;
+            await this.userlessonstatRepo.save(getusercatquiz);
         }
     }
 
@@ -538,6 +572,11 @@ export class UserService{
                 console.log(checkdelete)
                 if(checkdelete){
                     dashboard[i]["rank"] = count;
+                    dashboard[i]["prefix"] = checkdelete.User_prefix_name;
+                    dashboard[i]["username"] = checkdelete.User_name;
+                    dashboard[i]["surname"] = checkdelete.User_surname;
+                    dashboard[i]["followeramount"] = checkdelete.follower_amount;
+                    dashboard[i]["followingamount"] = checkdelete.following_amount;
                     if(checkdelete.Is_delete == false){
                         dashboard2.push(dashboard[i])
                         count = count + 1
@@ -564,5 +603,18 @@ export class UserService{
         }
 
         return {"score": getidquiz.Lesson_score,"is_quiz":getidquiz.Is_lesson_quiz}
+    }
+
+    async getusernavbarstat(userid:string){
+        var getusernavbarstat = await this.userstatnavRepo.findOne({where:{
+            UserID:userid
+            }
+        })
+        if(!getusernavbarstat){
+            return false
+        }
+        else{
+            return getusernavbarstat;
+        }
     }
 }

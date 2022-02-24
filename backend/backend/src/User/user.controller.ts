@@ -204,4 +204,9 @@ export class UserController{
                     @Param('lessonid') lessonid:string):Promise<any>{
         return this.userService.getisquiz(userid,catid,lessonid)
     }
+
+    @Get('usernavbarstat/:userid')
+    async getusernavbarstat(@Param('userid') userid:string):Promise<any>{
+        return this.userService.getusernavbarstat(userid)
+    }
 }
