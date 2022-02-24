@@ -135,6 +135,10 @@
         width: 100%;
     }
 
+    .follow{
+        top:1050px !important;
+    }
+
 }
 
 @media screen and (max-width: 700px){
