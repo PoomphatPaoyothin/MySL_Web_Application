@@ -92,12 +92,7 @@ const Sign_in = () => {
                 <p className='errormessage'>{errormessage}</p>
               </div>
             )}
-            <FacebookLogin
-              appId="474027790834352"
-              autoLoad
-              callback={responseFacebook}
-              cssClass='login_facebook'
-            />
+
 
             {/* src={login_facebook}  */}
             <hr className = 'line_right'/>

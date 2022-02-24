@@ -3,11 +3,12 @@ import { useHistory } from "react-router-dom";
 import ImageUploading, { ImageListType } from "react-images-uploading";
 import { Button, Form } from "react-bootstrap";
 import ProfileService from "./ProfileService";
+import LessonService from "../Lesson/LessonService";
 
 const UploadProfile = (props:any) => {
     const [image, setImage] = useState<any>()
     const [show, setShow] = useState<any>()
-    const [profilepic, setProfilepic] = useState<any>()
+    const [profilepic, setProfilepic] = useState<any>('propic')
     const [status, setStatus] = useState<boolean>(false)
     const [myid, setMyid] = useState<string>('')
     const [statusupload, setStatusupload] = useState<boolean>(false)
@@ -22,12 +23,17 @@ const UploadProfile = (props:any) => {
       }
     }
     const upload=()=>{
+
       if(image && myid!=''){
         const data = new FormData();
         data.append('file', image, image.name)
         ProfileService.uploadpic(myid, data)
         .then(res=>{
-          setStatusupload(true)
+          ProfileService.patchpathpics(myid)
+          .then(res=>{
+            setStatus(false)
+            alert('อัพเดทโปรไฟล์สำเร็จ')
+          })          
         })
       }
     }
@@ -40,26 +46,28 @@ const UploadProfile = (props:any) => {
     useEffect(()=>{
       if(props.userid){
         setMyid(props.userid)
-        console.log(`../profileforupload/${myid}`+'.jpg')
+        ProfileService.fetchuserprofile(props.userid)
+        .then(res=>{
+          console.log('resssss ', res.imguser)
+          setProfilepic(res.imguser)
+        })
+
       }
-    },[props.userid])
+    },[status])
 
 
-    
+
     return(
       <div className = 'uploadprofilecard'>
           <label className={'previewimage'}>
             <div className="img-wrap img-upload">
               {
                 !status &&
-                <img className='pictureprofile' src='https://cdn.discordapp.com/attachments/912175328066142240/946383747014615120/images.png'/>
+                <img className='pictureprofile' src={require(`../profileforupload/${profilepic}.jpg`).default}/>
               }
+
               {
-                status && statusupload &&
-                <img className='pictureprofile' src={require(`../profileforupload/${myid}.jpg`).default}/>
-              }
-              {
-                status && !statusupload &&
+                status &&
                 <img className='pictureprofile' src={show}/>
               }
               {console.log('ssssss', status)}

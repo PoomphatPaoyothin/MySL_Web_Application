@@ -4,6 +4,7 @@ import RegisterService from "./RegisterService";
 import Popuploading from "../Loadingpop/PopupLoading";
 import { trackPromise } from 'react-promise-tracker';
 import { usePromiseTracker } from "react-promise-tracker";
+import UploadProfile from "../Profile/UploadProfile";
 
 const Name = (props:any) =>{
     const history=useHistory()
@@ -93,6 +94,7 @@ const Name = (props:any) =>{
             checkid() &&
             <div >
                 <p className="nametext">กรุณากรอกชื่อและนามสกุล</p> 
+                <UploadProfile userid = {myid}/>
                 <div className="inputcenter">
                     <div className="selectprefix">
                         <form action="#">

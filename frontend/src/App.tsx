@@ -25,6 +25,7 @@ import Quiz from "./Lesson/Quiz";
 import Test from "./Lesson/Test";
 import Dashboard from "./Dashboard/Dashboard";
 import UploadProfile from "./Profile/UploadProfile";
+import Profilepic from "./Profile/Profilepic";
 
 const App = () => {
   const id = localStorage.getItem('id')
@@ -60,7 +61,7 @@ const App = () => {
       <Route path='/quiz/:catId/:lessonId' component={Quiz} />
       <Route path='/webcam' component={Camera} />
       <Route path='/dashboard' component={Dashboard}/>
-      <Route path='/test' component={UploadProfile} />
+      <Route path='/test' component={Profilepic} />
 
     </div>
   )

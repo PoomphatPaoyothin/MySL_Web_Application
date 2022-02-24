@@ -5,6 +5,7 @@ import { userInfo } from "./InterfaceProfile";
 import { useHistory } from "react-router";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from 'react-promise-tracker';
+import Profilepic from "./Profilepic";
 
 
 const Above=(props:any|null)=>{
@@ -130,7 +131,7 @@ const Above=(props:any|null)=>{
 
             <div  className='propicPos'>
                 {/* <img src={require(`../profileforupload/${props.id}.jpg`).default} className='propic'/> */}
-                <img src={require(`../profileforupload/${props.id}.jpg`).default} className='propic'/>
+                <Profilepic userid={props.id}/>
             </div>
 
             <div className='namePos'>

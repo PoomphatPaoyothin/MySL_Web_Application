@@ -18,8 +18,8 @@ const VideoPlayer=(props:any)=>{
 
 
     const opts = {
-        height: '390',
-        width: '380',
+        height: '500',
+        width: '600',
       };
     return(
         <div className="videoplayerbox">

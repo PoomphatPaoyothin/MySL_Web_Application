@@ -27,4 +27,5 @@ export interface userInfo{
     follower_amount:number;
     following_amount:number;
     Is_delete:boolean;
+    imguser:string;
 }

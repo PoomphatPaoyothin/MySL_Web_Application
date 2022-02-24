@@ -192,6 +192,16 @@ async function uploadpic(userid:string,obj:any): Promise<any>
     const tmp = await res.json();
     return tmp
 }
+
+async function patchpathpics(userid:string): Promise<any> 
+{
+    const res = await fetch(`${url}/user/updateuserimg/${userid}`,{
+        method: 'PATCH',
+        body: userid
+    });
+    const tmp = await res.json();
+    return tmp
+}
 export default{
     fetchCategoryStat,
     fetchWordCategory,
@@ -212,4 +222,5 @@ export default{
     Patchunfollowingamount,
     Patchunfolloweramount,
     uploadpic,
+    patchpathpics,
 }

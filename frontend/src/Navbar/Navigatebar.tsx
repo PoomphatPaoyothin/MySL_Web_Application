@@ -21,7 +21,8 @@ const Navigatebar=(prop:any)=>{
     const history = useHistory();
     const myid = localStorage.getItem('id');
     const [statnavbar, setStatnavbar] = useState<any>({'Quiz_stat':0, 'Lesson_Stat':0})
-
+    const [wordsearch, setWordsearch] = useState<string|undefined>('')
+    
     const logout = () =>{
         localStorage.clear();
         history.push('/');
@@ -34,7 +35,10 @@ const Navigatebar=(prop:any)=>{
     const showDash=()=>{
         history.push('/dashboard')
     }
-
+    const Word_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
+        e.preventDefault();
+        setWordsearch(e.target.value);
+    }
     useEffect(()=>{
         if(myid)
         {
@@ -45,25 +49,65 @@ const Navigatebar=(prop:any)=>{
             })
         }
     },[myid])
-    
+    useEffect(()=>{
+        setWordsearch('')
+    },[])
+
+    const resetInputField = () => {
+        setWordsearch("");
+      };
+    const search=()=>{
+        if(wordsearch)
+        {
+            NavigatebarService.sendwowrd(wordsearch)
+            .then(res=>{    
+                console.log('resssss', res)
+                if(res == false)
+                {
+                    alert('ไม่มีคำศัพท์ที่ค้นหา')
+                    resetInputField()
+
+                }
+                else{
+                    history.push(`/lesson/${res.Category_ID}/${wordsearch}`)
+                    resetInputField()
+                }
+            })
+        }
+
+    }
+    useEffect(()=>{
+        if(myid)
+        {
+            NavigatebarService.statnavfetch(myid)
+            .then(res=>{
+                setStatnavbar(res)
+                console.log('ssssssssssssssssssss')
+            })
+        }
+    },[myid])
+    const _handleKeyDown=(e: { key: string; })=> {
+        if (e.key === 'Enter') {
+            console.log('sssssssssssssssss', wordsearch)
+            search()
+        }
+      }
     return(
         <Navbar fixed = 'top' className = 'NavBarCSS'>
             <Navbar.Brand href = "/">
                 <img src = {'https://cdn.discordapp.com/attachments/912175328066142240/946362874777972746/MysL.png'} className = 'home-pic'/>{'  '}MySL
             </Navbar.Brand>
 
-            {/* <Form className="d-flex form-search">
-                    <InputGroup>
-                        <InputGroup.Text>
-                            <img src={searchIcon} className= 'search-pic'/>
-                        </InputGroup.Text>
-                        <FormControl
-                        type="search"
-                        placeholder="Dictionary"
-                        aria-label="Search"
-                    />
-                </InputGroup>
-            </Form> */}
+                <InputGroup.Text>
+                    <img src={searchIcon} className= 'search-pic'/>
+                </InputGroup.Text>
+                <input
+                placeholder="Dictionary"
+                aria-label="Search"
+                onChange={Word_input}
+                onKeyDown={_handleKeyDown}
+                />
+                <Button onClick={search}>search</Button>
 
             <Form> 
                 <Button onClick={showDash}> Dashboard</Button>
@@ -78,9 +122,9 @@ const Navigatebar=(prop:any)=>{
                 
                 <img className = 'user-image' onClick = {linktoprofile} src = {userImage}/>
                 
-                <button className = 'button-right' onClick={logout}>
+                <Button className = 'button-right' onClick={logout}>
                         logout
-                </button>
+                </Button>
             </Nav>
             
         </Navbar>

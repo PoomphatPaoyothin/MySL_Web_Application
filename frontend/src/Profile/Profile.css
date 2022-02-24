@@ -744,3 +744,59 @@
     width:200px;
     height:200px;
 }
+
+
+
+.previewimage2{
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    padding: 6px;
+    background: linear-gradient(270deg, #3fa1a9, #79f1a4);
+    margin-bottom: 25px;
+}
+
+.img-wrap2{
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+.img-upload2:before{
+    font-size: 90px;
+    position: absolute;
+    padding-top: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #63d3a6;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #fff;
+  }
+.img-upload2:hover:before {
+   opacity: 1;
+  }
+
+.photo-upload2{
+    display: None;
+}
+
+.uploadprofilecard2{
+    position:relative;
+    border:solid 5px red;
+    width:0;
+    height: 0;
+    margin:auto;
+    text-align: center;
+    padding: 25px 0;
+    display: inline-block;
+}
+
+.pictureprofile2{
+    width:200px;
+    height:200px;
+}
