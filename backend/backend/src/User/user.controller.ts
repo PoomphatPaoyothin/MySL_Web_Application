@@ -217,8 +217,7 @@ export class UserController{
     }
 
     @Patch('updateuserimg/:userid')
-    async updateuserimg(@Param('userid') userid:string,
-                        @Body('imgpath') imgpath:string):Promise<any>{
-        return this.userService.updateuserpicture(userid,imgpath)
+    async updateuserimg(@Param('userid') userid:string):Promise<any>{
+        return this.userService.updateuserpicture(userid)
     }
 }

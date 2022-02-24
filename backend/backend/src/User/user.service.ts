@@ -631,7 +631,7 @@ export class UserService{
         }
     }
 
-    async updateuserpicture(userid:string,imgpath:string){
+    async updateuserpicture(userid:string){
         var getuser = await this.userRepo.findOne({where:{
             ID:userid
         }})
@@ -639,7 +639,7 @@ export class UserService{
             return false
         }
         
-        getuser.imguser = imgpath;
+        getuser.imguser = userid;
         await this.userRepo.save(getuser)
         return getuser;
     }
