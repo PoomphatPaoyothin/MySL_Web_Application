@@ -617,4 +617,17 @@ export class UserService{
             return getusernavbarstat;
         }
     }
+
+    async getusercatstat(userid:string,catid:string){
+        var getusercatstat = await this.userlessonstatRepo.findOne({where:{
+            UserID:userid,CategoryID:catid
+            }
+        })
+        if(!getusercatstat){
+            return false
+        }
+        else{
+            return getusercatstat;
+        }
+    }
 }

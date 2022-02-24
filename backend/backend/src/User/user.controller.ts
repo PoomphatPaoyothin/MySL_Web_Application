@@ -209,4 +209,10 @@ export class UserController{
     async getusernavbarstat(@Param('userid') userid:string):Promise<any>{
         return this.userService.getusernavbarstat(userid)
     }
+
+    @Get('getusercatstat/:userid/:catid')
+    async getusercatstat(@Param('userid') userid:string,
+                        @Param('catid') catid:string):Promise<any>{
+        return this.userService.getusercatstat(userid,catid)
+    }
 }
