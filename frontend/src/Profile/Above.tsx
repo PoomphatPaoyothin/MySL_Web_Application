@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import './Profile.css';
-import propic from '../Picture/profile/propic2.png'
 import ProfileService from "./ProfileService";
 import { userInfo } from "./InterfaceProfile";
 import { useHistory } from "react-router";
