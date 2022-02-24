@@ -40,7 +40,14 @@ const App = () => {
     </div>
   )
   const islogin=()=>{
-      return(login)
+      if(id)
+      {
+        return(login)
+      }
+      else
+      {
+        return(notlogin)
+      }
   }
   const DefaultContainer = ()=>(
     <div>
@@ -73,11 +80,7 @@ const App = () => {
       </div>
   )
 
-  const notloginUser=()=>(
-    <div>
-      {notlogin()}
-    </div>
-)
+
   return(
     <Router>
       <div>

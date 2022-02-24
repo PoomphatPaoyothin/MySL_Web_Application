@@ -665,7 +665,16 @@
 }
 
 .showscorestat{
-    display: inline-block;
-    border:solid 2px red;
-    width: 300px;
+    position:relative;
+    width: 260px;
+    left:29%;
+    /* border:2px solid red */
+}
+
+.scorestatall1{
+    float:left;
+}
+
+.scorestatall2{
+    float:right;
 }

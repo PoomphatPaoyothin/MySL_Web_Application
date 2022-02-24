@@ -82,10 +82,10 @@ const Statbox=(props:any)=>{
                 </div>
                 <br/>
                 <div className='showscorestat'>
-                    <div>
+                    <div className='scorestatall1'>
                         {props.Lesson_learned}/{props.Lesson_amount} บท
                     </div>
-                    <div>
+                    <div className='scorestatall2'>
                         {props.cat_user_score}/{props.cat_score} คะแนน
                     </div>
                 </div>

@@ -8,7 +8,8 @@ async function patchemail(obj:any): Promise<boolean> {
     });
 
     const tmp = await res.json();
-    console.log('tmp is', tmp)
+    console.log('forgotpasssssssssssssssss', tmp)
+
 
     return tmp
 }
@@ -36,7 +37,6 @@ async function changepassword(obj:any): Promise<boolean> {
     });
 
     const tmp = await res.json();
-    console.log('tmp is', tmp)
 
     return tmp
 }
