@@ -32,7 +32,7 @@ app.post('/uploadpicture/:token' , (req,res) => {
         const file = req.files.file
 
         const fileName = token +'.jpg'
-        file.mv(`C:\\picture\\${fileName}` ,err=>{
+        file.mv(`D:\\MySL_Web_Application\\frontend\\src\\profileforupload\\${fileName}` ,err=>{
             if (err) {
                 console.log(err)
                 res.send(false)

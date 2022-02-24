@@ -181,6 +181,17 @@ async function Patchunfolloweramount(id:string): Promise<boolean> {
 
     return tmp
 }
+
+async function uploadpic(userid:string,obj:any): Promise<any> 
+{
+    console.log(obj)
+    const res = await fetch(`http://localhost:8000/uploadpicture/${userid}`,{
+        method: 'POST',
+        body: obj
+    });
+    const tmp = await res.json();
+    return tmp
+}
 export default{
     fetchCategoryStat,
     fetchWordCategory,
@@ -199,5 +210,6 @@ export default{
     Postunfollower,
     Postunfollowing,
     Patchunfollowingamount,
-    Patchunfolloweramount
+    Patchunfolloweramount,
+    uploadpic,
 }

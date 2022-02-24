@@ -678,3 +678,56 @@
 .scorestatall2{
     float:right;
 }
+.previewimage{
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    padding: 6px;
+    cursor: pointer;
+    background: linear-gradient(270deg, #3fa1a9, #79f1a4);
+    margin-bottom: 25px;
+}
+
+.img-wrap{
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+  }
+.img-upload:before{
+    content: url('https://cdn.discordapp.com/attachments/912175328066142240/946400596209045524/unknown.png');
+    font-size: 90px;
+    position: absolute;
+    padding-top: 80px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: #63d3a6;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    opacity: 0;
+    transition: .5s ease;
+    background-color: #fff;
+  }
+.img-upload:hover:before {
+   opacity: 1;
+  }
+
+.photo-upload{
+    display: None;
+}
+
+.uploadprofilecard{
+    background-color: #E0E0E0;
+    width:350px;
+    height: 350px;
+    margin:auto;
+    text-align: center;
+    padding: 25px 0;
+}
+
+.pictureprofile{
+    width:200px;
+    height:200px;
+}

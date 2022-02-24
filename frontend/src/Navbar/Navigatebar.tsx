@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.css'
 import { useHistory } from "react-router";
 import Navbar from 'react-bootstrap/Navbar';
@@ -15,11 +15,13 @@ import searchIcon from '../Picture/Navbar/search-icon-png-9982.png'
 import userImage from '../Picture/profile/propic2.png'
 import Home from "../Home/Home";
 import { Button, Form, FormControl, InputGroup, NavDropdown } from "react-bootstrap";
+import NavigatebarService from "./NavigatebarService";
 
 const Navigatebar=(prop:any)=>{
     const history = useHistory();
     const myid = localStorage.getItem('id');
-    
+    const [statnavbar, setStatnavbar] = useState<any>({'Quiz_stat':0, 'Lesson_Stat':0})
+
     const logout = () =>{
         localStorage.clear();
         history.push('/');
@@ -32,11 +34,22 @@ const Navigatebar=(prop:any)=>{
     const showDash=()=>{
         history.push('/dashboard')
     }
+
+    useEffect(()=>{
+        if(myid)
+        {
+            NavigatebarService.statnavfetch(myid)
+            .then(res=>{
+                setStatnavbar(res)
+                console.log('ssssssssssssssssssss')
+            })
+        }
+    },[myid])
     
     return(
         <Navbar fixed = 'top' className = 'NavBarCSS'>
             <Navbar.Brand href = "/">
-                <img src = {'https://cdn.discordapp.com/attachments/912175328066142240/920238805628387328/MysL.png'} className = 'home-pic'/>{'  '}MySL
+                <img src = {'https://cdn.discordapp.com/attachments/912175328066142240/946362874777972746/MysL.png'} className = 'home-pic'/>{'  '}MySL
             </Navbar.Brand>
 
             {/* <Form className="d-flex form-search">
@@ -57,11 +70,11 @@ const Navigatebar=(prop:any)=>{
             </Form>
 
             <Nav className = "ms-auto">
-
+                {console.log('sssss', statnavbar)}
                 <img src = {LessonIcon2} className = 'lesson-pic'/>
-                <div className="txt">0/10</div>
+                <div className="txt">{statnavbar.Lesson_Stat}/15</div>
                 <img src = {QuizIcon2} className = 'quiz-pic'/>
-                <div className="txt">0/100</div>
+                <div className="txt">{statnavbar.Quiz_stat}/45</div>
                 
                 <img className = 'user-image' onClick = {linktoprofile} src = {userImage}/>
                 

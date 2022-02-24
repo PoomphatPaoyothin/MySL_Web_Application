@@ -5,6 +5,7 @@ import PopupConfirmDelete from "./PopupConfirmDelete";
 import PopupConfirmName from "./PopupConfirmName";
 import PopupConfirmPassword from "./PopupConfirmPassword";
 import ProfileService from "./ProfileService";
+import UploadProfile from "./UploadProfile";
 
 const BoxEditProfile = (props:any) => {
     // console.log('reload')
@@ -15,7 +16,7 @@ const BoxEditProfile = (props:any) => {
     const [isNameEdit, setIsNameEdit] = useState<boolean>(false)
     const [isPassEdit, setIsPassEdit] = useState<boolean>(false)
 
-
+    const myid = localStorage.getItem('id')
 
     const [isbuttonName, setIsbuttonName] = useState<boolean>(true)
     const [isbuttonPass, setIsbuttonPass] = useState<boolean>(true)
@@ -207,8 +208,9 @@ const BoxEditProfile = (props:any) => {
   return(
       <div>
           <p className="editnametext">แก้ไขโปรไฟล์</p>
+          <UploadProfile userid = {myid}/>
           
-    <div>
+        <div>
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         
         <div className="editboxtext">

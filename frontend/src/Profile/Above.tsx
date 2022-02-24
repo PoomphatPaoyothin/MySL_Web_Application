@@ -67,7 +67,6 @@ const Above=(props:any|null)=>{
 
     }
     const follow=()=>{
-        console.log('1')
         if(isfollowing == 'ติดตาม')
         {
             const followerobj={
@@ -131,7 +130,7 @@ const Above=(props:any|null)=>{
         <div className='above'>
 
             <div  className='propicPos'>
-                <img src={propic} className='propic'/>
+                <img src={require(`../profileforupload/${props.id}.jpg`).default} className='propic'/>
             </div>
 
             <div className='namePos'>

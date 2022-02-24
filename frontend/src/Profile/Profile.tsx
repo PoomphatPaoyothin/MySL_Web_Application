@@ -6,6 +6,7 @@ import Above from "./Above";
 import ProfileService from "./ProfileService";
 import { useHistory } from "react-router-dom";
 import RegisterService from "../Register/RegisterService";
+import UploadProfile from "./UploadProfile";
 
 
 
@@ -72,7 +73,6 @@ const Profile=(props:any)=>{
     
     return(
         <div>
-        {console.log('isid', isid)}
         {isid &&
         <div className='containerprofile'>
             <Above id={userId} ismyid={ismyid} myid={myid}/>
