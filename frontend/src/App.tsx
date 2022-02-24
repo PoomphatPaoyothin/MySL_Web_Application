@@ -28,6 +28,7 @@ import UploadProfile from "./Profile/UploadProfile";
 
 const App = () => {
   const id = localStorage.getItem('id')
+
   const notlogin=()=>(
     <div>
     <Route exact path='/' component={Home} />
@@ -40,6 +41,7 @@ const App = () => {
     </div>
   )
   const islogin=()=>{
+      console.log('id isssss', id)
       if(id)
       {
         return(login)
