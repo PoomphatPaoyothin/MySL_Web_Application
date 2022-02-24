@@ -10,6 +10,7 @@ Chart.register(ArcElement);
 
 
 const Statbox=(props:any)=>{
+    console.log(props.Lesson_learned,props.Lesson_amount)
     return(
         
         <div className='statboxBG'>
@@ -30,7 +31,7 @@ const Statbox=(props:any)=>{
                             datasets: [
                                 {
                                 label: 'My First Dataset',
-                                data: [80,20],
+                                data: [props.Lesson_learned, props.Lesson_amount],
                                 backgroundColor: [
                                     'rgba(190,174,226, 0.8)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -60,7 +61,7 @@ const Statbox=(props:any)=>{
                             data={{
                             datasets: [
                                 {
-                                data: [30,70],
+                                data: [props.cat_user_score,props.cat_score],
                                 backgroundColor: [
                                     'rgba(94,251,223, 0.8)',
                                     'rgba(155,148,148, 0.2)',
@@ -80,6 +81,16 @@ const Statbox=(props:any)=>{
                     </div>
                 </div>
                 <br/>
+                <div className='showscorestat'>
+                    <div>
+                        {props.Lesson_learned}/{props.Lesson_amount} บท
+                    </div>
+                    <div>
+                        {props.cat_user_score}/{props.cat_score} คะแนน
+                    </div>
+                </div>
+  
+                   
                 <br/>
 
                

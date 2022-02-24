@@ -29,7 +29,7 @@ const Lesson=(props:any)=>{
         LessonService.fetchwordCat()
         .then(res=>{
             setObjcat(res)
-            setNamecat(res[0].Category_name)
+            setNamecat(res[catId-1].Category_name)
         })
     }
 

@@ -664,3 +664,8 @@
     color: #000;
 }
 
+.showscorestat{
+    display: inline-block;
+    border:solid 2px red;
+    width: 300px;
+}
