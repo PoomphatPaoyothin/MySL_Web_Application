@@ -4,6 +4,7 @@ import ForgetService from "./ForgetService";
 import Popuploading from "../Loadingpop/PopupLoading";
 import { trackPromise } from 'react-promise-tracker';
 import { usePromiseTracker } from "react-promise-tracker";
+import './forgetpass.css'
 
 const Forget1 = (props:any) =>{
     const history=useHistory()
@@ -51,8 +52,14 @@ const Forget1 = (props:any) =>{
         <div>
             { localStorage.getItem('accesToken') == undefined &&
             <div>
-                <input value={email}  onChange={email_input} placeholder="อีเมลล์" required />
-                <button  onClick={gotonext}>ต่อไป</button>
+                <div className="text1">
+                    กรุณากรอกอีเมลของท่าน
+                </div>
+                <div className="center">
+                    <input value={email}  onChange={email_input} className="inputemail" placeholder="อีเมล" required />
+                </div>
+
+                <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
                 {
                 promiseInProgress && 
                 <Popuploading/>

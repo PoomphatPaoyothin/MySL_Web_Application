@@ -6,7 +6,7 @@
 .containerprofile{
     max-width: 1500px;
     /* min-width: 80%; */
-    border: 5px solid pink;
+    /* border: 5px solid pink; */
     margin: auto;
     position: absolute;
     width: 100%;
@@ -17,6 +17,7 @@
 .container1{
     max-width: 1500px;
     border: 5px solid black;
+
 
 }
 
@@ -44,8 +45,8 @@
     font-family: 'Open Sans';
     font-size: 16px;
     position:absolute;
-    left:600px;
-    /* left: 40%; */
+    /* left:600px; */
+    left: 50%;
     /* left: 0%; */
     /* top:45%; */
     top: 100px;
@@ -62,8 +63,8 @@
     font-size: 16px;
     position:absolute;
     /* left: 0%; */
-    left:750px;
-    /* left: 0%; */
+    /* left:750px; */
+    left: 65%;
     top:100px;
     transform: translate(0,-50%);
     display: inline-block;
@@ -97,22 +98,18 @@
     padding-right: 1em;
     cursor: pointer;
     display: inline-block;
+    transition: 0.6s;
 }
 
-@media screen and (max-width: 1080px){
-    .followerAbovePos{
-        left: 700px;
-    }
-
-    .followingAbovePos{
-        left: 550px;
-    }
+.editProfileButton:hover{
+    background-color: #1f5b8c;
+    color: white;
 }
 
-@media screen and (max-width: 990px){
+@media screen and (max-width: 1055px){
 
     .followerAbovePos{
-        left: 680px;
+        left: 70%;
     }
 
     .followingAbovePos{
@@ -120,12 +117,6 @@
     }
 }
 
-@media screen and (max-width: 970px){
-
-    .followerAbovePos{
-        left: 620px;
-    }
-}
 
 @media screen and (max-width: 900px){
 
@@ -144,10 +135,6 @@
         width: 100%;
     }
 
-    .follow{
-        top: 1200px;
-    }
-
 }
 
 @media screen and (max-width: 700px){
@@ -158,6 +145,31 @@
     }
 
 }
+
+.containeredit{
+    margin-left: 20%;
+    /* border: 5px solid black; */
+}
+
+.containeredit1{
+    margin-left: 20%;
+    margin-top: 20px;
+}
+
+@media screen and (max-width:570px){
+    .containeredit{
+        margin-left: 0%;
+        text-align: center;
+    }
+}
+
+@media screen and (max-width:485px){
+    .inputname1{
+        width: 50%;
+    }
+}
+
+
 
 .editProfileBackground{
     position:absolute;
@@ -172,24 +184,82 @@
 }
 
 .editnametext{
-    margin-top: 3%;
-    margin-left: 10%;
+    margin-top: 70px;
+    margin-left: 20%;
     font-size: 30px;
     font-family: 'Open Sans';
 }
 
 .editpasstext{
-    margin-top: 4%;
-    margin-left: 15%;
+    margin-top: 70px;
+    /* margin-left: 210px; */
     font-size: 20px;
     font-family: 'Open Sans';
 }
 
 .editboxtext{
-    margin-top: 5%;
-    margin-left: 15%;
+    margin-top: 70px;
+    /* margin-left: 210px; */
     font-size: 20px;
     font-family: 'Open Sans';
+}
+
+.oldpassinput{
+    font-family: 'Open Sans';
+    padding: 12px 20px;
+    font-size: 18px;
+    text-align: center;
+    border-radius: 10px;
+    border: 1px solid #cacaca;
+    width: 340px;
+    box-shadow: 3px 5px 5px #cacaca;
+    display: inline-block;
+}
+
+.newpassinput{
+    font-family: 'Open Sans';
+    padding: 12px 20px;
+    font-size: 18px;
+    text-align: center;
+    margin-left: 10px;
+    /* margin-top: 10px; */
+    border-radius: 10px;
+    border: 1px solid #cacaca;
+    width: 340px;
+    box-shadow: 3px 5px 5px #cacaca;
+    display: inline-block;
+}
+
+.confirmpassinput{
+    font-family: 'Open Sans';
+    padding: 12px 20px;
+    font-size: 18px;
+    text-align: center;
+    margin-left: 10px;
+    border-radius: 10px;
+    border: 1px solid #cacaca;
+    width: 340px;
+    box-shadow: 3px 5px 5px #cacaca;
+    display: inline-block;
+}
+
+@media screen and (max-width:1300px){
+    .confirmpassinput{
+        margin-top: 35px;
+        margin-left: 0%;
+    }
+    .newpassinput{
+        margin-top: 35px;
+        margin-left: 0%;
+        display: block;
+    }
+}
+
+
+.showname{
+    /* margin-left: 210px; */
+    margin-left: 20%;
+    display:inline;
 }
 
 .button-editName{
@@ -197,17 +267,17 @@
     color: white;
     font-size: 14px;
     top: 0%;
-    width: 8%;
-    height: 15%;
-    border-color: none;
+    width: 90px;
+    height: 35px;
+    /* border-color: none; */
     margin-left: 3%;
     transition: 0.6s;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .button-editName:hover{
-    background-color: white;
-    color: #11324D;
+    background-color: #1f5b8c;
+    color: white;
 }
 
 .button-delete{
@@ -216,8 +286,10 @@
     background-color: red;
     color: white;
     border-color: red;
-    margin-left: 15%;
-    margin-top: 4%;
+    width: 90px;
+    height: 35px;
+    margin-top: 70px;
+    margin-left: 210px;
     border-radius: 5px;
 }
 
@@ -226,48 +298,50 @@
     font-size: 14px;
     font-family: 'Open Sans';
     background-color: #11324D;
-    height: 35px;
+    height: 40px;
     color: white;
     margin-top: 1px;
     transition: 0.6s;
-    border-radius: 5px;
+    border-radius: 15px;
+    margin-left: 20%;
 }
 
 .savechange-button:hover{
-    background-color: white;
-    color: #11324D;
+    background-color: #1f5b8c;
+    color: white;
 }
 
 .canclechange-button{
     font-size: 14px;
     font-family: 'Open Sans';
     background-color: #11324D;
-    height: 35px;
+    height: 40px;
     color: white;
     margin-top: 1px;
     margin-left: 10px;
     transition: 0.6s;
-    border-radius: 5px;
+    border-radius: 15px;
 }
 
 .canclechange-button:hover{
-    background-color: white;
-    color: #11324D;
+    background-color: #1f5b8c;
+    color: white;
 }
 
 .pencilPos{
-    position:relative;
-    /* top:25%; */
-    width:100px;
+    position:absolute;
+    top:25%;
+    left: 8%;
+    width:25px;
     /* left:8%; */
-    display: inline-block;
+    /* display: inline-block; */
 }
 
 /* ///////////////////////////////////////////////////////////////////////// */
 .statBG{
     position:absolute;
     /* width:920px; */
-    width: 65%;
+    width: 75%;
     border-radius: 10px;
     /* margin-left: 10px; */
     margin-left: 2%;
@@ -277,10 +351,20 @@
     /* top: 300px; */
 }
 
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 1000px) {
     .statBG{
         width: 95%;
         left: 0%;
+    }
+
+    .follow{
+        top: 1000px;
+        width: 95% !important;
+        left: 2%;
+    }
+
+    .multimiddle{
+        height: 40px !important;
     }
 }
 
@@ -305,13 +389,15 @@
 
 .selectprefix1{
     font-family: 'Open Sans';
-    border: 1px solid #cacaca;
-    /* width: 30%; */
-    border-radius: 4px;
-    font-size: 18px;
-    box-shadow: 3px 5px 5px #cacaca;
-    margin-left: 4%;
+    /* margin-left: 100px; */
     display: inline-block;
+}
+
+.prefix1{
+    border: 1px solid #cacaca;
+    border-radius: 5px;
+    padding: 0px 5px;
+    box-shadow: 3px 5px 5px #cacaca;
 }
 
 .inputname1{
@@ -319,9 +405,10 @@
     padding: 12px 20px;
     font-size: 18px;
     text-align: center;
+    margin-left: 10px;
     border-radius: 10px;
     border: 1px solid #cacaca;
-    width: 30%;
+    width: 340px;
     box-shadow: 3px 5px 5px #cacaca;
     display: inline-block;
 }
@@ -331,12 +418,22 @@
     padding: 12px 20px;
     font-size: 18px;
     text-align: center;
+    margin-left: 10px;
     border-radius: 10px;
     border: 1px solid #cacaca;
-    width: 30%;
+    width: 340px;
     box-shadow: 3px 5px 5px #cacaca;
     /* display: inline; */
 }
+
+@media screen and (max-width:1010px) {
+    .inputsurname1{
+        margin-top: 35px;
+        margin-left: 95px;
+    }
+}
+
+
 
 .lessonword{
     display: inline-block;
@@ -360,15 +457,15 @@
 .follow{
     position:absolute;
     /* right:3%; */
-    width:30%;
-    height:150%;
+    width:21%;
+    height:100%;
     /* margin-top: 100px; */
     background-color:#f2f2f2;
     border-radius: 15px;
     /* border: 2px solid black; */
     box-shadow: 3px 5px 5px #cacaca;
     display: block;
-    right: 20px;
+    right: 1%;
     /* float: left; */
 }
 
@@ -400,7 +497,7 @@
     display:flex;
     flex-wrap: wrap;
     justify-content: center;
-    height: 13%;
+    height: 8%;
     position: relative;
 }
 

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import './Profile.css';
-import propic from '../Picture/profile/Profile.png'
+import propic from '../Picture/profile/propic2.png'
 import ProfileService from "./ProfileService";
 import { userInfo } from "./InterfaceProfile";
 import { useHistory } from "react-router";
@@ -162,7 +162,7 @@ const Above=(props:any|null)=>{
             {props.ismyid &&
             <div className='editProfileButtonPos'>
                 <button className='editProfileButton' onClick={gotoEdit}>EDIT PROFILE</button>
-                {/* <img src = 'https://cdn.discordapp.com/attachments/912175328066142240/915093553565298748/Pencil.png' className='pencilPos'/> */}
+                <img src = 'https://cdn.discordapp.com/attachments/912175328066142240/915093553565298748/Pencil.png' className='pencilPos'/>
 
             </div>
             }

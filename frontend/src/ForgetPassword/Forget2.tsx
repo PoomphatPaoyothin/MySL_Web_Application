@@ -24,6 +24,7 @@ const Forget2 = (props:any) =>{
                 localStorage.setItem('id',res.UserId)
                 localStorage.setItem('accessToken',res.accessToken)
                 history.push(`/forgetpass/3/${res.UserId}`)
+                
             }
             else
             {
@@ -47,11 +48,14 @@ const Forget2 = (props:any) =>{
         {localStorage.getItem('accesToken') == undefined &&
             <div>
                 <div>
-                ป้อนนหัสยืนยันจากอีเมลล์
-                    เราได้ทำการส่งรหัสยืนยันไปยังอีเมลล์ของคุณ
-                    <input value={otp} type={'password'} onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
+                    <div className="text1">เราได้ทำการส่งรหัสยืนยันไปยังอีเมลของคุณ <br/><br/>
+                    กรุณาป้อนรหัสยืนยันจากอีเมล
+                    </div>
+                    <div className="center">
+                        <input value={otp} type={'password'} className="inputemail" onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
+                    </div>
                     <div onClick={resendOTP}>ส่งรหัสยืนยันอีกครั้ง</div>
-                    <button  onClick={gotonext}>ต่อไป</button>
+                    <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
                 </div>
             </div>
         }

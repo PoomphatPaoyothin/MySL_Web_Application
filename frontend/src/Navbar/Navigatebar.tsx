@@ -12,7 +12,7 @@ import QuizIcon2 from '../Picture/Navbar/output-onlinepngtools (1).png'
 import LessonIcon from '../Picture/Navbar/book.png';
 import LessonIcon2 from '../Picture/Navbar/output-onlinepngtools.png'
 import searchIcon from '../Picture/Navbar/search-icon-png-9982.png'
-import userImage from '../Picture/profile/Profile.png'
+import userImage from '../Picture/profile/propic2.png'
 import Home from "../Home/Home";
 import { Form, FormControl, InputGroup, NavDropdown } from "react-bootstrap";
 

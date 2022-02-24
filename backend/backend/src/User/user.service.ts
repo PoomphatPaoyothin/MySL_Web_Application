@@ -455,6 +455,8 @@ export class UserService{
         }
 
         var userscore = await this.getuserscore(userid);
+        var userlessonlearn = await this.getuserlessonlearn(userid);
+        
         console.log(typeof userscore)
 
         var getuserstatnav = await this.userstatnavRepo.findOne({where:{
@@ -464,6 +466,7 @@ export class UserService{
 
         if(getuserstatnav){
             getuserstatnav.Quiz_stat = userscore;
+            getuserstatnav.Lesson_Stat = userlessonlearn;
             await this.userstatnavRepo.save(getuserstatnav);
             return getuserstatnav
         }
@@ -500,6 +503,23 @@ export class UserService{
         for(let i in getuserscore){
             let k = getuserscore[i]
             res = res + getuserscore[i].Lesson_score;
+        }
+        return res;
+    }
+
+    async getuserlessonlearn(userid:string){
+        var res = 0;
+        var getuserlessonlearn = await this.userlessonStatCheckpointRepo.find({
+            where:{
+                UserID:userid
+            }
+        })
+
+        for(let i in getuserlessonlearn){
+            let k = getuserlessonlearn[i]
+            if(k.Is_lesson_quiz == true){
+                res = res + 1;
+            }
         }
         return res;
     }

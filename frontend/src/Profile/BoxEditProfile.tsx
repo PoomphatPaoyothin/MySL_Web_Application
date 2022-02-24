@@ -212,9 +212,11 @@ const BoxEditProfile = (props:any) => {
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         
         <div className="editboxtext">
-            {objprofile?.User_prefix_name}
-            {objprofile?.User_name} &nbsp;
-            {objprofile?.User_surname}
+            <div className="showname">
+                {objprofile?.User_prefix_name}
+                {objprofile?.User_name} &nbsp;
+                {objprofile?.User_surname}
+            </div>
             {
                 isbuttonName && 
                 <button onClick={NameEdit} className="button-editName">แก้ไข</button>
@@ -223,22 +225,24 @@ const BoxEditProfile = (props:any) => {
             
             <div>
                 <br/>
-                <div className="selectprefix1">
-                    <form action="#">
-                        <select 
-                            onChange={((e)=> {setPrefixSelect(e.target.value)})}
-                            value={prefixSelect}>
-                            {prefixSelectOption.map(item=>(
-                                <option value={item.value}>{item.name}</option>
-                            ))}
-                            
-                        </select>
-                    </form>
-                </div>   
-                
-                
-                <input value={username} onChange={usernameInput} className="inputname1" placeholder="ชื่อจริง" required />
-                <input value={surname} onChange={surnameInput} className="inputsurname1" placeholder="นามสกุล" required />
+                <div className="containeredit">
+                    <div className="selectprefix1">
+                        <form action="#">
+                            <select 
+                                onChange={((e)=> {setPrefixSelect(e.target.value)})}
+                                value={prefixSelect} className="prefix1">
+                                {prefixSelectOption.map(item=>(
+                                    <option value={item.value}>{item.name}</option>
+                                ))}
+                                
+                            </select>
+                        </form>
+                    </div>   
+                    
+                    
+                    <input value={username} onChange={usernameInput} className="inputname1" placeholder="ชื่อจริง" required />
+                    <input value={surname} onChange={surnameInput} className="inputsurname1" placeholder="นามสกุล" required />
+                </div>
                 
                 
                 <br />
@@ -256,34 +260,40 @@ const BoxEditProfile = (props:any) => {
             />
         </div>
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
-        <div className="editpasstext">
-            Password
-            {
-                isbuttonPass && 
-                <button onClick={PassEdit} className="button-editName">แก้ไข</button>
-            }
-            {isPassEdit &&
-            <div>
-                <input value={oldpass} onChange={oldpassInput} placeholder="รหัสผ่านเก่า" type='password' required />
-                <input value={newpass} onChange={newpassInput} placeholder="รหัสผ่านใหม่" type='password' required />
-                <input value={confirmNewpass} onChange={confirmNewpassInput} placeholder="ยืนยันรหัสผ่านใหม่" type='password' required />
-
-                <button onClick={submitPass} className="savechange-button"> บันทึกการเปลี่ยนแปลง</button>
-                <button onClick={cancel} className="canclechange-button"> ยกเลิก </button>
+        
+            <div className="editpasstext">
+                <div className="showname"></div>
+                Password
+                {
+                    isbuttonPass && 
+                    <button onClick={PassEdit} className="button-editName">แก้ไข</button>
+                }
+                {isPassEdit &&
+                    <div>
+                        <div className="containeredit1">
+                            <input value={oldpass} onChange={oldpassInput} className="oldpassinput" placeholder="รหัสผ่านเก่า" type='password' required />
+                            <input value={newpass} onChange={newpassInput} className="newpassinput" placeholder="รหัสผ่านใหม่" type='password' required />
+                            <input value={confirmNewpass} onChange={confirmNewpassInput} className="confirmpassinput" placeholder="ยืนยันรหัสผ่านใหม่" type='password' required />
+                            
+                        </div>
+                        <br/>
+                        <button onClick={submitPass} className="savechange-button"> บันทึกการเปลี่ยนแปลง</button>
+                        <button onClick={cancel} className="canclechange-button"> ยกเลิก </button>
+                    </div>
+                }
+                <PopupConfirmPassword 
+                show = {visibilityPass}
+                onClose = {popupCloseHandlerPass}
+                id = {props.id}
+                oldpass = {oldpass}
+                newpass = {newpass}
+                confirmNewpass = {confirmNewpass}
+                setOldpass = {setOldpass}
+                setNewpass = {setNewpass}
+                setComfirmNewpass = {setComfirmNewpass}
+                />
             </div>
-            }
-            <PopupConfirmPassword 
-            show = {visibilityPass}
-            onClose = {popupCloseHandlerPass}
-            id = {props.id}
-            oldpass = {oldpass}
-            newpass = {newpass}
-            confirmNewpass = {confirmNewpass}
-            setOldpass = {setOldpass}
-            setNewpass = {setNewpass}
-            setComfirmNewpass = {setComfirmNewpass}
-            />
-        </div>
+        
 
         <div>
             <button onClick={Delete} className="button-delete">ลบโปรไฟล์</button>
