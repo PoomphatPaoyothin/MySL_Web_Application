@@ -526,6 +526,8 @@ export class UserService{
 
     async getdashboard(){
         var dashboard = await this.userstatnavRepo.find({order:{Quiz_stat:"DESC"}})
+        console.log(dashboard);
+        
         var dashboard2 = []
         let count = 0
         for(let i in dashboard){
@@ -535,7 +537,7 @@ export class UserService{
                 var checkdelete = await this.userRepo.findOne({where:{ID:getuser.UserID}})
                 console.log(checkdelete)
                 if(checkdelete){
-                    dashboard[i]["rank"] = i;
+                    dashboard[i]["rank"] = count;
                     if(checkdelete.Is_delete == false){
                         dashboard2.push(dashboard[i])
                         count = count + 1
