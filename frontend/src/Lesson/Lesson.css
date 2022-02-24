@@ -57,15 +57,18 @@
 }
 
 .videoplayerbox{
-    width:33%;
+    width:380px;
     float:right;
     text-align: right;
+    border:solid 2px red;
 }
 
 .lessonBox{
-    width:33%;
+    width:15%;
     float:left;
     text-align: left;
+    border:solid 2px red;
+
 }
 
 .lessonCotainer{

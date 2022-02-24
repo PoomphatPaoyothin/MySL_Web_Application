@@ -14,7 +14,7 @@ import LessonIcon2 from '../Picture/Navbar/output-onlinepngtools.png'
 import searchIcon from '../Picture/Navbar/search-icon-png-9982.png'
 import userImage from '../Picture/profile/propic2.png'
 import Home from "../Home/Home";
-import { Form, FormControl, InputGroup, NavDropdown } from "react-bootstrap";
+import { Button, Form, FormControl, InputGroup, NavDropdown } from "react-bootstrap";
 
 const Navigatebar=(prop:any)=>{
     const history = useHistory();
@@ -53,7 +53,7 @@ const Navigatebar=(prop:any)=>{
             </Form> */}
 
             <Form> 
-            {/* <button onClick={showDash}> Dashboard</button> */}
+                <Button onClick={showDash}> Dashboard</Button>
             </Form>
 
             <Nav className = "ms-auto">

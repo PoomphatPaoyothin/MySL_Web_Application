@@ -48,6 +48,7 @@ const CameraQuiz = (props:any) => {
 
     if(blob != undefined)
     {
+      setStatus('กำลังประมวลผลกรุณารอสักครู่...')
       const data = new FormData();
       data.append('file', blob);
       Camera_service.send_video(data,rand)
@@ -230,6 +231,7 @@ const CameraQuiz = (props:any) => {
     if(props.isClose == true){
       open_close()
       setClosethenopen(!closethenopen)
+      setStatus('')
     }
   }, [props.word]);
   useEffect(() => {

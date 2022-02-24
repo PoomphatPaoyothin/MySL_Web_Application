@@ -54,7 +54,7 @@ const Forget2 = (props:any) =>{
                     <div className="center">
                         <input value={otp} type={'password'} className="inputemail" onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
                     </div>
-                    <div onClick={resendOTP}>ส่งรหัสยืนยันอีกครั้ง</div>
+                    <button onClick={resendOTP}>ส่งรหัสยืนยันอีกครั้ง</button>
                     <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
                 </div>
             </div>

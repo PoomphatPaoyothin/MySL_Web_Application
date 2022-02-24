@@ -71,14 +71,14 @@ const Stat=(props:any)=>{
         fetchCategoryStat()
     },[])
 
-
+    console.log('ssssssssssssssssss', objstat)
     return(
         <div className='statBG'>
             <div className="vl">
             </div>
             <div className='multimiddlee'>
                 {console.log('asasa',objstat)}
-                {objstat?.map((obj)=> (<Statbox name={findvalue(obj.CategoryID)}  Lesson_amount={obj.Lesson_amount} Lesson_learned={obj.Lesson_learned} category_quiz_score={findquizscore(obj.CategoryID)}/>))} 
+                {objstat?.map((obj)=> (<Statbox name={findvalue(obj.CategoryID)}  Lesson_amount={obj.Lesson_amount} Lesson_learned={obj.Lesson_learned} cat_user_score={obj.cat_user_score} cat_score={obj.cat_score} category_quiz_score={findquizscore(obj.CategoryID)}/>))} 
             </div>
         </div>
     )
