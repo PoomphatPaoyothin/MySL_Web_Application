@@ -456,7 +456,7 @@ export class UserService{
 
         var userscore = await this.getuserscore(userid);
         var userlessonlearn = await this.getuserlessonlearn(userid);
-        
+
         console.log(typeof userscore)
 
         var getuserstatnav = await this.userstatnavRepo.findOne({where:{
@@ -535,6 +535,7 @@ export class UserService{
                 var checkdelete = await this.userRepo.findOne({where:{ID:getuser.UserID}})
                 console.log(checkdelete)
                 if(checkdelete){
+                    dashboard[i]["rank"] = i;
                     if(checkdelete.Is_delete == false){
                         dashboard2.push(dashboard[i])
                         count = count + 1
