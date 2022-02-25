@@ -163,25 +163,27 @@
 
 .containeredit{
     margin-left: 20%;
+    height: 220px;
     /* border: 5px solid black; */
 }
 
 .containeredit1{
     margin-left: 20%;
     margin-top: 20px;
+    float: left;
 }
 
 @media screen and (max-width:570px){
-    .containeredit{
+    /* .containeredit{
         margin-left: 0%;
         text-align: center;
-    }
+    } */
 }
 
 @media screen and (max-width:485px){
-    .inputname1{
+    /* .inputname1{
         width: 50%;
-    }
+    } */
 }
 
 
@@ -203,13 +205,17 @@
     margin-left: 20%;
     font-size: 30px;
     font-family: 'Open Sans';
+    position:relative;
+    top:20px;
+    right:15%;
+    width:200px;
 }
 
 .editpasstext{
-    margin-top: 70px;
     /* margin-left: 210px; */
     font-size: 20px;
     font-family: 'Open Sans';
+    margin-top:10px;
 }
 
 .editboxtext{
@@ -217,49 +223,53 @@
     /* margin-left: 210px; */
     font-size: 20px;
     font-family: 'Open Sans';
+    /* border:2px solid red; */
 }
 
 .oldpassinput{
     font-family: 'Open Sans';
     padding: 12px 20px;
     font-size: 18px;
-    text-align: center;
+    margin-left: 10px;
     border-radius: 10px;
     border: 1px solid #cacaca;
     width: 340px;
     box-shadow: 3px 5px 5px #cacaca;
     display: inline-block;
+    /* position:absolute; */
+    
 }
 
 .newpassinput{
     font-family: 'Open Sans';
     padding: 12px 20px;
     font-size: 18px;
-    text-align: center;
     margin-left: 10px;
-    /* margin-top: 10px; */
     border-radius: 10px;
     border: 1px solid #cacaca;
     width: 340px;
     box-shadow: 3px 5px 5px #cacaca;
     display: inline-block;
+    top:0%;
+    position:relative;
 }
 
 .confirmpassinput{
     font-family: 'Open Sans';
     padding: 12px 20px;
     font-size: 18px;
-    text-align: center;
     margin-left: 10px;
     border-radius: 10px;
     border: 1px solid #cacaca;
     width: 340px;
     box-shadow: 3px 5px 5px #cacaca;
     display: inline-block;
+    top:0%;
+    position:relative;
 }
 
 @media screen and (max-width:1300px){
-    .confirmpassinput{
+    /* .confirmpassinput{
         margin-top: 35px;
         margin-left: 0%;
     }
@@ -267,28 +277,44 @@
         margin-top: 35px;
         margin-left: 0%;
         display: block;
-    }
+    } */
 }
 
 
 .showname{
     /* margin-left: 210px; */
-    margin-left: 20%;
     display:inline;
 }
-
+.showname2{
+    /* margin-left: 210px; */
+    /* border:2px solid black; */
+    position:relative;
+    margin:30px;
+    left:30px;
+}
+.passtext{
+    float:left;
+    position:relative;
+    right:30px;
+}
 .uploadpos{
     /* border: 2px solid black; */
     margin-top: 0px;
+    float:left;
 }
 
 .button-editName{
-    background-color: #11324D;
-    color: white;
     font-size: 14px;
-    top: 0%;
     width: 90px;
-    height: 35px;
+    /* border-color: none; */
+    border: 0px;
+    margin-left: 3%;
+    transition: 0.6s;
+    border-radius: 8px;
+}
+.button-editName2{
+    font-size: 14px;
+    width: 90px;
     /* border-color: none; */
     border: 0px;
     margin-left: 3%;
@@ -296,25 +322,12 @@
     border-radius: 8px;
 }
 
-.button-editName:hover{
-    background-color: #1f5b8c;
-    color: white;
-}
+
 
 .button-delete{
-    font-size: 14px;
-    font-family: 'Open Sans';
-    background-color: red;
-    border: 0px;
-    color: white;
-    border-color: red;
-    width: 90px;
-    height: 35px;
-    margin-top: 40px;
-    margin-bottom: 20px;
-    margin-left: 910px;
-    transition: 0.6s;
-    border-radius: 5px;
+    position:absolute;
+    right:10px;
+    bottom:10px;
 }
 
 .button-delete:hover{
@@ -338,32 +351,38 @@
 .savechange-button{
     font-size: 14px;
     font-family: 'Open Sans';
-    background-color: #11324D;
     height: 40px;
     border: 0px !important;
-    color: white;
-    margin-top: 1px;
+    margin-top: 10px;
     transition: 0.6s;
     border-radius: 8px;
     margin-left: 20%;
+    position:relative;
+    top:10%;
+    left:-4%;
+    
 }
 
-.savechange-button:hover{
-    background-color: #1f5b8c;
-    color: white;
+.savechange-button2{
+    font-size: 14px;
+    font-family: 'Open Sans';
+    position:relative;
+    
 }
-
 .canclechange-button{
     font-size: 14px;
     font-family: 'Open Sans';
-    background-color: #11324D;
     border: 0px;
     height: 40px;
-    color: white;
-    margin-top: 1px;
+    margin-top: 10px;
     margin-left: 10px;
     transition: 0.6s;
     border-radius: 8px;
+    position:relative;
+    left:9%;
+    top:10%;
+
+
 }
 
 .canclechange-button:hover{
@@ -447,33 +466,35 @@
     font-family: 'Open Sans';
     padding: 12px 20px;
     font-size: 18px;
-    text-align: center;
     margin-left: 10px;
     border-radius: 10px;
     border: 1px solid #cacaca;
     width: 340px;
     box-shadow: 3px 5px 5px #cacaca;
     display: inline-block;
+    top:0%;
+    position:relative;
 }
 
 .inputsurname1{
     font-family: 'Open Sans';
     padding: 12px 20px;
     font-size: 18px;
-    text-align: center;
     margin-left: 10px;
     border-radius: 10px;
     border: 1px solid #cacaca;
     width: 340px;
     box-shadow: 3px 5px 5px #cacaca;
-    /* display: inline; */
+    left:14%;
+    top:8%;
+    position:relative;
 }
 
 @media screen and (max-width:1010px) {
-    .inputsurname1{
+    /* .inputsurname1{
         margin-top: 35px;
         margin-left: 95px;
-    }
+    } */
 }
 
 
@@ -768,10 +789,11 @@
 .uploadprofilecard{
     /* background-color: #E0E0E0; */
     width:250px;
-    height: 220px;
+    height: 400px;
     margin:auto;
     text-align: center;
     padding: 25px 0;
+
 }
 
 .pictureprofile{
@@ -858,3 +880,12 @@
     border-radius: 50%;
 
 }
+
+.containerEditall{
+    background-color: #f2f2f2;
+    position:relative;
+    width:800px;
+    height:470px;
+    margin:auto;
+}
+

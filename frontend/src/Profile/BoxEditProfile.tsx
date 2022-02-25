@@ -6,6 +6,7 @@ import PopupConfirmName from "./PopupConfirmName";
 import PopupConfirmPassword from "./PopupConfirmPassword";
 import ProfileService from "./ProfileService";
 import UploadProfile from "./UploadProfile";
+import { Button } from "react-bootstrap";
 
 const BoxEditProfile = (props:any) => {
     // console.log('reload')
@@ -206,8 +207,10 @@ const BoxEditProfile = (props:any) => {
 
 
   return(
+      
       <div>
           <p className="editnametext">แก้ไขโปรไฟล์</p>
+
           <div className="uploadpos">
             <UploadProfile userid = {myid}/>
           </div>
@@ -217,14 +220,16 @@ const BoxEditProfile = (props:any) => {
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         
         <div className="editboxtext">
+
             <div className="showname">
+                ชื่อ:{' '}
                 {objprofile?.User_prefix_name}
                 {objprofile?.User_name} &nbsp;
                 {objprofile?.User_surname}
             </div>
             {
                 isbuttonName && 
-                <button onClick={NameEdit} className="button-editName">แก้ไข</button>
+                <Button onClick={NameEdit} className="button-editName">แก้ไข</Button>
             }
             {isNameEdit && 
             
@@ -247,12 +252,13 @@ const BoxEditProfile = (props:any) => {
                     
                     <input value={username} onChange={usernameInput} className="inputname1" placeholder="ชื่อจริง" required />
                     <input value={surname} onChange={surnameInput} className="inputsurname1" placeholder="นามสกุล" required />
+                    <br />
+                    <Button onClick={submitName} className="savechange-button"> บันทึกการเปลี่ยนแปลง</Button>
+                    <Button onClick={cancel} className="canclechange-button"> ยกเลิก </Button>
                 </div>
                 
                 
-                <br />
-                <button onClick={submitName} className="savechange-button"> บันทึกการเปลี่ยนแปลง</button>
-                <button onClick={cancel} className="canclechange-button"> ยกเลิก </button>
+
             </div>
             }
             <PopupConfirmName        
@@ -267,14 +273,19 @@ const BoxEditProfile = (props:any) => {
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         
             <div className="editpasstext">
-                <div className="showname"></div>
-                Password
-                {
+                <div className="showname2">
+                    <div className='passtext'>
+                    รหัสผ่าน
+                    </div>
+                
+                    {
                     isbuttonPass && 
-                    <button onClick={PassEdit} className="button-editName">แก้ไข</button>
-                }
+                    <Button onClick={PassEdit} className="button-editName2">แก้ไข</Button>
+                    }
+                </div>
+
                 {isPassEdit &&
-                    <div>
+                    <div className='allpasscontainer'>
                         <div className="containeredit1">
                             <input value={oldpass} onChange={oldpassInput} className="oldpassinput" placeholder="รหัสผ่านเก่า" type='password' required />
                             <input value={newpass} onChange={newpassInput} className="newpassinput" placeholder="รหัสผ่านใหม่" type='password' required />
@@ -282,8 +293,8 @@ const BoxEditProfile = (props:any) => {
                             
                         </div>
                         <br/>
-                        <button onClick={submitPass} className="savechange-button"> บันทึกการเปลี่ยนแปลง</button>
-                        <button onClick={cancel} className="canclechange-button"> ยกเลิก </button>
+                        <Button onClick={submitPass} className="savechange-button2"> บันทึกการเปลี่ยนแปลง</Button>
+                        <Button onClick={cancel} className="canclechange-button2"> ยกเลิก </Button>
                     </div>
                 }
                 <PopupConfirmPassword 
@@ -301,7 +312,7 @@ const BoxEditProfile = (props:any) => {
         
 
         <div>
-            <button onClick={Delete} className="button-delete">ลบโปรไฟล์</button>
+            <Button onClick={Delete}variant='danger' className="button-delete">ลบโปรไฟล์</Button>
             <PopupConfirmDelete             
             show={visibilityDelete}
             onClose={popupCloseHandlerDelete}

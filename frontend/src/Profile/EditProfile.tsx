@@ -53,12 +53,11 @@ const EditProfile = (props:any) => {
 ///////////////////////////////////////////////////////////////////////////////////
 
     return(
-        <div>
+        <div className='containerEditall'>
             {ismyid &&
                 <BoxEditProfile id={userId}/>
             }
 
-            
         </div>
     )
 }
