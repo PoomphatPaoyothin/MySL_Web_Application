@@ -71,16 +71,12 @@ const Sign_in = () => {
         <div className='right_login'>
           <div className = 'right_login2'>
           <div>
+            <p className='loginword'>เข้าใช้งาน</p>
             <input value={email} onChange={email_input} placeholder="อีเมล" required className="email_box"/>
             <input type='password' value={pass} onChange={pass_input} placeholder="รหัสผ่าน" required className="pass_box"/>
             <button type="submit" className='login_button' onClick={login}>เข้าสู่ระบบ</button>
 
-            <div className='keep_me'>
-              <input type="checkbox" className='checkbox'/>
-              <div className="keepme_text">
-               ให้ฉันอยู่ในระบบต่อไป
-              </div>
-            </div>
+
 
             <div className="forget_pass" >
               <label onClick={forget_pass} className='forget_pass_text'> 

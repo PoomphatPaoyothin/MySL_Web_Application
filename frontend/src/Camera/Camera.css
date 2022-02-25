@@ -1,10 +1,12 @@
 .camera{
-    border: 5px solid #FFFF00;
+    border-style: solid;
+    border-width: 10px;
+    border-image: linear-gradient(45deg, rgb(0,143,104), rgb(250,224,66)) 1;
     width: 33%;
     text-align: center;
     position: relative;
-
-
+    height:500px;
+    width:500;
     display: inline-block; 
     margin:0 auto;
 }

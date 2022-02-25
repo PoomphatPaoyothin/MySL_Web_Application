@@ -3,6 +3,8 @@
     padding: 10px;
     position: relative;
     /* border-style: dashed; */
+    height: 80px;
+
 }
 
 .home-pic{
@@ -17,6 +19,7 @@
     height: 30px;
     width: 30px;
     cursor: pointer;
+    float:left;
 }
 
 .quiz-pic{
@@ -24,6 +27,8 @@
     margin-top:6px;
     height: 26px;
     width: 26px;
+    cursor: pointer;
+    float:left;
 }
 
 .user-image{
@@ -46,19 +51,23 @@
 }
 
 .txt{
-    margin-top: 5px;
-    margin-right: 10px;
+    margin-top: 7px;
+    float:left;    
 }
 
 .search-pic{
-    height: 10px;
-    width: 10px;
+    height: 14px;
+    width: 12px;
 }
 
 .button-right{
     border-radius: 5px;
     transition: 0.6s;
     border : none;
+    margin-right:10px;
+    margin-left:10px;
+    top:10px;
+    height:45px;
 }
 
 .button-right:hover{
@@ -76,3 +85,79 @@
 .input-group{
     width: 300px !important;
 }
+
+.searchbox{
+    width:250px;
+    height:40px;
+    border-radius: 10px;
+    background: url('https://cdn.discordapp.com/attachments/912175328066142240/946472353741828136/search-icon-png-9982.png') no-repeat scroll 1px 1px;
+    padding-left:30px;
+    background-size: 15px;
+    background-position-x:3%;
+    background-position-y: center;
+    background-color: aliceblue;
+}
+
+.searchbutoon{
+    margin-left: 10px;
+    
+}
+
+.dashboardbutton{
+    height:45px;
+
+}
+
+.lessonstatnav{
+    position: relative;
+    right: 5%;
+}
+
+.lessonstatnav2{
+    position: relative;
+    right: 5%;
+}
+.Mysllogo{
+    border: 2px solid aliceblue;
+    color:aliceblue;
+    border-radius :50px;
+    background: linear-gradient(270deg, #36a8c5, #1328e2);
+}
+@media screen and (max-width: 920px) {
+    .lessonstatnav{
+        display: none;
+    }
+    .lessonstatnav2{
+        display: none;
+    }
+    .lesson-pic{
+        display: none;
+    }
+    .txt{
+        display: none;
+    }
+  }
+
+  @media screen and (max-width: 700px) {
+    .lessonstatnav{
+        display: none;
+    }
+    .lessonstatnav2{
+        display: none;
+    }
+    .lesson-pic{
+        display: none;
+    }
+    .txt{
+        display: none;
+    }
+    .searchbox{
+        display: none;
+
+    }
+    .searchbutoon{
+        display: none;
+    }
+  }
+  
+  

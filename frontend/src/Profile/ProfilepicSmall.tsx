@@ -6,13 +6,14 @@ import ProfileService from "./ProfileService";
 import LessonService from "../Lesson/LessonService";
 import './Profile.css'
 
-const Profilepic = (props:any) => {
+const ProfilepicSmall = (props:any) => {
     const [profilepic, setProfilepic] = useState<any>('propic')
 
     useEffect(()=>{
       if(props.userid){
         ProfileService.fetchuserprofile(props.userid)
         .then(res=>{
+          console.log('resssss ', res.imguser)
           setProfilepic(res.imguser)
         })
       }
@@ -21,10 +22,10 @@ const Profilepic = (props:any) => {
 
 
     return(
-      <div className = 'uploadprofilecard2'>
-          <label className={'previewimage2'}>
-            <div className="img-wrap2 img-upload2">
-                <img className='pictureprofile2' src={require(`../profileforupload/${profilepic}.jpg`).default}/>
+      <div className = 'uploadprofilecard3'>
+          <label className={'previewimage3'}>
+            <div className="img-wrap3 img-upload3">
+                <img onClick={props.click} className='pictureprofile3' src={require(`../profileforupload/${profilepic}.jpg`).default}/>
             </div>
           </label>
 
@@ -32,4 +33,4 @@ const Profilepic = (props:any) => {
     )
 }
 
-export default Profilepic;
+export default ProfilepicSmall;

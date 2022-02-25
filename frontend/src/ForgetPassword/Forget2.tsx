@@ -16,6 +16,7 @@ const Forget2 = (props:any) =>{
             email:email,
             otp:otp 
         }
+
         ForgetService.checkotp(obj)
         .then(res=>{ 
             if(res.accessToken!=undefined)
@@ -33,7 +34,9 @@ const Forget2 = (props:any) =>{
         })
 
     }
-
+    const cancel=()=>{
+        history.push('/')
+    }
     const resendOTP=()=>{
 
     }
@@ -59,6 +62,7 @@ const Forget2 = (props:any) =>{
                             ส่งรหัสยืนยันอีกครั้ง
                         </label>
                     </div>
+                    <button  onClick={cancel} className="nextbutton">ยกเลิก</button>
                     
                     <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
                 </div>

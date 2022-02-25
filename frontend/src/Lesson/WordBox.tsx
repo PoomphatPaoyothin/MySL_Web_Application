@@ -25,6 +25,8 @@ const WordBox=(props:any)=>{
     return(
         <div style={{
             background: Ismyword() ? "#d0e4fc" : "#F2F2F2",
+            border: Ismyword() ? "solid 1px darkblue" : "#F2F2F2",
+            
         }} onClick={showword} className='listgroup'>
         {props.word}
         </div>

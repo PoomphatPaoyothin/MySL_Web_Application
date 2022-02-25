@@ -14,8 +14,10 @@ import LessonIcon2 from '../Picture/Navbar/output-onlinepngtools.png'
 import searchIcon from '../Picture/Navbar/search-icon-png-9982.png'
 import userImage from '../Picture/profile/propic2.png'
 import Home from "../Home/Home";
-import { Button, Form, FormControl, InputGroup, NavDropdown } from "react-bootstrap";
+import { Alert, Button, Form, FormControl, InputGroup, NavDropdown } from "react-bootstrap";
 import NavigatebarService from "./NavigatebarService";
+import Profilepic from "../Profile/Profilepic";
+import ProfilepicSmall from "../Profile/ProfilepicSmall";
 
 const Navigatebar=(prop:any)=>{
     const history = useHistory();
@@ -82,46 +84,53 @@ const Navigatebar=(prop:any)=>{
             NavigatebarService.statnavfetch(myid)
             .then(res=>{
                 setStatnavbar(res)
-                console.log('ssssssssssssssssssss')
             })
         }
     },[myid])
     const _handleKeyDown=(e: { key: string; })=> {
         if (e.key === 'Enter') {
-            console.log('sssssssssssssssss', wordsearch)
             search()
         }
       }
+
+    const gotohome=()=>{
+        history.push('/')
+    }
     return(
         <Navbar fixed = 'top' className = 'NavBarCSS'>
             <Navbar.Brand href = "/">
-                <img src = {'https://cdn.discordapp.com/attachments/912175328066142240/946362874777972746/MysL.png'} className = 'home-pic'/>{'  '}MySL
+                 <Nav.Link eventKey={2} onClick={gotohome} className='Mysllogo'>
+                     Mysl
+                 </Nav.Link>
+                
             </Navbar.Brand>
 
-                <InputGroup.Text>
-                    <img src={searchIcon} className= 'search-pic'/>
-                </InputGroup.Text>
-                <input
-                placeholder="Dictionary"
-                aria-label="Search"
-                onChange={Word_input}
-                onKeyDown={_handleKeyDown}
-                />
-                <Button onClick={search}>search</Button>
 
-            <Form> 
-                <Button onClick={showDash}> Dashboard</Button>
-            </Form>
+            <input
+            placeholder="ค้นหาคำศัพท์"
+            aria-label="Search"
+            onChange={Word_input}
+            onKeyDown={_handleKeyDown}
+            className='searchbox'
+            />
+            <Button className="searchbutoon" onClick={search}>seasrch</Button>
+
 
             <Nav className = "ms-auto">
-                {console.log('sssss', statnavbar)}
-                <img src = {LessonIcon2} className = 'lesson-pic'/>
-                <div className="txt">{statnavbar.Lesson_Stat}/15</div>
-                <img src = {QuizIcon2} className = 'quiz-pic'/>
-                <div className="txt">{statnavbar.Quiz_stat}/45</div>
+
+                <Nav.Link eventKey={2} href="#memes" className='lessonstatnav'>
+                    <img src = {LessonIcon2} className = 'lesson-pic'/>
+                    <div className="txt">{statnavbar.Lesson_Stat}/15</div>
+                </Nav.Link>
+                <Nav.Link eventKey={2} href="#memes" className='lessonstatnav2'>
+                    <img src = {QuizIcon2} className = 'quiz-pic'/>
+                    <div className="txt">{statnavbar.Quiz_stat}/45</div>
+                </Nav.Link>
+
                 
-                <img className = 'user-image' onClick = {linktoprofile} src = {userImage}/>
+                <ProfilepicSmall click={linktoprofile} userid={myid}/>
                 
+                <Button className='dashboardbutton' onClick={showDash}> Dashsboard</Button>
                 <Button className = 'button-right' onClick={logout}>
                         logout
                 </Button>

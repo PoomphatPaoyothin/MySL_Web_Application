@@ -776,7 +776,7 @@
 
 .pictureprofile{
     width:140px;
-    /* height:200px; */
+    height:140px;
 }
 
 
@@ -825,15 +825,36 @@
 
 .uploadprofilecard2{
     position:relative;
-    /* border:solid 5px red; */
     /* width:0;
-    height: 0; */
-    /* margin:auto; */
-    /* text-align: center; */
-    /* padding: 25px 0; */
+    height: 0;
+    margin:auto;
+    text-align: center;
+    padding: 25px 0; */
     display: inline-block;
 }
 
 .pictureprofile2{
-    width:120px;
+    width:140px;
+    height:140px;
+
+}
+
+.uploadprofilecard3{
+    position:relative;
+    right:4%;
+}
+
+.previewimage3{
+    border-radius: 50%;
+    position: relative;
+    padding: 2px;
+    background: linear-gradient(270deg, #3fa1a9, #79f1a4);
+    cursor: pointer;
+}
+
+.pictureprofile3{
+    width:45px;
+    height:45px;
+    border-radius: 50%;
+
 }

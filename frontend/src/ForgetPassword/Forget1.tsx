@@ -47,6 +47,9 @@ const Forget1 = (props:any) =>{
             history.push(`/forgetpass/3/${localStorage.getItem('id')}`)
         }
     },[])
+    const cancel=()=>{
+        history.push('/')
+    }
 
     return(
         <div>
@@ -58,7 +61,7 @@ const Forget1 = (props:any) =>{
                 <div className="center">
                     <input value={email}  onChange={email_input} className="inputemail" placeholder="อีเมล" required />
                 </div>
-
+                <button  onClick={cancel} className="nextbutton">ยกเลิก</button>
                 <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
                 {
                 promiseInProgress && 
