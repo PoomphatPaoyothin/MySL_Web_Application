@@ -77,7 +77,7 @@ const Profile=(props:any)=>{
         <div className='containerprofile'>
             <Above id={userId} ismyid={ismyid} myid={myid}/>
             <Stat id={userId}/>
-            <Follow id={userId}/>
+            {/* <Follow id={userId}/> */}
         </div>
         }
 

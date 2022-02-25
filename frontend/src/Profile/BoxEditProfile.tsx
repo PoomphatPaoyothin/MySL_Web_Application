@@ -208,7 +208,10 @@ const BoxEditProfile = (props:any) => {
   return(
       <div>
           <p className="editnametext">แก้ไขโปรไฟล์</p>
-          <UploadProfile userid = {myid}/>
+          <div className="uploadpos">
+            <UploadProfile userid = {myid}/>
+          </div>
+          
           
         <div>
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}

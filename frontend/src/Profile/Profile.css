@@ -80,7 +80,7 @@
     left: 80%;
     /* left: 900px; */
     /* right: 0; */
-    top:100px;
+    top:110px;
     transform: translate(0,-50%);
     display: inline-block;
 }
@@ -118,7 +118,7 @@
 }
 
 
-@media screen and (max-width: 900px){
+/* @media screen and (max-width: 900px){
 
     .followerAbovePos{
         top: 210px;
@@ -139,7 +139,7 @@
         top:1050px !important;
     }
 
-}
+} */
 
 @media screen and (max-width:795px) {
     .follow{
@@ -150,8 +150,13 @@
 @media screen and (max-width: 700px){
 
     .editProfileButtonPos{
-        top: 210px;
-        left: 50%;
+        top: 200px;
+        left: 25%;
+    }
+
+    .statBG{
+        top: 250px;
+        width: 100%;
     }
 
 }
@@ -194,7 +199,7 @@
 }
 
 .editnametext{
-    margin-top: 70px;
+    margin-top: 35px;
     margin-left: 20%;
     font-size: 30px;
     font-family: 'Open Sans';
@@ -272,6 +277,11 @@
     display:inline;
 }
 
+.uploadpos{
+    /* border: 2px solid black; */
+    margin-top: 0px;
+}
+
 .button-editName{
     background-color: #11324D;
     color: white;
@@ -280,9 +290,10 @@
     width: 90px;
     height: 35px;
     /* border-color: none; */
+    border: 0px;
     margin-left: 3%;
     transition: 0.6s;
-    border-radius: 15px;
+    border-radius: 8px;
 }
 
 .button-editName:hover{
@@ -294,25 +305,46 @@
     font-size: 14px;
     font-family: 'Open Sans';
     background-color: red;
+    border: 0px;
     color: white;
     border-color: red;
     width: 90px;
     height: 35px;
-    margin-top: 70px;
-    margin-left: 210px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 910px;
+    transition: 0.6s;
     border-radius: 5px;
 }
 
+.button-delete:hover{
+    background-color: rgb(160, 36, 36);
+}
+
+/* width:135%;
+    height: 50px;
+    border-radius: 10px;
+    border:0px;
+    text-align: 30%;
+    color:white;
+    background-color: #11324D;
+    font-size:14px;
+    text-align: right;
+    padding-right: 1em;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.6s; */
 
 .savechange-button{
     font-size: 14px;
     font-family: 'Open Sans';
     background-color: #11324D;
     height: 40px;
+    border: 0px !important;
     color: white;
     margin-top: 1px;
     transition: 0.6s;
-    border-radius: 15px;
+    border-radius: 8px;
     margin-left: 20%;
 }
 
@@ -325,12 +357,13 @@
     font-size: 14px;
     font-family: 'Open Sans';
     background-color: #11324D;
+    border: 0px;
     height: 40px;
     color: white;
     margin-top: 1px;
     margin-left: 10px;
     transition: 0.6s;
-    border-radius: 15px;
+    border-radius: 8px;
 }
 
 .canclechange-button:hover{
@@ -351,17 +384,17 @@
 .statBG{
     position:absolute;
     /* width:920px; */
-    width: 75%;
+    width: 90%;
     border-radius: 10px;
     /* margin-left: 10px; */
-    margin-left: 2%;
+    margin-left: 5%;
     background-color:#f2f2f2;
     /* background-color: red; */
     box-shadow: 3px 5px 5px #cacaca;
     /* top: 300px; */
 }
 
-@media screen and (max-width: 1000px) {
+/* @media screen and (max-width: 1000px) {
     .statBG{
         width: 95%;
         left: 0%;
@@ -376,7 +409,7 @@
     .multimiddle{
         height: 40px !important;
     }
-}
+} */
 
 .vl{
     border-left: 1px solid #cacaca;
@@ -516,7 +549,7 @@
     position:relative;
     /* left:5%; */
     left:50px;
-    top:90px;
+    top:40px;
     transform: translate(0,-50%);
     /* border: 2px solid red; */
     display: inline-block;
@@ -723,6 +756,7 @@
     transition: .5s ease;
     background-color: #fff;
   }
+
 .img-upload:hover:before {
    opacity: 1;
   }
@@ -732,28 +766,30 @@
 }
 
 .uploadprofilecard{
-    background-color: #E0E0E0;
-    width:350px;
-    height: 350px;
+    /* background-color: #E0E0E0; */
+    width:250px;
+    height: 220px;
     margin:auto;
     text-align: center;
     padding: 25px 0;
 }
 
 .pictureprofile{
-    width:200px;
-    height:200px;
+    width:140px;
+    /* height:200px; */
 }
 
 
 
 .previewimage2{
+    /* border: 1px solid grey; */
+    left: 3px;
     border-radius: 50%;
-    display: inline-block;
+    display: inline-block !important;
     position: relative;
     padding: 6px;
     background: linear-gradient(270deg, #3fa1a9, #79f1a4);
-    margin-bottom: 25px;
+    /* margin-bottom: 25px; */
 }
 
 .img-wrap2{
@@ -761,6 +797,7 @@
     overflow: hidden;
     border-radius: 50%;
   }
+
 .img-upload2:before{
     font-size: 90px;
     position: absolute;
@@ -777,6 +814,7 @@
     transition: .5s ease;
     background-color: #fff;
   }
+
 .img-upload2:hover:before {
    opacity: 1;
   }
@@ -787,16 +825,15 @@
 
 .uploadprofilecard2{
     position:relative;
-    border:solid 5px red;
-    width:0;
-    height: 0;
-    margin:auto;
-    text-align: center;
-    padding: 25px 0;
+    /* border:solid 5px red; */
+    /* width:0;
+    height: 0; */
+    /* margin:auto; */
+    /* text-align: center; */
+    /* padding: 25px 0; */
     display: inline-block;
 }
 
 .pictureprofile2{
-    width:200px;
-    height:200px;
+    width:120px;
 }

@@ -139,7 +139,7 @@ const Above=(props:any|null)=>{
                 <img src={'https://cdn.discordapp.com/attachments/912175328066142240/915088056124584086/nameProfile.png'} className='nameProfileBox'/>
             </div>
 
-            <div className='followingAbovePos'>
+            {/* <div className='followingAbovePos'>
                 <div>
                     Following 
                 </div>
@@ -156,7 +156,7 @@ const Above=(props:any|null)=>{
                 {objuser?.follower_amount}
 
                 </div>
-            </div>
+            </div> */}
             
 
             {props.ismyid &&
