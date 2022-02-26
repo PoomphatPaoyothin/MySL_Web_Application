@@ -1,3 +1,8 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../Opun-Regular/Opun-Regular.ttf');
+}
+
 .NavBarCSS{
     background-color: #83c2bc;
     padding: 10px;
@@ -87,6 +92,9 @@
 }
 
 .searchbox{
+    font-family: 'Open Sans';
+    font-size: 14px;
+    border: 0px;
     width:250px;
     height:40px;
     border-radius: 10px;

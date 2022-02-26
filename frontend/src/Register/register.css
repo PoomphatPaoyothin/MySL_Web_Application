@@ -152,6 +152,65 @@
 
 }
 
+.inputcenter1{
+    /* text-align: center; */
+    position: relative;
+    margin-top: 0px;
+    /* position: absolute; */
+    /* border: 2px solid blue; */
+    /* display: inline-block; */
+
+}
+
+.uploadpos{
+    width: 300px;
+    /* border: 2px solid black; */
+    margin-top: 5px;
+    position: relative;
+    float:left;
+    margin-left: 15%;
+    z-index: 1;
+}
+
+@media screen and (max-width:1020px) {
+    .nametext{
+        margin-left: 90px !important;
+    }
+}
+
+@media screen and (max-width:830px){
+    .nameuploadpos{
+        /* border: 1px solid blue; */
+        right: 25%;
+        /* text-align: center; */
+        margin-top: 0px;
+        position: absolute;
+    }
+
+    .nametext{
+        /* border: 1px solid red; */
+        /* text-align: center !important; */
+        margin-left: 0% !important;
+        margin-top: 40px !important;
+    }
+
+    .uploadpos{
+        right: 13%;
+    }
+
+    .inputcenter1{
+        margin-top: 320px;
+        right: 25%;
+        position:absolute;
+    }
+
+    .submitname{
+        margin-top: 200px !important;
+        /* right: 25%; */
+        margin-left: 0% !important;
+    }
+}
+
 .inputname{
     font-family: 'Open Sans';
     padding: 12px 20px;
@@ -199,12 +258,14 @@
     color: white;
     border: 0px;
     background-color: #11324D;
-    margin-left: 65%;
+    margin-left: 30%;
     padding: 10px 25px;
     border-radius: 15px;
     font-size: 15px;
-    transition: 0.6s;
-    margin-top: 20px;
+    transition: background-color 0.6s;
+    top: 0px;
+    position: absolute;
+    margin-top: 240px;
 }
 
 .submitname:hover{
@@ -215,8 +276,9 @@
 .nametext{
     font-family: 'Open Sans';
     text-align: center;
+    /* margin-left: 40%; */
     font-size: 20px;
-    margin-top: 45px;
+    margin-top: 145px;
 }
 
 @media screen and (max-width: 900px){
@@ -243,6 +305,6 @@
     }
 
     .submitname{
-        left: 500px;
+        left: 390px;
     }
 }

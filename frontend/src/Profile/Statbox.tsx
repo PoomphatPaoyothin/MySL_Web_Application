@@ -31,7 +31,7 @@ const Statbox=(props:any)=>{
                             datasets: [
                                 {
                                 label: 'My First Dataset',
-                                data: [props.Lesson_learned, props.Lesson_amount],
+                                data: [props.Lesson_learned,(props.Lesson_learned-props.Lesson_amount)],
                                 backgroundColor: [
                                     'rgba(190,174,226, 0.8)',
                                     'rgba(54, 162, 235, 0.2)',
@@ -61,7 +61,7 @@ const Statbox=(props:any)=>{
                             data={{
                             datasets: [
                                 {
-                                data: [props.cat_user_score,props.cat_score],
+                                data: [props.cat_user_score,props.cat_score-props.cat_user_score],
                                 backgroundColor: [
                                     'rgba(94,251,223, 0.8)',
                                     'rgba(155,148,148, 0.2)',

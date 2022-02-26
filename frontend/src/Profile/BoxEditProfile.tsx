@@ -211,7 +211,7 @@ const BoxEditProfile = (props:any) => {
       <div>
           <p className="editnametext">แก้ไขโปรไฟล์</p>
 
-          <div className="uploadpos">
+          <div className="uploadpos1">
             <UploadProfile userid = {myid}/>
           </div>
           
@@ -220,17 +220,19 @@ const BoxEditProfile = (props:any) => {
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         
         <div className="editboxtext">
-
-            <div className="showname">
-                ชื่อ:{' '}
-                {objprofile?.User_prefix_name}
-                {objprofile?.User_name} &nbsp;
-                {objprofile?.User_surname}
+            <div className="center">
+                <div className="showname">
+                    ชื่อ:{' '}
+                    {objprofile?.User_prefix_name}
+                    {objprofile?.User_name} &nbsp;
+                    {objprofile?.User_surname}
+                </div>
+                {
+                    isbuttonName && 
+                    <Button onClick={NameEdit} className="button-editName">แก้ไข</Button>
+                }
             </div>
-            {
-                isbuttonName && 
-                <Button onClick={NameEdit} className="button-editName">แก้ไข</Button>
-            }
+            
             {isNameEdit && 
             
             <div>
@@ -274,9 +276,8 @@ const BoxEditProfile = (props:any) => {
         
             <div className="editpasstext">
                 <div className="showname2">
-                    <div className='passtext'>
                     รหัสผ่าน
-                    </div>
+                    
                 
                     {
                     isbuttonPass && 
@@ -285,17 +286,19 @@ const BoxEditProfile = (props:any) => {
                 </div>
 
                 {isPassEdit &&
-                    <div className='allpasscontainer'>
-                        <div className="containeredit1">
+                    <div>
                             <input value={oldpass} onChange={oldpassInput} className="oldpassinput" placeholder="รหัสผ่านเก่า" type='password' required />
                             <input value={newpass} onChange={newpassInput} className="newpassinput" placeholder="รหัสผ่านใหม่" type='password' required />
                             <input value={confirmNewpass} onChange={confirmNewpassInput} className="confirmpassinput" placeholder="ยืนยันรหัสผ่านใหม่" type='password' required />
-                            
-                        </div>
+                            <br/>
+                            <Button onClick={submitPass} className="savechange-button2"> บันทึกการเปลี่ยนแปลง</Button>
+                            <Button onClick={cancel} className="canclechange-button2"> ยกเลิก </Button>
+                        
                         <br/>
-                        <Button onClick={submitPass} className="savechange-button2"> บันทึกการเปลี่ยนแปลง</Button>
-                        <Button onClick={cancel} className="canclechange-button2"> ยกเลิก </Button>
+                        {/* <Button onClick={submitPass} className="savechange-button2"> บันทึกการเปลี่ยนแปลง</Button>
+                        <Button onClick={cancel} className="canclechange-button2"> ยกเลิก </Button> */}
                     </div>
+                    
                 }
                 <PopupConfirmPassword 
                 show = {visibilityPass}
@@ -308,7 +311,7 @@ const BoxEditProfile = (props:any) => {
                 setNewpass = {setNewpass}
                 setComfirmNewpass = {setComfirmNewpass}
                 />
-            </div>
+            </div><br/>
         
 
         <div>

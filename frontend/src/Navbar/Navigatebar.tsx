@@ -113,7 +113,7 @@ const Navigatebar=(prop:any)=>{
             onKeyDown={_handleKeyDown}
             className='searchbox'
             />
-            <Button className="searchbutoon" onClick={search}>seasrch</Button>
+            <Button className="searchbutoon" onClick={search}>search</Button>
 
 
             <Nav className = "ms-auto">

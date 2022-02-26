@@ -93,9 +93,14 @@ const Name = (props:any) =>{
         {
             checkid() &&
             <div >
-                <p className="nametext">กรุณากรอกชื่อและนามสกุล</p> 
-                <UploadProfile userid = {myid}/>
-                <div className="inputcenter">
+                <div className="nameuploadpos">
+                    <p className="nametext">กรุณากรอกชื่อและนามสกุล</p> 
+                    <div className="uploadpos">
+                        <UploadProfile userid = {myid}/>
+                    </div>
+                </div>
+                
+                <div className="inputcenter1">
                     <div className="selectprefix">
                         <form action="#">
                             <select 
@@ -110,10 +115,12 @@ const Name = (props:any) =>{
                     </div>
                     <input value={name} onChange={name_imput} className="inputname" placeholder="ชื่อจริง" required /><br/>
                     <input value={surname} onChange={surname_input} className="inputsurname" placeholder="นามสกุล" required /> 
-                </div>
-                <br/>
 
-                <button  onClick={gotonext} className="submitname">สมัคร</button>
+                    <br/>
+
+                    <button  onClick={gotonext} className="submitname">สมัคร</button>
+                </div>
+                
                 {
                 promiseInProgress && 
                 <Popuploading/>
