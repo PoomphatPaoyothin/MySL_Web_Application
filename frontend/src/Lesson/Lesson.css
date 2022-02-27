@@ -53,6 +53,7 @@
     transition: all 5s ease-in-out;
 }
 .camera{
+    /* background-color: black; */
     position: relative;
     right:0;
 }
@@ -123,19 +124,27 @@
 }
 
 .showscoreContainer{
+    margin-top: 30px;
     text-align: center;
 }
+
 .buttonscore{
+    font-family: 'Open Sans';
     margin:10px;
 }
 .successexam{
     width:300px;
 }
 
+.opencamtext{
+    font-family: 'Open Sans';
+}
+
 .showscoreContainer2{
     text-align: center;
 }
 .buttonscore2{
+    font-family: 'Open Sans';
     margin:10px;
 }
 .successexam2{
@@ -151,11 +160,21 @@
 
 .examcontainer{
     text-align: center;
+    height: 100%;
+}
+
+.nextquizbutton{
+    font-family: 'Open Sans';
+    height: 40px;
+    margin-bottom: 40px;
+    font-size: 14px;
 }
 
 .wordtestcam{
     font-family: 'Open Sans';
     font-size: 35px;
+    margin-bottom: 10px;
+    margin-top: 10px;
 }
 
 .opencamtest{

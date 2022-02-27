@@ -229,8 +229,8 @@ const Quiz=(props:any)=>{
                             {allword ? 
                             (<CameraQuiz setcorrect={setcorrect}  isClose={isClose} disabled={disableButton} lessonid={lessonId} catid={catId} word={allword[numberword].Word_name}/>):(<div></div>)}
 
-                            <div>**กรุณาเปิดกล้องเพิ่อทำแบบทดสอบ**</div>
-                            <Button variant="primary" size="lg" disabled={canNext} onClick={nextword}>{submitword}</Button>
+                            <div className="opencamtext">**กรุณาเปิดกล้องเพื่อทำแบบทดสอบ**</div>
+                            <Button variant="primary" size="lg" disabled={canNext} onClick={nextword} className="nextquizbutton">{submitword}</Button>
                             
                         </div>
                     }

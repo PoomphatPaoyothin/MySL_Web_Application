@@ -55,8 +55,8 @@ const PopupConfirmDelete = (props:any) => {
             <span className='close' onClick={closeHandler}>
             &times;
             </span>
-            <input value={pass} onChange={passwordinput} placeholder="ใส่รหัสผ่านยืนยัน" type='password' required />
-            <button onClick={Delete}>ยืนยันลบข้อมูลผู้ใช้</button>
+            <input value={pass} onChange={passwordinput} className="deleteconfirminput" placeholder="ใส่รหัสผ่านยืนยัน" type='password' required /> <br/>
+            <button onClick={Delete} className="buttondelete">ยืนยันลบข้อมูลผู้ใช้</button>
         </div>
       </div>
     );

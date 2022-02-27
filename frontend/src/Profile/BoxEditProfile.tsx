@@ -252,7 +252,7 @@ const BoxEditProfile = (props:any) => {
                     </div>   
                     
                     
-                    <input value={username} onChange={usernameInput} className="inputname1" placeholder="ชื่อจริง" required />
+                    <input value={username} onChange={usernameInput} className="inputname1" placeholder="ชื่อจริง" required /> <br/>
                     <input value={surname} onChange={surnameInput} className="inputsurname1" placeholder="นามสกุล" required />
                     <br />
                     <Button onClick={submitName} className="savechange-button"> บันทึกการเปลี่ยนแปลง</Button>
@@ -289,7 +289,7 @@ const BoxEditProfile = (props:any) => {
                     <div>
                             <div className="centerpass">
                                 <input value={oldpass} onChange={oldpassInput} className="oldpassinput" placeholder="รหัสผ่านเก่า" type='password' required /><br/>
-                                <input value={newpass} onChange={newpassInput} className="newpassinput" placeholder="รหัสผ่านใหม่" type='password' required />
+                                <input value={newpass} onChange={newpassInput} className="newpassinput" placeholder="รหัสผ่านใหม่" type='password' required /><br/>
                                 <input value={confirmNewpass} onChange={confirmNewpassInput} className="confirmpassinput" placeholder="ยืนยันรหัสผ่านใหม่" type='password' required />
                             </div>
                             

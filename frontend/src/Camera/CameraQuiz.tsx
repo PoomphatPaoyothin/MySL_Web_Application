@@ -240,7 +240,7 @@ const CameraQuiz = (props:any) => {
 
 
   return (
-    <div className='camera'>
+    <div className='camera2'>
       <div className="demo-section">
         {/* <p>all_result: {all_result}</p> */}
         {/* {word} */}
@@ -298,6 +298,7 @@ const CameraQuiz = (props:any) => {
           }}
           autoPlay
           muted
+          className="webcam"
         />
         <video
           ref={recordWebcam.previewRef}

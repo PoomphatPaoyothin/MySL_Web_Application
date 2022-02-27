@@ -8,9 +8,28 @@
     
 }
 
+.camera2{
+    /* border-style: solid; */
+    text-align: center;
+    border-width: 10px;
+    /* width: 33%; */
+    text-align: center;
+    position: relative;
+    /* height:500px; */
+    width:500;
+    display: inline-block; 
+    /* margin:0 auto; */
+}
+
 .videocheck{
     justify-content: center;
     display:flex;
+}
+
+.webcam{
+    /* border: solid; */
+    margin-top: 20px;
+
 }
 
 .oncloseButton{
