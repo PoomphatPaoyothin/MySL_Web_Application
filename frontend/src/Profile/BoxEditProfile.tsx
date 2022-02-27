@@ -220,7 +220,7 @@ const BoxEditProfile = (props:any) => {
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         
         <div className="editboxtext">
-            <div className="center">
+            <div className="namecenter">
                 <div className="showname">
                     ชื่อ:{' '}
                     {objprofile?.User_prefix_name}
@@ -287,9 +287,12 @@ const BoxEditProfile = (props:any) => {
 
                 {isPassEdit &&
                     <div>
-                            <input value={oldpass} onChange={oldpassInput} className="oldpassinput" placeholder="รหัสผ่านเก่า" type='password' required />
-                            <input value={newpass} onChange={newpassInput} className="newpassinput" placeholder="รหัสผ่านใหม่" type='password' required />
-                            <input value={confirmNewpass} onChange={confirmNewpassInput} className="confirmpassinput" placeholder="ยืนยันรหัสผ่านใหม่" type='password' required />
+                            <div className="centerpass">
+                                <input value={oldpass} onChange={oldpassInput} className="oldpassinput" placeholder="รหัสผ่านเก่า" type='password' required /><br/>
+                                <input value={newpass} onChange={newpassInput} className="newpassinput" placeholder="รหัสผ่านใหม่" type='password' required />
+                                <input value={confirmNewpass} onChange={confirmNewpassInput} className="confirmpassinput" placeholder="ยืนยันรหัสผ่านใหม่" type='password' required />
+                            </div>
+                            
                             <br/>
                             <Button onClick={submitPass} className="savechange-button2"> บันทึกการเปลี่ยนแปลง</Button>
                             <Button onClick={cancel} className="canclechange-button2"> ยกเลิก </Button>

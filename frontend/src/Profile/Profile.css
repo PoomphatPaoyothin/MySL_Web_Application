@@ -389,7 +389,7 @@
     font-size: 14px;
     font-family: 'Open Sans';
     height: 40px;
-    margin-top: 25px;
+    margin-top: 0px;
     position:relative;
     margin-left: 10px;
     border-radius: 8px;
@@ -401,7 +401,7 @@
     font-size: 14px;
     font-family: 'Open Sans';
     height: 40px;
-    margin-top: 20px;
+    margin-top: 0px;
     position:relative;
     margin-left: 100px;
     border-radius: 8px;
@@ -566,35 +566,32 @@
     }
 
     .containeredit{
-        right: 30%;
+        /* right: 30%; */
+        position: relative;
+        margin-left: 0%;
+        border: 1px solid red;
+        text-align: center;
         /* margin-left: 0%; */
         /* margin-right: 30%; */
         /* text-align: center; */
     }
 
     .inputsurname1{
-        left: 95px !important;
+        left: 50px !important;
     }
 
     .savechange-button{
         left: 0px;
     }
 
-    .newpassinput{
-        /* display: block; */
-        /* margin-left: 20%; */
+    .namecenter{
+        text-align: center;
     }
     
 }
 
 @media screen and (max-width:630px) {
-    .inputsurname1{
-        width: 73%;
-    }
-
-    .inputname1{
-        width: 73%;
-    }
+    
 }
 
 
