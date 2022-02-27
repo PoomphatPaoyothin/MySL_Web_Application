@@ -199,6 +199,9 @@ const Quiz=(props:any)=>{
     const isFinishHandle=(value:boolean)=>{
         setIsFinish(value)
     }
+    const gotogetstart=()=>{
+        getStart(true)
+    }
     return(
         <div>
             {
@@ -215,7 +218,7 @@ const Quiz=(props:any)=>{
                         }
                         </div>
 
-                        <Button className={'buttonscore2'} disabled={isStart == true} onClick={start}>เริ่มแบบทดสอบ</Button>
+                        <Button className={'buttonscore2'} disabled={isStart == true} onClick={gotogetstart}>เริ่มแบบทดสอบ</Button>
 
                         <Button className={'buttonscore2'} onClick={backlesson}>กลับสู่บทเรียน</Button>
                     </div>
@@ -231,7 +234,6 @@ const Quiz=(props:any)=>{
                             
                         </div>
                     }
-                    <PopupconfirmQuiz show={show} onClose={closeHandler} getStart={getStart} />
          
                 </div>
             }

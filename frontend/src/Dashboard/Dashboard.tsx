@@ -37,8 +37,6 @@ const Dashboard=(props:any)=>{
                     <th>อันดับ</th>
                     <th>รายชื่อ</th>
                     <th>คะแนน</th>
-                    <th>จำนวนคนติดตาม</th>
-                    <th>จำนวนคนกำลังติดตาม</th>
                 </tr>
             </thead>
             <tbody>
@@ -49,8 +47,6 @@ const Dashboard=(props:any)=>{
                     <td>{obj.rank+1}</td>
                     <td onClick={()=>gotouser(obj.UserID)} className='canclickdash'>{obj.prefix} {obj.username} {obj.surname}</td>
                     <td>{obj.Quiz_stat}</td>
-                    <td>{obj.followeramount}</td>
-                    <td>{obj.followingamount}</td>
                 </tr>
 
                 ))
@@ -64,16 +60,6 @@ const Dashboard=(props:any)=>{
                     </td>
 
                     <td >{  <Placeholder as="p" animation="glow">
-                                <Placeholder xs={12} />
-                            </Placeholder>}
-                    </td>
-
-                    <td>{  <Placeholder as="p" animation="glow">
-                                <Placeholder xs={12} />
-                            </Placeholder>}
-                    </td>
-
-                    <td>{  <Placeholder as="p" animation="glow">
                                 <Placeholder xs={12} />
                             </Placeholder>}
                     </td>

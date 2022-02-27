@@ -167,8 +167,12 @@ const Lesson=(props:any)=>{
                     <LessonBox objlesson={objlesson2} objword={objword} catId={catId} defaultchap={Defaultchap()} word={word}/>
                     {/* {showWord()} */}
                     <div className='twocomponent'>
-                        <Camera className = 'camera_lesson' catid={catId} word={word}/>
-                        <VideoPlayer objword={objword} word={word}/>
+                        {/* <div className='wordshowtop'>{word}</div> */}
+                        <div className='camandvideo'>
+                            <Camera  catid={catId} word={word}/>
+                            <VideoPlayer objword={objword} word={word}/>
+                        </div>
+
                     </div>
 
 

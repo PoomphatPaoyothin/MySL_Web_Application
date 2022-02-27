@@ -233,7 +233,7 @@ const Camera = (props:any) => {
                   ? "block"
                   : "none"
               }`,
-              width:500,
+              width:600,
               height:300,
               left:0
 

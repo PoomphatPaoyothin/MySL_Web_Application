@@ -6,6 +6,7 @@ import { useHistory } from "react-router";
 import { usePromiseTracker } from "react-promise-tracker";
 import { trackPromise } from 'react-promise-tracker';
 import Profilepic from "./Profilepic";
+import { Button } from "react-bootstrap";
 
 
 const Above=(props:any|null)=>{
@@ -135,7 +136,7 @@ const Above=(props:any|null)=>{
             </div>
 
             <div className='namePos'>
-                <div className='nameuser'>{objuser?.User_prefix_name} {objuser?.User_name} &nbsp; {objuser?.User_surname}</div>
+                <div className='nameuser'>{objuser?.User_prefix_name} {objuser?.User_name}  {objuser?.User_surname}</div>
                 <img src={'https://cdn.discordapp.com/attachments/912175328066142240/915088056124584086/nameProfile.png'} className='nameProfileBox'/>
             </div>
 
@@ -161,8 +162,8 @@ const Above=(props:any|null)=>{
 
             {props.ismyid &&
             <div className='editProfileButtonPos'>
-                <button className='editProfileButton' onClick={gotoEdit}>EDIT PROFILE</button>
-                <img src = 'https://cdn.discordapp.com/attachments/912175328066142240/915093553565298748/Pencil.png' className='pencilPos'/>
+                <Button onClick={gotoEdit}>EDIT PROFILE</Button>
+                {/* <img src = 'https://cdn.discordapp.com/attachments/912175328066142240/915093553565298748/Pencil.png' className='pencilPos'/> */}
 
             </div>
             }
