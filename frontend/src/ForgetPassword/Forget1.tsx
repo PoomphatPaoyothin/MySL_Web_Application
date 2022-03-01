@@ -5,22 +5,29 @@ import Popuploading from "../Loadingpop/PopupLoading";
 import { trackPromise } from 'react-promise-tracker';
 import { usePromiseTracker } from "react-promise-tracker";
 import './forgetpass.css'
+import { Button } from "react-bootstrap";
+import Alertshow from "../Profile/Alertshow";
 
 const Forget1 = (props:any) =>{
     const history=useHistory()
     const [email,setEmail] = useState<string>()
-    const  {promiseInProgress}  = usePromiseTracker()
+    
+    const [popload, setPopload] = useState(false)
+    const closepopload = ()=>{setPopload(false)}
 
+    const [popalert, setPopalert] = useState(false)
+    const closealert = ()=>{setPopalert(false)}
+    const [text,setText] = useState('')
 
     const email_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
         setEmail(e.target.value);
       }
 
     const gotonext=()=>{
+        setPopload(true)
         const obj={
             email:email
         }
-        trackPromise(
         ForgetService.patchemail(obj)
         .then(res=>{
             console.log('res is',res)
@@ -30,15 +37,17 @@ const Forget1 = (props:any) =>{
                 {
                     localStorage.removeItem('email')
                     localStorage.setItem('email',email)
-    
+                    setPopload(false)
                     history.push('/forgetpass/2')
                 }
 
             }
             else{
-                alert('ไม่มีอีเมลล์นี้')
+                setText('ไม่มีอีเมล์นี้')
+                setPopalert(true)
+                setPopload(false)
             }
-        }))
+        })
     }
 
     useEffect(()=>{
@@ -61,12 +70,11 @@ const Forget1 = (props:any) =>{
                 <div className="center">
                     <input value={email}  onChange={email_input} className="inputemail" placeholder="อีเมล" required />
                 </div>
-                <button  onClick={cancel} className="nextbutton">ยกเลิก</button>
-                <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
-                {
-                promiseInProgress && 
-                <Popuploading/>
-                }
+                <Button  onClick={gotonext} className="nextbuttonnew2">ต่อไป</Button>
+                <Button  onClick={cancel} className="nextbuttonnew1">ยกเลิก</Button>
+                
+                <Popuploading show={popload} setshow={closepopload}/>
+                <Alertshow txt={text} show={popalert} onHide={closealert} />
             </div> 
 
             }

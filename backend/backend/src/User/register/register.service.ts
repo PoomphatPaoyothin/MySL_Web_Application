@@ -87,7 +87,7 @@ export class registerService{
     }
 
     async checkotp(id:string,otp:string){
-        const getUser = await this.userRepo.findOne({where:{ID:id}});
+        const getUser = await this.userRepo.findOne({where:{ID:id,Is_delete:false}});
         const User_email = getUser.User_email;
         const User_id = getUser.ID;
         if(!getUser){
@@ -113,7 +113,7 @@ export class registerService{
     }
 
     async findUserProfile(id:string) {
-        return this.userRepo.findOne({where:{ID:id}});
+        return this.userRepo.findOne({where:{ID:id,Is_delete:false}});
     }
 
     async findUserByEmail(email:string){
@@ -122,14 +122,14 @@ export class registerService{
 
     async updateotp(email:string,num:number){
         const numstring = num.toString();
-        const getUser = await this.userRepo.findOne({where:{User_email:email}});
+        const getUser = await this.userRepo.findOne({where:{User_email:email,Is_delete:false}});
         getUser.temp = numstring;
         await this.userRepo.save(getUser);
         return getUser.temp;
     }
 
     async checkotpwithemail(email:string,otp:string){
-        const getUser = await this.userRepo.findOne({where:{User_email:email}});
+        const getUser = await this.userRepo.findOne({where:{User_email:email,Is_delete:false}});
         const userotp = getUser.temp;
         const User_email = getUser.User_email;
         const userId = getUser.ID;

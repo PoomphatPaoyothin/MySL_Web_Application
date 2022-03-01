@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
+import Popuploading from "../Loadingpop/PopupLoading";
+import Alertshow from "../Profile/Alertshow";
 import ForgetService from "./ForgetService";
 
 const Forget2 = (props:any) =>{
@@ -7,11 +10,18 @@ const Forget2 = (props:any) =>{
     const [otp,setOtp] = useState<string>()
     const email = localStorage.getItem('email')
 
+    const [popload, setPopload] = useState(false)
+    const closepopload = ()=>{setPopload(false)}
+
+    const [popalert, setPopalert] = useState(false)
+    const closealert = ()=>{setPopalert(false)}
+    const [text,setText] = useState('')
 
     const otp_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
         setOtp(e.target.value);
     }
     const gotonext=()=>{
+        setPopload(true)
         const obj={
             email:email,
             otp:otp 
@@ -21,6 +31,7 @@ const Forget2 = (props:any) =>{
         .then(res=>{ 
             if(res.accessToken!=undefined)
             {
+                setPopload(false)
                 localStorage.removeItem('email')
                 localStorage.setItem('id',res.UserId)
                 localStorage.setItem('accessToken',res.accessToken)
@@ -29,7 +40,9 @@ const Forget2 = (props:any) =>{
             }
             else
             {
-                alert('OTP ไม่ถูกต้องโปรดลองใหม่อีกครั้ง')
+                setPopload(false)
+                setPopalert(true)
+                setText('OTP ไม่ถูกต้องโปรดลองใหม่อีกครั้ง')
             }
         })
 
@@ -38,7 +51,24 @@ const Forget2 = (props:any) =>{
         history.push('/')
     }
     const resendOTP=()=>{
-
+        setPopload(true)
+        let obj={
+            email:email
+        }
+        ForgetService.resendOTP(obj)
+        .then(res=>{
+            if(res)
+            {
+                setPopload(false)
+                setPopalert(true)
+                setText('ได้ทำการส่ง OTP อีกครั้งแล้ว')
+            }
+            else{
+                setPopload(false)
+                setPopalert(true)
+                setText('ไม่มีมีอีเมล์นี้')
+            }
+        })
     }
     useEffect(()=>{
         if(localStorage.getItem('id') != undefined)
@@ -55,19 +85,21 @@ const Forget2 = (props:any) =>{
                     กรุณาป้อนรหัสยืนยันจากอีเมล
                     </div>
                     <div className="center">
-                        <input value={otp} className="inputemail" onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
+                        <input value={otp} className="inputemail2" onChange={otp_input} placeholder="ยืนยันรหัสผ่าน" required />
                     </div>
                     <div className="resendotppos">
                         <label onClick={resendOTP} className='resendotp'> 
                             ส่งรหัสยืนยันอีกครั้ง
                         </label>
                     </div>
-                    <button  onClick={cancel} className="nextbutton">ยกเลิก</button>
+                    <Button  onClick={cancel} className="nextbuttonnew1">ยกเลิก</Button>
                     
-                    <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
+                    <Button  onClick={gotonext} className="nextbuttonnew2">ต่อไป</Button>
                 </div>
             </div>
         }
+        <Popuploading show={popload} setshow={closepopload}/>
+        <Alertshow txt={text} show={popalert} onHide={closealert} />
         </div>
 
     )

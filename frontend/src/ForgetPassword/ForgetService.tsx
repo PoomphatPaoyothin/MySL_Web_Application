@@ -40,9 +40,20 @@ async function changepassword(obj:any): Promise<boolean> {
 
     return tmp
 }
+async function resendOTP(obj:any): Promise<boolean> {
+    const res = await fetch(`${url}/register/forgotpass`,{
+        method: 'PATCH',
+        headers : {'Content-Type': 'application/json'},
+        body: JSON.stringify(obj),
+    });
 
+    const tmp = await res.json();
+
+    return tmp
+}
 export default{
     patchemail,
     checkotp,
     changepassword,
+    resendOTP,
 }

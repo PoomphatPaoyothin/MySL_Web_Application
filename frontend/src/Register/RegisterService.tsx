@@ -55,10 +55,23 @@ async function createStat(id:any): Promise<any> {
     console.log('res22222 is',result)
     return result
 }
+
+async function resendOTP(userid:any): Promise<boolean> {
+    console.log('userid', userid)
+    const res = await fetch(`${url}/register/resendotp/${userid}`,{
+        method: 'PATCH',
+        headers : {'Content-Type': 'application/json'},
+    });
+    const tmp = await res.json();
+    console.log('tmp ', tmp)
+
+    return tmp
+}
 export default{
     postemailpass,
     postotp,
     postname,
     fetchuserprofile,
     createStat,
+    resendOTP,
 }

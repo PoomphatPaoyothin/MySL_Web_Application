@@ -72,7 +72,7 @@ export class RegisterController{
         return this.registerService.changeforgotpassword(email,password);
     }
 
-    @Patch('/resendotp/userid')
+    @Patch('/resendotp/:userid')
     async resendotp(@Param('userid') userid:string):Promise<any>{
         const getUser = await this.registerService.findUserProfile(userid);
         if(!getUser){

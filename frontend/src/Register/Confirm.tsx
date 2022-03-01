@@ -42,8 +42,22 @@ const EmailPass = (props: any) => {
                 }
             })
     }
-    const resendOTP = () => {
-
+    const resendOTP=()=>{
+        setShow_pop(true)
+        RegisterService.resendOTP(myid)
+        .then(res=>{
+            if(res)
+            {
+                setShow_pop(false)
+                setShow(true)
+                setText('ได้ทำการส่ง OTP อีกครั้งแล้ว')
+            }
+            else{
+                setShow_pop(false)
+                setShow(true)
+                setText('ไม่มีมีอีเมล์นี้')
+            }
+        })
     }
 
     const checkid = () => {

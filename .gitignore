@@ -9,6 +9,7 @@
 .pnp.js
 /webcam-app
 /flask-server
+./Video_tutorial
 # testing
 /frontend/coverage
 
@@ -28,3 +29,30 @@ yarn-error.log*
 
 ###########################back
 /backend/node_modules/*
+Video_tutorial/กวาง.mp4
+Video_tutorial/ขอบคุณ.mp4
+Video_tutorial/แข็งแรง.mp4
+Video_tutorial/งู.mp4
+Video_tutorial/จิงโจ้.mp4
+Video_tutorial/ใช่.mp4
+Video_tutorial/บ่า.mp4
+Video_tutorial/ปลา.mp4
+Video_tutorial/เป็ด.mp4
+Video_tutorial/ผู้หญิง.mp4
+Video_tutorial/พูด.mp4
+Video_tutorial/ไม่.mp4
+Video_tutorial/ยิ้ม.mp4
+Video_tutorial/ยีราฟ.mp4
+Video_tutorial/รัก.mp4
+Video_tutorial/ลักยิ้ม.mp4
+Video_tutorial/ลา.mp4
+Video_tutorial/วัยรุ่น.mp4
+Video_tutorial/วัว.mp4
+Video_tutorial/ศีรษะ.mp4
+Video_tutorial/สงบ.mp4
+Video_tutorial/สนุก.mp4
+Video_tutorial/สวัสดี.mp4
+Video_tutorial/หน้าอก.mp4
+Video_tutorial/หล่อ.mp4
+Video_tutorial/ห่าน.mp4
+Video_tutorial/อารมณ์.mp4

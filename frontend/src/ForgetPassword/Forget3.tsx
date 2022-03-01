@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import ForgetService from "./ForgetService";
 
@@ -44,8 +45,8 @@ const Forget3 = (props:any) =>{
             </div>
 
             <div className="center">
-                <button  onClick={skip} className="skip">ข้าม</button>
-                <button  onClick={gotonext} className="nextbutton">ยืนยัน</button>
+                <Button  onClick={skip} className="nextbuttonnew1">ข้าม</Button>
+                <Button  onClick={gotonext} className="nextbuttonnew2">ยืนยัน</Button>
             </div>
             
             
