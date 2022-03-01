@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router";
 import RegisterService from "./RegisterService";
 import "./register.css"
+import { Alert, Button } from "react-bootstrap";
+import Alertshow from "../Profile/Alertshow";
+import Popuploading from "../Loadingpop/PopupLoading";
 
 const EmailPass = (props: any) => {
     const history = useHistory()
@@ -9,24 +12,33 @@ const EmailPass = (props: any) => {
     const [userinfo, setUserinfo] = useState<any>()
     const myid = localStorage.getItem('id');
     const id = props.match.params.id;
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+    const [text, setText] = useState('')
 
+    const [show_pop, setShow_pop] = useState(false);
+    const handleClose_pop = () => setShow(false);
 
     const otp_input = (e: React.ChangeEvent<HTMLInputElement>) => {
         setOtp(e.target.value);
     }
     const gotonext = () => {
+        setShow_pop(true)
         const obj = {
             otp: otp
         }
         RegisterService.postotp(id, obj)
             .then(res => {
                 console.log(res)
+                setShow_pop(false)
                 if (res == true) {
-                    alert('ยืนยัน OTP สำเร็จ')
+                    setShow(true)
+                    setText('ยืนยัน OTP สำเร็จ')
                     history.push(`/register/3/${id}`)
                 }
                 else {
-                    alert('เกิดข้อผิดพลาด')
+                    setShow(true)
+                    setText('โปรดกรอก OTP ให้ถูกต้อง')
                 }
             })
     }
@@ -92,14 +104,16 @@ const EmailPass = (props: any) => {
                     </div>
                     <div onClick={resendOTP} className="resendotp">ส่งรหัสยืนยันอีกครั้ง</div>
                     <div className="middle">
-                        <button onClick={cancle} className="cancelotp">ยกเลิก</button>
-                        <button onClick={gotonext} className="submitotp">ต่อไป</button>
+                        <Button onClick={cancle} className="cancelotp" variant="danger">ยกเลิก</Button>
+                        <Button onClick={gotonext} className="submitotp">ต่อไป</Button>
                     </div>
                     
 
                 </div>
             }
-
+            <Alertshow txt={text} show={show} onHide={handleClose}/>
+            <Popuploading show = {show_pop} setshow={handleClose_pop}/>
+            
         </div>
     )
 }

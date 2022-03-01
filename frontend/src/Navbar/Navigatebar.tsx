@@ -18,12 +18,16 @@ import { Alert, Button, Form, FormControl, InputGroup, NavDropdown } from "react
 import NavigatebarService from "./NavigatebarService";
 import Profilepic from "../Profile/Profilepic";
 import ProfilepicSmall from "../Profile/ProfilepicSmall";
+import Alertshow from "../Profile/Alertshow";
 
 const Navigatebar=(prop:any)=>{
     const history = useHistory();
     const myid = localStorage.getItem('id');
     const [statnavbar, setStatnavbar] = useState<any>({'Quiz_stat':0, 'Lesson_Stat':0})
     const [wordsearch, setWordsearch] = useState<string|undefined>('')
+    const [show, setShow] = useState(false)
+    const handleClose =()=> setShow(false)
+    const [text, setText] = useState('')
     
     const logout = () =>{
         localStorage.clear();
@@ -47,7 +51,6 @@ const Navigatebar=(prop:any)=>{
             NavigatebarService.statnavfetch(myid)
             .then(res=>{
                 setStatnavbar(res)
-                console.log('ssssssssssssssssssss')
             })
         }
     },[myid])
@@ -63,10 +66,10 @@ const Navigatebar=(prop:any)=>{
         {
             NavigatebarService.sendwowrd(wordsearch)
             .then(res=>{    
-                console.log('resssss', res)
                 if(res == false)
                 {
-                    alert('ไม่มีคำศัพท์ที่ค้นหา')
+                    setShow(true)
+                    setText('ไม่มีคำศัพท์ที่ค้นหา')
                     resetInputField()
 
                 }
@@ -112,6 +115,7 @@ const Navigatebar=(prop:any)=>{
             onChange={Word_input}
             onKeyDown={_handleKeyDown}
             className='searchbox'
+            autoComplete="off"
             />
             <Button className="searchbutoon" onClick={search}>ค้นหา</Button>
 
@@ -135,7 +139,7 @@ const Navigatebar=(prop:any)=>{
                         logout
                 </Button>
             </Nav>
-            
+            <Alertshow txt={text} show={show} onHide={handleClose} />
         </Navbar>
         
     )

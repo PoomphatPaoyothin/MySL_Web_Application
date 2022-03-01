@@ -7,15 +7,21 @@ import login_google from '../../Picture/Login/login with google.png'
 import { stringify } from "querystring";
 import AuthService from "./AuthService";
 import FacebookLogin from 'react-facebook-login';
+import Alertshow from "../../Profile/Alertshow";
+import Popuploading from "../../Loadingpop/PopupLoading";
 
 const Sign_in = () => {
   const [email, setEmail] = useState<string>('');
   const [pass, setPass] = useState<string>('');
-  const [errormessage, setErrormessage] = useState('');
+  const [errormessage, setErrormessage] = useState(false);
+  const closeerror=()=>{setErrormessage(false)}
+  const [text, setText] = useState('')
+  const [show, setShow] = useState(false)
+  const handleclose = ()=>{setShow(false)}
   const history = useHistory();
 
   const login = async () =>{
-    console.log('go login');
+    setShow(true)
     const email_pass = {
       email: email,
       pass: pass,
@@ -24,12 +30,28 @@ const Sign_in = () => {
     console.log('result' , result);
 
     if(!result){
-      setErrormessage("อีเมลล์ หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
+      setErrormessage(true)
+      setText("อีเมลล์ หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
+      setShow(false)
     }
     else{
-      setErrormessage("");
-      window.location.reload();
-      history.push("/");
+      AuthService.fetchisdelete(result.userId)
+      .then(
+        res=>{
+          if(res == false){
+            localStorage.setItem("accesToken", result.accessToken);
+            localStorage.setItem("id", result.userId);
+            setShow(false)
+            window.location.reload();
+            history.push("/");
+          }
+          else{
+            setErrormessage(true)
+            setText("อีเมลล์ หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
+            setShow(false)
+          }
+        }
+      )
     }
     
   }
@@ -52,9 +74,6 @@ const Sign_in = () => {
     setPass(e.target.value);
   }
 
-  const responseFacebook=(response:any)=>{
-    console.log(response)
-  }
   return(
     <div className='container'>
         <div className = 'left_login'>
@@ -88,7 +107,7 @@ const Sign_in = () => {
                 <p className='errormessage'>{errormessage}</p>
               </div>
             )}
-
+            <Alertshow txt={text} show={errormessage} onHide={setErrormessage}/>
 
             {/* src={login_facebook}  */}
             <hr className = 'line_right'/>
@@ -96,6 +115,7 @@ const Sign_in = () => {
             </div>
           </div>
         </div>
+        <Popuploading show={show} setshow={handleclose}/>
 
     </div>
   )

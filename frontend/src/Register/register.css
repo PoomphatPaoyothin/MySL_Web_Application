@@ -56,8 +56,6 @@
 
 
 .nextbutton{
-    color: white;
-    background-color: #11324D;
     margin-top: 40px;
     padding: 10px 25px;
     border-radius: 15px;
@@ -67,11 +65,16 @@
     border: 1px;
 }
 
-.nextbutton:hover{
-    background-color: #1f5b8c;
-    color: white;
+.nextbuttonnew{
+    margin-top:20px;
+    margin-right:25%;
+    float:right;
 }
-
+.canclebutton{
+    margin-top:20px;
+    margin-left:25%;
+    float:left;
+}
 .fontconfirm{
     font-family: 'Open Sans';
     /* margin-top: 5%; */
@@ -112,16 +115,8 @@
 }
 
 .submitotp{
-    color: white;
-    border: 0px;
-    background-color: #11324D;
-    margin-left: 25%;
-    padding: 10px 25px;
-    border-radius: 15px;
-    font-size: 15px;
-    transition: 0.6s;
-    margin-top: 40px;
-    display: inline-block;
+    margin-left:20%;
+    margin-top:15px;
 }
 
 .submitotp:hover{
@@ -130,22 +125,11 @@
 }
 
 .cancelotp{
-    display:inline-block;
-    color: white;
-    background-color: #11324D;
-    border: 0px;
-    /* margin-left: 30%; */
-    padding: 10px 25px;
-    border-radius: 15px;
-    font-size: 15px;
-    transition: 0.6s;  
-    /* left:50%; */
+    margin-right:20%;
+    margin-top:15px;
 }
 
-.cancelotp:hover{
-    background-color: #1f5b8c;
-    color: white;
-}
+
 
 .inputcenter{
     text-align: center;
@@ -255,12 +239,9 @@
 
 .submitname{
     font-family: 'Open Sans';
-    color: white;
     border: 0px;
-    background-color: #11324D;
     margin-left: 30%;
     padding: 10px 25px;
-    border-radius: 15px;
     font-size: 15px;
     transition: background-color 0.6s;
     top: 0px;
@@ -268,10 +249,6 @@
     margin-top: 240px;
 }
 
-.submitname:hover{
-    background-color: #1f5b8c;
-    color: white;
-}
 
 .nametext{
     font-family: 'Open Sans';

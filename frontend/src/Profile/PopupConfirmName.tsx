@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Button, Container, FormControl, InputGroup, Modal, Row } from "react-bootstrap";
 import ProfileService from "./ProfileService";
 
 
@@ -43,18 +44,42 @@ const PopupConfirmName = (props:any) => {
     }, [props.show]);
   
     return (
-      <div
-        style={{
-          visibility: shows ? "visible" : "hidden",
-          opacity: shows ? "1" : "0"
-        }} className = 'overlayName'>
-        <div className='popupboxName'>
+      <div>
+        {/* <div className='popupboxName'>
             <span className='closeName' onClick={closeHandler}>
             &times;
             </span>
             <input value={pass} onChange={passwordinput} placeholder="ใส่รหัสผ่านยืนยัน" type='password' required />
             <button onClick={confirmName}>ยืนยันเปลี่ยนชื่อผู้ใช้</button>
-        </div>
+        </div> */}
+
+
+        <Modal show={shows} backdrop="static">
+            <Modal.Header>
+                <Modal.Title>
+                    คุณต้องการจะเปลี่ยนรหัสผ่านใช่หรือไม่
+                </Modal.Title>
+            </Modal.Header>
+            <Modal.Body>
+                <Row>
+                    <InputGroup className="mb-3">
+                    <FormControl
+                    aria-label="Default"
+                    onChange={passwordinput}
+                    type='password' 
+                    autoComplete="off"
+                    />
+                    <Button onClick={confirmName}>ยืนยัน</Button>
+                    <Button onClick={closeHandler} variant='danger'>ยกเลิก</Button>
+                    </InputGroup>
+                </Row>
+
+            </Modal.Body>
+            {/* <input value={pass} onChange={passwordinput} autoComplete="off" placeholder="ใส่รหัสผ่านยืนยัน" type='password' required/> */}
+
+        </Modal>
+
+        
       </div>
     );
   };

@@ -214,13 +214,13 @@ const Camera = (props:any) => {
         {
           statusprepare == true &&
           <div>
-          Start in {counterstart}
+          เริ่มอัดใน {counterstart}
           </div>
         }
 
         {
           recordWebcam.status === CAMERA_STATUS.RECORDING  && 
-          <div>Countdown: {counter}</div>
+          <div>เวลาอัดที่เหลือ: {counter} วินาที</div>
         } 
         {/* <button onClick={submitword}>ตรวจสอบท่าทาง</button> */}
         <div className = 'videocheck'>
@@ -233,11 +233,9 @@ const Camera = (props:any) => {
                   ? "block"
                   : "none"
               }`,
-              width:600,
-              height:300,
-              left:0
 
             }}
+            className='WebcamForlessonsizefix'
             autoPlay
             muted 
           />
@@ -248,6 +246,7 @@ const Camera = (props:any) => {
                 recordWebcam.status === CAMERA_STATUS.PREVIEW ? "block" : "none"
               }`
             }}
+            className='WebcamForlessonsizefix'
             autoPlay
             muted
             loop

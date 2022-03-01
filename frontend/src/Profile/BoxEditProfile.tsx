@@ -6,7 +6,8 @@ import PopupConfirmName from "./PopupConfirmName";
 import PopupConfirmPassword from "./PopupConfirmPassword";
 import ProfileService from "./ProfileService";
 import UploadProfile from "./UploadProfile";
-import { Button } from "react-bootstrap";
+import { Alert, Button, FormControl, InputGroup, Modal } from "react-bootstrap";
+import Alertshow from "./Alertshow";
 
 const BoxEditProfile = (props:any) => {
     // console.log('reload')
@@ -40,12 +41,10 @@ const BoxEditProfile = (props:any) => {
     const [visibilityPass,setVisibilityPass] = useState(false);
 
     const [prefixSelect, setPrefixSelect] = useState<string|undefined>(prefix)
-    console.log('prefix is', prefix)
-    console.log('prefixSelect) is', prefixSelect)
-
+    const [alertshow, setAlertshow] = React.useState(false);
     const prefixSelectOption = [{name:'Mr.', value:'Mr.'}, {name:'Ms.', value:'Ms.'},{name:'Mrs.', value:'Mrs.'},{name:'None', value:''}]
 
-
+    const [text, setText] = useState<string>('')
 
     const fetchuserprofile=() =>{
         console.log(props.id)
@@ -74,7 +73,8 @@ const BoxEditProfile = (props:any) => {
 ////////////////////////////////////////////////////////////////////-> submit
     const submitName=() =>{
         if(prefixSelect == prefixo && username == usernameo && surname == surnameo){
-            alert('คุณไม่ได้ทำการเปลี่ยนชื่อ')
+            setAlertshow(true)
+            setText('คุณไม่ได้ทำการเปลี่ยนชื่อ')
         }
         else{
             setVisibilityNames(true)
@@ -93,7 +93,8 @@ const BoxEditProfile = (props:any) => {
     const submitPass=async () =>{
         if(newpass == undefined || oldpass == undefined || confirmNewpass == undefined)
         {
-            alert('กรุณากรอกให้ครบ')
+            setAlertshow(true)
+            setText('กรุณากรอกให้ครบ')
         }
         else
         {
@@ -107,7 +108,8 @@ const BoxEditProfile = (props:any) => {
                 if(newpass == confirmNewpass){
                     if(newpass == oldpass)
                     {
-                        alert('รหัสผ่านใหม่ตรงกับรหัสผ่านเก่า')
+                        setAlertshow(true)
+                        setText('รหัสผ่านใหม่ตรงกับรหัสผ่านเก่า')
                     }
                     else{
                         setVisibilityPass(true)
@@ -121,12 +123,14 @@ const BoxEditProfile = (props:any) => {
                 }
                 else
                 {
-                    alert('รหัสผ่านยืนยันไม่ตรงกัน')
+                    setAlertshow(true)
+                    setText('รหัสผ่านยืนยันไม่ตรงกัน')
                 }
 
             }
             else{
-                alert('รหัสผ่านเก่าไม่ถูกต้อง')
+                setAlertshow(true)
+                setText('รหัสผ่านเก่าไม่ถูกต้อง')
             }
 
         }
@@ -325,6 +329,10 @@ const BoxEditProfile = (props:any) => {
             id={props.id}/>
 
         </div>
+
+        <Alertshow txt={text} show={alertshow} onHide={() => setAlertshow(false)} />
+        
+
 {/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////// */}
         {/* <div>
             <button onClick={Delete}>delete</button>

@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from "react";
+import { Modal, Button } from "react-bootstrap";
 import "./Loadingpop.css";
 
-const Popuploading = () => {
+const Popuploading = (props:any) => {
 
     return (
-      <div className = 'overlayoloading'>
-        <div className='popupboxloading'>
-          <div>กำลังโหลด โปรดรอสักครู่</div>
-        </div>
-      </div>
+      <Modal show={props.show} setshow={props.setshow} animation={false} static={false}>
+        <Modal.Header >
+          <Modal.Title>แจ้งเตือน</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>กำลังโหลดโปรดรอสักครู่..</Modal.Body>
+      </Modal>
     );
   };
 

@@ -90,6 +90,12 @@ async function isquizscore(userid:string, catid:string, lessonid:string): Promis
     return tmp;
 }
 
+async function fetchlinkvideo(wordnow:string): Promise<any>{
+    const res = await fetch(`${url}/word/getword/${wordnow}`);
+    const obj = await res.json();
+    return obj;
+}
+
 export default{
     fetchlesson,
     fetchword,
@@ -101,4 +107,5 @@ export default{
     plusint,
     sendscore,
     isquizscore,
+    fetchlinkvideo,
 }

@@ -10,6 +10,8 @@ const QuizBox=(props:any)=>{
         props.onOpen()
     }
     const [color, setColor] = useState<string>('#F2F2F2')
+    const [colorfont, setColorfont] = useState<string>('black')
+    
     useEffect(() => {
         if(userid)
         {
@@ -17,7 +19,8 @@ const QuizBox=(props:any)=>{
             .then(res=>{
                 if(res.is_quiz)
                 {
-                    setColor('#4BB543')
+                    setColor('#157347')
+                    setColorfont('white')
                 }
             })
         }
@@ -25,7 +28,8 @@ const QuizBox=(props:any)=>{
     return(
             <div style={{
                 background: `${color}`,
-            }} onClick={open} className='listgroup'>
+                color:`${colorfont}`,
+            }} onClick={open} className='listgroup2'>
 
             แบบทดสอบ
 

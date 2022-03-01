@@ -5,6 +5,8 @@ import Popuploading from "../Loadingpop/PopupLoading";
 import { trackPromise } from 'react-promise-tracker';
 import { usePromiseTracker } from "react-promise-tracker";
 import UploadProfile from "../Profile/UploadProfile";
+import { Button } from "react-bootstrap";
+import Alertshow from "../Profile/Alertshow";
 
 const Name = (props:any) =>{
     const history=useHistory()
@@ -15,8 +17,12 @@ const Name = (props:any) =>{
     const [userinfo,setUserinfo] = useState<any>()
     const myid = localStorage.getItem('id');
     const [prefixSelect, setPrefixSelect] = useState<string|undefined>('Mr.')
-    const  {promiseInProgress}  = usePromiseTracker()
-    
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
+
+    const [text, setText] = useState('')
+    const [show_alert, setShow_alert] = useState(false)
+    const handleClose_alert = () => setShow_alert(false);
 
     const prefixSelectOption = [{name:'None', value:''},{name:'Mr.', value:'Mr.'}, {name:'Ms.', value:'Ms.'},{name:'Mrs.', value:'Mrs.'}]
 
@@ -31,6 +37,7 @@ const Name = (props:any) =>{
     }
     
     const gotonext=()=>{
+        setShow(true)
         const obj ={
             User_prefix_name:prefixSelect,
             User_name:name,
@@ -38,18 +45,19 @@ const Name = (props:any) =>{
         }
         let status = 1
         RegisterService.postname(obj,myid)
-
-        trackPromise(
-            RegisterService.createStat(myid)
+        RegisterService.createStat(myid)
             .then(res2=>{
+                setShow(false)
                 if(res2.UserId!=undefined){
+                    setShow_alert(true)
                     alert('สมัครสำเร็จ')
                     history.push('/')
                 }
                 else{
-                    alert('เกิดข้อผิดพลาด')
+                    setText('เกิดข้อผิดพลาด โปรดลองใหม่อีกครั้ง..')
+                    setShow_alert(true)
                 }
-            })
+            }
         )
         
         
@@ -118,13 +126,12 @@ const Name = (props:any) =>{
 
                     <br/>
 
-                    <button  onClick={gotonext} className="submitname">สมัคร</button>
+                    <Button  onClick={gotonext} className="submitname">สมัคร</Button>
                 </div>
                 
-                {
-                promiseInProgress && 
-                <Popuploading/>
-                }
+                <Popuploading show = {show} setshow={handleClose}/>
+                <Alertshow txt={text} show={show_alert} onHide={handleClose_alert}/>
+
             </div>
         }
 

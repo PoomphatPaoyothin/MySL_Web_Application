@@ -70,7 +70,6 @@ const UploadProfile = (props:any) => {
                 status &&
                 <img className='pictureprofile' src={show}/>
               }
-              {console.log('ssssss', status)}
             </div>
             <input className="photo-upload"type="file" onChange={photoUpload}/> 
           </label>

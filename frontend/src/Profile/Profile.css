@@ -943,6 +943,7 @@
     position: relative;
     overflow: hidden;
     border-radius: 50%;
+
   }
 
 .img-upload2:before{
@@ -1024,15 +1025,6 @@
     }
 }
 
-.PopupConfirmName{
-    z-index:20;
+.inputpassChangename{
+    width:100%
 }
-
-.PopupConfirmPassword{
-    z-index:20;
-}
-
-.PopupConfirmDelete{
-    z-index:20;
-}
-

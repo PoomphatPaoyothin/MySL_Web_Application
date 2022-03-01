@@ -8,7 +8,8 @@ import Camera from "../Camera/Camera";
 import ReactPlayer from 'react-player'
 import VideoPlayer from "./VideoPlayer";
 import Nextword from "./Nextword";
-import { ListGroup } from "react-bootstrap";
+import { Button, ListGroup, OverlayTrigger, Popover } from "react-bootstrap";
+import Tutorialpopup from "./Tutorialpopup";
 
 const Lesson=(props:any)=>{
     const catId = props.match.params.catId;
@@ -23,7 +24,8 @@ const Lesson=(props:any)=>{
     const myid = localStorage.getItem('id');
     const [userinfo,setUserinfo] = useState<any>()
     const [namecat, setNamecat] = useState<string>('')
-
+    const [popuptutorial, setPopuptutorial] = useState(false)
+    const handleclose =() =>{setPopuptutorial(false)}
 
     const fetchwordCat=()=>{
         LessonService.fetchwordCat()
@@ -154,12 +156,30 @@ const Lesson=(props:any)=>{
     useEffect(() => {
         newobjlesson()
     }, [objlesson]);
-
+    const showTutorial=()=>{
+        setPopuptutorial(true)
+    }
+    const popover = (
+        <Popover id="popover-basic">
+          <Popover.Header as="h3">หมายเหตุ!</Popover.Header>
+          <Popover.Body>
+            ระบบจะทำการเลือกคำศัพท์ที่ใกล้เคียงกับท่าที่ทำมากที่สุด<strong> ในแต่ละบทเรียน</strong>
+          </Popover.Body>
+        </Popover>
+      );
 
     return(
         <div className='lessonCotainer'>
             <div className='title'>
-                <ListGroup.Item variant= "secondary" >{namecat}</ListGroup.Item>
+                <ListGroup.Item variant= "secondary" >
+                    {namecat}
+                    <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+                        <Button className="Warnbutton" variant="info"> หมายเหตุ! </Button>
+                    </OverlayTrigger>
+
+                    <Button className="Warnbutton" variant="info" onClick={showTutorial}> วิธีการเรียน </Button>
+
+                </ListGroup.Item>
             </div>
             {
                 Iswordincat() &&
@@ -181,7 +201,7 @@ const Lesson=(props:any)=>{
                 </div>
 
             }
-
+            <Tutorialpopup show={popuptutorial} handleClose={handleclose}/>
         </div>
     )
 }

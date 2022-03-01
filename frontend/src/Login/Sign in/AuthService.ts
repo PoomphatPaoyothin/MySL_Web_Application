@@ -16,15 +16,19 @@ async function LoginUser(email: string, pass: string): Promise<any>{
     
     const result = await res.json();
     if(result.accessToken){
-        localStorage.setItem("accesToken", result.accessToken);
-        localStorage.setItem("id", result.userId);
         return result;
     }
     else{
         return false;
     }
 }
-
+async function fetchisdelete(id:string|null): Promise<any>{
+    // console.log('id is', id)
+    const res = await fetch(`${url}/user/profile/${id}`);
+    const obj = await res.json();
+    return obj.Is_delete;
+}
 export default{
     LoginUser,
+    fetchisdelete,
 }

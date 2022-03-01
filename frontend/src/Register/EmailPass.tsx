@@ -5,6 +5,8 @@ import Popuploading from "../Loadingpop/PopupLoading";
 import { trackPromise } from 'react-promise-tracker';
 import { usePromiseTracker } from "react-promise-tracker";
 import './register.css'
+import { Button } from "react-bootstrap";
+import Alertshow from "../Profile/Alertshow";
 
 const Confirm = (props:any) =>{
     const history=useHistory()
@@ -13,9 +15,13 @@ const Confirm = (props:any) =>{
     const [confirmpass,setConfirmpass] = useState<string>()
     const myid =localStorage.getItem('id')
     const [userinfo,setUserinfo] = useState<any>()
-
+    const [text, setText]=useState('')
     const  {promiseInProgress}  = usePromiseTracker()
+    const [show, setShow] = useState(false);
+    const handleClose = () => setShow(false);
 
+    const [show_alert, setShow_alert] = useState(false)
+    const handleClose_alert = () => setShow_alert(false);
 
     const email_input=(e:React.ChangeEvent<HTMLInputElement>) =>{
         setEmail(e.target.value);
@@ -29,29 +35,41 @@ const Confirm = (props:any) =>{
     const gotonext=()=>{
         if(pass == confirmpass)
         {
+            setShow(true)
             const obj = {
                 User_email:email,
                 User_password:pass
             }
-            trackPromise(
             RegisterService.postemailpass(obj)
             .then((res: any)=>{
                 if(res.userId == undefined)
                 {
-                    alert(res.message)
+                    setShow(false)
+                    
+                    if(res.message == 'email already exist')
+                    {
+                        setShow_alert(true)
+                        setText("อีเมลล์ ถูกใช้ไปแล้ว")
+                    }
+
                 }
                 else
                 {
-                    console.log(res.userId)
                     localStorage.setItem("accesToken", res.accessToken);
                     localStorage.setItem("id", res.userId);
-                    alert('ได้ทำการส่ง OTP ไปที่ email อาจจะอยู่ที่ spam')
+                    setShow(false)
+
+                    setShow_alert(true)
+                    setText('ได้ทำการส่ง OTP ไปที่ email อาจจะอยู่ที่ spam')
+                    // alert('ได้ทำการส่ง OTP ไปที่ email อาจจะอยู่ที่ spam')
                     history.push(`/register/2/${res.userId}`)
                 }
-            }))
+            })
         }
         else{
-            alert('รหัสผ่านไม่ตรงกัน')
+            setText('รหัสผ่านไม่ตรงกัน')
+            setShow_alert(true)
+            // alert('รหัสผ่านไม่ตรงกัน')
         }
 
     }
@@ -92,39 +110,46 @@ const Confirm = (props:any) =>{
     useEffect(()=>{
         checkid()
     },[userinfo])
-
+    const cancel=()=>{
+        history.push('/')
+    }
 
     return(
         <div className="container">
             {
                 checkid() &&
                 <div>
-                <head>                
-                    <script type="text/javascript">
-                        function preventBack() {
-                            window.history.forward()
-                        }
-                        
-                        setTimeout("preventBack()", 0);
-                        
-                        window.onunload = function () { null };
-                    </script>
-                </head>
+                    <head>                
+                        <script type="text/javascript">
+                            function preventBack() {
+                                window.history.forward()
+                            }
+                            
+                            setTimeout("preventBack()", 0);
+                            
+                            window.onunload = function () { null };
+                        </script>
+                    </head>
                 
-                <p className="textemailpass">กรุณากรอกอีเมลและรหัสผ่าน</p>
+                    <p className="textemailpass">กรุณากรอกอีเมลและรหัสผ่าน</p>
                     <div className="inputtext">
-                        <input value={email}  className = "inputemail" onChange={email_input} placeholder="อีเมล" required />
+                        <input value={email} autoComplete="nope"  className = "inputemail" onChange={email_input} placeholder="อีเมล" required />
                         <br/>
-                        <input value={pass} className="inputpass"  type={'password'} onChange={pass_input} placeholder="รหัสผ่าน" required />
+                        <input value={pass} autoComplete="nope"  className="inputpass"  type={'password'} onChange={pass_input} placeholder="รหัสผ่าน" required />
                         <br/>
-                        <input value={confirmpass} className="inputconfirmpass" type={'password'} onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
+                        <input value={confirmpass} autoComplete="nope"  className="inputconfirmpass" type={'password'} onChange={confirmpass_input} placeholder="ยืนยันรหัสผ่าน" required />
                         <br/>
-                        <button  onClick={gotonext} className="nextbutton">ต่อไป</button>
-                        {console.log('promise is',promiseInProgress)}
-                        {
+                        <div>
+                        <Button  onClick={cancel} className="canclebutton" variant='danger'>ยกเลิก</Button>
+                        <Button  onClick={gotonext} className="nextbuttonnew">ต่อไป</Button>
+                        </div>
+                        {/* {
                         promiseInProgress && 
-                        <Popuploading/>
-                        }
+                        <Popuploading show = {show}/>
+                        } */}
+                        <Popuploading show = {show} setshow={handleClose}/>
+                        <Alertshow txt={text} show={show_alert} onHide={handleClose_alert}/>
+                        
                     </div>
                 </div>
             }

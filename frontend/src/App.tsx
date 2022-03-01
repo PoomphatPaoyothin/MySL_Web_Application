@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Sign_in from './Login/Sign in/Sign_in';
 import {
   BrowserRouter as Router,
@@ -29,6 +29,7 @@ import Profilepic from "./Profile/Profilepic";
 
 const App = () => {
   const id = localStorage.getItem('id')
+  const [myid, setMyid] = useState(id)
 
   const notlogin=()=>(
     <div>
@@ -42,8 +43,7 @@ const App = () => {
     </div>
   )
   const islogin=()=>{
-      console.log('id isssss', id)
-      if(id)
+      if(myid)
       {
         return(login)
       }
@@ -52,6 +52,11 @@ const App = () => {
         return(notlogin)
       }
   }
+
+  useEffect(() => {
+    setMyid(id)
+  }, []);
+
   const DefaultContainer = ()=>(
     <div>
       <Navigatebar/>

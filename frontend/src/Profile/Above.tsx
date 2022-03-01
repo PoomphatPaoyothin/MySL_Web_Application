@@ -38,7 +38,6 @@ const Above=(props:any|null)=>{
         // console.log('aaaaaaaaa')
         ProfileService.fetchfollowing(props.myid)
         .then(res=>{
-            console.log('2 res is',res)
             setTmp(res)
         })
         

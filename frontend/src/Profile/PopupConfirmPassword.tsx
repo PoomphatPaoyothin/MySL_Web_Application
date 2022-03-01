@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Modal, Row, InputGroup, FormControl, Button } from "react-bootstrap";
 import ProfileService from "./ProfileService";
 
 const PopupConfirmPassword=(props:any)=>{
@@ -32,17 +33,30 @@ const PopupConfirmPassword=(props:any)=>{
 
       
     return(
-        <div
-        style={{
-          visibility: show ? "visible" : "hidden",
-          opacity: show ? "1" : "0"
-        }} className = 'overlayName'>
-            <div className='popupboxPass'>
+        <div>
+            <Modal show={show} backdrop="static">
+                <Modal.Header>
+                    <Modal.Title>
+                    คุณต้องการจะเปลี่ยนรหัสผ่านใช่หรือไม่
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Row>
+                        <InputGroup className="mb-3">
+                            <Button onClick={submitPass}>ตกลง</Button>
+                            <Button onClick={closeHandler} variant='danger'>ยกเลิก</Button>
+                        </InputGroup>
+                    </Row>
+
+                </Modal.Body>
+            </Modal>
+
+            {/* <div className='popupboxPass'>
                 <span className='close' onClick={closeHandler}>
                 &times;
                 </span>
                 <button onClick={submitPass}>คุณต้องการจะเปลี่ยนรหัสผ่านใช่หรือไม่</button>
-            </div>
+            </div> */}
         </div>
     )
 }
