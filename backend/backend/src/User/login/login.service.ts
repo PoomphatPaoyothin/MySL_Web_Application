@@ -51,7 +51,7 @@ export class loginService{
     }
 
     async findOneUser(useremail:any):Promise<User>{
-        return await this.userRepo.findOne({where:{User_email:useremail}});
+        return await this.userRepo.findOne({where:{User_email:useremail,Is_delete:false}});
         
     }
 
