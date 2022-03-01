@@ -117,7 +117,7 @@ export class registerService{
     }
 
     async findUserByEmail(email:string){
-        return this.userRepo.findOne({where:{User_email:email}})
+        return this.userRepo.findOne({where:{User_email:email,Is_delete:false}})
     }
 
     async updateotp(email:string,num:number){

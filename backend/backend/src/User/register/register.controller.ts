@@ -1,4 +1,5 @@
 import { Body, Controller, Param, Patch, Post, UnauthorizedException } from "@nestjs/common";
+import { UserService } from "../user.service";
 import { EmailConfirmationService } from "./emailConfirm.service";
 import { registerService } from "./register.service";
 
@@ -12,10 +13,17 @@ export class RegisterController{
     @Post('first/emailpassword')
     async CreateAccount(
         @Body() RegisterInput: any,
-        ): Promise<object>{
+        ): Promise<any>{
         let num = Math.floor((Math.random() * 9000) + 1000);
-        await this.emailConfirmationService.sendVerificationLink(RegisterInput.User_email,num)
-        return this.registerService.createAccountFirst(RegisterInput,num);
+        const checkuseremail = await this.registerService.findUserByEmail(RegisterInput.User_email);
+        if(!checkuseremail){
+            await this.emailConfirmationService.sendVerificationLink(RegisterInput.User_email,num)
+            return this.registerService.createAccountFirst(RegisterInput,num);
+        }
+        else{
+            return false;
+        }
+        
     }
 
     @Patch('second/:userid')
