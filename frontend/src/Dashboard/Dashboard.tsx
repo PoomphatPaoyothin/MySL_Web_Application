@@ -33,7 +33,7 @@ const Dashboard=(props:any)=>{
 
             <Table striped bordered hover size="sm">
             <thead>
-                <tr>
+                <tr className="text">
                     <th>อันดับ</th>
                     <th>รายชื่อ</th>
                     <th>คะแนน</th>

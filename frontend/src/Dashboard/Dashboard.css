@@ -1,3 +1,13 @@
+@font-face {
+    font-family: 'Open Sans';
+    src: url('../Opun-Regular/Opun-Regular.ttf');
+}
+
 .canclickdash{
     cursor: pointer;
+}
+
+.text{
+    font-family: 'Open Sans';
+    font-weight: normal;
 }

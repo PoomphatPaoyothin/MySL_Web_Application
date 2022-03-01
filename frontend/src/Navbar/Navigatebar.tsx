@@ -113,7 +113,7 @@ const Navigatebar=(prop:any)=>{
             onKeyDown={_handleKeyDown}
             className='searchbox'
             />
-            <Button className="searchbutoon" onClick={search}>search</Button>
+            <Button className="searchbutoon" onClick={search}>ค้นหา</Button>
 
 
             <Nav className = "ms-auto">
@@ -130,7 +130,7 @@ const Navigatebar=(prop:any)=>{
                 
                 <ProfilepicSmall click={linktoprofile} userid={myid}/>
                 
-                <Button className='dashboardbutton' onClick={showDash}> Dashsboard</Button>
+                <Button className='dashboardbutton' onClick={showDash}> Dashboard</Button>
                 <Button className = 'button-right' onClick={logout}>
                         logout
                 </Button>

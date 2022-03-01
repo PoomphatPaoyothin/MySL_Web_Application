@@ -106,7 +106,13 @@
     background-color: aliceblue;
 }
 
+.text{
+    font-family: 'Open Sans';
+}
+
 .searchbutoon{
+    font-family: 'Open Sans';
+    font-size: 14px;
     margin-left: 10px;
     
 }
