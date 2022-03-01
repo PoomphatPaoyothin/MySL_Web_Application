@@ -1,4 +1,4 @@
-import { Body, Controller, Param, Patch, Post, UnauthorizedException } from "@nestjs/common";
+import { Body, ConflictException, Controller, Param, Patch, Post, UnauthorizedException } from "@nestjs/common";
 import { UserService } from "../user.service";
 import { EmailConfirmationService } from "./emailConfirm.service";
 import { registerService } from "./register.service";
@@ -21,7 +21,7 @@ export class RegisterController{
             return this.registerService.createAccountFirst(RegisterInput,num);
         }
         else{
-            return false;
+            throw new ConflictException('email already exist');
         }
         
     }
