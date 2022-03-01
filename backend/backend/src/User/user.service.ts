@@ -41,7 +41,7 @@ export class UserService{
     }
     
     async findUserProfile(id:string) {
-        return this.userRepo.findOne({where:{ID:id}});
+        return this.userRepo.findOne({where:{ID:id,Is_delete:false}});
     }
 
     async getUserStatCat(id:string,catid:string){
