@@ -602,7 +602,17 @@ export class UserService{
                 }
             }
         }
+
         let return_15 = return_dashboard.slice(0,15);
+        let number = 1;
+
+        for(let l in return_15){
+            if(number<16){
+                return_15[l].rank = number;
+                number=number+1;
+            }
+        }
+
         return return_15;
     }
         
