@@ -14,6 +14,8 @@ import { wordcategory } from "src/Word/category.entity";
 import { check } from "prettier";
 import { range } from "rxjs";
 import { lesson } from "src/Word/lesson.entity";
+import { object, string } from "joi";
+import { type } from "os";
 
 @Injectable()
 export class UserService{
@@ -560,33 +562,70 @@ export class UserService{
     }
 
     async getdashboard(){
-        var dashboard = await this.userstatnavRepo.find({order:{Quiz_stat:"DESC"}})
-        console.log(dashboard);
-        
-        var dashboard2 = []
-        let count = 0
-        for(let i in dashboard){
-            if(count < 15){
-                var getuser = await this.userstatnavRepo.findOne({where:{UserID:dashboard[i].UserID}})
-                console.log(getuser)
-                var checkdelete = await this.userRepo.findOne({where:{ID:getuser.UserID}})
-                console.log(checkdelete)
-                if(checkdelete){
-                    dashboard[i]["rank"] = count;
-                    dashboard[i]["prefix"] = checkdelete.User_prefix_name;
-                    dashboard[i]["username"] = checkdelete.User_name;
-                    dashboard[i]["surname"] = checkdelete.User_surname;
-                    dashboard[i]["followeramount"] = checkdelete.follower_amount;
-                    dashboard[i]["followingamount"] = checkdelete.following_amount;
-                    if(checkdelete.Is_delete == false){
-                        dashboard2.push(dashboard[i])
-                        count = count + 1
-                    }
+        var dashboard = await this.userstatnavRepo.find({order:{Quiz_stat:"DESC"}});
+        var getuser_ava = await this.userRepo.find({where:{Is_delete:false}});
+        var return_dashboard = [];
+        var arr_user = [];
+
+        type User_ = {
+            userid: string;
+            name:string;
+        }
+        type return_ = {
+            name:string;
+            rank:number;
+            score:number;
+
+        }
+        for(let i in getuser_ava){
+            var username = getuser_ava[i].User_prefix_name + " " + getuser_ava[i].User_name + " " + getuser_ava[i].User_surname;
+            var userid = getuser_ava[i].ID;
+            
+            if(userid !== undefined && username !== undefined){
+                var usr = {} as User_;
+                usr.userid = userid;
+                usr.name = username;
+                
+                arr_user.push(usr)
+            }
+        }
+
+        for(let j in dashboard){
+            for(let k in arr_user){
+                if(dashboard[j].UserID == arr_user[k].userid){
+                    console.log("yesss");
+                    
+                    var return_obj = {} as return_;
+                    return_obj.name = arr_user[k].name
+                    return_obj.score = dashboard[j].Quiz_stat;
+                    return_dashboard.push(return_obj)
                 }
             }
         }
-        return dashboard2;
+        let return_15 = return_dashboard.slice(0,15);
+        return return_15;
     }
+        
+        // console.log(dashboard);
+        
+        // var dashboard2 = []
+        // let count = 0
+        // for(let i in dashboard){
+        //     if(count < 15){
+        //         var getuser = await this.userRepo.findOne({where:{ID:dashboard[i].UserID}})
+        //         console.log(getuser)
+        //         if(getuser){
+        //             dashboard[i]["rank"] = count;
+        //             dashboard[i]["prefix"] = getuser.User_prefix_name;
+        //             dashboard[i]["username"] = getuser.User_name;
+        //             dashboard[i]["surname"] = getuser.User_surname;
+        //             dashboard2.push(dashboard[i])
+        //             count = count + 1
+        //         }
+        //     }
+        // }
+        
+        // return return_dashboard;
 
     async findalluser(){
         return this.userRepo.find({where:{Is_delete:false}});
