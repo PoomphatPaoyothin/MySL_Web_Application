@@ -571,12 +571,14 @@ export class UserService{
             userid: string;
             name:string;
         }
+
         type return_ = {
             name:string;
             rank:number;
+            userid:string;
             score:number;
-
         }
+
         for(let i in getuser_ava){
             var username = getuser_ava[i].User_prefix_name + " " + getuser_ava[i].User_name + " " + getuser_ava[i].User_surname;
             var userid = getuser_ava[i].ID;
@@ -593,11 +595,11 @@ export class UserService{
         for(let j in dashboard){
             for(let k in arr_user){
                 if(dashboard[j].UserID == arr_user[k].userid){
-                    console.log("yesss");
                     
                     var return_obj = {} as return_;
                     return_obj.name = arr_user[k].name
                     return_obj.score = dashboard[j].Quiz_stat;
+                    return_obj.userid = arr_user[k].userid
                     return_dashboard.push(return_obj)
                 }
             }
