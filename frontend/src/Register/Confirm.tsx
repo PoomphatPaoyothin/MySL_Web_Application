@@ -90,10 +90,13 @@ const EmailPass = (props: any) => {
     }, [userinfo])
 
     useEffect(() => {
-        RegisterService.fetchuserprofile(myid)
+        if(myid)
+        {
+            RegisterService.fetchuserprofile(myid)
             .then(res => {
                 setUserinfo(res)
             })
+        }
     }, [])
     return (
         <div className="container">
