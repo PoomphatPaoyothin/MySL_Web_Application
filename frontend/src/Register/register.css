@@ -23,7 +23,7 @@
     text-align: center;
 }
 
-.inputemail{
+.inputemail1{
     margin-top: 30px !important;
     padding: 12px 20px;
     font-size: 18px;
@@ -259,14 +259,16 @@
 }
 
 @media screen and (max-width: 900px){
-    .inputemail{
-        width: 270px;
+    .inputemail1{
+        width: 270px !important;
     }
+
     .inputconfirmpass{
-        width: 270px;
+        width: 270px !important;
     }
+
     .inputpass{
-        width: 270px;
+        width: 270px !important;
     }
 
     .inputotp{
