@@ -44,9 +44,9 @@ const Dashboard=(props:any)=>{
                 status &&
                 alluser?.map((obj)=>(
                 <tr>
-                    <td>{obj.rank+1}</td>
-                    <td onClick={()=>gotouser(obj.UserID)} className='canclickdash'>{obj.prefix} {obj.username} {obj.surname}</td>
-                    <td>{obj.Quiz_stat}</td>
+                    <td>{obj.rank}</td>
+                    <td onClick={()=>gotouser(obj.UserID)} className='canclickdash'>{obj.name}</td>
+                    <td>{obj.score}</td>
                 </tr>
 
                 ))
@@ -69,9 +69,6 @@ const Dashboard=(props:any)=>{
                             </Placeholder>}
                     </td>
                 </tr>
-
-                
-
                 }
             </tbody>
 

@@ -100,7 +100,11 @@ const Navigatebar=(prop:any)=>{
         history.push('/')
     }
     return(
-        <Navbar fixed = 'top' className = 'NavBarCSS'>
+        <div>
+
+        {myid 
+            &&
+            <Navbar fixed = 'top' className = 'NavBarCSS'>
             <Navbar.Brand href = "/">
                  <Nav.Link eventKey={2} onClick={gotohome} className='Mysllogo'>
                      Mysl
@@ -141,6 +145,8 @@ const Navigatebar=(prop:any)=>{
             </Nav>
             <Alertshow txt={text} show={show} onHide={handleClose} />
         </Navbar>
+        }
+        </div>
         
     )
 }

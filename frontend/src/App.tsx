@@ -43,14 +43,15 @@ const App = () => {
     </div>
   )
   const islogin=()=>{
-      if(myid)
-      {
-        return(login)
-      }
-      else
-      {
-        return(notlogin)
-      }
+      // if(myid)
+      // {
+      //   return(login)
+      // }
+      // else
+      // {
+      //   return(notlogin)
+      // }
+      return login
   }
 
   useEffect(() => {

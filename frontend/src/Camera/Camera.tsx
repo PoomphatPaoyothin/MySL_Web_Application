@@ -15,7 +15,7 @@ import {useForm} from 'react-hook-form'
 import { less } from "@tensorflow/tfjs";
 import Lesson from "../Lesson/Lesson";
 import './Camera.css'
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 
 const OPTIONS: RecordWebcamOptions = {
   filename: "file",
@@ -39,9 +39,10 @@ const Camera = (props:any) => {
   const [statustmp2, setStatustmp2] = useState<boolean>(false)
   const [word, setWord] = useState<string>('-')
   const [all_result, setAll_result] = useState<any>()
+  const [isCollect, setIsCollect] = useState<any>(false)
+  const [webcamStatus, setWebcamStatus] = useState('')
   const getRecordingFileHooks = async () => {
   const blob = await recordWebcam.getRecording();
-  console.log('rand outsite is',rand)
 
     if(blob != undefined)
     {
@@ -56,11 +57,26 @@ const Camera = (props:any) => {
             "catid":props.catid,
             "lessonid":lessonid
           }
-          console.log('obj isssssss', obj)
           Camera_service.sendstart(obj)
           .then(res=>{
-            setWord(res.ans)
-            setAll_result(res.all_result)
+            console.log(webcamStatus)
+            if(webcamStatus == 'CLOSED')
+            {
+              init()
+            }
+            else
+            {
+              if(res.ans == props.word)
+              {
+                setWord("ถูกต้อง")
+                setIsCollect(true)
+              }
+              else{
+                setWord("ไม่ถูกต้อง")
+                setIsCollect(true)
+              }
+              setAll_result(res.all_result)
+            }
           })
         }
       })
@@ -73,6 +89,8 @@ const Camera = (props:any) => {
     setStatusprepare(false)
     setCounterstart(time_start)
     setStatustmp(false)
+    setWord('-')
+    setIsCollect(false)
   }
 
 
@@ -81,6 +99,8 @@ const Camera = (props:any) => {
     {
       recordWebcam.retake()
       setStatustmp(true)
+      setWord('-')
+      setIsCollect(false)
     }
     else
     {
@@ -103,6 +123,7 @@ const Camera = (props:any) => {
     {
       recordWebcam.open()
       setCounter(time)
+      init()
     }
     if(recordWebcam.status == 'OPEN'){
       recordWebcam.close()
@@ -116,10 +137,6 @@ const Camera = (props:any) => {
       recordWebcam.close()
       init()
     }
-  }
-  const submitword=()=>{
-    const blob = recordWebcam.getRecording();
-
   }
 
   useEffect(() => {
@@ -184,7 +201,8 @@ const Camera = (props:any) => {
     if(recordWebcam.status == 'PREVIEW')
     {
       getRecordingFileHooks()
-      setWord('กำลังประมวลผล')
+      setWord('กำลังประมวลผล...')
+      setIsCollect(true)
     }
   }, [recordWebcam.status]);
 
@@ -204,24 +222,49 @@ const Camera = (props:any) => {
     })
   }, [props.word]);
 
+  useEffect(() => {
+    setWebcamStatus('CLOSED')
+  }, [recordWebcam.status]);
+  const variantshow=()=>{
+    if(word == 'ถูกต้อง'){
+      return 'success'
+    }
+    if(word == 'กำลังประมวลผล')
+    {
+      return 'info'
+    }
+    else{
+      return 'danger'
+    }
+  }
+
   return (
     <div className='camera'>
       <div className="demo-section">
-        <p>คำศัพท์: {word}</p>
-        <p>Camera status: {recordWebcam.status}</p>
+        <p className='cameraStatusShow'>Camera status: {recordWebcam.status}</p>
 
-        
+        { isCollect &&
+          <Alert  variant={variantshow()}>
+              {word}
+          </Alert>
+        }
         {
           statusprepare == true &&
-          <div>
-          เริ่มอัดใน {counterstart}
-          </div>
+          <Alert  variant={'info'}>
+              เริ่มอัดใน {counterstart}
+          </Alert>
         }
 
         {
           recordWebcam.status === CAMERA_STATUS.RECORDING  && 
-          <div>เวลาอัดที่เหลือ: {counter} วินาที</div>
+          <Alert  variant={'info'}>
+              เวลาอัดที่เหลือ: {counter} วินาที
+          </Alert>
         } 
+        {/* <p>คำศัพท์: {word}</p> */}
+
+        
+
         {/* <button onClick={submitword}>ตรวจสอบท่าทาง</button> */}
         <div className = 'videocheck'>
           <video

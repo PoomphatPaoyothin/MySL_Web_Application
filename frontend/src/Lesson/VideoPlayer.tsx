@@ -33,6 +33,7 @@ const VideoPlayer=(props:any)=>{
     return(
         <div className="videoplayerbox">
             <div className='youtubePlayer'>
+                {console.log('videolink:', videolink)}
                 <YouTube videoId={videolink}opts={opts} />
             </div>
         </div>
