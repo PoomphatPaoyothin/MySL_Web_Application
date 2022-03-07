@@ -31,7 +31,7 @@ const Sign_in = () => {
 
     if(!result){
       setErrormessage(true)
-      setText("อีเมลล์ หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
+      setText("อีเมล หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
       setShow(false)
     }
     else{
@@ -47,7 +47,7 @@ const Sign_in = () => {
           }
           else{
             setErrormessage(true)
-            setText("อีเมลล์ หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
+            setText("อีเมล หรือ รหัสผ่านผิด กรุณาลองใหม่อีกครั้ง");
             setShow(false)
           }
         }
@@ -83,7 +83,7 @@ const Sign_in = () => {
             </div>
             <hr className = 'line_left'/>
             <div className = 'web_pos'>
-                เว็ปไซต์เรียนภาษามือออนไลน์
+                เว็ปไซต์เรียนภาษามือ <br/>ออนไลน์
             </div>
         </div>
 

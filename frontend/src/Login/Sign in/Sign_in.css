@@ -241,11 +241,13 @@
     width:100%;
 }
 .loginword{
+    font-family: 'Open Sans';
+    margin-top: 10px;
     font-size: 30px;
     text-align: center;
 
 }
-@media screen and (max-width:1000px) {
+@media screen and (max-width:1200px) {
     .left_login{
         display: none;
     }
