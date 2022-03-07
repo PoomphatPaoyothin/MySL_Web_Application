@@ -18,6 +18,7 @@ async function fetchword(idcat:string|null): Promise<any>{
 
 async function sendstart(obj:any): Promise<any> 
 {
+    console.log('obj send start: ', obj)
     const res = await fetch('http://localhost:5000/',{
         method: 'POST',
         headers : {'Content-Type':'application/json'},

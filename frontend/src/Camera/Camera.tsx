@@ -25,10 +25,10 @@ const OPTIONS: RecordWebcamOptions = {
 };
 
 const Camera = (props:any) => {
-  let time = 3
+  let time = 5
   let time_start = 3
   let rand =  (0 + (Math.random() * (1000000-0))).toFixed().toString()
-
+// 
   const recordWebcam: RecordWebcamHook = useRecordWebcam(OPTIONS);
   const [lessonid, setLessonid] = useState<string>()
   const [counter, setCounter] = useState<number>(time);
@@ -41,6 +41,7 @@ const Camera = (props:any) => {
   const [all_result, setAll_result] = useState<any>()
   const [isCollect, setIsCollect] = useState<any>(false)
   const [webcamStatus, setWebcamStatus] = useState('')
+  const [tmp_test, setTmp_Test] = useState('')
   const getRecordingFileHooks = async () => {
   const blob = await recordWebcam.getRecording();
 
@@ -59,11 +60,11 @@ const Camera = (props:any) => {
           }
           Camera_service.sendstart(obj)
           .then(res=>{
-            console.log(webcamStatus)
             if(webcamStatus == 'CLOSED')
             {
               init()
             }
+            // zs
             else
             {
               if(res.ans == props.word)
@@ -74,6 +75,7 @@ const Camera = (props:any) => {
               else{
                 setWord("ไม่ถูกต้อง")
                 setIsCollect(true)
+                setTmp_Test(res.ans)
               }
               setAll_result(res.all_result)
             }
@@ -91,6 +93,7 @@ const Camera = (props:any) => {
     setStatustmp(false)
     setWord('-')
     setIsCollect(false)
+    setWebcamStatus('')
   }
 
 
@@ -223,13 +226,15 @@ const Camera = (props:any) => {
   }, [props.word]);
 
   useEffect(() => {
-    setWebcamStatus('CLOSED')
+    if(recordWebcam.status == 'CLOSED'){
+      setWebcamStatus('CLOSED')
+    }
   }, [recordWebcam.status]);
   const variantshow=()=>{
     if(word == 'ถูกต้อง'){
       return 'success'
     }
-    if(word == 'กำลังประมวลผล')
+    if(word == 'กำลังประมวลผล...')
     {
       return 'info'
     }
@@ -242,8 +247,7 @@ const Camera = (props:any) => {
     <div className='camera'>
       <div className="demo-section">
         <p className='cameraStatusShow'>Camera status: {recordWebcam.status}</p>
-
-        { isCollect &&
+        { isCollect && !(recordWebcam.status === CAMERA_STATUS.RECORDING)  &&  !(statusprepare == true) &&
           <Alert  variant={variantshow()}>
               {word}
           </Alert>

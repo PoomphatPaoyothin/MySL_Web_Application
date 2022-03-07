@@ -15,7 +15,6 @@ async function postemailpass(obj:any): Promise<any> {
 }
 
 async function postotp(id:string|null, obj:any): Promise<any> {
-    console.log('id is', id)
     console.log('otp is', obj)
     const res = await fetch(`${url}/register/${id}/checkotp`,{
         method: 'PATCH',
@@ -36,7 +35,6 @@ async function postname(obj:any, id:string|null): Promise<any> {
     });
 
     const result = await res.json();
-    console.log('name is', result)
     return result
 }
 
@@ -57,7 +55,6 @@ async function createStat(id:any): Promise<any> {
 }
 
 async function resendOTP(userid:any): Promise<boolean> {
-    console.log('userid', userid)
     const res = await fetch(`${url}/register/resendotp/${userid}`,{
         method: 'PATCH',
         headers : {'Content-Type': 'application/json'},
