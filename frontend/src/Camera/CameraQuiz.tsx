@@ -15,7 +15,7 @@ import {useForm} from 'react-hook-form'
 import { less } from "@tensorflow/tfjs";
 import Lesson from "../Lesson/Lesson";
 import './Camera.css'
-import { Button } from "react-bootstrap";
+import { Alert, Button } from "react-bootstrap";
 
 const OPTIONS: RecordWebcamOptions = {
   filename: "file",
@@ -25,7 +25,7 @@ const OPTIONS: RecordWebcamOptions = {
 };
 
 const CameraQuiz = (props:any) => {
-  let time = 3
+  let time = 5
   let time_start = 3
   let rand =  (0 + (Math.random() * (1000000-0))).toFixed().toString()
 
@@ -244,7 +244,24 @@ const CameraQuiz = (props:any) => {
       <div className="demo-section">
         {/* <p>all_result: {all_result}</p> */}
         {/* {word} */}
-        {status}
+        {status && !(statusprepare == true) && !(recordWebcam.status === CAMERA_STATUS.RECORDING)  && 
+      
+          <Alert variant='info'>
+            {status}
+          </Alert>
+        }
+        {
+          statusprepare == true &&
+          <Alert variant='info'>
+          เริ่มอัดใน {counterstart}
+          </Alert>
+        }
+
+        {
+          recordWebcam.status === CAMERA_STATUS.RECORDING  && 
+          <Alert variant='info'>เวลาอัดที่เหลือ: {counter}</Alert>
+        } 
+
         <p className="wordtestcam">คำศัพท์: {props.word}</p>
         {/* <p>ศถานะกล้อง: {recordWebcam.status}</p> */}
         <div>
@@ -272,17 +289,7 @@ const CameraQuiz = (props:any) => {
 
         </div>
         
-        {
-          statusprepare == true &&
-          <div>
-          Start in {counterstart}
-          </div>
-        }
 
-        {
-          recordWebcam.status === CAMERA_STATUS.RECORDING  && 
-          <div>Countdown: {counter}</div>
-        } 
         {/* <button onClick={submitword}>ตรวจสอบท่าทาง</button> */}
         <video
           ref={recordWebcam.webcamRef}

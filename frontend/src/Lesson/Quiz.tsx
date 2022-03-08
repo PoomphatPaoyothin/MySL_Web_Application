@@ -228,10 +228,9 @@ const Quiz=(props:any)=>{
                         <div className='examcontainer'>
                             {allword ? 
                             (<CameraQuiz setcorrect={setcorrect}  isClose={isClose} disabled={disableButton} lessonid={lessonId} catid={catId} word={allword[numberword].Word_name}/>):(<div></div>)}
-
-                            <div className="opencamtext">**กรุณาเปิดกล้องเพื่อทำแบบทดสอบ**</div>
+                            <div></div>
                             <Button variant="primary" size="lg" disabled={canNext} onClick={nextword} className="nextquizbutton">{submitword}</Button>
-                            
+                            <div className="opencamtext">**กรุณาเปิดกล้องเพื่อทำแบบทดสอบ**</div>
                         </div>
                     }
          
@@ -251,7 +250,7 @@ const Quiz=(props:any)=>{
                     <Button className={'buttonscore'} onClick={startRe}>
                         สอบใหม่อีกครั้ง
                     </Button>
-                    <PopupconfirmRequiz show={showRe} onClose={closeHandlerRe} getStart={reexam} isFinishHandle={isFinishHandle}/>
+                    <PopupconfirmRequiz show={showRe} close={closeHandlerRe} getStart={reexam} isFinishHandle={isFinishHandle}/>
                 </div>
             }
         </div>

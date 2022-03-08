@@ -94,7 +94,10 @@ const EmailPass = (props: any) => {
         {
             RegisterService.fetchuserprofile(myid)
             .then(res => {
-                setUserinfo(res)
+                if(res)
+                {
+                    setUserinfo(res)
+                }
             })
         }
     }, [])

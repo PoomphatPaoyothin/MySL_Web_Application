@@ -45,7 +45,7 @@ const Dashboard=(props:any)=>{
                 alluser?.map((obj)=>(
                 <tr>
                     <td>{obj.rank}</td>
-                    <td onClick={()=>gotouser(obj.UserID)} className='canclickdash'>{obj.name}</td>
+                    <td onClick={()=>gotouser(obj.userid)} className='canclickdash'>{obj.name}</td>
                     <td>{obj.score}</td>
                 </tr>
 
