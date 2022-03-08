@@ -12,7 +12,8 @@ app.post('/upload/:token', (req, res) => {
         const file = req.files.file
 
         const fileName = token +'.mp4'
-        file.mv(`D:\\MySL_Model\\Model\\flask_for_model_test\\clip\\${fileName}`, err => {
+        // file.mv(`D:\\MySL_Model\\Model\\flask_for_model_test\\clip\\${fileName}`, err => {
+        file.mv(`C:\\CPE\\model\\clip\\${fileName}`, err=>{
             if (err) {
                 console.log(err)
                 res.send(false)

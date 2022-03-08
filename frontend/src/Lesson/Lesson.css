@@ -248,8 +248,23 @@
 }
 
 .howtolearn{
-    border:2px solid red;
+    font-family: "Open Sans";
+    /* border:2px solid red; */
     position:absolute;
-    top:150px;
-    right:0
+    right: 20px;
+    top:90px;
+    font-size: 15px;
+}
+
+.howtolearn-head{
+    font-size: 20px;
+    text-align: center;
+}
+
+.centertext{
+    text-align: center;
+}
+
+.imgopencam{
+    height: 150px;
 }
