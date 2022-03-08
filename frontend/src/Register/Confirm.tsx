@@ -15,6 +15,7 @@ const EmailPass = (props: any) => {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const [text, setText] = useState('')
+    const [myid2,setMyid2] = useState<any>();
 
     const [show_pop, setShow_pop] = useState(false);
     const handleClose_pop = () => setShow(false);
@@ -84,15 +85,18 @@ const EmailPass = (props: any) => {
         history.push('/')
     }
     console.log('id', id)
+    useEffect(()=>{
+        setMyid2(localStorage.getItem('id'))
+    },[])
 
     useEffect(() => {
         checkid()
     }, [userinfo])
 
     useEffect(() => {
-        if(myid)
+        if(myid2)
         {
-            RegisterService.fetchuserprofile(myid)
+            RegisterService.fetchuserprofile(myid2)
             .then(res => {
                 if(res)
                 {
@@ -100,7 +104,11 @@ const EmailPass = (props: any) => {
                 }
             })
         }
-    }, [])
+    }, [myid2])
+
+    console.log('userinfo ',userinfo);
+    console.log('myid2 ',myid2);
+
     return (
         <div className="container">
             <head>

@@ -14,7 +14,7 @@ import LessonIcon2 from '../Picture/Navbar/output-onlinepngtools.png'
 import searchIcon from '../Picture/Navbar/search-icon-png-9982.png'
 import userImage from '../Picture/profile/propic2.png'
 import Home from "../Home/Home";
-import { Alert, Button, Form, FormControl, InputGroup, NavDropdown, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Alert, Button, Form, FormControl, InputGroup, NavDropdown, Overlay, OverlayTrigger, Popover, Tooltip } from "react-bootstrap";
 import NavigatebarService from "./NavigatebarService";
 import Profilepic from "../Profile/Profilepic";
 import ProfilepicSmall from "../Profile/ProfilepicSmall";
@@ -99,7 +99,23 @@ const Navigatebar=(prop:any)=>{
     const gotohome=()=>{
         history.push('/')
     }
-
+    const popover = (
+        <Popover id="popover-basic">
+          <Popover.Header as="h3">หมายเหตุ!</Popover.Header>
+          <Popover.Body>
+          <strong> คะแนนทั้งหมด </strong>ของคุณจากแบบทดสอบทั้งหมดของระบบ
+          </Popover.Body>
+        </Popover>
+      );
+      
+    const popover2 = (
+    <Popover id="popover-basic">
+        <Popover.Header as="h3">หมายเหตุ!</Popover.Header>
+        <Popover.Body>
+        <strong> จำนวนบทที่สอบ </strong>ของคุณจากแบบทดสอบทั้งหมดของระบบ
+        </Popover.Body>
+    </Popover>
+    );
     return(
         <div>
 
@@ -127,13 +143,17 @@ const Navigatebar=(prop:any)=>{
 
             <Nav className = "ms-auto">
 
-                <Nav.Link eventKey={2} href="#memes" className='lessonstatnav'>
+                <Nav.Link eventKey={2} className='lessonstatnav'>
                     <img src = {LessonIcon2} className = 'lesson-pic'/>
-                    <div className="txt">{statnavbar.Lesson_Stat}/15</div>
+                    <OverlayTrigger trigger="click" placement="left" overlay={popover2}>
+                        <div className="txt">{statnavbar.Lesson_Stat}/15</div>
+                    </OverlayTrigger>
                 </Nav.Link>
-                <Nav.Link eventKey={2} href="#memes" className='lessonstatnav2'>
+                <Nav.Link eventKey={2} className='lessonstatnav2'>
                     <img src = {QuizIcon2} className = 'quiz-pic'/>
-                    <div className="txt">{statnavbar.Quiz_stat}/45</div>
+                    <OverlayTrigger trigger="click" placement="left" overlay={popover}>
+                        <div className="txt">{statnavbar.Quiz_stat}/45</div>
+                    </OverlayTrigger>
                 </Nav.Link>
 
                 

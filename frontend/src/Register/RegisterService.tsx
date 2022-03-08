@@ -39,11 +39,8 @@ async function postname(obj:any, id:string|null): Promise<any> {
 }
 
 async function fetchuserprofile(id:string): Promise<any>{
-    console.log('id is: ', id)
     const res = await fetch(`${url}/user/profile/${id}`);
-    // const obj = await res.json();
-    const obj = res
-    console.log('res no json: ', obj)
+    const obj = await res.json();
     return obj;
 }
 
@@ -53,7 +50,6 @@ async function createStat(id:any): Promise<any> {
         headers : {'Content-Type': 'application/json'},
     });
     const result = await res.json();
-    console.log('res22222 is',result)
     return result
 }
 
