@@ -15,7 +15,8 @@ const Name = (props:any) =>{
     const [prefix,setprefix] = useState<string>()
     const id = props.match.params.id;
     const [userinfo,setUserinfo] = useState<any>()
-    const myid = localStorage.getItem('id');
+    const myid =localStorage.getItem('id')
+    const [myid2,setMyid2] = useState<any>();
     const [prefixSelect, setPrefixSelect] = useState<string|undefined>('Mr.')
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -89,11 +90,18 @@ const Name = (props:any) =>{
     },[userinfo])
 
     useEffect(()=>{
-        RegisterService.fetchuserprofile(myid)
-        .then(res=>{
-            setUserinfo(res)
-        })
+        setMyid2(localStorage.getItem('id'))
     },[])
+
+    useEffect(()=>{
+        if(myid2)
+        {
+            RegisterService.fetchuserprofile(myid2)
+            .then(res=>{
+                setUserinfo(res)
+            })
+        }
+    },[myid2])
 
     return(
         <div className="container">

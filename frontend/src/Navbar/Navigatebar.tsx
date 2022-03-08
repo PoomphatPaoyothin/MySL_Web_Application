@@ -14,7 +14,7 @@ import LessonIcon2 from '../Picture/Navbar/output-onlinepngtools.png'
 import searchIcon from '../Picture/Navbar/search-icon-png-9982.png'
 import userImage from '../Picture/profile/propic2.png'
 import Home from "../Home/Home";
-import { Alert, Button, Form, FormControl, InputGroup, NavDropdown } from "react-bootstrap";
+import { Alert, Button, Form, FormControl, InputGroup, NavDropdown, Overlay, OverlayTrigger, Tooltip } from "react-bootstrap";
 import NavigatebarService from "./NavigatebarService";
 import Profilepic from "../Profile/Profilepic";
 import ProfilepicSmall from "../Profile/ProfilepicSmall";
@@ -99,6 +99,7 @@ const Navigatebar=(prop:any)=>{
     const gotohome=()=>{
         history.push('/')
     }
+
     return(
         <div>
 

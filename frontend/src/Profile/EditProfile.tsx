@@ -10,6 +10,7 @@ const EditProfile = (props:any) => {
     const userId = props.match.params.id;
     const myid = localStorage.getItem('id');
     const [userinfo,setUserinfo] = useState<any>()
+    const [myid2,setMyid2] = useState<any>();
 
     const [ismyid, setIsmyid] = useState<boolean>(false)
 
@@ -23,11 +24,18 @@ const EditProfile = (props:any) => {
 
     ///////////////////////////////////////////////////////////////////////////////////
     useEffect(()=>{
-        RegisterService.fetchuserprofile(myid)
-        .then(res=>{
-            setUserinfo(res)
-        })
+        setMyid2(localStorage.getItem('id'))
     },[])
+
+    useEffect(()=>{
+        if(myid2)
+        {
+            RegisterService.fetchuserprofile(myid2)
+            .then(res=>{
+                setUserinfo(res)
+            })
+        }
+    },[myid2])
 
 
     useEffect(()=>{

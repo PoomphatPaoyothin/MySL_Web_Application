@@ -18,6 +18,7 @@ const Lesson=(props:any)=>{
     const [objcat, setObjcat] = useState<any[]>()
     const [objlesson, setObjlesson] = useState<any[]>()
     const [objword, setObjword] = useState<any[]>()
+    const [myid2,setMyid2] = useState<any>();
 
     const [objlesson2, setObjlesson2] = useState<any[]>()
     const history=useHistory()
@@ -114,11 +115,17 @@ const Lesson=(props:any)=>{
 
     ///////////////////////////////////////////////////////////////////////////////////
     useEffect(()=>{
-        RegisterService.fetchuserprofile(myid)
-        .then(res=>{
-            setUserinfo(res)
-        })
+        setMyid2(localStorage.getItem('id'))
     },[])
+    useEffect(()=>{
+        if(myid2)
+        {
+            RegisterService.fetchuserprofile(myid2)
+            .then(res=>{
+                setUserinfo(res)
+            })
+        }
+    },[myid2])
 
 
     useEffect(()=>{

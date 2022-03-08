@@ -246,3 +246,10 @@
 .popuptutorial{
     width:900px;
 }
+
+.howtolearn{
+    border:2px solid red;
+    position:absolute;
+    top:150px;
+    right:0
+}

@@ -9,6 +9,7 @@ import WordCategory from "../WordCategory/WordCategory";
 const Home = () =>{
     const [isLogin,setIsLogin] = useState<boolean>(false)
     const [userinfo,setUserinfo] = useState<any>()
+    const [myid2,setMyid2] = useState<any>();
     const myid =localStorage.getItem('id')
     const history=useHistory()
 
@@ -23,11 +24,17 @@ const Home = () =>{
         checkpage()
     },[])
     useEffect(()=>{
-        RegisterService.fetchuserprofile(myid)
-        .then(res=>{
-            setUserinfo(res)
-        })
+        setMyid2(localStorage.getItem('id'))
     },[])
+    useEffect(()=>{
+        if(myid2)
+        {
+            RegisterService.fetchuserprofile(myid2)
+            .then(res=>{
+                setUserinfo(res)
+            })
+        }
+    },[myid2])
     
 
     useEffect(()=>{

@@ -19,7 +19,7 @@ const Confirm = (props:any) =>{
     const  {promiseInProgress}  = usePromiseTracker()
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
-
+    const [myid2,setMyid2] = useState<any>();
     const [show_alert, setShow_alert] = useState(false)
     const handleClose_alert = () => setShow_alert(false);
 
@@ -80,11 +80,18 @@ const Confirm = (props:any) =>{
     }
 ///////////////////////////////////////////////////////////////////////////////////
     useEffect(()=>{
-        RegisterService.fetchuserprofile(myid)
-        .then(res=>{
-            setUserinfo(res)
-        })
+        setMyid2(localStorage.getItem('id'))
     },[])
+
+    useEffect(()=>{
+        if(myid2)
+        {
+            RegisterService.fetchuserprofile(myid2)
+            .then(res=>{
+                setUserinfo(res)
+            })
+        }
+    },[myid2])
     
 
     useEffect(()=>{

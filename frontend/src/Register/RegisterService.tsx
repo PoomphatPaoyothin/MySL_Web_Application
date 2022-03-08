@@ -38,9 +38,12 @@ async function postname(obj:any, id:string|null): Promise<any> {
     return result
 }
 
-async function fetchuserprofile(id:string|null): Promise<any>{
+async function fetchuserprofile(id:string): Promise<any>{
+    console.log('id is: ', id)
     const res = await fetch(`${url}/user/profile/${id}`);
-    const obj = await res.json();
+    // const obj = await res.json();
+    const obj = res
+    console.log('res no json: ', obj)
     return obj;
 }
 

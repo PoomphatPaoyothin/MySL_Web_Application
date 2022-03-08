@@ -67,6 +67,7 @@ const Camera = (props:any) => {
             // zs
             else
             {
+              if(props.word == 'สวย')
               if(res.ans == props.word)
               {
                 setWord("ถูกต้อง")

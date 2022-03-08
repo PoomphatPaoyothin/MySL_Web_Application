@@ -57,7 +57,7 @@ const PopupConfirmName = (props:any) => {
         <Modal show={shows} backdrop="static">
             <Modal.Header>
                 <Modal.Title>
-                    คุณต้องการจะเปลี่ยนรหัสผ่านใช่หรือไม่
+                    คุณต้องการจะเปลี่ยนชื่อหรือไม่
                 </Modal.Title>
             </Modal.Header>
             <Modal.Body>
