@@ -13,7 +13,7 @@ import { loginModule } from './User/login/login.module';
 import { UserModule } from './User/user.module';
 import { wordcategory } from './Word/category.entity';
 import { lesson } from './Word/lesson.entity';
-import { usercatstat } from './User/usercatstat.entity';
+import { usercatstat } from './User/User_entity/usercatstat.entity';
 import { userstatnav } from './User/userstatnav.entity';
 import { userlessoncheckpoint } from './User/userlessoncheckpoint.entity';
 import { userlessonstat } from './User/userlessonstat.entity';

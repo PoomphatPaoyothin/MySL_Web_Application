@@ -27,12 +27,6 @@ export class User{
     User_password: string;
 
     @Column()
-    follower_amount: number;
-
-    @Column()
-    following_amount: number;
-
-    @Column()
     Is_delete: boolean;
 
     @Column()

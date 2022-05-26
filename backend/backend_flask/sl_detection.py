@@ -160,14 +160,6 @@ def detect():
 	else:
 		return {"no file":True}
 
-@app.route("/test", methods = ['POST']) 
-def test2():
-    tmp = json.loads(request.data)
-    a=tmp['num']
-    a+=1
-    a = str(a)
-    return a
-
 if __name__ == "__main__":
     app.run(debug=True)
 

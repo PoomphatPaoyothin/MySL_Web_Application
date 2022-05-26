@@ -1,7 +1,4 @@
 import { Body, Controller, Get, Post, UseGuards ,Request} from "@nestjs/common";
-import { AuthGuard } from "@nestjs/passport";
-import { User } from "../user.entity";
-import { LocalAuthGuard } from "./local-auth.guard";
 import { loginService } from "./login.service";
 import { UserInput } from "./user.input";
 
@@ -11,24 +8,11 @@ export class loginController{
         private loginService:loginService
     ){}
 
+//login with email and password
     @Post()
     login(
         @Body() userInput: UserInput,
         @Request() req){
         return this.loginService.login(userInput);
-        // return this.loginService.login(userInput);
     }
-
-    // @Post('test')
-    // test(@Body() UserInput: User){
-    //     return this.loginService.test(UserInput);
-    // }
-
-    // @Get('/getuserdata')
-    // @UseGuards(AuthGuard())
-    // getuserdata(user:User)
-    // {
-    //     const res = this.loginService.getuserdata(user);
-    //     return res;
-    // }
 }

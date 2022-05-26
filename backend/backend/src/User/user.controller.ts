@@ -1,20 +1,17 @@
 import { Body, Controller, Get, Param, ParseArrayPipe, Patch, Post } from "@nestjs/common";
-import { number } from "joi";
-import { EmailConfirmationService } from "./register/emailConfirm.service";
-import { User } from "./user.entity";
+import { User } from "../User/User_entity/user.entity";
 import { UserService } from "./user.service";
-import { usercatstat } from "./usercatstat.entity";
-import { userfollower } from "./userfollower.entity";
-import { userfollowing } from "./userfollowing.entity";
-import { userlessoncheckpoint } from "./userlessoncheckpoint.entity";
-import { userlessonstat } from "./userlessonstat.entity";
-import { userstatnav } from "./userstatnav.entity";
+import { usercatstat } from "./User_entity/usercatstat.entity";
+import { userlessoncheckpoint } from "./User_entity/userlessoncheckpoint.entity";
+import { userlessonstat } from "./User_entity/userlessonstat.entity";
+import { userstatnav } from "./User_entity/userstatnav.entity";
 
 @Controller('user')
 export class UserController{
     constructor(private userService:UserService
     ){}
 
+//==================================== User-Profile ====================================
     @Get('getalluser')
     async findalluser():Promise<any>{
         return this.userService.findalluser();
@@ -29,33 +26,10 @@ export class UserController{
     async findUserProfile(@Param('id') id:string): Promise<User>{
         return this.userService.findUserProfile(id);
     }
-
-    @Get('profile/catstat/:id')
-    async GetUsercatstat(@Param('id') id:string): Promise<usercatstat[]>{
-        return this.userService.getUserAllStatCat(id);
-    }
-
-    @Get('profile/navstat/:id')
-    async GetUserNavStat(@Param('id') id:string): Promise<userstatnav>{
-        return this.userService.getUserStatNav(id);
-    }
-
-    @Get('profile/lessonstat/:userid')
-    async GetUserLessonStat(@Param('userid') userid:string): Promise<userlessonstat[]>{
-        return this.userService.getUserAllLessonStat(userid);
-    }
+//====================================END-User-Profile ====================================
 
 
-    @Get('profile/lessoncheckpoint/:userid')
-    async GetUsercheckpoint(@Param('userid') userid: string): Promise<userlessoncheckpoint[]>{
-        return this.userService.getUsercheckpoint(userid);
-    }
-
-    // @Get('profile/amountfollower/:userid')
-    // async GetAmountFollower(@Param('userid') userid:string) :Promise<any>{
-    //     return this.userService.getAmountFollower(userid);
-    // }
-
+//====================================User-Setting====================================
     @Patch(':userid/setting/password')
     async updateUserPassword(@Param('userid') userid: string,
                             @Body('password') password: string): Promise<User>{
@@ -75,6 +49,72 @@ export class UserController{
         return this.userService.deleteAccount(userid);
     }
 
+    @Patch(':userid/changepassword')
+    async changepassword(@Param('userid') userid: string,
+                        @Body('newpassword') newpassword:string):Promise<any>{
+        return this.userService.changepassword(userid,newpassword);
+    }
+
+    @Patch('updateuserimg/:userid')
+    async updateuserimg(@Param('userid') userid:string):Promise<any>{
+        return this.userService.updateuserpicture(userid)
+    }
+//================================= END-User-Setting ====================================
+
+
+//======================== Update-And-Create-User-Stat ====================================
+    //**************************** GET ******************************/
+    @Get('profile/catstat/:id')
+    async GetUsercatstat(@Param('id') id:string): Promise<usercatstat[]>{
+        return this.userService.getUserAllStatCat(id);
+    }
+
+    @Get('profile/navstat/:id')
+    async GetUserNavStat(@Param('id') id:string): Promise<userstatnav>{
+        return this.userService.getUserStatNav(id);
+    }
+
+    @Get('profile/lessonstat/:userid')
+    async GetUserLessonStat(@Param('userid') userid:string): Promise<userlessonstat[]>{
+        return this.userService.getUserAllLessonStat(userid);
+    }
+
+    @Get('profile/lessoncheckpoint/:userid')
+    async GetUsercheckpoint(@Param('userid') userid: string): Promise<userlessoncheckpoint[]>{
+        return this.userService.getUsercheckpoint(userid);
+    }
+
+    @Get('usernavbarstat/:userid')
+    async getusernavbarstat(@Param('userid') userid:string):Promise<any>{
+        return this.userService.getusernavbarstat(userid)
+    }
+
+    @Get('getusercatstat/:userid/:catid')
+    async getusercatstat(@Param('userid') userid:string,
+                        @Param('catid') catid:string):Promise<any>{
+        return this.userService.getusercatstat(userid,catid)
+    }
+
+    @Get(':userid/:catid/getlessonstat')
+    async getlessonuserstat(@Param('userid') userid:string,
+                            @Param('catid') catid:string):Promise<any>{
+        console.log(catid)
+        return this.userService.getuserlessonstat(userid,catid)
+    }
+
+    //**************************** POST ******************************/
+    @Post('checkpassword/:userid')
+    async checkpassword(@Param('userid') userid: string,
+                        @Body ('User_password') User_password: string): Promise<any>{
+        return this.userService.checkpassword(userid,User_password);
+    }
+
+    @Post(':userid/userlessonstat')
+    async createuserlessonstat(@Param('userid') userid:string):Promise<any>{
+        return this.userService.createuserlessonstat(userid);
+    }
+
+    //**************************** PATCH ******************************/
     @Patch(':userid/navbarstat/lesson')
     async updateNavbarLesson(@Param('userid') userid: string): Promise<userstatnav>{
         return this.userService.updateNavbarLesson(userid);
@@ -93,84 +133,9 @@ export class UserController{
         return this.userService.updateUserStatCat(userid,catid,score);
     }
 
-    @Patch(':userid/updatefollower')
-    async updateFollower(@Param('userid') userid: string): Promise<User>{
-        return this.userService.updateFollowerAmount(userid);
-    }
-
-    @Patch(':userid/updatefollowing')
-    async updateFollowing(@Param('userid') userid: string): Promise<User>{
-        return this.userService.updateFollowingAmount(userid);
-    }
-
-    @Patch(':userid/updateUNfollower')
-    async updateUNFollower(@Param('userid') userid: string): Promise<User>{
-        return this.userService.updateUNFollowerAmount(userid);
-    }
-
-    @Patch(':userid/updateUNfollowing')
-    async updateUNFollowing(@Param('userid') userid: string): Promise<User>{
-        return this.userService.updateUNFollowingAmount(userid);
-    }
-
-    @Post('/createfollower')
-    async createfollower(
-        @Body('userid1') userid1: string,
-        @Body('userid2') userid2: string
-    ): Promise<any>{
-        return this.userService.createfollower(userid1,userid2);
-    }
-
-    @Post('/createfollowing')
-    async createfollowing(
-        @Body('userid1') userid1: string,
-        @Body('userid2') userid2: string
-    ): Promise<any>{
-        return this.userService.createfollowing(userid1,userid2);
-    }
-
-    @Get('userfollower/:userid')
-    async getUserfollower(@Param('userid') userid: string):Promise<userfollower[]>{
-        return this.userService.getUserFollower(userid);
-    }
-
-    @Get('userfollowing/:userid')
-    async getUserfollowing(@Param('userid') userid: string):Promise<userfollowing[]>{
-        return this.userService.getUserFollowing(userid);
-    }
-
-    @Post('checkpassword/:userid')
-    async checkpassword(@Param('userid') userid: string,
-                        @Body ('User_password') User_password: string): Promise<any>{
-        return this.userService.checkpassword(userid,User_password);
-    }
-
-    @Patch('/updateUnfollower')
-    async updateUnfollower(@Body('userid1') userid1:string,
-                        @Body('userid2') userid2:string): Promise<any>{
-        return this.userService.updateUnfollower(userid1,userid2);                 
-    }
-
-    @Patch('/updateUnfollowing')
-    async updateUnfollowing(@Body('userid1') userid1:string,
-                        @Body('userid2') userid2:string): Promise<any>{
-        return this.userService.undateUnfollowing(userid1,userid2);
-    }
-
     @Patch(':userid/confirmemail')
     async confirmEmail(@Param('userid') userid:string):Promise<any>{
         return this.userService.confirmEmail(userid);
-    }
-
-    @Patch(':userid/changepassword')
-    async changepassword(@Param('userid') userid: string,
-                        @Body('newpassword') newpassword:string):Promise<any>{
-        return this.userService.changepassword(userid,newpassword);
-    }
-
-    @Post(':userid/userlessonstat')
-    async createuserlessonstat(@Param('userid') userid:string):Promise<any>{
-        return this.userService.createuserlessonstat(userid);
     }
 
     @Patch(':userid/updatelessonstat')
@@ -181,43 +146,27 @@ export class UserController{
         return this.userService.updatelessonstat(userid,catid,lessonid,score)
     }
 
-    @Get(':userid/:catid/getlessonstat')
-    async getlessonuserstat(@Param('userid') userid:string,
-                            @Param('catid') catid:string):Promise<any>{
-        console.log(catid)
-        return this.userService.getuserlessonstat(userid,catid)
-    }
-
     @Patch(':userid/getuserscore')
     async getuserscore(@Param('userid') userid:string):Promise<any>{
         return this.userService.getuserscore(userid)
     }
+//======================== END-Update-And-Create-User-Stat ====================================
 
+
+//==================================== Get-Dashboard ====================================
     @Get('dashboard')
     async getdashboard():Promise<any>{
         return this.userService.getdashboard()
     }
+//==================================== END-Get-Dashboard ====================================
 
+
+//==================================== Check-isQuiz ====================================
     @Get('isquizandscore/:userid/:catid/:lessonid')
     async getisquiz(@Param('userid') userid:string,
                     @Param('catid') catid:string,
                     @Param('lessonid') lessonid:string):Promise<any>{
         return this.userService.getisquiz(userid,catid,lessonid)
     }
-
-    @Get('usernavbarstat/:userid')
-    async getusernavbarstat(@Param('userid') userid:string):Promise<any>{
-        return this.userService.getusernavbarstat(userid)
-    }
-
-    @Get('getusercatstat/:userid/:catid')
-    async getusercatstat(@Param('userid') userid:string,
-                        @Param('catid') catid:string):Promise<any>{
-        return this.userService.getusercatstat(userid,catid)
-    }
-
-    @Patch('updateuserimg/:userid')
-    async updateuserimg(@Param('userid') userid:string):Promise<any>{
-        return this.userService.updateuserpicture(userid)
-    }
+//================================== END-Check-isQuiz ====================================
 }

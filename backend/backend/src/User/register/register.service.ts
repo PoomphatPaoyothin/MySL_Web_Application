@@ -1,13 +1,13 @@
 import { ConflictException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectRepository } from "@nestjs/typeorm";
 import { Repository } from "typeorm";
-import { User } from "../user.entity";
+import { User } from "../User_entity/user.entity";
 import * as bcrypt from 'bcrypt';
 import {v4 as uuid} from 'uuid';
-import { check } from "prettier";
 import { JwtService } from "@nestjs/jwt";
 import { JwtPayload } from "../login/jwt-payload.interface";
-import { access } from "fs";
+
+require('dotenv').config()
 
 @Injectable()
 export class registerService{
@@ -17,10 +17,12 @@ export class registerService{
         private JwtService: JwtService
     ){}
 
+    //hash password (bcrypt)
     private async hashpassword(password: string,saltRound: number): Promise<string>{
         return bcrypt.hash(password,saltRound);
     }
 
+    //create account on first step (register stat = 1) ***POST***
     async createAccountFirst(RegisterInput: any,num:number): Promise<object>{
         const {
                 User_email,
@@ -39,9 +41,7 @@ export class registerService{
             User_password: await this.hashpassword(User_password,saltRound),
             User_email: User_email,
             timeupdate: timeupdate,
-            imguser: "propic",
-            follower_amount: 0,
-            following_amount: 0,
+            imguser: process.env.IMG_USER,
             register_stat:'1',
             Is_email_confirm:false,
             temp:Numstring,
@@ -55,6 +55,7 @@ export class registerService{
         return {"userId":id,"otp":num}; 
     }
 
+    // create account on second step (register stat = 3) ***PATCH***
     async createAccountSecond(id:string,RegisterInput: any):Promise<object>{
         const {
             User_prefix_name,
@@ -77,6 +78,7 @@ export class registerService{
         getUser.temp = null;
         getUser.token_facebook = null;
 
+        //sign access token for authorization
         const User_email = getUser.User_email;
         const userId = getUser.ID;
         const payload: JwtPayload = {User_email};
@@ -86,6 +88,7 @@ export class registerService{
         return {"accessToken":accessToken,"UserId":userId};
     }
 
+    // check otp if valid then register stat = 2 ***PATCH***
     async checkotp(id:string,otp:string){
         const getUser = await this.userRepo.findOne({where:{ID:id,Is_delete:false}});
         const User_email = getUser.User_email;
@@ -105,21 +108,17 @@ export class registerService{
         }
     }
 
-    async forgotpassword(id:string){
-        const getUser = await this.userRepo.findOne({where:{ID:id}});
-        if(!getUser){
-            throw new UnauthorizedException('cant find user');
-        }
-    }
-
+    //find user profile by id
     async findUserProfile(id:string) {
         return this.userRepo.findOne({where:{ID:id,Is_delete:false}});
     }
 
+    //find user profile by email
     async findUserByEmail(email:string){
         return this.userRepo.findOne({where:{User_email:email,Is_delete:false}})
     }
 
+    //update otp in db
     async updateotp(email:string,num:number){
         const numstring = num.toString();
         const getUser = await this.userRepo.findOne({where:{User_email:email,Is_delete:false}});
@@ -128,6 +127,7 @@ export class registerService{
         return getUser.temp;
     }
 
+    //check if otp valid if valid return access token for authorization
     async checkotpwithemail(email:string,otp:string){
         const getUser = await this.userRepo.findOne({where:{User_email:email,Is_delete:false}});
         const userotp = getUser.temp;
@@ -143,6 +143,7 @@ export class registerService{
         }
     }
 
+    //change password if user forgot (use user email)
     async changeforgotpassword(email:string,password:string){
         const getUser = await this.userRepo.findOne({where:{User_email:email}})
         const User_email = getUser.User_email;
@@ -157,32 +158,5 @@ export class registerService{
         getUser.User_password = new_password;
         await this.userRepo.save(getUser);
         return {"accessToken":accessToken,"UserId":UserId};
-    }
-
-    async getuserfacebook(acccessToken:string,name:string){
-        const checkfacebook = await this.userRepo.findOne({where:{token_facebook:acccessToken}})
-        const timeupdate = new Date();
-        if(checkfacebook){
-            return {"accessToken":checkfacebook.token_facebook,"UserId":checkfacebook.ID}
-        }
-        else{
-            const user = this.userRepo.create({
-                ID: uuid(),
-                User_password: null,
-                User_email: "facebook_login",
-                timeupdate: timeupdate,
-                imguser: "propic",
-                follower_amount: 0,
-                following_amount: 0,
-                register_stat:'3',
-                Is_email_confirm:true,
-                temp:null,
-                Is_delete:false,
-                token_facebook:acccessToken,
-                User_name:name
-            })
-
-            return user
-        }
     }
 }
